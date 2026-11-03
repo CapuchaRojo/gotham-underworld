@@ -1,6 +1,7 @@
 """M003: reproducible job outcomes and traceable consequences (original IP)."""
 import random
 from simulation import event, remember
+from relationship_engine import on_job, on_investigation
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 RISKS = {'courier': 18, 'collection': 40}
@@ -35,6 +36,8 @@ def execute_job(world, kind, details):
     for name, person in world['people'].items():
         if person['faction'] == faction:
             remember(world, name, f'Rookie {"completed" if success else "failed"} {kind} for {faction} (attempt {attempt}).')
+    rival = next((g for g in GANGS if g != faction), None)
+    on_job(world, faction, kind, success, attempt, rival=rival)
     if kind == 'collection':
         witnessed = rng.randrange(100) < (65 if not success else 35)
         if witnessed:
@@ -45,7 +48,6 @@ def execute_job(world, kind, details):
             world['cases'].append(case)
             event(world, 'witness', f'Witness reported collection job attempt {attempt}; case {case_id} opened.',
                   case_id=case_id, source_attempt=attempt, cause='witness_report')
-        rival = next(g for g in GANGS if g != faction)
         if not success:
             player['reputation'][rival] = player['reputation'].get(rival, 0) - 1
             world['factions'][faction]['power'] = max(0, world['factions'][faction]['power'] - 1)
@@ -63,6 +65,7 @@ def investigate(world):
         case['investigation_days'] += 1
         case['evidence'] += 1
         remember(world, 'Detective Vale', f'Case {case["id"]}: evidence from job attempt {case["source_attempt"]}.')
+        on_investigation(world, case)
         event(world, 'investigation', f'Detective Vale recovered evidence in case {case["id"]}.',
               case_id=case['id'], source_attempt=case['source_attempt'], cause='witness_followup')
         if case['evidence'] >= 3 and not world['player']['arrested']:

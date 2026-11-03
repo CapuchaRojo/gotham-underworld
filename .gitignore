@@ -6,3 +6,5 @@ world_save.json
 *.log
 
 career_save.json
+
+career*_save.json
