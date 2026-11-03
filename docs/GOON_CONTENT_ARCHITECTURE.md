@@ -13,6 +13,13 @@ The [rogue registry](GOON_ROGUES_GALLERY_REGISTRY.md),
 [minor ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) and
 [Joker recruitment proposal](GOON_JOKER_RECRUITMENT.md) add content-design
 requirements only; no roster, economy or save migration is performed.
+The [atlas](GOON_GOTHAM_ATLAS.md), [location registry](GOON_LOCATION_REGISTRY.md),
+[travel](GOON_TRAVEL_NETWORK.md), [migration](GOON_MAP_SIMULATION_INTEGRATION.md),
+[career geography](GOON_CAREER_GEOGRAPHY.md) and
+[visual specification](GOON_MAP_VISUAL_SPEC.md) are likewise research/design only.
+Location containment is not a travel edge; geography is not a territory account.
+Future layers separate actual facts, public knowledge and sourced claims. No new
+schema or loader is introduced by the Markdown registry.
 
 ## Current boundary and constraints
 

@@ -101,6 +101,32 @@ These documents are integrated into the bible, career web, opportunity rules,
 employer matrix, institution design and architecture. No rogue is mapped onto
 an existing faction or assumed to own a district merely because they are a boss.
 
+## City atlas and world-map design submission
+
+The [atlas](docs/GOON_GOTHAM_ATLAS.md) and
+[registry](docs/GOON_LOCATION_REGISTRY.md) propose 8 regions, 48 neighborhoods and
+120 POIs (176 place records). Brown's design account is the primary geographical
+inspiration; Arkham Knight, Gotham Knights and Monolith publisher material provide
+secondary organizational/atmospheric references. No source map is traced/rendered;
+the full commercial RPG map was not inspected. Borrowed names and original
+placements/profiles are explicitly distinguished, with continuity questions open.
+
+The [network](docs/GOON_TRAVEL_NETWORK.md) specifies 63 physical neighborhood
+corridors plus 120 POI access links. Its provisional separate 18-TU travel allowance
+preserves three daily gameplay actions, free basic public mobility and useful local
+alternatives; no travel command, vehicle or schedule is implemented.
+The [integration proposal](docs/GOON_MAP_SIMULATION_INTEGRATION.md) retains all
+legacy territory keys/resources/events, uses optional display footprints, and
+requires explicit versioned opt-in/activation before a future geography feature.
+Geographic expansion does not automatically multiply income, upkeep or warfare.
+
+[Career geography](docs/GOON_CAREER_GEOGRAPHY.md) connects all established work
+specializations with civilian services and three paper scenarios.
+The [visual specification](docs/GOON_MAP_VISUAL_SPEC.md) separates actual world
+facts from public data, observations and rumors; no GUI/read adapter is added.
+This submission changes Markdown only. No active district, save schema, faction
+rule, dependency, gameplay/CLI behavior or M014 scope changes.
+
 ## Validation
 
 Run `python -B -m unittest discover -s tests -v`.

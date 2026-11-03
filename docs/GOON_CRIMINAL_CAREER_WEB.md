@@ -35,6 +35,10 @@ support independent jobs, a small crew or a major employer. A trusted fixer can
 remain influential without territory; promotion is responsibility, not automatic
 faction registration. [Rogue registry roles](GOON_ROGUES_GALLERY_REGISTRY.md) are
 conditional employers/associates/rivals rather than mandatory career bosses.
+The [career geography](GOON_CAREER_GEOGRAPHY.md) connects these roles to the
+[proposed city registry](GOON_LOCATION_REGISTRY.md). Physical place, territory,
+work access and known contacts remain separate. New commute/location prerequisites
+cannot be retroactively imposed on legacy jobs by loading an expanded atlas.
 
 ```mermaid
 flowchart LR

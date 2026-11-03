@@ -8,6 +8,12 @@ The [rogue registry](GOON_ROGUES_GALLERY_REGISTRY.md) is a pool of proposed
 versioned content; the [minor ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md)
 distinguishes actors, crews and full factions. Neither listing nor fame creates
 an available offer, treasury, district owner or guaranteed encounter.
+The [atlas](GOON_GOTHAM_ATLAS.md) supplies proposed place IDs and
+[travel rules](GOON_TRAVEL_NETWORK.md), not current player-location state.
+Future offers should disclose known commute/return requirements and viable local
+alternatives; geography alone cannot spawn a contact or retrospectively gate
+old jobs. Route/permission changes follow explicit atomic outcomes and the
+[map migration contract](GOON_MAP_SIMULATION_INTEGRATION.md).
 
 ## Eligible does not mean available or encountered
 

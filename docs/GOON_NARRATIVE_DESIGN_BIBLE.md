@@ -98,6 +98,14 @@ drivers, fences, cleaners, informants and aspiring villains whose choices matter
 without treasury/warfare turns. Growth, dissolution, defection, arrest and retirement
 change people and access before they necessarily change a map.
 
+The [metropolitan atlas](GOON_GOTHAM_ATLAS.md) proposes 8 regions, 48 neighborhoods
+and 120 POIs, with ordinary work, housing, care, social life and mixed ownership.
+Its [career geography](GOON_CAREER_GEOGRAPHY.md) makes commitments and knowledge
+matter rather than requiring repeated empty travel. The geography and transport
+are original specifications with sourced name anchors, not a reproduced licensed
+map or an expansion of the current three economic districts. No map/travel system
+or GUI is implemented by this design submission.
+
 ## 4. Character creation and backgrounds
 
 **Implemented:** the player starts as Rookie with cash, heat, and no affiliation.

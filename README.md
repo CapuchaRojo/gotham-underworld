@@ -40,6 +40,12 @@ design work.
 | [Rogues gallery registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md) | Thirty-five versioned entries with lore/source boundaries and original jobs/roles; no guaranteed active roster |
 | [Minor criminal ecosystem](docs/GOON_MINOR_CRIMINAL_ECOSYSTEM.md) | Major factions, minor crews and individuals; original workers and rise/fall/exit proposals without universal territory simulation |
 | [Joker recruitment contract](docs/GOON_JOKER_RECRUITMENT.md) | Original campaign proposal: street association differs from formal Arkham/direct-encounter initiation |
+| [Metropolitan atlas](docs/GOON_GOTHAM_ATLAS.md) | Original 8-region geography and source/continuity decisions; no traced or rendered map |
+| [Location registry](docs/GOON_LOCATION_REGISTRY.md) | 48 neighborhoods and 120 POIs with IDs, access, economy, security, civilian/criminal activities and potential contacts |
+| [Travel network](docs/GOON_TRAVEL_NETWORK.md) | Typed routes, modes, closures, deterministic planning and proposed separate TU allowance; not implemented |
+| [Map/simulation integration](docs/GOON_MAP_SIMULATION_INTEGRATION.md) | Preserve the three territory accounts while adding optional hierarchical geography through a future reviewed migration |
+| [Career geography](docs/GOON_CAREER_GEOGRAPHY.md) | Location-dependent work, civilian life, care and meaningful commitments rather than commute grind |
+| [Map visual specification](docs/GOON_MAP_VISUAL_SPEC.md) | Future layered views with player-knowledge boundaries; no GUI or map image |
 | [Villain influence and recovery](docs/GOON_VILLAIN_INFLUENCE_SYSTEM.md) | Fictional exposure, coercion, resistance, consent and credible recovery; no clinical implementation |
 | [Institutions and recovery](docs/GOON_INSTITUTIONS_AND_RECOVERY.md) | Distinct Blackgate, Arkham, voluntary care, review and reentry paths with continuity/agency rules |
 | [Gameplay principles](docs/GOON_GAMEPLAY_PRINCIPLES.md) | Sourced reference-game lessons, meaningful-choice gates, current limits, and manual scenarios |
@@ -58,6 +64,11 @@ The rogues addendum changes documentation only. Its roster is not assumed to
 coexist in every continuity, and no minor crew automatically becomes a district
 owner. Formal Joker initiation is optional and conditional; a career can finish
 without it. No new character, recruitment gate or save field is implemented.
+The city-atlas addition is research/documentation only: 176 proposed place records
+(8 regions, 48 neighborhoods, 120 POIs) and an original network specification.
+Geography, faction territory, minor-crew influence, properties and police coverage
+are separate. All current gameplay and district values remain governed by M013;
+the travel allowance, migration and UI are unimplemented proposals.
 
 ## Start or resume a career
 
