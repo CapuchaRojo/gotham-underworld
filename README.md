@@ -1,16 +1,50 @@
-# Gotham Underworld — M013 Sustainable Faction Competition
+# Gotham: The Goon
+
+*A Living Gotham Crime RPG*
+
+> Everybody wants to rule Gotham. You're just trying to survive it.
 
 A deterministic, offline, single-player crime-city simulation and terminal RPG
-prototype. Python 3.14 standard library only: no packages, external AI services,
-or paid APIs are required.
+prototype about an ordinary criminal surviving work, loyalties, and a changing
+city. Python 3.14 standard library only: no packages, external AI services,
+or paid APIs are required. The executable remains **M013 — Sustainable Faction
+Competition**; **M013.1 — Branding & Narrative Foundation** adds documentation
+and design proposals only.
 
 This is an independent, unofficial prototype. Its intended future creative
 setting is the DC universe; it has no endorsement, authorization, or affiliation
 with DC, Warner Bros., or their partners. The executable retains its original
 placeholder characters, factions, and districts. M013 introduces no DC characters,
-new storylines, combat, or imported assets. Any proposed public distribution,
+new storylines, combat, or imported assets. The working title and setting are
+subject to future licensing and title clearance. Any proposed public distribution,
 commercial release, fundraising, or external pitch materials need separate
 rights and legal review.
+
+## Design foundation and status
+
+Ordinary goons are the protagonists. Professional henchman, lieutenant,
+independent operator, boss, informant, reformed citizen, and tragic casualty are
+future career possibilities, not an implemented campaign or a single promotion
+ladder. The intended tone combines dark workplace comedy, street-level crime
+drama, survival, and occasional horror. Current gameplay is described below;
+future employment, personalities, civilian life, combat, and DC content remain
+design work.
+
+| Document | Purpose |
+| --- | --- |
+| [Narrative design bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md) | Player fantasy, tone, 15 design areas, feature-status legend, and originality boundaries |
+| [Faction and employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md) | Nine proposed employer cultures, entry, pay, risk, advancement, and consequences |
+| [Gameplay principles](docs/GOON_GAMEPLAY_PRINCIPLES.md) | Sourced reference-game lessons, meaningful-choice gates, current limits, and manual scenarios |
+| [Content architecture](docs/GOON_CONTENT_ARCHITECTURE.md) | Proposed definition/state separation and service integration; no content migration |
+| [M014 combat design contract](docs/M014_COMBAT_DESIGN_CONTRACT.md) | Bounded solo-combat proposal and acceptance criteria for human review; no implementation authorization |
+| [Project state](PROJECT_STATE.md) | Runtime capabilities, compatibility, limitations, and next review |
+
+M013.1 preserves the `gotham-underworld` repository name, Python modules, package
+layout, save filenames/identifiers, CLI labels, and historical milestone documents.
+Some terminal and workflow labels therefore still say Gotham Underworld. A later
+rename would require a separately approved migration plan. None of the proposed
+DC employers is added to the executable or substituted for an existing faction.
+Review this milestone before authorizing M014; combat is not implemented here.
 
 ## Start or resume a career
 
@@ -292,6 +326,9 @@ IDs from display names and keep character/faction, dialogue, mission/event,
 asset, and progression data separate from mechanics. New systems should extend
 the command/event interfaces and explicit additive save migrations, without
 requiring a particular fictional property.
+The [content architecture proposal](docs/GOON_CONTENT_ARCHITECTURE.md) identifies
+the remaining name coupling, version/ID requirements, and the case-source adapter
+needed before non-job incidents can create compatible legal cases.
 
 ## Determinism, tests, and scope
 
@@ -299,6 +336,9 @@ RNG remains local to seeded operations. M013 preserves legacy job outcomes and
 adds no random draws. Command history, action usage, investigation markers,
 committed responses, and review dates
 survive saving. Reports and snapshots expose no mutable world references.
+M013.1 changes no Python, tests, workflows, save formats, or runtime definitions;
+the regression baseline is 198 tests. Combat acceptance checks in the design
+contract are future requirements, not executed combat tests.
 
 Tests include all 166 M012 regressions, real M001-M012 fixtures, persistence failure
 injection, malformed saves, command atomicity, CLI save/resume, fresh-process
