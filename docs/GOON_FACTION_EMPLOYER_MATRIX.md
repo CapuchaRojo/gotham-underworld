@@ -39,6 +39,8 @@ not merely change a risk multiplier or reward color.
 | **Scarface / Ventriloquist — proposed intermediary-run crew** | Sponsorship, discretion, and clear confirmation of who is authorized to issue a task. | Crew share or retainer with a recorded handoff; competing instructions create payment disputes. | High command ambiguity and retaliation risk; ordinary coworkers need practical safety routes. | Loyalty is expressed through intermediaries and status rituals; threats and dominance surround a deliberately unsettling authority arrangement. Avoid diagnostic stereotypes or imitated screen dialogue. |
 | **Carmine Falcone — family organization** | A community reference and obligations to an existing contact; background need not grant automatic membership. | Regular envelope plus favors and obligations; the social cost of a favor is visible. | Moderate apparent stability, high pressure from entrenched corruption and rival institutions. | Expects discretion and durable obligations; paternal presentation can conceal ruthless decisions. Continuity placement must be chosen before use. |
 | **Bane — disciplined expeditionary organization** | A practical competence test, preparedness, and willingness to follow a declared operational objective. | Clear operation share and limited recovery support tied to agreed duties. | High-intensity assignments and strong exposure; worker safety depends on objectives, not just pay. | Expects discipline and competence; strategic, demanding, intolerant of careless execution. This proposes a work culture, not a new substance or combat system. |
+| **Poison Ivy — proposed botanical support network** | Relevant technical/stewardship competence and a conditional referral; no required exposure or coerced initiation. | A defined service fee or practical support, with promised benefits distinguished from verified ones. | Fictional botanical exposure, coercive pressure and conflicts with civilian welfare. | Ecological priorities can override ordinary work; useful cooperation and freely chosen loyalty must be recorded separately from influence. |
+| **Scarecrow — proposed fear-based operation cell** | A conditional technical/support offer with signaled hazards; refusing an unsafe trial preserves alternatives. | A stated task fee; claimed treatment or protection is not guaranteed compensation or the only recovery route. | Extreme fictional fear exposure, manipulation and exploitation of private information. | Values control of fear and experimental results over worker welfare; specific unethical conduct, not mental illness, defines the danger. |
 
 ## Advancement, consequences, and distinct play
 
@@ -53,6 +55,8 @@ not merely change a risk multiplier or reward color.
 | Scarface / Ventriloquist | Trusted intermediary or foreman able to clarify or exploit command ambiguity. | An instruction is denied, an associate blames the worker, or a share is withheld; preserve who heard which order. | Track authority and witness chains, seek confirmation, and decide whether protecting an intermediary matters more than official approval. | Conflicting testimony creates an information problem. Batman's scrutiny threatens the chain of intermediaries; no diagnosis determines guilt or violence. |
 | Falcone | Sponsored specialist or lieutenant with competing obligations to workers, sponsors, and family leadership. | Social isolation, a called-in favor, or a targeted loss of work rather than a citywide memory reset. | Manage favors as specific reciprocal promises, including refusal and noncriminal alternatives; a community is more than a resource meter. | Institutional influence complicates an inquiry but cannot guarantee protection. Protecting a civilian contact may conflict with a sponsor's order. |
 | Bane | Team specialist or planning responsibility, making preparation and retreat decisions consequential. | Loss of command trust, reassignment, or pursuit tied to a known breach. | Choose readiness, a bounded objective, and extraction commitments; eventual crew cooperation depends on declared roles, not bigger enemy statistics. | Attention tracks the operation's observed footprint. Facing Batman calls for survival or withdrawal; no routine worker duel proves superiority. |
+| Poison Ivy | Trusted caretaker or technical coordinator; authority increases stewardship and consent obligations. | Lost access, disputed commitments or a bounded coercion episode; no automatic permanent devotion or removal of player input. | Choose ecological work, worker safety, independent review or departure; persist exposure, voluntary allegiance and recovery separately. | Documented harm/exposure informs a specific inquiry; Batman intervention can prioritize survival and rescue, not treat every affected worker as a willing accomplice. |
+| Scarecrow | Technical responsibility with higher exposure and complicity; no promotion unlocks a mandatory cure. | A known threat, misuse of a confidence or loss of work, with independent support and escape/review routes. | Question a claimed remedy, protect a coworker, choose an ethical referral or refuse an experiment; seeded fear effects remain bounded and auditable. | Witnessed acts and specific evidence matter. Batman is a high-threat disruption to the operation; helping another worker can matter more than employer approval. |
 
 ## Proposed mechanical implications
 
@@ -65,6 +69,14 @@ Personal loyalty can conflict with employer approval. A worker may leave one
 organization while retaining a friend or a debt. Recruiters can lie, but the UI
 must preserve the source and uncertainty of a promise. Trait combinations need
 author review so "unpredictable" does not mean unexplained arbitrary punishment.
+
+All eleven employers use [conditional opportunities](GOON_CONDITIONAL_OPPORTUNITIES.md),
+not guaranteed unlocks. Recruitment, wages and personal devotion are separate
+from faction economics and [influence conditions](GOON_VILLAIN_INFLUENCE_SYSTEM.md).
+Every proposed culture inherits the recruitment/culture and employment rows of
+the [ten-field review](GOON_GAMEPLAY_PRINCIPLES.md#the-ten-field-design-review),
+including persistent alternatives, grind risks, migration and agency/exploit checks.
+No special mechanic above authorizes a new subsystem during M013.1 or M014.
 
 ## Paper comparison scenario
 
@@ -92,6 +104,8 @@ is asserted. These sources were consulted on November 3, 2026:
 - Scarface and Ventriloquist: the puppet/handler relationship — [DC's discussion of the pair](https://www.dc.com/blog/2019/04/09/easter-egg-hunt-a-dummy-a-wig-and-a-famously-funky-costume).
 - Falcone: entrenched organized crime and institutional influence — [DC character profile](https://www.dc.com/characters/carmine-falcone).
 - Bane: strategic discipline, power, and territorial ambition — [DC character profile](https://www.dc.com/characters/bane).
+- Poison Ivy: plant-centered motives and fictional influence capabilities — [DC character profile](https://www.dc.com/characters/poison-ivy).
+- Scarecrow: fear-centered manipulation and experimentation — [DC character profile](https://www.dc.com/characters/scarecrow).
 
 No source dialogue, illustrations, voice performances, or plot sequences are
 reproduced. A named employer pack requires its own continuity, content, rights,

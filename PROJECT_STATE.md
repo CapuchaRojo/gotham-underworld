@@ -2,7 +2,7 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Documentation milestone: **M013.1 — Branding & Narrative Foundation**, for review
+- Documentation milestone: **M013.1 — Branding, Criminal Careers & Narrative Foundation**, for review
 - Runtime baseline: **M013 — Sustainable Faction Competition**, merged via PR #12
   at `eb931ce33c079018159aad14c2327561d9fa195f`; 198 regression tests
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
@@ -37,23 +37,38 @@
 
 ## M013.1 design foundation
 
-This milestone changes Markdown documentation only. Repository/module names,
-package structure, save identifiers, runtime definitions, CLI/workflow labels,
-and all existing gameplay remain intact. Historical Gotham Underworld references
-are retained where they identify an existing interface or past milestone.
+This milestone changes Markdown documentation and CLI display strings only.
+Repository/module names, package structure, save identifiers, runtime content
+definitions, workflow labels and all existing gameplay remain intact. The CLI
+banner and prompt use the working title; historical Gotham Underworld references
+remain where they identify technical interfaces or past milestones.
 
 - [Narrative bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md): ordinary workers as
   protagonists; workplace comedy, crime drama, survival, relationships, and many
   possible careers. Separates implemented behavior, endorsed creative direction,
   proposed mechanics, and speculative concepts. Endorsed direction is not
   implementation authorization or a delivery schedule.
-- [Employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md): nine proposed DC employer
+- [Career web](docs/GOON_CRIMINAL_CAREER_WEB.md): nineteen overlapping criminal
+  specializations plus lawful work, informing, rehabilitation and retirement;
+  references and commitments matter alongside skills. Three original paper
+  scenarios show divergent work, recovery and post-custody careers.
+- [Conditional opportunities](docs/GOON_CONDITIONAL_OPPORTUNITIES.md): prerequisites,
+  demand, capacity, seeded selection, expiry and revalidation; no named encounter
+  is guaranteed or required to complete a campaign.
+- [Employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md): eleven proposed DC employer
   cultures; recruitment, compensation, risk, loyalty, advancement and fallout.
   Broad canonical anchors are sourced; workplace mechanics are original proposals.
 - [Gameplay principles](docs/GOON_GAMEPLAY_PRINCIPLES.md): sourced historical
-  criticism, seven feature gates, current mechanical shallows, a current-game
-  reproduction recipe and paper exercises. No new player decisions or consequences
-  are implemented by M013.1.
+  criticism, seven feature gates, ten-field design reviews, current mechanical
+  shallows, a current-game reproduction recipe and paper exercises. No new player
+  decisions or consequences are implemented by M013.1.
+- [Villain influence](docs/GOON_VILLAIN_INFLUENCE_SYSTEM.md): fictional exposure,
+  coercion and vulnerability separated from chosen allegiance; meaningful choices,
+  bounded conditions, credible recovery and ethical alternatives. Unimplemented.
+- [Institutions/recovery](docs/GOON_INSTITUTIONS_AND_RECOVERY.md): distinct criminal
+  custody, psychiatric admission, voluntary care and supervision; lawful fictional
+  entry/review/exit rules require continuity approval. No conviction-only Arkham
+  commitment, guaranteed villain, forced treatment grind or villain-exclusive cure.
 - [Content architecture](docs/GOON_CONTENT_ARCHITECTURE.md): future stable IDs and
   definitions, separate runtime facts/knowledge/presentation, service-driven GUI
   and narrative, and the legal case-source integration prerequisite for combat.
@@ -67,8 +82,8 @@ are retained where they identify an existing interface or past milestone.
 Run `python -B -m unittest discover -s tests -v`.
 
 The M013.1 scope retains all 198 existing tests and adds no runtime tests for
-documentation-only changes. The complete suite must be rerun before its PR;
-future combat scenarios and acceptance criteria are not passing-test claims.
+documentation/display-only changes. The complete suite must be rerun before final
+PR review; future scenarios and acceptance criteria are not passing-test claims.
 
 All 166 M012 tests remain unchanged. Coverage includes persistence failure
 injection, malformed/current-version state, M001-M010 migration fixtures, bounded
@@ -103,6 +118,9 @@ The new working title remains subject to future licensing and title clearance;
 this milestone performs neither. No third-party scripts, copied narrator
 characters/jokes, or extracted media are introduced. No named DC actor is added
 to runtime content, and no existing placeholder is silently reinterpreted as one.
+No DC license is claimed and the working title is not legally cleared. Fictional
+institutional rules and influence conditions are design proposals, not real-world
+medical/legal guidance or a selected universal DC continuity.
 
 ## Known limits and next review
 

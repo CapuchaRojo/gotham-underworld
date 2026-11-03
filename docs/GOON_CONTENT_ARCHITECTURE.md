@@ -5,6 +5,10 @@ or content packs described as proposed below are implemented by this milestone.
 The current runtime remains M013. This document supports the
 [narrative bible](GOON_NARRATIVE_DESIGN_BIBLE.md) and the separately reviewable
 [M014 combat contract](M014_COMBAT_DESIGN_CONTRACT.md).
+The expanded proposals cover [careers](GOON_CRIMINAL_CAREER_WEB.md),
+[opportunities](GOON_CONDITIONAL_OPPORTUNITIES.md),
+[influence](GOON_VILLAIN_INFLUENCE_SYSTEM.md) and
+[institutions/recovery](GOON_INSTITUTIONS_AND_RECOVERY.md). They do not enlarge M014.
 
 ## Current boundary and constraints
 
@@ -50,7 +54,7 @@ predicate, and behavior policy can describe an employer without naming one.
 ## Proposed definition catalog
 
 These are minimum design responsibilities, not approved JSON schemas or a demand
-for ten new modules at once. Introduce only the definitions a milestone uses.
+for a new module per row. Introduce only the definitions a milestone uses.
 
 | Definition | Proposed minimum fields and references | Mutable state lives elsewhere |
 | --- | --- | --- |
@@ -64,6 +68,19 @@ for ten new modules at once. Introduce only the definitions a milestone uses.
 | City event | `id`, deterministic eligibility, finite phases, scope, mission/effect references | Trigger cause, phase, affected instances, settlement marker |
 | Equipment | `id`, display label, slot, permitted actions, bounded modifiers, asset references | Ownership, selected loadout, condition if later approved |
 | Progression | `id`, milestone predicates, unlock references, branching/exclusion rules | Earned qualifications, access, reputation, chosen commitments |
+| Career specialization | `id`, skill/qualification references, work tags, transition and lawful-exit references | Demonstrated qualifications, contract history and selected goals; no immutable class |
+| Skill | `id`, bounded scale, permitted check IDs, learning/proof rules | Earned capability and one-time proofs; no viewing/appointment XP |
+| NPC personality | `id`, bounded preferences, priorities, boundaries, behavior-policy references | Individual decisions, changing goals, memories and commitments |
+| Relationship | `id`, directed actor roles, metric bounds, knowledge/effect policies | Each pair's trust/boundaries, known facts, promises and causal history |
+| Criminal reputation | `id`, audience/domain, eligible evidence and propagation rules | Audience-specific known acts and assessments; separate from criminal records |
+| Personal code | `id`, explicit commitments, warning rules, conflicting-choice references | Voluntarily chosen commitments, honored/broken promises and revisions; no diagnostic/alignment score |
+| Opportunity | `id`, eligibility predicates, demand/capacity, selection policy, terms, expiry and outcome references | Trigger/evaluation/instance IDs, committed draw, known offer, accepted terms and terminal result |
+| Location | `id`, display label, access rules, available services and institution references | Presence/access and finite incident effects, when a travel/location system is approved |
+| Injury | `id`, bounded effects, recovery references, conflict/stacking rules | Source, current severity, settlement and recovery markers; never inferred from faction power |
+| Villain influence condition | `id`, fictional exposure/trigger/effect policies, severity bounds, consent safeguards, recovery references | Source event, bounded condition, chosen responses and residual vulnerability; allegiance separate |
+| Institution | `id`, mandate, continuity version, entry/transfer/review/exit rules, role/service references | Episode, separate custody/care status, authority, review dates, participant availability |
+| Treatment/recovery | `id`, fictional eligibility, consent/confidentiality terms, milestones, alternate-provider and safety references | Chosen plan, permissions, support, progress, disclosures, reviewed changes and exit |
+| Character ending | `id`, predicates over commitments/situation, disclosed irreversible choices, continuation policy | Committed ending, reasons and relevant world/relationship facts |
 
 Each definition also needs a schema version and provenance/content-pack metadata.
 Asset references belong to a separate manifest containing source, rights status,
@@ -121,6 +138,37 @@ phases, refresh actions, or invent historical injuries/crimes. Do not infer heal
 from faction power or treat an unknown old history as evidence of an injury.
 
 ## Commands, events, and proposed combat integration
+
+### Future career, opportunity, and care ownership
+
+Career qualifications derive from committed proofs, not speculative narration.
+Personal code is a player commitment with explicit revision, not an irreversible
+class. NPC personality parameters inform decisions within knowledge boundaries;
+relationships belong to specific directed actors, and reputation belongs to an
+audience. No generic reducer may convert one of these into every other metric.
+
+Opportunity evaluation owns recorded eligibility/selection and capacity. Contracts
+own accepted terms and exactly-once settlement. Influence owns exposure/condition
+state; affiliation and informed consent require separate explicit decisions.
+Institutions own valid admission/transfer/review/exit state, with criminal custody,
+care and supervision stored separately. Recovery owns reviewed milestones; a
+read-only care report cannot tick symptoms or pay a grant. Legal rules own case
+facts and outcomes, with compatible incident sources rather than fabricated jobs.
+
+These are proposed ownership boundaries, not a request for a framework or an
+immediate set of Python modules. Introduce one approved domain at a time. Do not
+infer diagnoses, qualifications, admissions, personal codes or consent from old
+save histories. Add a versioned empty extension only when its feature is approved,
+preserve unknown historical facts, and test every transition from historical saves.
+
+Pin the selected continuity and each active definition's resolved parameters.
+Validate opportunity references, staff availability, confidentiality permissions,
+lawful transition reasons and finite review/exit routes before committing. A
+missing optional villain must not invalidate an entire otherwise viable career;
+required missing definitions need a clear compatibility error or an explicitly
+reviewed migration, never an invented substitute.
+
+### Existing callable boundary
 
 The existing callable interface is sufficient for a first GUI adapter:
 

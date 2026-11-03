@@ -8,8 +8,8 @@ A deterministic, offline, single-player crime-city simulation and terminal RPG
 prototype about an ordinary criminal surviving work, loyalties, and a changing
 city. Python 3.14 standard library only: no packages, external AI services,
 or paid APIs are required. The executable remains **M013 — Sustainable Faction
-Competition**; **M013.1 — Branding & Narrative Foundation** adds documentation
-and design proposals only.
+Competition**; **M013.1 — Branding, Criminal Careers & Narrative Foundation**
+adds documentation, design proposals and CLI display text only.
 
 This is an independent, unofficial prototype. Its intended future creative
 setting is the DC universe; it has no endorsement, authorization, or affiliation
@@ -19,6 +19,7 @@ new storylines, combat, or imported assets. The working title and setting are
 subject to future licensing and title clearance. Any proposed public distribution,
 commercial release, fundraising, or external pitch materials need separate
 rights and legal review.
+No DC license is claimed, and the working title is not legally cleared.
 
 ## Design foundation and status
 
@@ -32,18 +33,23 @@ design work.
 
 | Document | Purpose |
 | --- | --- |
-| [Narrative design bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md) | Player fantasy, tone, 15 design areas, feature-status legend, and originality boundaries |
-| [Faction and employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md) | Nine proposed employer cultures, entry, pay, risk, advancement, and consequences |
+| [Narrative design bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md) | Player fantasy, tone, 16 design areas, feature-status legend, and originality boundaries |
+| [Criminal career web](docs/GOON_CRIMINAL_CAREER_WEB.md) | Nineteen overlapping specializations, lawful work, informing, rehabilitation, retirement and three worked scenarios |
+| [Conditional opportunities](docs/GOON_CONDITIONAL_OPPORTUNITIES.md) | Eligibility, demand, recorded probability, expiry and viable careers without guaranteed villain meetings |
+| [Faction and employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md) | Eleven proposed employer cultures, entry, pay, risk, advancement, and consequences |
+| [Villain influence and recovery](docs/GOON_VILLAIN_INFLUENCE_SYSTEM.md) | Fictional exposure, coercion, resistance, consent and credible recovery; no clinical implementation |
+| [Institutions and recovery](docs/GOON_INSTITUTIONS_AND_RECOVERY.md) | Distinct Blackgate, Arkham, voluntary care, review and reentry paths with continuity/agency rules |
 | [Gameplay principles](docs/GOON_GAMEPLAY_PRINCIPLES.md) | Sourced reference-game lessons, meaningful-choice gates, current limits, and manual scenarios |
 | [Content architecture](docs/GOON_CONTENT_ARCHITECTURE.md) | Proposed definition/state separation and service integration; no content migration |
 | [M014 combat design contract](docs/M014_COMBAT_DESIGN_CONTRACT.md) | Bounded solo-combat proposal and acceptance criteria for human review; no implementation authorization |
 | [Project state](PROJECT_STATE.md) | Runtime capabilities, compatibility, limitations, and next review |
 
 M013.1 preserves the `gotham-underworld` repository name, Python modules, package
-layout, save filenames/identifiers, CLI labels, and historical milestone documents.
-Some terminal and workflow labels therefore still say Gotham Underworld. A later
-rename would require a separately approved migration plan. None of the proposed
-DC employers is added to the executable or substituted for an existing faction.
+layout, save filenames/identifiers, and historical milestone documents. The CLI
+banner and prompt use the new working title; historical and workflow labels still
+identify Gotham Underworld. Technical renames require a separately approved
+migration plan. None of the proposed DC employers is added to the executable or
+substituted for an existing faction.
 Review this milestone before authorizing M014; combat is not implemented here.
 
 ## Start or resume a career
@@ -336,9 +342,10 @@ RNG remains local to seeded operations. M013 preserves legacy job outcomes and
 adds no random draws. Command history, action usage, investigation markers,
 committed responses, and review dates
 survive saving. Reports and snapshots expose no mutable world references.
-M013.1 changes no Python, tests, workflows, save formats, or runtime definitions;
-the regression baseline is 198 tests. Combat acceptance checks in the design
-contract are future requirements, not executed combat tests.
+M013.1 changes only Markdown and CLI display strings; it changes no simulation
+rules, commands, tests, workflows, save formats or runtime content definitions.
+The regression baseline is 198 tests. Combat, career, influence and institutional
+acceptance checks are future requirements, not executed feature tests.
 
 Tests include all 166 M012 regressions, real M001-M012 fixtures, persistence failure
 injection, malformed saves, command atomicity, CLI save/resume, fresh-process

@@ -16,6 +16,11 @@ This bible governs creative intent, not implementation authorization. Read it wi
 [employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md),
 [content architecture](GOON_CONTENT_ARCHITECTURE.md), and the
 [proposed M014 contract](M014_COMBAT_DESIGN_CONTRACT.md).
+The expanded foundation also includes the [career web](GOON_CRIMINAL_CAREER_WEB.md),
+[conditional opportunities](GOON_CONDITIONAL_OPPORTUNITIES.md),
+[villain influence](GOON_VILLAIN_INFLUENCE_SYSTEM.md), and
+[institutions/recovery](GOON_INSTITUTIONS_AND_RECOVERY.md). Their mechanics are
+proposals; the player's broad criminal-life fantasy is endorsed direction.
 
 | Label | Meaning |
 | --- | --- |
@@ -24,12 +29,12 @@ This bible governs creative intent, not implementation authorization. Read it wi
 | **Proposal** | An original design option requiring review before implementation. |
 | **Speculative** | A possible later branch, not a dependency or roadmap commitment. |
 
-M013.1 authorizes documentation and minimal documentation branding. It does not
+M013.1 authorizes documentation and minimal display branding. It does not
 authorize M014 implementation, content migration, a licensed-character content
 pack, a repository rename, or a public release. Future approval must name a
 bounded milestone and acceptance criteria.
 
-## 1. Core player fantasy
+## 1. Player fantasy and narrative perspective
 
 **Endorsed direction:** an ordinary criminal is the protagonist. Famous villains
 control access to work, impose dangerous demands, disrupt the city, and sometimes
@@ -66,7 +71,7 @@ to report the hazard, protect the next shift, refuse the job, or exploit the del
 **Speculative:** psychological or supernatural incidents occasionally make the
 worker's mundane explanation inadequate. They are not the default tone of every job.
 
-## 3. Gotham as a living city
+## 3. Gotham's ordinary civilian life
 
 **Implemented:** three districts have ownership, wealth, and control. Factions earn
 income, pay upkeep, recover, recruit, defend, and expand. These are abstract city
@@ -116,6 +121,14 @@ information with a source, not an omniscient UI promise. Offer renegotiation,
 refusal, departure, and alternative work; do not make repeated identical shifts
 the only route to seeing the next story. Contract completion must settle once.
 
+The [career web](GOON_CRIMINAL_CAREER_WEB.md) proposes nineteen overlapping
+specializations, plus lawful work, informant work, rehabilitation and retirement.
+Driving, theft, logistics, dealing, deception, enforcement, protection, negotiation,
+technical work and planning need not converge on killing or leadership. Grave
+offenses are explored through victims, culpability and consequences, never real-
+world criminal procedures. Personal code, references and kept promises matter
+alongside skill. A legitimate skill can remain useful after criminal work ends.
+
 ## 6. Faction recruitment and workplace cultures
 
 **Implemented:** Harbor, Carnival, and Iron use different economic profiles.
@@ -131,6 +144,10 @@ coworker can matter more than an official superior.
 before acceptance. The [matrix](GOON_FACTION_EMPLOYER_MATRIX.md) contains DC-facing
 proposals, not a replacement mapping for existing saved faction keys. Dangerous
 employers may lie, but the game must communicate uncertainty and possible loss.
+An introduction depends on [conditional opportunities](GOON_CONDITIONAL_OPPORTUNITIES.md):
+skills, demand, affiliation, recommendations, relationships, location, legal status,
+history, events, prior decisions and a committed seeded selection. Offers can
+expire or be withdrawn; a missed villain encounter cannot block campaign completion.
 
 ## 7. Ordinary NPC relationships and personal loyalty
 
@@ -151,7 +168,7 @@ adapted from a video narrator's cast. A favor creates a remembered obligation,
 not a repeatable affection purchase. Bereavement and abandonment need authored
 responses rather than a generic numeric hostility increase.
 
-## 8. Civilian life, finances, housing, and recovery
+## 8. Finances, housing, injuries, and recovery
 
 **Implemented:** cash, job income, mission costs, and cash-limited legal fines.
 There are no rent payments, dependents, food needs, housing slots, or health systems.
@@ -166,7 +183,12 @@ negotiated alternative. Injury recovery can compete with a paid shift while the
 city advances, with effects previewed. Do not require real-time waiting, premium
 currency, repetitive chores, or maintaining several survival meters for their own sake.
 
-## 9. Law, courts, incarceration, and rehabilitation
+Persistent [villain influence](GOON_VILLAIN_INFLUENCE_SYSTEM.md) is a separate
+proposal from injury and voluntary allegiance. A coerced person is not a willing
+follower; fictional exposure is not a psychiatric diagnosis. Ethical support
+offers credible improvement, specific coping and a zero-cash route without arrest.
+
+## 9. Law enforcement and legal consequences
 
 **Implemented:** documented collection cases, heat tiers, legal records, laying
 low, cooperation, contest review, acceptance, and accelerated court outcomes.
@@ -183,7 +205,30 @@ bounded choices or explicit time advancement with city consequences. Probation,
 parole, warrants, and rehabilitation mechanics require later contracts; this bible
 does not add their rules. No real-world legal advice is intended.
 
-## 10. Batman and Bat-family intervention
+## 10. Incarceration, rehabilitation, and Arkham
+
+**Implemented:** accelerated court outcomes; no playable incarceration, Arkham,
+Blackgate, treatment, parole or rehabilitation system.
+
+**Endorsed direction:** incarceration and recovery can be meaningful chapters;
+freedom, relationships and improvement count as success. Mental-health conditions
+are not synonymous with villainy. Seeking help does not require arrest.
+
+**Proposal:** [institutions and recovery](GOON_INSTITUTIONS_AND_RECOVERY.md) separates
+criminal incarceration, court evaluation, lawful psychiatric admission, voluntary
+care and legal supervision. Conviction alone cannot cause psychiatric commitment.
+Fictional admission/release rules and staff availability must be pinned to a
+selected continuity before implementation, with finite review and safe exits.
+Blackgate decisions include relationships, education, appeals and reentry. Arkham
+can contain ethical staff as well as specific corrupt people and dangerous actors.
+Named encounters are conditional; a missing villain never blocks care or release.
+
+**Speculative:** particular Strange or Harley episodes depend on continuity and
+role, not a guaranteed institutional guest list. No clinical mechanics or staffing
+schedule is approved. Ethical treatment, consent, confidentiality, independent
+review and alternative providers are substantive routes, not narrative traps.
+
+## 11. Batman and Bat-family intervention
 
 **Endorsed direction:** early Batman encounters are overwhelming survival threats.
 The ordinary worker's objective is usually escape, surrender, protecting someone,
@@ -199,7 +244,7 @@ content policies and knowledge boundaries, not color-swapped statistics.
 The [M014 contract](M014_COMBAT_DESIGN_CONTRACT.md) describes only a generic
 survival-threat design fixture. Named implementation remains separately gated.
 
-## 11. Rumors, misinformation, and street intelligence
+## 12. Rumors, misinformation, and street intelligence
 
 **Implemented:** intelligence reports read actual recorded state. They are not a
 rumor system and currently reveal information that a street worker might not know.
@@ -214,7 +259,7 @@ The UI identifies uncertainty without revealing hidden truth. Reopening a screen
 cannot reroll truth. A wrong rumor should leave a traceable explanation, not
 retroactively change the world to punish a choice.
 
-## 12. Major citywide villain events
+## 13. Citywide crises and major villain events
 
 **Implemented:** feuds and faction operations; no authored citywide villain arcs.
 
@@ -229,11 +274,15 @@ phenomena can form later incident packs. Do not recreate an existing comic/game
 plot beat for beat or import its dialogue. Missed events should produce a changed
 city and later accounts, not permanently lock the only campaign route.
 
-## 13. Long-term paths and endings
+## 14. Career endings and alternative success
 
 **Endorsed direction:** professional henchman, trusted lieutenant, independent
 operator, criminal boss, informant, reformed citizen, and tragic casualty are all
 valid possibilities. None is implemented or scheduled by this document.
+Retired worker, fugitive, specialist, driver, fixer, or an incarcerated/
+institutionalized person are further possible life situations, not ranked classes.
+Ongoing support is not a failed ending, and custody need not be a final ending.
+The career web preserves many specializations without promising every one in one run.
 
 **Proposal:** evaluate an ending from concrete commitments and relationships:
 who relies on the player, what obligations remain, how money is earned, who knows
@@ -241,7 +290,7 @@ what, and whether departure is possible. Advancement is not one villain ladder.
 Leaving an employer need not reset every friendship. A tragic ending requires
 clear stakes and an explicit campaign death policy, not an unannounced random roll.
 
-## 14. Replayability and emergent storytelling
+## 15. Emergent storytelling and replayability
 
 **Implemented:** seeded differences, player job/mission/legal choices, and
 persisted faction competition. M013 samples show a defensive-profile advantage;
@@ -260,8 +309,13 @@ help depends on an earlier favor. The changed relationship affects a later safe
 contact. Repeat with different wages, source reliability, and city disruption,
 then check whether the decision actually changes. Technical/reporting checks
 come from [gameplay principles](GOON_GAMEPLAY_PRINCIPLES.md).
+Three fuller [worked scenarios](GOON_CRIMINAL_CAREER_WEB.md#three-worked-divergent-career-scenarios)
+trace driver-to-fixer choices, exposure-to-recovery choices, and post-custody
+reinvention. They identify immediate feedback, persistent changes and divergent
+careers, plus deterministic/save/offline and agency constraints. They are paper
+exercises; no scene or future system is implemented by this milestone.
 
-## 15. Original content and IP boundaries
+## 16. Content ownership and IP boundaries
 
 Write new workers, dialogue, scenes, jokes, mission structures, and incidents.
 DC character names and broad motifs are reference material for a proposed setting,

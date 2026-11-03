@@ -51,6 +51,27 @@ unlocked," revise or defer the feature. Do not expand an active milestone merely
 to fill this checklist. A necessary technical foundation can explicitly add no
 new player decision, with the future decision it enables and its limits stated.
 
+## The ten-field design review
+
+Every proposed major system must document these ten fields before implementation:
+
+1. Meaningful player decisions, including refusal or an exit where applicable.
+2. Observable consequences and the reason the player can know them.
+3. Persistent state changes with a single owner and settlement rule.
+4. Alternative outcomes, including a viable route after a missed opportunity.
+5. Sources of replayability beyond larger rewards or enemy numbers.
+6. Repetition/grind risks and how the player can avoid an empty loop.
+7. Deterministic implementation strategy, including rejection and resume behavior.
+8. Save compatibility, versioning, defaults and treatment of unknown history.
+9. Offline compatibility for the entire path, including recovery and endings.
+10. Exploitation and player-agency concerns, with useful choices under constraints.
+
+The two feature tables below jointly cover these fields. The career, opportunity,
+influence and institution documents provide full ten-field tables for those
+domains. The combat contract has its own. Each future authored mission/condition
+must instantiate the contract rather than claiming a generic table proves it safe
+or fun. No proposal in this package is implemented by M013.1.
+
 ## Non-negotiable anti-patterns
 
 | Anti-pattern | Required alternative |
@@ -73,7 +94,9 @@ waiting is still a failed design, even when the clock is an in-game clock.
 
 ## Evaluation of proposed major features
 
-Every row is future design, not a claim of implementation. Apply this same schema
+Rows describe future systems or proposed extensions to an existing foundation,
+not completed features. The existing M012 legal responses remain as documented
+in README; their extension into broader careers is future work. Apply this schema
 to any major feature added later. Each deterministic strategy is a proposal;
 the content architecture specifies the integration and migration gates.
 
@@ -90,6 +113,41 @@ the content architecture specifies the integration and migration gates.
 | City incidents | Evacuate, work, help, or exploit a disruption. | Affected services and people visibly change. | Finite incident stages and local consequences. | Different obligations and event combinations. | Seeded selection, explicit stage state, bounded modifiers. | Trigger from simulation state, not a server calendar. |
 | Career paths/endings | Choose commitments and an exit, not only a rank increase. | Conditions and irreversible stakes are legible. | Different living arrangements, responsibilities, and endings. | Several viable success definitions. | Versioned predicates over recorded commitments. | Campaign complete without online unlocks. |
 | High-threat intervention | Abandon an order, protect someone, escape, or surrender. | The threat is signaled; survival objectives are clear. | Employer reaction, injury, specific evidence or lost access. | Context changes who or what can be saved. | Content-defined objectives and bounded resolution. | Local policy; no live-service event requirement. |
+| Skills/personal code | Demonstrate a qualification; choose or revise a commitment. | Access and known conflicts are explained. | Proofs, capabilities and actual kept/broken promises. | The same skill supports lawful and criminal work. | Bounded capabilities and one-time milestone IDs. | Local proofs and rules. |
+| Conditional opportunities | Pursue, verify, accept or miss an offer. | Demand, known eligibility, expiry and withdrawal are visible. | Committed evaluation/draw, terms, capacity and outcome. | Different demand, contacts and world events. | Domain-specific trigger IDs and pinned seeded selection. | No server calendar or guaranteed villain roster. |
+| Influence conditions | Resist, leave, ask for help or question a demand. | Fictional symptoms, sources, uncertainty and useful choices. | Exposure, bounded condition and coping milestones; allegiance separate. | Prior trust, support and particular triggers. | Isolated incident rolls and once-per-day review markers. | Local episodes and recovery paths. |
+| Institutional chapters | Choose associates, education, review, support or a reentry plan. | Legal basis, horizon and reviewed outcomes are shown. | Separate custody/care/supervision, qualifications and contacts. | Prior evidence, staff, relationships and outside obligations. | Pinned continuity, episode IDs and explicit daily transitions. | Finite local chapters; no real-time sentence timer. |
+| Voluntary care | Select goals, consent boundaries, provider or independent review. | Confidentiality terms and credible progress are legible. | Chosen plan, permissions, coping and reentry milestones. | Different needs/support and source credibility. | Once-earned milestones, recorded disclosures and scheduled reviews. | Ethical basic support remains accessible offline and without cash. |
+
+## Alternative outcomes, compatibility, and failure modes
+
+This companion table supplies the remaining four review fields for every row.
+Nothing in it authorizes implementing the proposed safeguards this milestone.
+
+| Feature | Alternative outcomes | Repetition/grind risk | Save compatibility requirement | Exploitation / player-agency concern |
+| --- | --- | --- | --- | --- |
+| Backgrounds | Different contact or obligation, later revised goals | Rerolling for one optimal preset | Preserve old identity; do not fabricate past events | No demographic locks or hidden irreversible class |
+| Employment | Paid, disputed, refused, cancelled or independent work | Repeating guaranteed shifts for all unlocks | Pin accepted terms and settlement IDs | No duplicate wages, hidden deductions or mandatory abusive employer |
+| Recruitment/culture | Sponsor, alternate approach, rejection or exit | Favor spam / repeat initiation | Preserve affiliations; explicitly migrate later employment separately | No forced encounter or switch-reward farming |
+| Coworker loyalty | Friendship, boundary, rivalry, estrangement or repair | Gift/favor spam | Keep historical metrics; add directed relations without invented memories | No universal knowledge, affection purchase or automatic consent |
+| Civilian work/housing | Stable work, temporary shelter, negotiated move | Rent chores / empty recovery days | No retroactive rent, dependents or housing loss | No poverty softlock or mandatory criminal return |
+| Combat/recovery | Disable, escape, surrender, defeat or recuperate | Guard/strike and repeated rest | Version health/combat; migrate old saves without injuries | Finite turns, no reward reset or forced lethal choice |
+| Legal responses | Existing outcome, reviewed dismissal, conviction or future lawful reentry | Cheapest-fine dominance / repeated appeals | Preserve known records, unknown fines/dates and committed responses | No heat-only guilt or paid immunity loop |
+| Rumors | Verified, contradicted, withheld or propagated claim | Repeated verification reveals truth for free | Version beliefs separately from existing true-world reports | No UI reroll or narrator rewriting facts |
+| City incidents | Help, work, evacuate, refuse or miss the incident | Identical emergency errands | Pin finite incident stage/affected actors | No permanent campaign lock from a missed incident |
+| Career paths/endings | Specialist, lieutenant, independence, reform, custody chapter, retirement or tragedy | Crime XP ladder / ending collection grind | Empty qualifications/goals; explicit ending continuation policy | No mandatory kingpin outcome or surprise death |
+| High-threat intervention | Escape, protect someone, surrender or bounded loss | Farming a famous opponent | Persist objective and one terminal settlement | No required Batman victory or hidden endless pursuit |
+| Skills/personal code | New proof, honest refusal, changed code or lost reference | One easy proof repeated forever | No retroactive diagnosis, skill class or promises | No alignment label overriding an explicit player choice |
+| Conditional opportunities | No offer, accepted, expired, withdrawn or another route | Referral slot-machine requests | Persist no-offer results too; load triggers no new draw | No refresh farming, substitution or villain-dependent ending |
+| Influence conditions | Resistance, lingering vulnerability, support or unresolved condition | Exposure/resistance or appointment farming | Empty later condition state, pinned active reviews | No coercion-as-consent, automatic crimes or infinite stacking |
+| Institutional chapters | Review upheld/revised, lawful transfer, release or reentry | Prison chores / indefinite skipped-time penalty | Preserve old convictions; no invented prison terms/admissions | No automatic Arkham commitment, invalid transfer or unavailable-villain exit lock |
+| Voluntary care | Improvement, revised support, new provider or ongoing care | Repeated appointments without progress | Persist consent, confidentiality and exactly-once milestones | No all-corrupt care model, villain-only cure or arrest prerequisite |
+
+Worked divergent-career examples appear in the
+[career web](GOON_CRIMINAL_CAREER_WEB.md#three-worked-divergent-career-scenarios).
+The [institution](GOON_INSTITUTIONS_AND_RECOVERY.md) and
+[influence](GOON_VILLAIN_INFLUENCE_SYSTEM.md) contracts treat mental-health care
+and personal agency explicitly. Their scenarios are paper designs, not tests.
 
 ## Current mechanical shallows
 
@@ -109,7 +167,7 @@ M013 is a foundation, not evidence that these future experiences already exist:
   branching campaign, or named DC encounter implementation.
 
 Keep these limits visible rather than write narrative descriptions that imply
-the systems already exist. M013.1 deliberately leaves all runtime behavior intact.
+the systems already exist. M013.1 deliberately leaves all gameplay behavior intact.
 
 ## Manual current-game walkthrough
 

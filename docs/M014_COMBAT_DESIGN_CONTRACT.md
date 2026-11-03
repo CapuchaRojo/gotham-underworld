@@ -21,6 +21,11 @@ policies. No grid, pathfinding, real-time input, group combat, drugs, crafting,
 weapon economy, campaign arc, probation, parole, undercover system, or Bat-family
 spawn/investigation system belongs in this slice. No paid or online service.
 Crews and named high-threat content are future integration targets.
+The expanded M013.1 [career web](GOON_CRIMINAL_CAREER_WEB.md),
+[influence](GOON_VILLAIN_INFLUENCE_SYSTEM.md) and
+[institution/recovery](GOON_INSTITUTIONS_AND_RECOVERY.md) proposals are separate
+future domains. M014 does not implement career qualifications, dependency,
+psychiatric mechanics, incarceration or treatment plans to connect to them.
 
 ## State, daily allowance, and transaction boundary
 
@@ -82,7 +87,7 @@ starting values, not a claim of balanced combat.
 
 | Action | Stamina | Effect and tradeoff |
 | --- | --- | --- |
-| Strike | Spend 2 | Roll the declared hit chance; damage on success; exposes the player to one response if the opponent can still act |
+| Strike | Spend 2; aggressive style spends 3 | Roll the declared hit chance; damage on success; exposes the player to one response if the opponent can still act |
 | Guard | Restore 2 up to injury cap | No attack; halve damage from the next response in this turn, using `max(1, damage // 2)` for a damaging hit |
 | Withdraw | Spend 1 | Attempt escape using a declared, bounded profile chance; neutral default 60%, clamp 20–95%; failure permits one response |
 | Surrender | Free; always available | End the encounter under visible, pinned terms, without a hit roll or extra opponent attack |
@@ -152,7 +157,7 @@ scenarios; do not assume this small table proves balance. No modifier may remove
 guard/surrender exits. Never change an active encounter's pinned parameters.
 
 NPC policies use bounded parameters and available knowledge: pragmatic opponents
-withdraw when badly hurt, defensive ones guard against a telegraphed heavy threat,
+withdraw when badly hurt, defensive ones favor guard against an aggressive style,
 and aggressive ones spend stamina on offense and must guard when exhausted.
 Implement a small deterministic priority list with stable tie-breaking; no LLM,
 neural model, or behavior framework. A policy can surrender or withdraw on its
@@ -163,7 +168,7 @@ increased health alone is not adequate variety. No NPC can inspect future RNG
 or facts the scenario declares unknown to it.
 For a concrete initial policy proposal: pragmatic first attempts withdrawal at
 health <=25% if it has stamina; otherwise it guards if unable to afford its strike,
-then strikes. Defensive first guards against a visible aggressive intent unless
+then strikes. Defensive first guards against a visible aggressive style unless
 already guarding, then follows the same stamina/strike rule. Aggressive ignores
 withdrawal and follows that stamina/strike rule. Failed NPC withdrawal consumes
 its one response. Record the selected rule/reason; identical inputs select the
@@ -239,6 +244,22 @@ An active encounter pins sufficient definitions to resume offline after defaults
 change. Malformed state fails before play. Use existing atomic save/backup behavior.
 
 ## Proposed acceptance criteria for implementation review
+
+The [ten-field review](GOON_GAMEPLAY_PRINCIPLES.md#the-ten-field-design-review)
+applies to this minimal contract:
+
+| Criterion | Combat contract |
+| --- | --- |
+| Meaningful decisions | Strike, guard, withdraw, surrender; choose intent/style and later recovery. |
+| Observable consequences | Health/stamina, pinned costs, threat, rolls, reasons and objective result. |
+| Persistent state | Health, injury, encounter result, specific reputation and documented case effects. |
+| Alternative outcomes | Incapacitation, lethal outcome where eligible, escape, surrender, defeat or standoff. |
+| Replayability | Policy, objective, equipment/style, witnesses and conflicting obligations. |
+| Grind risk | Guard/strike alternation, recovery cycling and repeat encounters; finite turns and unique settlement. |
+| Determinism | Isolated encounter/turn/actor/effect RNG and complete atomic turns. |
+| Save compatibility | Versioned additive health/encounter state, pinned definitions, no invented historical fights. |
+| Offline operation | Local rules/opponents and saveable decision boundaries. |
+| Exploits and agency | No duplicate rewards, forced death, zero-action combat trap or broke-player recovery lock. |
 
 - All 198 baseline tests remain passing; no edits that weaken legacy expectations.
 - Tests cover every action, exhausted stamina, zero daily allowance during combat,
