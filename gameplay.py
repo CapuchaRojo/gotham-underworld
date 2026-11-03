@@ -3,6 +3,7 @@ import argparse
 import json
 from pathlib import Path
 from simulation import new_world, advance, resolve_case, event, remember
+from consequence_engine import execute_job, investigate, prepare as prepare_consequences
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
@@ -16,6 +17,7 @@ def prepare(world):
     player.setdefault('faction', None)
     player.setdefault('reputation', {name: 0 for name in GANGS})
     player.setdefault('jobs_completed', 0)
+    prepare_consequences(world)
     return world
 
 
@@ -44,19 +46,12 @@ def job(world, kind):
         raise ValueError('Cannot work while detained')
     if player['faction'] is None:
         raise ValueError('Join a faction first')
-    details = JOBS[kind]
-    player['cash'] += details['reward']
-    player['heat'] += details['heat']
-    player['reputation'][player['faction']] += details['reputation']
-    player['jobs_completed'] += 1
-    for person, data in world['people'].items():
-        if data['faction'] == player['faction']:
-            remember(world, person, f'Rookie completed {kind} for {player["faction"]}.')
-    return event(world, 'job', f'Rookie completed {kind} for {player["faction"]}; earned ${details["reward"]}.')
+    return execute_job(world, kind, JOBS[kind])
 
 
 def next_day(world):
     advance(world)
+    investigate(world)
     if world['player']['arrested']:
         resolve_case(world)
     return world
@@ -84,7 +79,7 @@ def show(world):
 
 def play(world, filename):
     prepare(world)
-    print('UNDERWORLD — M002 interactive prototype. Type help for commands.')
+    print('UNDERWORLD — M003 consequence prototype. Type help for commands.')
     while True:
         try:
             command = input('underworld> ').strip().split()
