@@ -10,13 +10,19 @@ import gameplay
 from career_state import DAILY_ACTION_ALLOWANCE, validate
 from district_missions import mission
 from simulation import event, new_world
+from legal_engine import (accept, advance_day as legal_day, change_heat, contest,
+                          cooperate, job as legal_job, lay_low)
 
 # Stable command IDs; future commands can reuse the same result/event envelope.
 COMMANDS = {
     'join': (0, ('faction',), gameplay.join),
-    'job': (1, ('kind',), gameplay.job),
+    'job': (1, ('kind',), legal_job),
     'mission': (1, ('kind', 'district'), mission),
-    'wait': (0, (), gameplay.next_day),
+    'wait': (0, (), legal_day),
+    'lay_low': (1, (), lay_low),
+    'cooperate': (1, ('case_id',), cooperate),
+    'contest': (1, ('case_id',), contest),
+    'accept': (1, ('case_id',), accept),
 }
 
 
@@ -69,6 +75,7 @@ def execute_command(world, command, **arguments):
     if candidate['action_day'] != candidate['day']:
         candidate['action_day'] = candidate['day']
         candidate['actions_used'] = 0
+    change_heat(candidate, 0, 'legacy_heat_normalization')
     result = handler(candidate, *(arguments[name] for name in names))
     if command == 'wait':
         candidate['action_day'] = candidate['day']

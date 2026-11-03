@@ -2,6 +2,7 @@
 from city_economy import GANGS
 from relationship_engine import METRICS
 from simulation import FACTIONS, new_world
+from legal_state import prepare as prepare_legal, validate as validate_legal
 
 SAVE_VERSION = 1
 DAILY_ACTION_ALLOWANCE = 3
@@ -52,6 +53,7 @@ def prepare(world):
     for case in world['cases']:
         if case['status'] == 'pending':
             case.setdefault('last_investigated_day', world['day'])
+    prepare_legal(world)
     return world
 
 
@@ -214,6 +216,7 @@ def validate(world):
             _integer(world[key], key, minimum, maximum)
     if command_ids:
         _integer(world.get('command_sequence'), 'command_sequence', max(command_ids))
+    validate_legal(world)
     return world
 
 

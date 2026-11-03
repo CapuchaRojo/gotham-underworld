@@ -13,7 +13,7 @@ def prepare(world):
     return world
 
 
-def act(world):
+def act(world, *, deferred_cases=()):
     """Process NPCs once per day; only documented facts authorize police action."""
     prepare(world)
     emitted = []
@@ -46,6 +46,7 @@ def act(world):
             # Only an existing documented witness case can be accelerated.
             pending = next((c for c in world['cases']
                             if c['status'] == 'pending' and c.get('witnessed')
+                            and c['id'] not in deferred_cases
                             and c.get('evidence', 0) > 0), None)
             if pending is None or player['arrested']:
                 continue

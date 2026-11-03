@@ -15,6 +15,7 @@ from faction_warfare import prepare as prepare_warfare, advance as warfare_advan
 from city_strategy import prepare as prepare_strategy, advance as strategy_advance, summary as strategy_summary
 
 from city_intelligence import dashboard as intelligence_dashboard, briefing as intelligence_briefing
+from legal_state import report as legal_report
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
@@ -57,7 +58,7 @@ def join(world, faction):
     return result
 
 
-def job(world, kind):
+def job(world, kind, *, scrutiny=None):
     prepare(world)
     if kind not in JOBS:
         raise ValueError('Unknown job')
@@ -66,20 +67,28 @@ def job(world, kind):
         raise ValueError('Cannot work while detained')
     if player['faction'] is None:
         raise ValueError('Join a faction first')
-    result = execute_job(world, kind, JOBS[kind])
+    result = execute_job(world, kind, JOBS[kind], scrutiny=scrutiny)
     economy_on_job(world, result)
     return result
 
 
-def next_day(world):
+def next_day(world, *, legal_rules=False):
+    # Explicit case choices must survive callers of the legacy daily reducer.
+    legal_rules = legal_rules or bool(world.get('legal', {}).get('responses'))
     advance(world)
-    investigate(world)
-    npc_act(world)
+    if legal_rules:
+        from legal_engine import begin_day
+        pressure, deferred = begin_day(world)
+    else:
+        pressure, deferred = 0, ()
+    investigate(world, pressure=pressure, deferred_cases=deferred)
+    npc_act(world, deferred_cases=deferred)
     economy_advance(world)
     strategy_advance(world)
     warfare_advance(world)
     if world['player']['arrested']:
-        resolve_case(world)
+        from legal_engine import resolve
+        resolve(world, legacy=not legal_rules)
     return world
 
 
@@ -97,7 +106,7 @@ def load(filename):
 
 def show(world):
     p = world['player']
-    print(f'Day {world["day"]} | Cash ${p["cash"]} | Heat {p["heat"]} | Faction {p.get("faction") or "None"}')
+    print(f'Day {world["day"]} | Cash ${p["cash"]} | Heat {legal_report(world)["heat"]} | Faction {p.get("faction") or "None"}')
     print('Reputation:', p.get('reputation', {}))
     print('Cases:', [(c['id'], c['status']) for c in world['cases']])
 
@@ -105,7 +114,7 @@ def show(world):
 def play(world, filename, *, new_career=False):
     from game_service import actions_remaining, execute_command
     prepare(world)
-    print('UNDERWORLD - M011 career integrity. Three actions per day; wait to refresh.')
+    print('UNDERWORLD - M012 crime and consequences. Three actions per day; wait to refresh.')
     print('Type help for commands.')
     while True:
         try:
@@ -118,10 +127,27 @@ def play(world, filename, *, new_career=False):
         verb, *args = command
         try:
             if verb == 'help':
-                print('status | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+                print('status | legal | lay_low | cooperate <case-id> | contest <case-id> | accept <case-id> | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
             elif verb == 'status':
                 show(world)
                 print('Daily actions remaining:', actions_remaining(world))
+                print('Police attention:', legal_report(world)['tier'])
+            elif verb == 'legal' and not args:
+                report = legal_report(world)
+                print(f'LEGAL | Heat {report["heat"]}/100 | attention {report["tier"]} | job risk +{report["risk_bonus"]} points | case scrutiny +{report["evidence_bonus"]} evidence/day')
+                for case in report['cases']:
+                    response = report['profile']['responses'].get(str(case['id']))
+                    choice = response['action'] if response else 'none'
+                    if response and choice == 'contest' and not response['reviewed']:
+                        choice += f' (review day {response["review_day"]})'
+                    print(f'Case {case["id"]}: {case["status"]} | evidence {case["evidence"]} | response {choice}')
+                print('Each legal response costs one action. lay_low: free, once/day, heat -12. cooperate: free, heat -8, evidence +1, conviction fine $30.')
+                print('contest: $20, two-day review, evidence <=1 dismissed; stronger cases continue. accept: immediate conviction, fine up to $35, heat -10.')
+                print('One committed response per case. Ignoring a case retains automatic court resolution; fines are capped by available cash.')
+            elif verb == 'lay_low' and not args:
+                print(execute_command(world, 'lay_low')['result']['message'])
+            elif verb in ('cooperate', 'contest', 'accept') and len(args) == 1:
+                print(execute_command(world, verb, case_id=args[0])['result']['message'])
             elif verb == 'intel':
                 report = intelligence_dashboard(world)
                 print(f'CITY INTELLIGENCE | Day {report["day"]}')
@@ -173,8 +199,11 @@ def play(world, filename, *, new_career=False):
                     raise ValueError('Choose faction 1, 2, or 3')
                 print(execute_command(world, 'join', faction=GANGS[index - 1])['result']['message'])
             elif verb == 'jobs':
+                scrutiny = legal_report(world)
                 for name, data in JOBS.items():
-                    print(f'{name}: ${data["reward"]}, heat +{data["heat"]}, reputation +{data["reputation"]}')
+                    heat = data['heat'] + (scrutiny['collection_heat_bonus'] if name == 'collection' else 0)
+                    exposure = 'witness exposure' if name == 'collection' else 'no new criminal case'
+                    print(f'{name}: ${data["reward"]}, heat +{heat} (+1 on failure), reputation +{data["reputation"]} | {exposure}')
             elif verb == 'job' and len(args) == 1:
                 print(execute_command(world, 'job', kind=args[0])['result']['message'])
             elif verb == 'wait':
