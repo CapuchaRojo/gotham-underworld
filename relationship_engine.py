@@ -58,10 +58,10 @@ def on_investigation(world, case):
 
 def decision(world, name):
     """A small deterministic policy; no NPC omniscience or random draws."""
-    prepare(world)
     if name not in world['people']:
         raise ValueError('Unknown NPC')
-    r = world['people'][name]['relationship']
+    stored = world['people'][name].get('relationship', {})
+    r = {metric: stored.get(metric, 0) for metric in METRICS}
     if name == 'Detective Vale':
         action = 'prioritize_investigation' if r['suspicion'] >= 16 else 'monitor'
         reason = f'suspicion={r["suspicion"]} (threshold 16)'

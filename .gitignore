@@ -8,3 +8,5 @@ world_save.json
 career_save.json
 
 career*_save.json
+career*.json.bak
+.career*.tmp

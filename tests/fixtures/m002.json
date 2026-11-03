@@ -1,0 +1,109 @@
+{
+  "seed": 42,
+  "day": 3,
+  "factions": {
+    "Harbor Syndicate": {
+      "power": 68,
+      "cash": 80
+    },
+    "Carnival Crew": {
+      "power": 43,
+      "cash": 35
+    },
+    "Iron Mask Outfit": {
+      "power": 58,
+      "cash": 65
+    },
+    "Civic Police": {
+      "power": 75,
+      "cash": 70
+    },
+    "Night Watch": {
+      "power": 35,
+      "cash": 20
+    }
+  },
+  "people": {
+    "Mara Voss": {
+      "faction": "Harbor Syndicate",
+      "memory": [
+        {
+          "day": 0,
+          "fact": "Rookie joined Harbor Syndicate."
+        },
+        {
+          "day": 0,
+          "fact": "Rookie completed collection for Harbor Syndicate."
+        },
+        {
+          "day": 0,
+          "fact": "Rookie completed collection for Harbor Syndicate."
+        },
+        {
+          "day": 0,
+          "fact": "Rookie completed collection for Harbor Syndicate."
+        }
+      ]
+    },
+    "Eli Crowe": {
+      "faction": "Carnival Crew",
+      "memory": []
+    },
+    "Detective Vale": {
+      "faction": "Civic Police",
+      "memory": []
+    }
+  },
+  "player": {
+    "name": "Rookie",
+    "heat": 6,
+    "cash": 220,
+    "arrested": false,
+    "custody": "free",
+    "faction": "Harbor Syndicate",
+    "reputation": {
+      "Harbor Syndicate": 7,
+      "Carnival Crew": 0,
+      "Iron Mask Outfit": 0
+    },
+    "jobs_completed": 3
+  },
+  "cases": [],
+  "events": [
+    {
+      "day": 0,
+      "kind": "recruitment",
+      "message": "Rookie joined Harbor Syndicate."
+    },
+    {
+      "day": 0,
+      "kind": "job",
+      "message": "Rookie completed collection for Harbor Syndicate; earned $60."
+    },
+    {
+      "day": 0,
+      "kind": "job",
+      "message": "Rookie completed collection for Harbor Syndicate; earned $60."
+    },
+    {
+      "day": 0,
+      "kind": "job",
+      "message": "Rookie completed collection for Harbor Syndicate; earned $60."
+    },
+    {
+      "day": 1,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Carnival Crew; Carnival Crew lost 3 power."
+    },
+    {
+      "day": 2,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Harbor Syndicate; Harbor Syndicate lost 2 power."
+    },
+    {
+      "day": 3,
+      "kind": "feud",
+      "message": "Carnival Crew struck Iron Mask Outfit; Iron Mask Outfit lost 4 power."
+    }
+  ]
+}
