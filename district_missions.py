@@ -1,6 +1,7 @@
 """M007: deterministic district missions; all state changes are auditable."""
 from city_economy import prepare as prepare_economy
 from simulation import event
+from territory import capture
 
 MISSIONS = {
     'scout': {'cost': 5, 'control': 0, 'reputation': 0},
@@ -19,7 +20,7 @@ def prepare(world):
 
 def available(world):
     prepare(world)
-    return list(enumerate(world['districts'], 1))
+    return list(enumerate(sorted(world['districts']), 1))
 
 
 def mission(world, kind, district_name):
@@ -55,20 +56,22 @@ def mission(world, kind, district_name):
         message = f'Rookie scouted {district_name}; owner {owner}, control {district["control"]}.'
     elif kind == 'fortify':
         before = district['control']
+        details['control_before'] = before
         district['control'] = min(100, before + 8)
         details['control_delta'] = district['control'] - before
         message = f'{faction} fortified {district_name} (+{details["control_delta"]} control).'
     else:
         before = district['control']
+        details['control_before'] = before
         district['control'] = max(0, before - 12)
         details['control_delta'] = district['control'] - before
         if district['control'] == 0:
-            district['owner'] = faction
-            district['control'] = 35
+            details.update(capture(world, district_name, faction))
             details['captured'] = True
             message = f'{faction} captured {district_name} from {owner}.'
         else:
             details['captured'] = False
             message = f'{faction} challenged {owner} in {district_name} (-{before - district["control"]} control).'
     player['reputation'][faction] = player['reputation'].get(faction, 0) + MISSIONS[kind]['reputation']
+    details['control_after'] = district['control']
     return event(world, 'district_mission', message, **details)

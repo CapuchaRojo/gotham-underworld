@@ -1,5 +1,7 @@
-"""M006: deterministic district economy and territorial pressure."""
+"""District income: legacy resolver and explicit M013 daily competition policy."""
+from copy import deepcopy
 from simulation import event
+from territory import capture
 
 DISTRICTS = {
     'Harbor Docks': {'owner': 'Harbor Syndicate', 'wealth': 60, 'control': 65},
@@ -23,8 +25,8 @@ def on_job(world, result):
     if not result.get('success'):
         return None
     faction = world['player'].get('faction')
-    target = next((name for name, d in world['districts'].items()
-                   if d['owner'] == faction), None)
+    owned = [(name, d) for name, d in world['districts'].items() if d['owner'] == faction]
+    target = min(owned, key=lambda item: (item[1]['control'], item[0]))[0] if owned else None
     if target is None:
         return None
     district = world['districts'][target]
@@ -35,13 +37,16 @@ def on_job(world, result):
                  source_attempt=result['attempt'], cause='successful_job')
 
 
-def advance(world):
+def advance(world, *, competition=False):
     """Apply exactly one economic tick per day; no effect on unrelated RNG."""
     prepare(world)
+    if competition:
+        from faction_competition import economy
+        return economy(world)
     if world['economy_last_day'] >= world['day']:
         return []
     emitted = []
-    for name, district in world['districts'].items():
+    for name, district in sorted(world['districts'].items()):
         owner = district['owner']
         if owner not in world['factions']:
             continue
@@ -56,13 +61,25 @@ def advance(world):
             if challenger == owner:
                 challenger = GANGS[(GANGS.index(owner) + 1) % len(GANGS)]
             pressure = 1 + (world['day'] + len(name)) % 3
+            before_control = district['control']
             district['control'] = max(0, district['control'] - pressure)
             if district['control'] == 0:
-                district['owner'] = challenger
-                district['control'] = 35
+                claimant = world['factions'][challenger]
+                if claimant['cash'] < 12 or claimant['power'] == 0:
+                    district['control'] = 1
+                    emitted.append(event(world, 'territory_pressure', f'{challenger} could not fund a claim on {name}.',
+                                         district=name, faction=owner, challenger=challenger,
+                                         control_before=before_control, control_after=1,
+                                         cause='unfunded_pressure_claim'))
+                    continue
+                before_cash = claimant['cash']
+                claimant['cash'] -= 12
+                transfer = capture(world, name, challenger)
                 emitted.append(event(world, 'territory',
                                      f'{challenger} took control of {name} from {owner}.',
-                                     district=name, faction=challenger, previous_owner=owner,
+                                     district=name, faction=challenger, **transfer,
+                                     cost=12, cash_before=before_cash, cash_after=claimant['cash'],
+                                     control_before=before_control,
                                      cause='control_exhausted'))
     world['economy_last_day'] = world['day']
     return emitted
@@ -70,4 +87,4 @@ def advance(world):
 
 def summary(world):
     prepare(world)
-    return [(name, dict(data)) for name, data in world['districts'].items()]
+    return [(name, deepcopy(data)) for name, data in sorted(world['districts'].items())]

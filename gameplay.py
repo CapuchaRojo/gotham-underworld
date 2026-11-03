@@ -16,6 +16,8 @@ from city_strategy import prepare as prepare_strategy, advance as strategy_advan
 
 from city_intelligence import dashboard as intelligence_dashboard, briefing as intelligence_briefing
 from legal_state import report as legal_report
+from faction_competition import active as competition_active
+from faction_profiles import summary as competition_summary
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
@@ -83,9 +85,10 @@ def next_day(world, *, legal_rules=False):
         pressure, deferred = 0, ()
     investigate(world, pressure=pressure, deferred_cases=deferred)
     npc_act(world, deferred_cases=deferred)
-    economy_advance(world)
-    strategy_advance(world)
-    warfare_advance(world)
+    competition_rules = competition_active(world)
+    economy_advance(world, competition=competition_rules)
+    strategy_advance(world, competition=competition_rules)
+    warfare_advance(world, competition=competition_rules)
     if world['player']['arrested']:
         from legal_engine import resolve
         resolve(world, legacy=not legal_rules)
@@ -114,7 +117,7 @@ def show(world):
 def play(world, filename, *, new_career=False):
     from game_service import actions_remaining, execute_command
     prepare(world)
-    print('UNDERWORLD - M012 crime and consequences. Three actions per day; wait to refresh.')
+    print('UNDERWORLD - M013 faction competition. Three actions per day; wait to refresh.')
     print('Type help for commands.')
     while True:
         try:
@@ -186,13 +189,18 @@ def play(world, filename, *, new_career=False):
                 print('Mission costs: scout $5 | fortify $15 | expand $30; one mission per day')
             elif verb == 'mission' and len(args) == 2:
                 index = int(args[1])
-                names = list(world['districts'])
+                names = sorted(world['districts'])
                 if not 1 <= index <= len(names):
                     raise ValueError('Invalid district number')
                 print(execute_command(world, 'mission', kind=args[0], district=names[index - 1])['result']['message'])
             elif verb == 'factions':
                 for i, faction in enumerate(GANGS, 1):
                     print(f'{i}. {faction} (power {world["factions"][faction]["power"]})')
+                for row in competition_summary(world):
+                    rules = row['rules']
+                    identity = row['profile'].replace('_', ' ')
+                    print(f'{row["faction"]}: {identity} | treasury ${row["cash"]} | {row["districts"]} districts | {row["status"]}')
+                    print(f'  Income {rules["revenue_percent"]}% | recovery up to ${rules["recovery_income"]}/turn | attack ${rules["attack_cost"]} | defend ${rules["defense_cost"]}')
             elif verb == 'join' and len(args) == 1:
                 index = int(args[0])
                 if not 1 <= index <= len(GANGS):
