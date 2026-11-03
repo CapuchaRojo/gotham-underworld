@@ -9,6 +9,7 @@ from npc_actions import act as npc_act, prepare as prepare_npc_actions
 from city_economy import prepare as prepare_economy, advance as economy_advance, on_job as economy_on_job, summary as district_summary
 
 from district_missions import prepare as prepare_missions, mission as run_mission, available as mission_districts
+from faction_warfare import prepare as prepare_warfare, advance as warfare_advance
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
@@ -27,6 +28,7 @@ def prepare(world):
     prepare_npc_actions(world)
     prepare_economy(world)
     prepare_missions(world)
+    prepare_warfare(world)
     return world
 
 
@@ -67,6 +69,7 @@ def next_day(world):
     investigate(world)
     npc_act(world)
     economy_advance(world)
+    warfare_advance(world)
     if world['player']['arrested']:
         resolve_case(world)
     return world
@@ -94,7 +97,7 @@ def show(world):
 
 def play(world, filename):
     prepare(world)
-    print('UNDERWORLD - M007 district missions prototype. Type help for commands.')
+    print('UNDERWORLD - M008 autonomous faction warfare prototype. Type help for commands.')
     while True:
         try:
             command = input('underworld> ').strip().split()
