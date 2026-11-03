@@ -2,7 +2,7 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Documentation milestone: **M013.1 — Branding, Criminal Careers & Narrative Foundation**, for review
+- Documentation milestone: **M013.1 — Branding, Criminal Careers & Narrative Foundation**
 - Runtime baseline: **M013 — Sustainable Faction Competition**, merged via PR #12
   at `eb931ce33c079018159aad14c2327561d9fa195f`; 198 regression tests
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
@@ -132,8 +132,10 @@ rule, dependency, gameplay/CLI behavior or M014 scope changes.
 Run `python -B -m unittest discover -s tests -v`.
 
 The M013.1 scope retains all 198 existing tests and adds no runtime tests for
-documentation/display-only changes. The complete suite must be rerun before final
-PR review; future scenarios and acceptance criteria are not passing-test claims.
+documentation/display-only changes. The
+[final integration audit](docs/M013_1_FINAL_INTEGRATION_AUDIT.md) records executed
+regression, compatibility and specification checks. Future scenarios and acceptance
+criteria are not passing-test claims.
 
 All 166 M012 tests remain unchanged. Coverage includes persistence failure
 injection, malformed/current-version state, M001-M010 migration fixtures, bounded
@@ -186,10 +188,12 @@ Saves assume one writer and a
 filesystem supporting hard links and replacement. Recovery is explicit; no GUI
 is included.
 
-M013 is merged. Review the M013.1 feature PR and M014 contract before authorizing
-any M014 implementation. Review tactical/daily action separation, exit/recovery
+M013 is merged. Mission 006 authorizes merging PR #13 only after its final reviewed
+commit passes the documented audit and CI gates. The final disposition and merge
+hash are recorded in GitHub and the mission report, rather than predicted here.
+M014 remains unapproved. Review tactical/daily action separation, exit/recovery
 guarantees, tuning/style modifiers, initial fixture scope and the compatible
 legal-source migration. No large content migration or new gameplay is authorized
-by these documents. Do not merge automatically or begin M014 in this milestone.
+by these documents. Do not begin M014 in this milestone.
 `INSTALL_M002.md` through `INSTALL_M010.md` describe historical installations,
 not the current setup workflow.

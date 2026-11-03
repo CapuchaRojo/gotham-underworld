@@ -52,6 +52,7 @@ design work.
 | [Content architecture](docs/GOON_CONTENT_ARCHITECTURE.md) | Proposed definition/state separation and service integration; no content migration |
 | [M014 combat design contract](docs/M014_COMBAT_DESIGN_CONTRACT.md) | Bounded solo-combat proposal and acceptance criteria for human review; no implementation authorization |
 | [Project state](PROJECT_STATE.md) | Runtime capabilities, compatibility, limitations, and next review |
+| [Final integration audit](docs/M013_1_FINAL_INTEGRATION_AUDIT.md) | Verified corrections, compatibility findings, reproducible graph/document checks and conditional merge gates |
 
 M013.1 preserves the `gotham-underworld` repository name, Python modules, package
 layout, save filenames/identifiers, and historical milestone documents. The CLI

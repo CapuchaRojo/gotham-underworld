@@ -71,6 +71,33 @@ network is connected when all applicable permissions/modes are available; a publ
 visitor without Blackgate authorization cannot assume access to n46. Future routes
 may extend the graph with new IDs, not reuse an unrelated closed edge's ID.
 
+### POI link identity, direction and lawful return
+
+For each registered `goon.poi.pNNN`, define exactly one physical access link
+`goon.edge.access.pNNN` between its declared neighborhood hub and that POI's
+specified reception/frontage. All 120 links have zero TU, support walking, and
+are bidirectional physical spurs. Use `(edge_id, from_id, to_id, mode_id)` to
+identify traversal direction; reversing a link does not create another physical
+edge. There are no region travel links or POI-to-POI shortcuts. Further interiors
+require separately approved nodes/edges and do not enter the present totals.
+
+The registry's access profile gates **entry** into the represented area, with
+combined requirements resolved explicitly by a future definition. Public hours,
+consent, work and visitor permissions are revalidated at commitment. Normal
+departure from an area lawfully entered does not require renewing its entry
+invitation. Revocation prevents reentry; it cannot silently trap a free visitor.
+This is an egress guarantee, not permission to bypass an actual safety perimeter,
+detention, admission/discharge rule or active encounter. Their owning domain must
+provide a bounded review/transfer/support outcome when ordinary departure is barred.
+
+Apply the same distinction to e16: authorization for a free visitor/worker's
+outbound Blackgate trip must include a disclosed return arrangement. Expiration
+or withdrawal cannot remove that return entitlement. A suspended ferry can delay
+physical return only under the bounded disruption rule below, with help at n46.
+A detainee uses a separately authorized legal transfer/release; visitor return
+rights do not grant custody escape or admission to a cell block. e15 permits
+public Arkham arrival, while p110/p111 retain their own entry gates.
+
 Subway/road tunnels already support underground travel. A future authorized
 maintenance or underground walking route needs its own explicit positive-cost,
 permission-gated edge and safety review. It cannot be deduced from owning a map
@@ -78,8 +105,8 @@ or a relevant skill, and no real bypass/escape technique is supplied here.
 
 ## Modes, travel time and the three daily actions
 
-**Proposed minimum: preserve three daily gameplay actions and add a separate
-18-TU daily travel allowance.** One TU is an abstract planning increment, roughly
+**Provisional tuning hypothesis: preserve three daily gameplay actions and add a
+separate 18-TU daily travel allowance.** One TU is an abstract planning increment, roughly
 ten fictional minutes for presentation only, not a measured metropolitan distance
 or a new real-time clock. This proposal changes no current allowance/save field.
 
@@ -131,6 +158,17 @@ failure or a declared perimeter change can alter routes. Do not freeze a city
 until a real-world timer expires. Before withdrawing an accepted mission's only
 route, supply an alternate, an explained cancellation/review, or useful local play.
 
+Each closure must distinguish a scheduled review from actual reopening. A review
+that extends a closure records a reason and another finite review date; it cannot
+reset the same unresolved promise forever. Before isolating an occupied hub,
+declare a finite bound to reopening, a permitted alternate/authorized transport,
+or a safe supported transfer to a decision hub. Pin the bound/outcome in the
+incident definition before acceptance; exact durations remain for later approval.
+Help/review must work without cash or unused TU/actions. No arbitrary forced
+relocation or automatic institution discharge is implied: transport and the
+legal/care authority settle their distinct decisions once. Known closures are
+shown before departure; unknown discoveries follow the safe-prefix rule below.
+
 GCPD jurisdiction, observed patrol activity and the player's M012 heat are distinct.
 High heat remains bounded personal state; a map overlay is not a second heat
 counter and walking into a neighborhood does not automatically create a case.
@@ -157,6 +195,13 @@ lexicographic edge-ID sequence. An accessible/avoid-known-closure policy filters
 eligible edges before search. Future monetary/risk budgets require additional
 state or nondominated labels; a naive single-best-node label may discard a valid
 route under several constraints.
+
+That search state is sufficient only while vehicle/permission facts are fixed
+for the query, for example public walking/transit. A vehicle-aware planner must
+also track the selected vehicle's identity/location and relevant authorization
+state, or restrict the query to a fixed available vehicle itinerary. Changing
+mode cannot conjure a parked car or boat at another hub. Do not claim general
+multimodal vehicle routing from the simplified public-transit search state.
 
 Containment never enters search. POI zero-cost access links are endpoint spurs;
 never revisit an identical search state through a zero-cost loop. Travel corridors
@@ -194,14 +239,18 @@ Illustrative future definition, **not a registered schema or current save**:
 }
 ```
 
-**Paper example:** n13–n14–n19–n24–n23–n31 by bus uses edge TU
-`1 + 2 + 1 + 1 + 2 = 7`, plus one boarding TU: **8 TU**. A separate return is
-another 8 TU, leaving two of the proposed eighteen TU and all three gameplay
-actions before activities. Walking the same route is `2 + 4 + 2 + 2 + 4 = 14 TU`,
-so a walking round trip does not fit that day. If e05 closes, a bus alternative
-through n07–n08–n09–n22–n23 uses `2 + 1 + 1 + 2 + 1 + 2 + 1 boarding = 10 TU`.
+**Paper example:** the fastest public route n13–n18–n23–n31 stays on the bus:
+`1 + 2 + 2 + 1 boarding = 6 TU`. A separately boarded return costs another 6 TU,
+leaving six of the provisional eighteen TU and all three gameplay actions before
+activities. If **e06 Quay Tunnel** closes, n13–n14–n19–n24–n23–n31 costs
+`1 + 2 + 1 + 1 + 2 + 1 boarding = 8 TU` each way, leaving two TU after returning.
+Walking that latter route costs `2 + 4 + 2 + 2 + 4 = 14 TU`, so its round trip
+does not fit. Closing e05 alone does not remove the faster Quay Tunnel route.
 The player can change commitments or use local work; movement is not a source
 of cash or skill XP. These are specification calculations, not executed travel tests.
+The [integration audit](M013_1_FINAL_INTEGRATION_AUDIT.md) reconstructs the graph
+and evaluates representative work, care and institutional returns. It does not
+approve 18 TU or prove incident/schedule/vehicle behavior that is not implemented.
 
 ## Ten-field review and future acceptance
 

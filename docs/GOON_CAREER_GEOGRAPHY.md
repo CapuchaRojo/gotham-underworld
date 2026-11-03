@@ -67,9 +67,10 @@ independent career.
 **All scenarios are design exercises, not playable missions or executed tests.**
 
 1. **Two shores, one promise.** A driver in n13 considers work in n31. The proposed
-   bus round trip costs 16 TU, while walking both ways exceeds 18. Keeping the bus
+   fastest bus round trip costs 12 TU, while walking both ways exceeds 18. Keeping the bus
    plan preserves a pickup commitment; taking a local shift preserves flexibility;
-   accepting a revised remote contract after an observed closure can lose a bonus
+   an observed Quay Tunnel closure raises the bus return total to 16 TU;
+   accepting a revised remote contract can lose a bonus
    but keep a coworker's trust. The decision concerns promises and access, not
    repeated waiting clicks. Public-transport fares are zero in the minimum proposal.
 2. **A borrowed introduction.** A fixer in Market Steps hears that a rogue is
