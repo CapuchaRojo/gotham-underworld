@@ -9,6 +9,10 @@ The expanded proposals cover [careers](GOON_CRIMINAL_CAREER_WEB.md),
 [opportunities](GOON_CONDITIONAL_OPPORTUNITIES.md),
 [influence](GOON_VILLAIN_INFLUENCE_SYSTEM.md) and
 [institutions/recovery](GOON_INSTITUTIONS_AND_RECOVERY.md). They do not enlarge M014.
+The [rogue registry](GOON_ROGUES_GALLERY_REGISTRY.md),
+[minor ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) and
+[Joker recruitment proposal](GOON_JOKER_RECRUITMENT.md) add content-design
+requirements only; no roster, economy or save migration is performed.
 
 ## Current boundary and constraints
 
@@ -81,6 +85,8 @@ for a new module per row. Introduce only the definitions a milestone uses.
 | Institution | `id`, mandate, continuity version, entry/transfer/review/exit rules, role/service references | Episode, separate custody/care status, authority, review dates, participant availability |
 | Treatment/recovery | `id`, fictional eligibility, consent/confidentiality terms, milestones, alternate-provider and safety references | Chosen plan, permissions, support, progress, disclosures, reviewed changes and exit |
 | Character ending | `id`, predicates over commitments/situation, disclosed irreversible choices, continuation policy | Committed ending, reasons and relevant world/relationship facts |
+| Minor crew | `id`, member/role references, membership policy, permitted contract/opportunity types | Actual members, promises, shared contract reservations, cohesion and availability; no mandatory faction treasury/power |
+| Persona / mantle binding | `id`, underlying actor/variant reference, display alias, source/continuity constraints | Which actor uses an alias, what others know and when a binding changes; no duplicate person/payment |
 
 Each definition also needs a schema version and provenance/content-pack metadata.
 Asset references belong to a separate manifest containing source, rights status,
@@ -107,6 +113,40 @@ Illustrative definition, **not a current save format**:
 `faction.harbor` illustrates a future identifier; the existing save key remains
 `Harbor Syndicate`. No alias, employer, or delivery contract is added now.
 The example's references would all have to resolve before accepting a real pack.
+
+### Proposed rogues and operating-scale bindings
+
+The registry's proposed IDs are content references, not renames of historical
+keys. A selected content pack must record source/edition, continuity, actor or
+persona type, supported capabilities and initial availability. Maintain separate
+actors for distinct mantle holders; retain an unresolved legal identity as unknown.
+For Terrible Trio, a crew references three actor IDs; Tweedledum and Tweedledee
+remain two people; a Scarface persona references its selected underlying actor.
+Do not give the puppet, handler and crew three copies of one economic reward.
+
+Represent major faction participation as an explicit optional capability/binding.
+A minor crew can reserve a bounded contract budget without a full treasury,
+strategic planner, district or daily income tick. An individual needs none of
+those merely to appear in a scene. Role tags such as boss/contractor/associate/
+rival/wildcard are contextual relationship facts, not hardcoded actor subclasses
+or automatic power levels. Fame is not an economic profile.
+
+A later approved promotion to full faction status must validate funding/profile,
+preserve the actor/crew identity, avoid two operations for one participant and
+use shared territory rules for any real capture. Current legacy named policies
+and the three-gang feud sampler still need explicit compatibility work before
+assuming an expanded strategic roster is supported. No such work happens here.
+
+Availability and active-subset selection use pinned definitions, canonical IDs,
+recorded triggers and isolated RNG. Retirement, arrest, death and defection are
+state transitions with causal references, not actor deletion or reroll triggers.
+A missing optional cameo has an alternate path; do not replace a dead mantle
+holder with another version because its display alias matches.
+
+The source/reference metadata supports human content review. Runtime mechanics
+must not fetch a wiki, publisher page, asset or external AI service. Bundle only
+approved local definitions/provenance; listing a source does not grant a content
+license or permission to distribute its images, scripts or character portrayal.
 
 ## IDs, compatibility, and validation
 
@@ -169,6 +209,15 @@ required missing definitions need a clear compatibility error or an explicitly
 reviewed migration, never an invented substitute.
 
 ### Existing callable boundary
+
+Future campaign-specific recruitment can use generic, allowlisted predicates
+over valid episode, direct encounter, actor availability, offer and player choice.
+The Joker/Arkham binding lives in licensed campaign data, not a character-name
+branch in `game_service` or faction strategy. Street association and cell contracts
+remain separate from formal membership, and membership is separate from coercion
+or treatment consent. A rejected gate check changes no records, clocks or RNG.
+Current `join` behavior and historical affiliations are preserved; these predicates
+are proposals, not registered commands or implemented save fields.
 
 The existing callable interface is sufficient for a first GUI adapter:
 

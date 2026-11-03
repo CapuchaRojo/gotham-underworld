@@ -37,6 +37,9 @@ design work.
 | [Criminal career web](docs/GOON_CRIMINAL_CAREER_WEB.md) | Nineteen overlapping specializations, lawful work, informing, rehabilitation, retirement and three worked scenarios |
 | [Conditional opportunities](docs/GOON_CONDITIONAL_OPPORTUNITIES.md) | Eligibility, demand, recorded probability, expiry and viable careers without guaranteed villain meetings |
 | [Faction and employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md) | Eleven proposed employer cultures, entry, pay, risk, advancement, and consequences |
+| [Rogues gallery registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md) | Thirty-five versioned entries with lore/source boundaries and original jobs/roles; no guaranteed active roster |
+| [Minor criminal ecosystem](docs/GOON_MINOR_CRIMINAL_ECOSYSTEM.md) | Major factions, minor crews and individuals; original workers and rise/fall/exit proposals without universal territory simulation |
+| [Joker recruitment contract](docs/GOON_JOKER_RECRUITMENT.md) | Original campaign proposal: street association differs from formal Arkham/direct-encounter initiation |
 | [Villain influence and recovery](docs/GOON_VILLAIN_INFLUENCE_SYSTEM.md) | Fictional exposure, coercion, resistance, consent and credible recovery; no clinical implementation |
 | [Institutions and recovery](docs/GOON_INSTITUTIONS_AND_RECOVERY.md) | Distinct Blackgate, Arkham, voluntary care, review and reentry paths with continuity/agency rules |
 | [Gameplay principles](docs/GOON_GAMEPLAY_PRINCIPLES.md) | Sourced reference-game lessons, meaningful-choice gates, current limits, and manual scenarios |
@@ -51,6 +54,10 @@ identify Gotham Underworld. Technical renames require a separately approved
 migration plan. None of the proposed DC employers is added to the executable or
 substituted for an existing faction.
 Review this milestone before authorizing M014; combat is not implemented here.
+The rogues addendum changes documentation only. Its roster is not assumed to
+coexist in every continuity, and no minor crew automatically becomes a district
+owner. Formal Joker initiation is optional and conditional; a career can finish
+without it. No new character, recruitment gate or save field is implemented.
 
 ## Start or resume a career
 

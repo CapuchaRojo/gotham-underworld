@@ -77,6 +77,30 @@ remain where they identify technical interfaces or past milestones.
   deterministic resume, high-threat survival and future crew extension points.
   Numerical rules and acceptance criteria await review; combat is not implemented.
 
+### Rogues gallery addendum
+
+This addition changes Markdown only; it adds no further CLI, gameplay, schema,
+dependency or module changes. All concepts below are unimplemented proposals.
+
+- [Registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md): 35 entries, stable proposed
+  IDs, variant/source boundaries, conservative canon anchors and original work,
+  behavioral, faction-relationship and consequence ideas. Terrible Trio contains
+  three actors. Secondary factual references are labeled; primary-edition and
+  continuity review remains necessary before implementation.
+- [Minor ecosystem](docs/GOON_MINOR_CRIMINAL_ECOSYSTEM.md): major district factions,
+  minor crews and individuals; ordinary original workers, bounded contracts,
+  optional strategic participation, growth, setbacks, defection, arrest and exits.
+- [Joker recruitment](docs/GOON_JOKER_RECRUITMENT.md): an original campaign gate,
+  not DC canon. Citywide cell work can occur without membership; formal initiation
+  requires a direct Joker encounter during an Arkham storyline, a valid offer
+  and explicit acceptance. No guarantee of presence, encounter or invitation;
+  refusal and non-Joker career completion remain viable. Cells can work during
+  Joker's absence; care/release never depends on his cooperation.
+
+These documents are integrated into the bible, career web, opportunity rules,
+employer matrix, institution design and architecture. No rogue is mapped onto
+an existing faction or assumed to own a district merely because they are a boss.
+
 ## Validation
 
 Run `python -B -m unittest discover -s tests -v`.

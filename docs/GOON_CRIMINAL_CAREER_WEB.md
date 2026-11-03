@@ -30,6 +30,11 @@ Changing specialization preserves history; it does not erase victims, evidence,
 friendships, or legal obligations. Employment, faction membership and personal
 allegiance are separate. [Conditional opportunities](GOON_CONDITIONAL_OPPORTUNITIES.md)
 govern whether work or a named employer is available at all.
+The [minor ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) lets a specialization
+support independent jobs, a small crew or a major employer. A trusted fixer can
+remain influential without territory; promotion is responsibility, not automatic
+faction registration. [Rogue registry roles](GOON_ROGUES_GALLERY_REGISTRY.md) are
+conditional employers/associates/rivals rather than mandatory career bosses.
 
 ```mermaid
 flowchart LR
@@ -52,6 +57,14 @@ This illustrates possible transitions, not prerequisites or an exhaustive tree.
 Informant work, incarceration, treatment and return to crime can intersect any
 branch under their own eligibility and agency rules. Gang leadership is an
 optional management responsibility, not a mandatory final rank.
+
+Joker-affiliated street work is one possible contract context, not a separate
+class or automatic membership. The [campaign recruitment proposal](GOON_JOKER_RECRUITMENT.md)
+requires a direct Joker encounter during an Arkham storyline plus a valid offer
+and explicit acceptance for formal initiation. A driver can work beside a cell,
+keep a goon's friendship, decline initiation and finish a different career. No
+arrest, psychiatric admission, repeated shift quota or guaranteed villain meeting
+is a prerequisite for ordinary advancement or a valid ending.
 
 ## Specialization proposals
 

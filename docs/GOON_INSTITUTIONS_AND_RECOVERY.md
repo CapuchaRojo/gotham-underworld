@@ -104,6 +104,12 @@ Clinical/administrative progress must have ordinary staff and valid alternate
 routes. A story visitor or informant opportunity cannot silently convert the
 player into a committed patient.
 
+The [Joker recruitment proposal](GOON_JOKER_RECRUITMENT.md) requires a direct
+encounter during an Arkham storyline for formal initiation, not for treatment or
+release. An eligible visitor/work/story route can satisfy lawful access without
+admission as a patient. Joker's absence or refusal does not block care, discharge,
+reentry or campaign completion. No repeated admission/release grants invitations.
+
 ## C. Voluntary counseling and credible improvement
 
 Seeking help never requires arrest. Possible motivations include fictional fear-

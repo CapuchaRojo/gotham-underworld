@@ -4,6 +4,10 @@
 have this opportunity lifecycle. This document proposes how the
 [career web](GOON_CRIMINAL_CAREER_WEB.md), employers, influence stories and
 institutions can share eligibility without promising a collectible villain roster.
+The [rogue registry](GOON_ROGUES_GALLERY_REGISTRY.md) is a pool of proposed
+versioned content; the [minor ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md)
+distinguishes actors, crews and full factions. Neither listing nor fame creates
+an available offer, treasury, district owner or guaranteed encounter.
 
 ## Eligible does not mean available or encountered
 
@@ -59,6 +63,22 @@ know it. Offer neutral work, another contact, training or a later unrelated rout
 An opportunity can remain permanently inaccessible without making campaign
 completion impossible. Do not secretly reserve every named-villain encounter for
 every career or force one to occur as a pity reward.
+
+## Proposed Joker-specific campaign gate
+
+The [Joker recruitment contract](GOON_JOKER_RECRUITMENT.md) uses this general
+lifecycle with an additional necessary gate: formal initiation requires an actual
+direct Joker encounter during an Arkham storyline, a valid authored offer and
+explicit acceptance. Street work, a cell's recommendation, a recording or a
+relationship threshold cannot substitute. Joker's presence and role must fit
+world state and pinned continuity; the encounter still need not yield an offer.
+
+Represent this as content-defined predicates over episode/actor/encounter facts,
+not `if employer_name` engine logic. Persist the actual encounter and offer cause;
+revalidate actor availability and consent at acceptance. Citywide cell work remains
+possible without formal membership and during Joker's absence. Refusal or no
+encounter leaves independent and non-Joker completion routes. Treatment/admission
+must not become a repeatable recruitment farm or a prerequisite for finishing.
 
 ## Illustrative rule, not a registered definition
 

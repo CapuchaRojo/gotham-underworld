@@ -21,6 +21,9 @@ The expanded foundation also includes the [career web](GOON_CRIMINAL_CAREER_WEB.
 [villain influence](GOON_VILLAIN_INFLUENCE_SYSTEM.md), and
 [institutions/recovery](GOON_INSTITUTIONS_AND_RECOVERY.md). Their mechanics are
 proposals; the player's broad criminal-life fantasy is endorsed direction.
+The rogues addendum supplies a [35-entry registry](GOON_ROGUES_GALLERY_REGISTRY.md),
+[three-scale criminal ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) and
+[Joker recruitment contract](GOON_JOKER_RECRUITMENT.md). It adds documentation only.
 
 | Label | Meaning |
 | --- | --- |
@@ -88,6 +91,13 @@ an unpaid night shift, interrupted deliveries, a damaged apartment entrance.
 State changes should be bounded and attributable. Do not add a universal
 "city morality" score that lets one cash donation erase unrelated harm.
 
+**Proposal:** a densely populated underworld combines district-owning factions,
+minor crews and individual specialists. Famous and obscure rogues need not be
+district bosses. The [ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) includes original
+drivers, fences, cleaners, informants and aspiring villains whose choices matter
+without treasury/warfare turns. Growth, dissolution, defection, arrest and retirement
+change people and access before they necessarily change a map.
+
 ## 4. Character creation and backgrounds
 
 **Implemented:** the player starts as Rookie with cash, heat, and no affiliation.
@@ -149,6 +159,14 @@ skills, demand, affiliation, recommendations, relationships, location, legal sta
 history, events, prior decisions and a committed seeded selection. Offers can
 expire or be withdrawn; a missed villain encounter cannot block campaign completion.
 
+**Original campaign proposal:** [Joker street work](GOON_JOKER_RECRUITMENT.md) is
+available through conditional citywide opportunities without formal membership.
+Formal initiation requires a direct Joker encounter during an Arkham storyline,
+an eligible offer and explicit acceptance. Encounter, invitation and joining are
+not guaranteed; the player can decline. Autonomous cells can work during Joker's
+absence. This is our campaign gate, not established DC lore or a psychiatric
+admission requirement, and it does not change current joining commands.
+
 ## 7. Ordinary NPC relationships and personal loyalty
 
 **Implemented:** trust, respect, fear, hostility, and suspicion have bounded scores
@@ -167,6 +185,10 @@ wages. Each needs more than a single trait before content approval. Neither is
 adapted from a video narrator's cast. A favor creates a remembered obligation,
 not a repeatable affection purchase. Bereavement and abandonment need authored
 responses rather than a generic numeric hostility increase.
+The [rogue registry](GOON_ROGUES_GALLERY_REGISTRY.md) provides version-specific
+research anchors and original job/relationship proposals, not an always-active
+collection roster. Ordinary workers remain protagonists; a memorable cameo must
+not replace their agency or create universal knowledge of a private relationship.
 
 ## 8. Finances, housing, injuries, and recovery
 
@@ -227,6 +249,9 @@ Named encounters are conditional; a missing villain never blocks care or release
 role, not a guaranteed institutional guest list. No clinical mechanics or staffing
 schedule is approved. Ethical treatment, consent, confidentiality, independent
 review and alternative providers are substantive routes, not narrative traps.
+The proposed Joker-initiation gate is a separate optional story: valid Arkham
+access need not be patient admission. Care, discharge and campaign completion
+cannot depend on Joker being available or granting recruitment.
 
 ## 11. Batman and Bat-family intervention
 
@@ -322,6 +347,10 @@ DC character names and broad motifs are reference material for a proposed settin
 not project-owned creations. Official character references are linked in the
 employer matrix; proposed wages and mechanics are our design inferences, not canon.
 Choose and document a continuity before shipping any character content.
+The registry explicitly distinguishes publisher references, secondary factual
+indexes and original interpretation. Multiple holders, uncertain identities,
+deaths and incompatible powers need primary-edition review before content approval;
+listing thirty-five aliases does not assert that all coexist in one timeline.
 
 Do not reproduce third-party video transcripts, distinctive narrator characters,
 jokes, comic panels, copied scripts, ripped models, extracted audio, or voice
