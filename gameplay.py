@@ -8,6 +8,8 @@ from relationship_engine import prepare as prepare_relationships, on_join, decis
 from npc_actions import act as npc_act, prepare as prepare_npc_actions
 from city_economy import prepare as prepare_economy, advance as economy_advance, on_job as economy_on_job, summary as district_summary
 
+from district_missions import prepare as prepare_missions, mission as run_mission, available as mission_districts
+
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
     'courier': {'reward': 25, 'heat': 0, 'reputation': 1},
@@ -24,6 +26,7 @@ def prepare(world):
     prepare_relationships(world)
     prepare_npc_actions(world)
     prepare_economy(world)
+    prepare_missions(world)
     return world
 
 
@@ -91,7 +94,7 @@ def show(world):
 
 def play(world, filename):
     prepare(world)
-    print('UNDERWORLD — M006 living city prototype. Type help for commands.')
+    print('UNDERWORLD - M007 district missions prototype. Type help for commands.')
     while True:
         try:
             command = input('underworld> ').strip().split()
@@ -103,7 +106,7 @@ def play(world, filename):
         verb, *args = command
         try:
             if verb == 'help':
-                print('status | factions | districts | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+                print('status | factions | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
             elif verb == 'status':
                 show(world)
             elif verb == 'relationships':
@@ -113,6 +116,16 @@ def play(world, filename):
             elif verb == 'districts':
                 for name, data in district_summary(world):
                     print(f'{name}: {data["owner"]} | wealth {data["wealth"]} | control {data["control"]}')
+            elif verb == 'missions':
+                for index, name in mission_districts(world):
+                    print(f'{index}. {name}')
+                print('Mission costs: scout $5 | fortify $15 | expand $30; one mission per day')
+            elif verb == 'mission' and len(args) == 2:
+                index = int(args[1])
+                names = list(world['districts'])
+                if not 1 <= index <= len(names):
+                    raise ValueError('Invalid district number')
+                print(run_mission(world, args[0], names[index - 1])['message'])
             elif verb == 'factions':
                 for i, faction in enumerate(GANGS, 1):
                     print(f'{i}. {faction} (power {world["factions"][faction]["power"]})')
