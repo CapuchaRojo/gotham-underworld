@@ -1,5 +1,9 @@
 # M013.1 final integration audit
 
+Historical audit of the M013.1 submission/merge. Its embedded scope checker is
+specific to that revision; M014 deliberately adds runtime navigation. Use the
+[current runtime contract](GOON_WORLD_RUNTIME.md) and regression suite for M014.
+
 Mission 006, November 3, 2026. Reviewed PR #13 from M013 master
 `eb931ce33c079018159aad14c2327561d9fa195f`, initially at feature commit
 `47ee203f43ca01bb7adae7f716e97c196a8c8ed4`. This report records the source/design
