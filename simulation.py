@@ -18,7 +18,7 @@ def new_world(seed=42):
             'people': {'Mara Voss': {'faction': 'Harbor Syndicate', 'memory': []},
                        'Eli Crowe': {'faction': 'Carnival Crew', 'memory': []},
                        'Detective Vale': {'faction': 'Civic Police', 'memory': []}},
-            'player': {'name': 'Rookie', 'heat': 0, 'cash': 40, 'arrested': False},
+            'player': {'name': 'Rookie', 'heat': 0, 'cash': 40, 'arrested': False, 'custody': 'free'},
             'cases': [], 'events': []}
 
 
@@ -60,6 +60,7 @@ def advance(world):
             event(world, 'investigation', f'Detective Vale found evidence in case {case["id"]}.')
             if case['evidence'] >= 3 and not world['player']['arrested']:
                 world['player']['arrested'] = True
+                world['player']['custody'] = 'pretrial'
                 case['status'] = 'charged'
                 event(world, 'arrest', 'Rookie arrested and charged; hearing pending.')
     return world
@@ -70,13 +71,18 @@ def resolve_case(world):
     if not charged:
         return event(world, 'court', 'No charged case is awaiting a hearing.')
     charged['status'] = 'convicted' if charged['evidence'] >= 3 else 'dismissed'
-    world['player']['arrested'] = False
+    event(world, 'court', f'Case {charged["id"]} outcome: {charged["status"]}.')
     if charged['status'] == 'convicted':
+        world['player']['custody'] = 'sentenced'
+        event(world, 'sentencing', 'Rookie sentenced to accelerated custody.')
         world['player']['cash'] = max(0, world['player']['cash'] - 50)
         world['player']['heat'] = max(0, world['player']['heat'] - 2)
-        event(world, 'prison', 'Rookie served an accelerated sentence; the city kept changing.')
-        advance(world)
-    return event(world, 'court', f'Case {charged["id"]} outcome: {charged["status"]}.')
+        event(world, 'prison', 'Rookie completed an accelerated sentence; the city kept changing.')
+    else:
+        event(world, 'release', 'Rookie released after dismissal.')
+    world['player']['arrested'] = False
+    world['player']['custody'] = 'free'
+    return world['events'][-1]
 
 
 def run(seed=42, days=5, commit_crime=True):
