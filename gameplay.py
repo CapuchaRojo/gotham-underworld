@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from simulation import new_world, advance, resolve_case, event, remember
 from consequence_engine import execute_job, investigate, prepare as prepare_consequences
+from relationship_engine import prepare as prepare_relationships, on_join, decision
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
@@ -18,6 +19,7 @@ def prepare(world):
     player.setdefault('reputation', {name: 0 for name in GANGS})
     player.setdefault('jobs_completed', 0)
     prepare_consequences(world)
+    prepare_relationships(world)
     return world
 
 
@@ -34,7 +36,9 @@ def join(world, faction):
     for person, data in world['people'].items():
         if data['faction'] == faction:
             remember(world, person, f'Rookie joined {faction}.')
-    return event(world, 'recruitment', f'Rookie joined {faction}.')
+    result = event(world, 'recruitment', f'Rookie joined {faction}.')
+    on_join(world, faction)
+    return result
 
 
 def job(world, kind):
@@ -91,9 +95,13 @@ def play(world, filename):
         verb, *args = command
         try:
             if verb == 'help':
-                print('status | factions | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+                print('status | factions | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
             elif verb == 'status':
                 show(world)
+            elif verb == 'relationships':
+                for name, person in world['people'].items():
+                    choice = decision(world, name)
+                    print(f'{name}: {person["relationship"]} | {choice["action"]} ({choice["reason"]})')
             elif verb == 'factions':
                 for i, faction in enumerate(GANGS, 1):
                     print(f'{i}. {faction} (power {world["factions"][faction]["power"]})')
