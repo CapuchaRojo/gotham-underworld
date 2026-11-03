@@ -5,6 +5,7 @@ from pathlib import Path
 from simulation import new_world, advance, resolve_case, event, remember
 from consequence_engine import execute_job, investigate, prepare as prepare_consequences
 from relationship_engine import prepare as prepare_relationships, on_join, decision
+from npc_actions import act as npc_act, prepare as prepare_npc_actions
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
@@ -20,6 +21,7 @@ def prepare(world):
     player.setdefault('jobs_completed', 0)
     prepare_consequences(world)
     prepare_relationships(world)
+    prepare_npc_actions(world)
     return world
 
 
@@ -56,6 +58,7 @@ def job(world, kind):
 def next_day(world):
     advance(world)
     investigate(world)
+    npc_act(world)
     if world['player']['arrested']:
         resolve_case(world)
     return world
