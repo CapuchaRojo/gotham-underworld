@@ -4,3 +4,5 @@ __pycache__/
 .vscode/
 world_save.json
 *.log
+
+career_save.json

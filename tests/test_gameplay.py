@@ -15,10 +15,10 @@ class GameplayTests(unittest.TestCase):
     def test_job_rewards_and_reputation(self):
         world = prepare(new_world())
         join(world, GANGS[0])
-        job(world, 'collection')
-        self.assertEqual(world['player']['cash'], 100)
-        self.assertEqual(world['player']['heat'], 2)
-        self.assertEqual(world['player']['reputation'][GANGS[0]], 3)
+        result = job(world, 'collection')
+        self.assertEqual(world['player']['cash'], 40 + result['payout'])
+        self.assertEqual(world['player']['heat'], 2 + (not result['success']))
+        self.assertEqual(world['player']['reputation'][GANGS[0]], 1 + (2 if result['success'] else -1))
 
     def test_requires_faction(self):
         with self.assertRaises(ValueError):
