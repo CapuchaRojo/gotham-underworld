@@ -2,7 +2,7 @@
 from copy import deepcopy
 import heapq
 
-from location_registry import MODES, fingerprint, load
+from location_registry import MODES, RESTRICTED_ACCESS, fingerprint, load
 from simulation import event
 
 VERSION = 1
@@ -81,12 +81,16 @@ def validate(world):
         _integer(c.get('end_day'), 'navigation.closures.end_day', c['start_day'] + 1, c['start_day'] + MAX_CLOSURE_DAYS)
         _require(type(c.get('known')) is bool, 'navigation.closures.known', 'must be a boolean')
         _require(isinstance(c.get('cause'), str) and bool(c['cause']), 'navigation.closures.cause', 'must identify a cause')
-    journeys = set()
+    journeys, journey_commands, travel_history = set(), set(), []
     for item in history:
         if item['kind'] == 'travel':
             _require(type(item.get('schema_version')) is int and item['schema_version'] == 1, 'travel.schema_version', 'must be 1')
             _integer(item.get('command_id'), 'travel.command_id', 1, world.get('command_sequence', 0))
             _require(item['command_id'] in commands and commands[item['command_id']]['command'] == 'travel', 'travel.command_id', 'must reference its committed command')
+            _require(item['command_id'] not in journey_commands, 'travel.command_id', 'must have exactly one journey outcome')
+            _require(item['day'] == commands[item['command_id']]['day'], 'travel.day', 'must match its committed command')
+            journey_commands.add(item['command_id'])
+            travel_history.append(item)
             _integer(item.get('journey_id'), 'travel.journey_id', 1, nav['journey_sequence'])
             _require(item['journey_id'] not in journeys, 'travel.journey_id', 'must be unique')
             journeys.add(item['journey_id'])
@@ -121,6 +125,15 @@ def validate(world):
                      len(discoveries) == len(set(discoveries)) and bool(discoveries) == item['interrupted'], 'travel.discoveries', 'must identify the bounded interruption')
             _require(item['interrupted'] or node == item['destination'], 'travel.arrived', 'must reach destination when uninterrupted')
     _require(len(journeys) == nav['journey_sequence'], 'navigation.journey_sequence', 'must agree with committed travel history')
+    _require(journey_commands == {ident for ident, command in commands.items() if command['command'] == 'travel'},
+             'travel.command_id', 'must provide one outcome for every travel command')
+    if travel_history:
+        last = max(travel_history, key=lambda item: item['journey_id'])
+        _require(current == last['arrived'], 'navigation.location_id', 'must match the last committed journey')
+        # A retained older TU-day marker is supported for legacy batch tools.
+        # Loading must preserve its expenditure, not silently refresh it.
+        expected_used = last['tu_after'] if last['day'] >= nav['tu_day'] else 0
+        _require(nav['tu_used'] == expected_used, 'navigation.tu_used', 'must match the last journey or a later day reset')
 
 
 def _active(world):
@@ -146,7 +159,7 @@ def _resolve(value, nav, places):
 
 
 def _allowed(place, nav):
-    restricted = set(place['access']) & {'HOME', 'WORK', 'VIS', 'SEC'}
+    restricted = set(place['access']) & RESTRICTED_ACCESS
     return not restricted or place['id'] == nav['home_id'] or place['id'] in nav['permissions']
 
 
@@ -201,6 +214,8 @@ def _search(places, edges, nav, day, origin, destination, policy):
 
 def plan_route(world, destination, mode='auto'):
     nav = _active(world)
+    if world['player']['arrested']:
+        raise ValueError('Cannot plan current travel while detained; wait for the existing court process')
     if mode not in ('auto', *MODES):
         raise ValueError('Supported modes: auto, walk, bus, rail, ferry; vehicles are not implemented')
     places, edges = _definitions()

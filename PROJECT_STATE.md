@@ -225,6 +225,9 @@ static services remain mechanically shallow; future work must make place and
 commitments matter without mandatory commute grind. No licensed map assets are
 included. Tests and actual simulation results are reported in the feature PR.
 
-[M014 validation evidence](docs/M014_VALIDATION_REPORT.md): 229 passing regressions
+[M014 submission evidence](docs/M014_VALIDATION_REPORT.md): 229 passing regressions
 (198 unchanged plus 31 new), actual historical fixtures, real CLI resume and two
-100-day navigation/reference campaigns. M014 is submitted for review only.
+100-day navigation/reference campaigns. The independent [Mission 008 final audit](docs/M014_FINAL_AUDIT.md)
+records additional corrections, the final test count, CI and PR disposition.
+The [M015 daily-life contract](docs/GOON_M015_DAILY_LIFE_CONTRACT.md) is a proposal
+only; no M015 gameplay is implemented by this audit.

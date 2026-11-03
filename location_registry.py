@@ -8,6 +8,7 @@ import re
 
 ATLAS_PATH = Path(__file__).parent / 'content' / 'gotham_atlas_v1.json'
 MODES = ('walk', 'bus', 'rail', 'ferry')
+RESTRICTED_ACCESS = frozenset(('HOME', 'WORK', 'VIS', 'SEC'))
 
 
 def _require(condition, reason):
@@ -74,6 +75,11 @@ def validate(data):
             access_targets.add(b['id'])
         else:
             _require(a['kind'] == b['kind'] == 'neighborhood' and all(t > 0 for t in modes.values()), ident + ': invalid corridor')
+            _require(e['access'] in ('public', 'authorized'), ident + ': corridor cannot use a POI access policy')
+            # Authorized corridors gate entry at their receiving endpoint. The
+            # reverse direction remains ordinary lawful visitor egress.
+            _require(e['access'] != 'authorized' or bool(set(b['access']) & RESTRICTED_ACCESS),
+                     ident + ': authorized corridor requires a restricted receiving endpoint')
         edges[ident] = e
     _require(access_targets == {k for k, p in places.items() if p['kind'] == 'poi'}, 'every POI needs one access spur')
     return data

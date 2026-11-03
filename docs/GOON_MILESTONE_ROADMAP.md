@@ -6,6 +6,7 @@ merged at `8b68e1e`; its atlas and narrative documents remain design provenance.
 | Milestone | Scope / approval |
 | --- | --- |
 | M014 | Authorized world runtime/navigation foundation: local validated atlas, optional versioned location state, deterministic public movement, CLI and regression coverage. No combat or prologue implementation. |
+| M015, proposed after M014 audit | [Daily Life & Opportunity Engine](GOON_M015_DAILY_LIFE_CONTRACT.md): one explicit room obligation, local lawful/criminal work offers, finite opportunities, two original recurring contacts, and one idempotent day phase. Planning only; no implementation in Mission 008. |
 | Future combat milestone, number unassigned | Preserve the [historical M014 combat proposal](M014_COMBAT_DESIGN_CONTRACT.md). Requires a separate approved contract, health/recovery policy and compatible non-job legal-case source. |
 | Future opening/content milestone, number unassigned | Review the [playable prologue contract](GOON_PLAYABLE_PROLOGUE_CONTRACT.md) and implement bounded employment/relationship choices using real systems. No guaranteed villain meeting or new faction tick. |
 

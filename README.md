@@ -62,6 +62,8 @@ the implemented subset and supersedes their historical M014 combat numbering.
 | [Project state](PROJECT_STATE.md) | Runtime capabilities, compatibility, limitations, and next review |
 | [Final integration audit](docs/M013_1_FINAL_INTEGRATION_AUDIT.md) | Verified corrections, compatibility findings, reproducible graph/document checks and conditional merge gates |
 | [M014 validation](docs/M014_VALIDATION_REPORT.md) | Executed regressions, historical compatibility, real CLI walkthrough and reproducible navigation campaigns |
+| [M014 final audit](docs/M014_FINAL_AUDIT.md) | Independent acceptance gates, corrections, compatibility results and PR disposition |
+| [M015 daily-life proposal](docs/GOON_M015_DAILY_LIFE_CONTRACT.md) | Smallest viable obligations, home, location-dependent work, contacts and seven-day acceptance scenario; no implementation |
 
 M013.1 preserves the `gotham-underworld` repository name, Python modules, package
 layout, save filenames/identifiers, and historical milestone documents. The CLI
