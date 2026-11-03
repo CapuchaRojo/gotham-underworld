@@ -12,6 +12,8 @@ from district_missions import prepare as prepare_missions, mission as run_missio
 from faction_warfare import prepare as prepare_warfare, advance as warfare_advance
 from city_strategy import prepare as prepare_strategy, advance as strategy_advance, summary as strategy_summary
 
+from city_intelligence import dashboard as intelligence_dashboard, briefing as intelligence_briefing
+
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
     'courier': {'reward': 25, 'heat': 0, 'reputation': 1},
@@ -100,7 +102,7 @@ def show(world):
 
 def play(world, filename):
     prepare(world)
-    print('UNDERWORLD - M009 living city intelligence prototype. Type help for commands.')
+    print('UNDERWORLD - M010 city intelligence dashboard prototype. Type help for commands.')
     while True:
         try:
             command = input('underworld> ').strip().split()
@@ -112,9 +114,28 @@ def play(world, filename):
         verb, *args = command
         try:
             if verb == 'help':
-                print('status | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+                print('status | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
             elif verb == 'status':
                 show(world)
+            elif verb == 'intel':
+                report = intelligence_dashboard(world)
+                print(f'CITY INTELLIGENCE | Day {report["day"]}')
+                for rank, entry in enumerate(report['rankings'], 1):
+                    print(f'{rank}. {entry["faction"]}: districts {entry["districts"]} | control {entry["control"]} | power {entry["power"]} | treasury ${entry["cash"]}')
+                influence = report['player_influence']
+                print(f'PLAYER INFLUENCE | faction {influence["faction"] or "none"} | missions {influence["missions"]} | expansions {influence["expansions"]} | captures {influence["captures"]} | jobs {influence["jobs"]} | successes {influence["successful_jobs"]}')
+                print('TERRITORY HISTORY')
+                for item in report['territory_history']:
+                    print(f'Day {item["day"]}: {item["message"]}')
+                if not report['territory_history']:
+                    print('No recorded transfers yet.')
+            elif verb == 'briefing' and len(args) <= 1:
+                report = intelligence_briefing(world, int(args[0]) if args else None)
+                print(f'DAY {report["day"]} BRIEFING | events {report["event_count"]} | district income ${report["income"]}')
+                for message in report['highlights']:
+                    print(f'- {message}')
+                if not report['highlights']:
+                    print('No major recorded developments.')
             elif verb == 'relationships':
                 for name, person in world['people'].items():
                     choice = decision(world, name)
