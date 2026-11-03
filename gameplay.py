@@ -6,6 +6,7 @@ from simulation import new_world, advance, resolve_case, event, remember
 from consequence_engine import execute_job, investigate, prepare as prepare_consequences
 from relationship_engine import prepare as prepare_relationships, on_join, decision
 from npc_actions import act as npc_act, prepare as prepare_npc_actions
+from city_economy import prepare as prepare_economy, advance as economy_advance, on_job as economy_on_job, summary as district_summary
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
@@ -22,6 +23,7 @@ def prepare(world):
     prepare_consequences(world)
     prepare_relationships(world)
     prepare_npc_actions(world)
+    prepare_economy(world)
     return world
 
 
@@ -52,13 +54,16 @@ def job(world, kind):
         raise ValueError('Cannot work while detained')
     if player['faction'] is None:
         raise ValueError('Join a faction first')
-    return execute_job(world, kind, JOBS[kind])
+    result = execute_job(world, kind, JOBS[kind])
+    economy_on_job(world, result)
+    return result
 
 
 def next_day(world):
     advance(world)
     investigate(world)
     npc_act(world)
+    economy_advance(world)
     if world['player']['arrested']:
         resolve_case(world)
     return world
@@ -86,7 +91,7 @@ def show(world):
 
 def play(world, filename):
     prepare(world)
-    print('UNDERWORLD — M003 consequence prototype. Type help for commands.')
+    print('UNDERWORLD — M006 living city prototype. Type help for commands.')
     while True:
         try:
             command = input('underworld> ').strip().split()
@@ -98,13 +103,16 @@ def play(world, filename):
         verb, *args = command
         try:
             if verb == 'help':
-                print('status | factions | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+                print('status | factions | districts | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
             elif verb == 'status':
                 show(world)
             elif verb == 'relationships':
                 for name, person in world['people'].items():
                     choice = decision(world, name)
                     print(f'{name}: {person["relationship"]} | {choice["action"]} ({choice["reason"]})')
+            elif verb == 'districts':
+                for name, data in district_summary(world):
+                    print(f'{name}: {data["owner"]} | wealth {data["wealth"]} | control {data["control"]}')
             elif verb == 'factions':
                 for i, faction in enumerate(GANGS, 1):
                     print(f'{i}. {faction} (power {world["factions"][faction]["power"]})')
