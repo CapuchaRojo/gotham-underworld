@@ -1,8 +1,14 @@
 # Content architecture recommendations
 
-**Status: M013.1 proposal only.** No registries, schemas, commands, migrations,
-or content packs described as proposed below are implemented by this milestone.
-The current runtime remains M013. This document supports the
+Mission 007 update: [M014 implements world/navigation](GOON_WORLD_RUNTIME.md).
+Combat references below retain the historical M013.1 proposal and are deferred;
+the [roadmap](GOON_MILESTONE_ROADMAP.md) assigns no combat milestone number.
+The minimal registry/navigation modules implement only the location subset of
+this broader design; other definition catalogs and case adapters remain proposals.
+
+**Status: broader M013.1 architecture proposal with an M014 location subset.**
+The catalogs below remain proposals except the location registry/navigation
+identified above. M014 retains the M013 legal/economic systems. This document supports the
 [narrative bible](GOON_NARRATIVE_DESIGN_BIBLE.md) and the separately reviewable
 [M014 combat contract](M014_COMBAT_DESIGN_CONTRACT.md).
 The expanded proposals cover [careers](GOON_CRIMINAL_CAREER_WEB.md),
@@ -35,6 +41,8 @@ schema or loader is introduced by the Markdown registry.
 | Economic identity | [`faction_profiles.py`](../faction_profiles.py), [`faction_competition.py`](../faction_competition.py) | Saved profile definitions/bindings already separate economic parameters from faction names |
 | Territory | [`territory.py`](../territory.py), mission and warfare modules | Continue using the shared capture operation; story effects cannot bypass ownership invariants |
 | Read models | [`city_intelligence.py`](../city_intelligence.py), strategy assessments | Reports remain detached and read-only; current reports expose actual world facts, not uncertain beliefs |
+| Geographic definitions | [`location_registry.py`](../location_registry.py), local versioned atlas | Validate/pin IDs, references and profiles without adding territory accounts |
+| Navigation | [`navigation.py`](../navigation.py), service travel/adoption commands and detached public views | Preserve three actions, separate TU, explicit old-career opt-in, safe committed routes and next-day activation |
 
 The world is a mutable, JSON-shaped dictionary, not an entity framework. Several
 current dictionary keys are display names. Base content, the legacy feud roster,

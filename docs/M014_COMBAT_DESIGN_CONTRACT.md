@@ -1,4 +1,10 @@
-# M014 combat design contract
+# Deferred combat design contract (historical M014 proposal)
+
+**Mission 007 scope update:** M014 is now World Runtime and Navigation Foundation.
+This retained combat proposal is deferred to an unassigned future milestone; every
+M014 reference below describes its historical proposed numbering, not the current
+implementation scope. See the [current roadmap](GOON_MILESTONE_ROADMAP.md).
+No combat implementation is authorized by Mission 007.
 
 **Status: proposal for human review; no combat is implemented in M013.1.**
 This contract describes the smallest prospective M014. It is not authorization

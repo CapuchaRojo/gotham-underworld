@@ -38,3 +38,13 @@ preserve every original value and do not invent historical fine amounts/dates.
 three days through the game service. M013 tests preserve every original value,
 including legal state and action usage, add profiles without replay, and activate
 the new competition policy only on the next advanced day.
+
+`career_m013_1.json` comes from merged M013.1 commit
+`8b68e1efc338a532293262edafd85240cdfa65a3`, with that revision's root Python
+modules loaded together in an isolated temporary directory. Recipe:
+`create_career(17)`, join Harbor through the service, twice run one collection
+then `advance_day`, then run three courier commands and save. Day 2 retains
+active M013 profiles/operations and all three spent actions, with no navigation.
+M014 tests preserve its resources/events on load, require explicit public-anchor
+adoption and next-day activation, and never invent a historical home or refresh
+the spent action budget on adoption/loading.

@@ -12,6 +12,8 @@ from district_missions import mission
 from simulation import event, new_world
 from legal_engine import (accept, advance_day as legal_day, change_heat, contest,
                           cooperate, job as legal_job, lay_low)
+import navigation
+from navigation import location_report, nearby_destinations, known_places, plan_route
 
 # Stable command IDs; future commands can reuse the same result/event envelope.
 COMMANDS = {
@@ -23,6 +25,8 @@ COMMANDS = {
     'cooperate': (1, ('case_id',), cooperate),
     'contest': (1, ('case_id',), contest),
     'accept': (1, ('case_id',), accept),
+    'travel': (0, ('destination', 'mode'), navigation.travel),
+    'enable_navigation': (0, ('anchor',), navigation.enable_navigation),
 }
 
 
@@ -30,6 +34,8 @@ def create_career(seed=42):
     if type(seed) is not int:
         raise ValueError('seed must be an integer')
     world = gameplay.prepare(new_world(seed))
+    from location_registry import load
+    navigation.initialize(world, home=load()['starting_home_id'])
     validate(world)
     return world
 

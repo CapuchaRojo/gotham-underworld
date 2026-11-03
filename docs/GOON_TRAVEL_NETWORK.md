@@ -1,8 +1,12 @@
 # Gotham: The Goon — Travel and Navigation Design
 
-**Status: proposal only.** No graph loader, movement command, time budget,
-vehicle, transit or location state is implemented. All costs are provisional
-design values requiring later approval. See the [atlas](GOON_GOTHAM_ATLAS.md),
+**M013.1 design source.** [M014's runtime contract](GOON_WORLD_RUNTIME.md) now
+implements public walking/transit, versioned location state and bounded movement.
+It selects 18 TU initially and a **1-TU minimum per completed journey**, bounding
+the zero-cost local-approach hypothesis below. Vehicles, schedules, institutional
+interiors and authored incidents remain future work. The sections below retain
+M013.1's original proposal; the runtime contract governs the implemented subset
+and its initial tuning policy. See the [atlas](GOON_GOTHAM_ATLAS.md),
 [location IDs/profiles](GOON_LOCATION_REGISTRY.md),
 [migration contract](GOON_MAP_SIMULATION_INTEGRATION.md) and
 [map read model](GOON_MAP_VISUAL_SPEC.md).

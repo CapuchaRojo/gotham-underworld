@@ -11,6 +11,11 @@ Warner Bros. endorsement, authorization, or affiliation.
 
 ## Authority and feature status
 
+Mission 007 now authorizes M014 world/navigation only. References here to a
+proposed M014 combat slice retain the M013.1 historical numbering; combat is
+deferred. The [current roadmap](GOON_MILESTONE_ROADMAP.md) and
+[runtime contract](GOON_WORLD_RUNTIME.md) identify the implemented subset.
+
 This bible governs creative intent, not implementation authorization. Read it with
 [gameplay principles](GOON_GAMEPLAY_PRINCIPLES.md), the
 [employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md),

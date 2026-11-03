@@ -1,0 +1,7517 @@
+{
+  "atlas_version": 1,
+  "root_id": "goon.city.gotham",
+  "places": [
+    {
+      "id": "goon.region.r01",
+      "label": "Bristol Mainland",
+      "parent_id": "goon.city.gotham",
+      "region_id": "goon.region.r01",
+      "kind": "region",
+      "type": "region",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E4"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V2",
+        "V4"
+      ],
+      "npc_pool": [
+        "N1",
+        "N2"
+      ],
+      "source": "O; D name"
+    },
+    {
+      "id": "goon.region.r02",
+      "label": "West Mainland",
+      "parent_id": "goon.city.gotham",
+      "region_id": "goon.region.r02",
+      "kind": "region",
+      "type": "region",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E3"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2",
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.region.r03",
+      "label": "North Borough",
+      "parent_id": "goon.city.gotham",
+      "region_id": "goon.region.r03",
+      "kind": "region",
+      "type": "region",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E7"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V2",
+        "V7"
+      ],
+      "npc_pool": [
+        "N1",
+        "N7"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.region.r04",
+      "label": "Central Borough",
+      "parent_id": "goon.city.gotham",
+      "region_id": "goon.region.r04",
+      "kind": "region",
+      "type": "region",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V1",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.region.r05",
+      "label": "South Borough",
+      "parent_id": "goon.city.gotham",
+      "region_id": "goon.region.r05",
+      "kind": "region",
+      "type": "region",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2",
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.region.r06",
+      "label": "East Mainland",
+      "parent_id": "goon.city.gotham",
+      "region_id": "goon.region.r06",
+      "kind": "region",
+      "type": "region",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E3",
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V3",
+        "V4"
+      ],
+      "npc_pool": [
+        "N5",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.region.r07",
+      "label": "South Mainland",
+      "parent_id": "goon.city.gotham",
+      "region_id": "goon.region.r07",
+      "kind": "region",
+      "type": "region",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E8"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V2",
+        "V8"
+      ],
+      "npc_pool": [
+        "N1",
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.region.r08",
+      "label": "Outer Islands",
+      "parent_id": "goon.city.gotham",
+      "region_id": "goon.region.r08",
+      "kind": "region",
+      "type": "region",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4",
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V4",
+        "V5"
+      ],
+      "npc_pool": [
+        "N2",
+        "N9"
+      ],
+      "source": "O; RPG island names"
+    },
+    {
+      "id": "goon.neighborhood.n01",
+      "label": "Bristol Township",
+      "parent_id": "goon.region.r01",
+      "region_id": "goon.region.r01",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "D"
+    },
+    {
+      "id": "goon.neighborhood.n02",
+      "label": "Cedar Slope",
+      "parent_id": "goon.region.r01",
+      "region_id": "goon.region.r01",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E3"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2",
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n03",
+      "label": "Reservoir Terrace",
+      "parent_id": "goon.region.r01",
+      "region_id": "goon.region.r01",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V8"
+      ],
+      "npc_pool": [
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n04",
+      "label": "Northgate Commons",
+      "parent_id": "goon.region.r01",
+      "region_id": "goon.region.r01",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5",
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5",
+        "V6"
+      ],
+      "npc_pool": [
+        "N3",
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n05",
+      "label": "Airfield Ward",
+      "parent_id": "goon.region.r01",
+      "region_id": "goon.region.r01",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n06",
+      "label": "Meadow Exchange",
+      "parent_id": "goon.region.r01",
+      "region_id": "goon.region.r01",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E4"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V1",
+        "V4"
+      ],
+      "npc_pool": [
+        "N1",
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n07",
+      "label": "Westbank Terraces",
+      "parent_id": "goon.region.r02",
+      "region_id": "goon.region.r02",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n08",
+      "label": "Foundry Ward",
+      "parent_id": "goon.region.r02",
+      "region_id": "goon.region.r02",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n09",
+      "label": "Union Quarter",
+      "parent_id": "goon.region.r02",
+      "region_id": "goon.region.r02",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5",
+        "E3"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V3",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n10",
+      "label": "Switchyard",
+      "parent_id": "goon.region.r02",
+      "region_id": "goon.region.r02",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n11",
+      "label": "Stonecross",
+      "parent_id": "goon.region.r02",
+      "region_id": "goon.region.r02",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n12",
+      "label": "West Canal",
+      "parent_id": "goon.region.r02",
+      "region_id": "goon.region.r02",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E4"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C7"
+      ],
+      "civilian": [
+        "V1",
+        "V4"
+      ],
+      "npc_pool": [
+        "N1",
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n13",
+      "label": "Upper East Side",
+      "parent_id": "goon.region.r03",
+      "region_id": "goon.region.r03",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V1",
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "B"
+    },
+    {
+      "id": "goon.neighborhood.n14",
+      "label": "Robinson Gardens",
+      "parent_id": "goon.region.r03",
+      "region_id": "goon.region.r03",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V8"
+      ],
+      "npc_pool": [
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n15",
+      "label": "Amusement Mile",
+      "parent_id": "goon.region.r03",
+      "region_id": "goon.region.r03",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E7"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V7"
+      ],
+      "npc_pool": [
+        "N7"
+      ],
+      "source": "A"
+    },
+    {
+      "id": "goon.neighborhood.n16",
+      "label": "Gables Ward",
+      "parent_id": "goon.region.r03",
+      "region_id": "goon.region.r03",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E6"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2",
+        "V6"
+      ],
+      "npc_pool": [
+        "N1",
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n17",
+      "label": "Highbridge",
+      "parent_id": "goon.region.r03",
+      "region_id": "goon.region.r03",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4",
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V4",
+        "V5"
+      ],
+      "npc_pool": [
+        "N2",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n18",
+      "label": "North Quay",
+      "parent_id": "goon.region.r03",
+      "region_id": "goon.region.r03",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n19",
+      "label": "Midtown",
+      "parent_id": "goon.region.r04",
+      "region_id": "goon.region.r04",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V1",
+        "V6"
+      ],
+      "npc_pool": [
+        "N1",
+        "N4"
+      ],
+      "source": "RPG"
+    },
+    {
+      "id": "goon.neighborhood.n20",
+      "label": "Diamond District",
+      "parent_id": "goon.region.r04",
+      "region_id": "goon.region.r04",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C7"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1",
+        "N10"
+      ],
+      "source": "B"
+    },
+    {
+      "id": "goon.neighborhood.n21",
+      "label": "Chinatown",
+      "parent_id": "goon.region.r04",
+      "region_id": "goon.region.r04",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V1",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "B"
+    },
+    {
+      "id": "goon.neighborhood.n22",
+      "label": "Civic Lanes",
+      "parent_id": "goon.region.r04",
+      "region_id": "goon.region.r04",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n23",
+      "label": "Canal Exchange",
+      "parent_id": "goon.region.r04",
+      "region_id": "goon.region.r04",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n24",
+      "label": "Market Steps",
+      "parent_id": "goon.region.r04",
+      "region_id": "goon.region.r04",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V1",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n25",
+      "label": "Park Row",
+      "parent_id": "goon.region.r05",
+      "region_id": "goon.region.r05",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E6"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V2",
+        "V6"
+      ],
+      "npc_pool": [
+        "N1",
+        "N4"
+      ],
+      "source": "P"
+    },
+    {
+      "id": "goon.neighborhood.n26",
+      "label": "East End",
+      "parent_id": "goon.region.r05",
+      "region_id": "goon.region.r05",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E3"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C7"
+      ],
+      "civilian": [
+        "V1",
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "D"
+    },
+    {
+      "id": "goon.neighborhood.n27",
+      "label": "Narrows",
+      "parent_id": "goon.region.r05",
+      "region_id": "goon.region.r05",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E6"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2",
+        "V6"
+      ],
+      "npc_pool": [
+        "N1",
+        "N4"
+      ],
+      "source": "RPG"
+    },
+    {
+      "id": "goon.neighborhood.n28",
+      "label": "Old Dock Ward",
+      "parent_id": "goon.region.r05",
+      "region_id": "goon.region.r05",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E3",
+        "E4"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V3",
+        "V4"
+      ],
+      "npc_pool": [
+        "N5",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n29",
+      "label": "Theatre Steps",
+      "parent_id": "goon.region.r05",
+      "region_id": "goon.region.r05",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E7"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V7"
+      ],
+      "npc_pool": [
+        "N7"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n30",
+      "label": "South Gate",
+      "parent_id": "goon.region.r05",
+      "region_id": "goon.region.r05",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4",
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V4",
+        "V5"
+      ],
+      "npc_pool": [
+        "N2",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n31",
+      "label": "East Harbor",
+      "parent_id": "goon.region.r06",
+      "region_id": "goon.region.r06",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n32",
+      "label": "Iron Quay",
+      "parent_id": "goon.region.r06",
+      "region_id": "goon.region.r06",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V2",
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n33",
+      "label": "Drydock Ward",
+      "parent_id": "goon.region.r06",
+      "region_id": "goon.region.r06",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E3",
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V3",
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n34",
+      "label": "Saltmarket",
+      "parent_id": "goon.region.r06",
+      "region_id": "goon.region.r06",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C7"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n35",
+      "label": "Chemical Reach",
+      "parent_id": "goon.region.r06",
+      "region_id": "goon.region.r06",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n36",
+      "label": "Tideworks",
+      "parent_id": "goon.region.r06",
+      "region_id": "goon.region.r06",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E8",
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3",
+        "V8"
+      ],
+      "npc_pool": [
+        "N6",
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n37",
+      "label": "South Exchange",
+      "parent_id": "goon.region.r07",
+      "region_id": "goon.region.r07",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4",
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V4",
+        "V6"
+      ],
+      "npc_pool": [
+        "N2",
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n38",
+      "label": "Sawmill Terrace",
+      "parent_id": "goon.region.r07",
+      "region_id": "goon.region.r07",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E3"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2",
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n39",
+      "label": "Reed Marsh",
+      "parent_id": "goon.region.r07",
+      "region_id": "goon.region.r07",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V8"
+      ],
+      "npc_pool": [
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n40",
+      "label": "Outfall Ward",
+      "parent_id": "goon.region.r07",
+      "region_id": "goon.region.r07",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E8",
+        "E6"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V6",
+        "V8"
+      ],
+      "npc_pool": [
+        "N4",
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n41",
+      "label": "South Rail",
+      "parent_id": "goon.region.r07",
+      "region_id": "goon.region.r07",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4",
+        "E5"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4",
+        "V5"
+      ],
+      "npc_pool": [
+        "N2",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n42",
+      "label": "Millbrook",
+      "parent_id": "goon.region.r07",
+      "region_id": "goon.region.r07",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n43",
+      "label": "Breakwater Village",
+      "parent_id": "goon.region.r08",
+      "region_id": "goon.region.r08",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E4"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V1",
+        "V4"
+      ],
+      "npc_pool": [
+        "N1",
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n44",
+      "label": "Lantern Harbor",
+      "parent_id": "goon.region.r08",
+      "region_id": "goon.region.r08",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4",
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V4",
+        "V6"
+      ],
+      "npc_pool": [
+        "N2",
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n45",
+      "label": "Arkham Reach",
+      "parent_id": "goon.region.r08",
+      "region_id": "goon.region.r08",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5",
+        "E6"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5",
+        "V6"
+      ],
+      "npc_pool": [
+        "N4",
+        "N9"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n46",
+      "label": "Blackgate Landing",
+      "parent_id": "goon.region.r08",
+      "region_id": "goon.region.r08",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "VIS"
+      ],
+      "economy": [
+        "E5",
+        "E4"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V4",
+        "V5"
+      ],
+      "npc_pool": [
+        "N3",
+        "N9"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n47",
+      "label": "Netmaker Rows",
+      "parent_id": "goon.region.r08",
+      "region_id": "goon.region.r08",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E1",
+        "E3"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2",
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.neighborhood.n48",
+      "label": "Beacon Ward",
+      "parent_id": "goon.region.r08",
+      "region_id": "goon.region.r08",
+      "kind": "neighborhood",
+      "type": "neighborhood",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5",
+        "E8"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5",
+        "V8"
+      ],
+      "npc_pool": [
+        "N1",
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p001",
+      "label": "Wayne Manor",
+      "parent_id": "goon.neighborhood.n01",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "residence",
+      "access": [
+        "HOME"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "D"
+    },
+    {
+      "id": "goon.poi.p002",
+      "label": "Bristol Station",
+      "parent_id": "goon.neighborhood.n01",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "station",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p003",
+      "label": "Cedar Rooms",
+      "parent_id": "goon.neighborhood.n02",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "housing",
+      "access": [
+        "HOME"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p004",
+      "label": "Cedar Repair Cooperative",
+      "parent_id": "goon.neighborhood.n02",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "workshop",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p005",
+      "label": "Reservoir Park",
+      "parent_id": "goon.neighborhood.n03",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "park",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V8"
+      ],
+      "npc_pool": [
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p006",
+      "label": "North Reservoir Pump House",
+      "parent_id": "goon.neighborhood.n03",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "utility",
+      "access": [
+        "SEC"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p007",
+      "label": "Northgate Community Hospital",
+      "parent_id": "goon.neighborhood.n04",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "hospital",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p008",
+      "label": "Northgate Transit Exchange",
+      "parent_id": "goon.neighborhood.n04",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "interchange",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p009",
+      "label": "Archie Goodwin International Airport",
+      "parent_id": "goon.neighborhood.n05",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "airport",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "B"
+    },
+    {
+      "id": "goon.poi.p010",
+      "label": "Airport Worker Canteen",
+      "parent_id": "goon.neighborhood.n05",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "cafe",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1",
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p011",
+      "label": "Meadow Freight Terminal",
+      "parent_id": "goon.neighborhood.n06",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "freight terminal",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p012",
+      "label": "Meadow Market",
+      "parent_id": "goon.neighborhood.n06",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "market",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C7"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p013",
+      "label": "Bristol Community Counseling",
+      "parent_id": "goon.neighborhood.n02",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "voluntary care",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p014",
+      "label": "Northgate Police Desk",
+      "parent_id": "goon.neighborhood.n04",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "police public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p015",
+      "label": "Meadow Emergency Shelter",
+      "parent_id": "goon.neighborhood.n06",
+      "region_id": "goon.region.r01",
+      "kind": "poi",
+      "type": "shelter",
+      "access": [
+        "HELP"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V2",
+        "V6"
+      ],
+      "npc_pool": [
+        "N1",
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p016",
+      "label": "Westbank Flats",
+      "parent_id": "goon.neighborhood.n07",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "housing",
+      "access": [
+        "HOME"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p017",
+      "label": "Westbank Tenants Office",
+      "parent_id": "goon.neighborhood.n07",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "civic support",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p018",
+      "label": "Foundry Repair Cooperative",
+      "parent_id": "goon.neighborhood.n08",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "workshop",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p019",
+      "label": "Foundry Safety Training Hall",
+      "parent_id": "goon.neighborhood.n08",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "training",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p020",
+      "label": "Union Hall",
+      "parent_id": "goon.neighborhood.n09",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "community workplace",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V3",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p021",
+      "label": "Union Quarter Library",
+      "parent_id": "goon.neighborhood.n09",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "library",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p022",
+      "label": "West Regional Station",
+      "parent_id": "goon.neighborhood.n10",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "station",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p023",
+      "label": "Switchyard Maintenance Depot",
+      "parent_id": "goon.neighborhood.n10",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "depot",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p024",
+      "label": "Stonecross Court Annex",
+      "parent_id": "goon.neighborhood.n11",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "court public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p025",
+      "label": "Stonecross Legal Aid",
+      "parent_id": "goon.neighborhood.n11",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "advocacy",
+      "access": [
+        "HELP"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p026",
+      "label": "West Canal Passenger Pier",
+      "parent_id": "goon.neighborhood.n12",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "ferry terminal",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p027",
+      "label": "Wharf Corner Cafe",
+      "parent_id": "goon.neighborhood.n12",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "cafe",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V1",
+        "V7"
+      ],
+      "npc_pool": [
+        "N1",
+        "N7"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p028",
+      "label": "Foundry Urgent Clinic",
+      "parent_id": "goon.neighborhood.n08",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "clinic",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p029",
+      "label": "West Mainland Police Precinct",
+      "parent_id": "goon.neighborhood.n11",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "police public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p030",
+      "label": "Switchyard Goods Depot",
+      "parent_id": "goon.neighborhood.n10",
+      "region_id": "goon.region.r02",
+      "kind": "poi",
+      "type": "freight depot",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p031",
+      "label": "East Side Housing Cooperative",
+      "parent_id": "goon.neighborhood.n13",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "housing",
+      "access": [
+        "HOME"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p032",
+      "label": "Uptown General Store",
+      "parent_id": "goon.neighborhood.n13",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "shop",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p033",
+      "label": "Robinson Park",
+      "parent_id": "goon.neighborhood.n14",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "park",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V8"
+      ],
+      "npc_pool": [
+        "N8",
+        "N10"
+      ],
+      "source": "D"
+    },
+    {
+      "id": "goon.poi.p034",
+      "label": "Garden Learning Center",
+      "parent_id": "goon.neighborhood.n14",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "education",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5",
+        "V8"
+      ],
+      "npc_pool": [
+        "N1",
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p035",
+      "label": "Amusement Mile Boardwalk",
+      "parent_id": "goon.neighborhood.n15",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "leisure frontage",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E7"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V7"
+      ],
+      "npc_pool": [
+        "N7"
+      ],
+      "source": "A name; O frontage"
+    },
+    {
+      "id": "goon.poi.p036",
+      "label": "Nightshift Diner",
+      "parent_id": "goon.neighborhood.n15",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "diner",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1",
+        "N7"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p037",
+      "label": "Gables Community Clinic",
+      "parent_id": "goon.neighborhood.n16",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "clinic",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p038",
+      "label": "Gables Social Club",
+      "parent_id": "goon.neighborhood.n16",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "social venue",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E7"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V7"
+      ],
+      "npc_pool": [
+        "N1",
+        "N7"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p039",
+      "label": "Highbridge Metro Stop",
+      "parent_id": "goon.neighborhood.n17",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "metro station",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p040",
+      "label": "Highbridge Court Counter",
+      "parent_id": "goon.neighborhood.n17",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "court public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p041",
+      "label": "North Quay Passenger Pier",
+      "parent_id": "goon.neighborhood.n18",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "ferry terminal",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p042",
+      "label": "North Quay Boat Repair",
+      "parent_id": "goon.neighborhood.n18",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "workshop",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N2",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p043",
+      "label": "Gardens Voluntary Care",
+      "parent_id": "goon.neighborhood.n14",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "voluntary care",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p044",
+      "label": "North Borough Police Station",
+      "parent_id": "goon.neighborhood.n17",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "police public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p045",
+      "label": "Fairground Crew Dispatch",
+      "parent_id": "goon.neighborhood.n15",
+      "region_id": "goon.region.r03",
+      "kind": "poi",
+      "type": "work referral",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N2",
+        "N7"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p046",
+      "label": "Wayne Tower",
+      "parent_id": "goon.neighborhood.n19",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "office tower",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "D"
+    },
+    {
+      "id": "goon.poi.p047",
+      "label": "Central Interchange",
+      "parent_id": "goon.neighborhood.n19",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "interchange",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p048",
+      "label": "Iceberg Lounge",
+      "parent_id": "goon.neighborhood.n20",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "nightclub",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E7"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V7"
+      ],
+      "npc_pool": [
+        "N7",
+        "N10"
+      ],
+      "source": "I"
+    },
+    {
+      "id": "goon.poi.p049",
+      "label": "Jewelers Repair Guild",
+      "parent_id": "goon.neighborhood.n20",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "workshop",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C7"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p050",
+      "label": "Chinatown Market Hall",
+      "parent_id": "goon.neighborhood.n21",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "market",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p051",
+      "label": "Community Translation Desk",
+      "parent_id": "goon.neighborhood.n21",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "public service",
+      "access": [
+        "HELP"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C0"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p052",
+      "label": "Gotham City Courthouse",
+      "parent_id": "goon.neighborhood.n22",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "court public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O civic category"
+    },
+    {
+      "id": "goon.poi.p053",
+      "label": "GCPD Public Headquarters",
+      "parent_id": "goon.neighborhood.n22",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "police public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O facility; RPG institution"
+    },
+    {
+      "id": "goon.poi.p054",
+      "label": "Central Canal Ferry Terminal",
+      "parent_id": "goon.neighborhood.n23",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "ferry terminal",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p055",
+      "label": "Freight Broker Exchange",
+      "parent_id": "goon.neighborhood.n23",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "office",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V3",
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p056",
+      "label": "Market Steps Community Hall",
+      "parent_id": "goon.neighborhood.n24",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "community venue",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5",
+        "V7"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p057",
+      "label": "Day Labor Referral Desk",
+      "parent_id": "goon.neighborhood.n24",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "work referral",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p058",
+      "label": "Gotham General Hospital",
+      "parent_id": "goon.neighborhood.n19",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "hospital",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "H"
+    },
+    {
+      "id": "goon.poi.p059",
+      "label": "Metro Control Office",
+      "parent_id": "goon.neighborhood.n23",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "operations office",
+      "access": [
+        "SEC"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N2",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p060",
+      "label": "Civic Public Defender Office",
+      "parent_id": "goon.neighborhood.n22",
+      "region_id": "goon.region.r04",
+      "kind": "poi",
+      "type": "advocacy",
+      "access": [
+        "HELP"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p061",
+      "label": "Crime Alley",
+      "parent_id": "goon.neighborhood.n25",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "street/public place",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V2",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "P"
+    },
+    {
+      "id": "goon.poi.p062",
+      "label": "Park Row Community Clinic",
+      "parent_id": "goon.neighborhood.n25",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "clinic",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p063",
+      "label": "East End Repair Market",
+      "parent_id": "goon.neighborhood.n26",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "market/workshops",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2",
+        "E3"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C7"
+      ],
+      "civilian": [
+        "V1",
+        "V3"
+      ],
+      "npc_pool": [
+        "N1",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p064",
+      "label": "Night Rooms Housing",
+      "parent_id": "goon.neighborhood.n26",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "housing",
+      "access": [
+        "HOME"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p065",
+      "label": "Narrows Public Bathhouse",
+      "parent_id": "goon.neighborhood.n27",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "civilian service",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C0"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p066",
+      "label": "Narrows Care and Reentry Center",
+      "parent_id": "goon.neighborhood.n27",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "care/reentry",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5",
+        "V6"
+      ],
+      "npc_pool": [
+        "N3",
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p067",
+      "label": "Old Dock Warehouse Cooperative",
+      "parent_id": "goon.neighborhood.n28",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "warehouse",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V3",
+        "V4"
+      ],
+      "npc_pool": [
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p068",
+      "label": "Old Dock Fire Station",
+      "parent_id": "goon.neighborhood.n28",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "fire/public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p069",
+      "label": "Monarch Theatre",
+      "parent_id": "goon.neighborhood.n25",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "theater",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E7"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V7"
+      ],
+      "npc_pool": [
+        "N7"
+      ],
+      "source": "P"
+    },
+    {
+      "id": "goon.poi.p070",
+      "label": "Stagehands Hall",
+      "parent_id": "goon.neighborhood.n29",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "work/community hall",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V3",
+        "V7"
+      ],
+      "npc_pool": [
+        "N6",
+        "N7"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p071",
+      "label": "South Gate Subway Stop",
+      "parent_id": "goon.neighborhood.n30",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "metro station",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p072",
+      "label": "South Gate Bus Terminal",
+      "parent_id": "goon.neighborhood.n30",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "bus station",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p073",
+      "label": "South Borough Court Counter",
+      "parent_id": "goon.neighborhood.n30",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "court public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p074",
+      "label": "South Borough Police Counter",
+      "parent_id": "goon.neighborhood.n30",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "police public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p075",
+      "label": "Reentry Employment Office",
+      "parent_id": "goon.neighborhood.n27",
+      "region_id": "goon.region.r05",
+      "kind": "poi",
+      "type": "work referral",
+      "access": [
+        "HELP"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V3",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p076",
+      "label": "Eastern Commercial Port",
+      "parent_id": "goon.neighborhood.n31",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "port",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p077",
+      "label": "East Harbor Customs Counter",
+      "parent_id": "goon.neighborhood.n31",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "port public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p078",
+      "label": "Iron Quay Foundry",
+      "parent_id": "goon.neighborhood.n32",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "plant",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p079",
+      "label": "Iron Quay Worker Clinic",
+      "parent_id": "goon.neighborhood.n32",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "clinic",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p080",
+      "label": "Drydock Services Cooperative",
+      "parent_id": "goon.neighborhood.n33",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "workshop",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N5",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p081",
+      "label": "East Mainland Regional Station",
+      "parent_id": "goon.neighborhood.n33",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "station",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p082",
+      "label": "Saltmarket Fish Hall",
+      "parent_id": "goon.neighborhood.n34",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "market",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C7"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p083",
+      "label": "Saltmarket Civic Square",
+      "parent_id": "goon.neighborhood.n34",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "square",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5",
+        "V7"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p084",
+      "label": "Ace Chemicals",
+      "parent_id": "goon.neighborhood.n35",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "industrial plant",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6",
+        "N10"
+      ],
+      "source": "D"
+    },
+    {
+      "id": "goon.poi.p085",
+      "label": "Chemical Reach Safety School",
+      "parent_id": "goon.neighborhood.n35",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "training",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p086",
+      "label": "Tideworks Power Plant",
+      "parent_id": "goon.neighborhood.n36",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "utility",
+      "access": [
+        "SEC"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p087",
+      "label": "Tideworks Water Works",
+      "parent_id": "goon.neighborhood.n36",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "utility",
+      "access": [
+        "SEC"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6",
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p088",
+      "label": "Hazard Review Office",
+      "parent_id": "goon.neighborhood.n35",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "public service",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p089",
+      "label": "East Harbor Marine Police Counter",
+      "parent_id": "goon.neighborhood.n31",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "marine/public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p090",
+      "label": "Port Worker Housing Cooperative",
+      "parent_id": "goon.neighborhood.n32",
+      "region_id": "goon.region.r06",
+      "kind": "poi",
+      "type": "housing",
+      "access": [
+        "HOME"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p091",
+      "label": "South Exchange Coach Station",
+      "parent_id": "goon.neighborhood.n37",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "intercity station",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p092",
+      "label": "South Market Community Hospital",
+      "parent_id": "goon.neighborhood.n37",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "hospital",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p093",
+      "label": "Sawmill Repair Collective",
+      "parent_id": "goon.neighborhood.n38",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "workshop",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p094",
+      "label": "Sawmill Rooms",
+      "parent_id": "goon.neighborhood.n38",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "housing",
+      "access": [
+        "HOME"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p095",
+      "label": "Reed Marsh Reserve",
+      "parent_id": "goon.neighborhood.n39",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "wetland park",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V8"
+      ],
+      "npc_pool": [
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p096",
+      "label": "Wetland Field Laboratory",
+      "parent_id": "goon.neighborhood.n39",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "research facility",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3",
+        "V8"
+      ],
+      "npc_pool": [
+        "N6",
+        "N8"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p097",
+      "label": "Outfall Maintenance Depot",
+      "parent_id": "goon.neighborhood.n40",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "utility depot",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p098",
+      "label": "Outfall Community Clinic",
+      "parent_id": "goon.neighborhood.n40",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "clinic",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p099",
+      "label": "South Rail Passenger Station",
+      "parent_id": "goon.neighborhood.n41",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "station",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p100",
+      "label": "South Freight Yard",
+      "parent_id": "goon.neighborhood.n41",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "freight depot",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p101",
+      "label": "Millbrook School and Adult Education",
+      "parent_id": "goon.neighborhood.n42",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "education",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C0"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p102",
+      "label": "Millbrook Social Hall",
+      "parent_id": "goon.neighborhood.n42",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "social venue",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E7"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V7"
+      ],
+      "npc_pool": [
+        "N1",
+        "N7"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p103",
+      "label": "South Mainland Court Counter",
+      "parent_id": "goon.neighborhood.n37",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "court public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p104",
+      "label": "South Mainland Police Desk",
+      "parent_id": "goon.neighborhood.n41",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "police public counter",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p105",
+      "label": "Supported Housing Referral",
+      "parent_id": "goon.neighborhood.n42",
+      "region_id": "goon.region.r07",
+      "kind": "poi",
+      "type": "support service",
+      "access": [
+        "HELP"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C0"
+      ],
+      "civilian": [
+        "V2",
+        "V5"
+      ],
+      "npc_pool": [
+        "N1",
+        "N3"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p106",
+      "label": "Breakwater Main Pier",
+      "parent_id": "goon.neighborhood.n43",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "ferry terminal",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S4"
+      ],
+      "criminal": [
+        "C1"
+      ],
+      "civilian": [
+        "V4"
+      ],
+      "npc_pool": [
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p107",
+      "label": "Breakwater Daily Store",
+      "parent_id": "goon.neighborhood.n43",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "shop",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C2"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p108",
+      "label": "Lantern Harbor Rescue Station",
+      "parent_id": "goon.neighborhood.n44",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "marine/public service",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N2",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p109",
+      "label": "Lantern Care Referral Desk",
+      "parent_id": "goon.neighborhood.n44",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "care support",
+      "access": [
+        "HELP"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C0"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p110",
+      "label": "Arkham Asylum",
+      "parent_id": "goon.neighborhood.n45",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "psychiatric institution",
+      "access": [
+        "CARE"
+      ],
+      "economy": [
+        "E6"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V6"
+      ],
+      "npc_pool": [
+        "N4",
+        "N9"
+      ],
+      "source": "D; RPG island name"
+    },
+    {
+      "id": "goon.poi.p111",
+      "label": "Arkham Family Reception",
+      "parent_id": "goon.neighborhood.n45",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "institution reception",
+      "access": [
+        "VIS"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N4",
+        "N9"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p112",
+      "label": "Blackgate Penitentiary",
+      "parent_id": "goon.neighborhood.n46",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "prison",
+      "access": [
+        "VIS"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3",
+        "N9"
+      ],
+      "source": "K"
+    },
+    {
+      "id": "goon.poi.p113",
+      "label": "Blackgate Authorized Visiting Hall",
+      "parent_id": "goon.neighborhood.n46",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "institution reception",
+      "access": [
+        "VIS"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N9"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p114",
+      "label": "Netmaker Repair Cooperative",
+      "parent_id": "goon.neighborhood.n47",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "workshop",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E3"
+      ],
+      "security": [
+        "S2"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N5",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p115",
+      "label": "Netmaker Worker Rooms",
+      "parent_id": "goon.neighborhood.n47",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "housing",
+      "access": [
+        "HOME"
+      ],
+      "economy": [
+        "E1"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V2"
+      ],
+      "npc_pool": [
+        "N1",
+        "N5"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p116",
+      "label": "Beacon Lighthouse",
+      "parent_id": "goon.neighborhood.n48",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "navigation facility",
+      "access": [
+        "SEC"
+      ],
+      "economy": [
+        "E8"
+      ],
+      "security": [
+        "S5"
+      ],
+      "criminal": [
+        "C5"
+      ],
+      "civilian": [
+        "V3"
+      ],
+      "npc_pool": [
+        "N2",
+        "N6"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p117",
+      "label": "Beacon Community Hall",
+      "parent_id": "goon.neighborhood.n48",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "community venue",
+      "access": [
+        "PUB"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C6"
+      ],
+      "civilian": [
+        "V5",
+        "V7"
+      ],
+      "npc_pool": [
+        "N1"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p118",
+      "label": "Lantern Ferry Worker Canteen",
+      "parent_id": "goon.neighborhood.n44",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "cafe",
+      "access": [
+        "ENT"
+      ],
+      "economy": [
+        "E2"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C3"
+      ],
+      "civilian": [
+        "V1"
+      ],
+      "npc_pool": [
+        "N1",
+        "N2"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p119",
+      "label": "Island Public Aid and Advocacy",
+      "parent_id": "goon.neighborhood.n43",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "support service",
+      "access": [
+        "HELP"
+      ],
+      "economy": [
+        "E5"
+      ],
+      "security": [
+        "S1"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V5"
+      ],
+      "npc_pool": [
+        "N3",
+        "N4"
+      ],
+      "source": "O"
+    },
+    {
+      "id": "goon.poi.p120",
+      "label": "Archipelago Staff Ferry Office",
+      "parent_id": "goon.neighborhood.n43",
+      "region_id": "goon.region.r08",
+      "kind": "poi",
+      "type": "transport office",
+      "access": [
+        "WORK"
+      ],
+      "economy": [
+        "E4"
+      ],
+      "security": [
+        "S3"
+      ],
+      "criminal": [
+        "C4"
+      ],
+      "civilian": [
+        "V3",
+        "V4"
+      ],
+      "npc_pool": [
+        "N2",
+        "N9"
+      ],
+      "source": "O"
+    }
+  ],
+  "edges": [
+    {
+      "id": "goon.edge.e01",
+      "label": "Northgate Bridge",
+      "from": "goon.neighborhood.n04",
+      "to": "goon.neighborhood.n17",
+      "kind": "corridor",
+      "description": "bridge / north West Channel",
+      "bidirectional": true,
+      "modes": {
+        "walk": 4,
+        "car": 2,
+        "bus": 2,
+        "rail": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e02",
+      "label": "Westbank Bridge",
+      "from": "goon.neighborhood.n07",
+      "to": "goon.neighborhood.n13",
+      "kind": "corridor",
+      "description": "bridge / West Channel",
+      "bidirectional": true,
+      "modes": {
+        "walk": 4,
+        "car": 2,
+        "bus": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e03",
+      "label": "Union Bridge",
+      "from": "goon.neighborhood.n09",
+      "to": "goon.neighborhood.n22",
+      "kind": "corridor",
+      "description": "bridge / West Channel",
+      "bidirectional": true,
+      "modes": {
+        "walk": 4,
+        "car": 2,
+        "bus": 2,
+        "rail": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e04",
+      "label": "Old Dock Bridge",
+      "from": "goon.neighborhood.n12",
+      "to": "goon.neighborhood.n28",
+      "kind": "corridor",
+      "description": "bridge / West Channel",
+      "bidirectional": true,
+      "modes": {
+        "walk": 4,
+        "car": 2,
+        "bus": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e05",
+      "label": "Garden Bridge",
+      "from": "goon.neighborhood.n14",
+      "to": "goon.neighborhood.n19",
+      "kind": "corridor",
+      "description": "bridge / North Cut",
+      "bidirectional": true,
+      "modes": {
+        "walk": 4,
+        "car": 2,
+        "bus": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e06",
+      "label": "Quay Tunnel",
+      "from": "goon.neighborhood.n18",
+      "to": "goon.neighborhood.n23",
+      "kind": "corridor",
+      "description": "road/rail tunnel / North Cut",
+      "bidirectional": true,
+      "modes": {
+        "car": 2,
+        "bus": 2,
+        "rail": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e07",
+      "label": "Market Bridge",
+      "from": "goon.neighborhood.n24",
+      "to": "goon.neighborhood.n29",
+      "kind": "corridor",
+      "description": "bridge / South Cut",
+      "bidirectional": true,
+      "modes": {
+        "walk": 4,
+        "car": 2,
+        "bus": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e08",
+      "label": "Civic Rail Tunnel",
+      "from": "goon.neighborhood.n22",
+      "to": "goon.neighborhood.n30",
+      "kind": "corridor",
+      "description": "subway tunnel / South Cut",
+      "bidirectional": true,
+      "modes": {
+        "rail": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e09",
+      "label": "East Channel Bridge",
+      "from": "goon.neighborhood.n23",
+      "to": "goon.neighborhood.n31",
+      "kind": "corridor",
+      "description": "bridge / East Channel",
+      "bidirectional": true,
+      "modes": {
+        "walk": 4,
+        "car": 2,
+        "bus": 2,
+        "rail": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e10",
+      "label": "Tide Tunnel",
+      "from": "goon.neighborhood.n36",
+      "to": "goon.neighborhood.n28",
+      "kind": "corridor",
+      "description": "road tunnel / East Channel",
+      "bidirectional": true,
+      "modes": {
+        "car": 2,
+        "bus": 2
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e11",
+      "label": "South Bay Causeway",
+      "from": "goon.neighborhood.n30",
+      "to": "goon.neighborhood.n37",
+      "kind": "corridor",
+      "description": "causeway / South Bay",
+      "bidirectional": true,
+      "modes": {
+        "walk": 5,
+        "car": 3,
+        "bus": 3
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e12",
+      "label": "Marsh Rail Tunnel",
+      "from": "goon.neighborhood.n41",
+      "to": "goon.neighborhood.n33",
+      "kind": "corridor",
+      "description": "regional rail / bay approaches",
+      "bidirectional": true,
+      "modes": {
+        "rail": 3
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e13",
+      "label": "Breakwater Public Ferry",
+      "from": "goon.neighborhood.n31",
+      "to": "goon.neighborhood.n43",
+      "kind": "corridor",
+      "description": "water / Outer Roadstead",
+      "bidirectional": true,
+      "modes": {
+        "ferry": 3,
+        "boat": 3
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e14",
+      "label": "Coastal Ferry",
+      "from": "goon.neighborhood.n18",
+      "to": "goon.neighborhood.n43",
+      "kind": "corridor",
+      "description": "water / East Channel/Outer Roadstead",
+      "bidirectional": true,
+      "modes": {
+        "ferry": 4,
+        "boat": 4
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e15",
+      "label": "Arkham Access Bridge",
+      "from": "goon.neighborhood.n43",
+      "to": "goon.neighborhood.n45",
+      "kind": "corridor",
+      "description": "bridge / Outer Roadstead local reach",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.e16",
+      "label": "Blackgate Controlled Ferry",
+      "from": "goon.neighborhood.n43",
+      "to": "goon.neighborhood.n46",
+      "kind": "corridor",
+      "description": "controlled water connection",
+      "bidirectional": true,
+      "modes": {
+        "ferry": 2,
+        "boat": 2
+      },
+      "access": "authorized"
+    },
+    {
+      "id": "goon.edge.e17",
+      "label": "Outer Service Ferry",
+      "from": "goon.neighborhood.n37",
+      "to": "goon.neighborhood.n43",
+      "kind": "corridor",
+      "description": "water / South Bay/Outer Roadstead",
+      "bidirectional": true,
+      "modes": {
+        "ferry": 4,
+        "boat": 4
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r01.01",
+      "label": "Local street",
+      "from": "goon.neighborhood.n01",
+      "to": "goon.neighborhood.n02",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r01.02",
+      "label": "Local street",
+      "from": "goon.neighborhood.n02",
+      "to": "goon.neighborhood.n03",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r01.03",
+      "label": "Local street",
+      "from": "goon.neighborhood.n03",
+      "to": "goon.neighborhood.n04",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r01.04",
+      "label": "Local street",
+      "from": "goon.neighborhood.n04",
+      "to": "goon.neighborhood.n05",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r01.05",
+      "label": "Local street",
+      "from": "goon.neighborhood.n05",
+      "to": "goon.neighborhood.n06",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r01.06",
+      "label": "Local street",
+      "from": "goon.neighborhood.n06",
+      "to": "goon.neighborhood.n01",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r02.01",
+      "label": "Local street",
+      "from": "goon.neighborhood.n07",
+      "to": "goon.neighborhood.n08",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r02.02",
+      "label": "Local street",
+      "from": "goon.neighborhood.n08",
+      "to": "goon.neighborhood.n09",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r02.03",
+      "label": "Local street",
+      "from": "goon.neighborhood.n09",
+      "to": "goon.neighborhood.n10",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r02.04",
+      "label": "Local street",
+      "from": "goon.neighborhood.n10",
+      "to": "goon.neighborhood.n11",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r02.05",
+      "label": "Local street",
+      "from": "goon.neighborhood.n11",
+      "to": "goon.neighborhood.n12",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r02.06",
+      "label": "Local street",
+      "from": "goon.neighborhood.n12",
+      "to": "goon.neighborhood.n07",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r03.01",
+      "label": "Local street",
+      "from": "goon.neighborhood.n13",
+      "to": "goon.neighborhood.n14",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r03.02",
+      "label": "Local street",
+      "from": "goon.neighborhood.n14",
+      "to": "goon.neighborhood.n15",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r03.03",
+      "label": "Local street",
+      "from": "goon.neighborhood.n15",
+      "to": "goon.neighborhood.n16",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r03.04",
+      "label": "Local street",
+      "from": "goon.neighborhood.n16",
+      "to": "goon.neighborhood.n17",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r03.05",
+      "label": "Local street",
+      "from": "goon.neighborhood.n17",
+      "to": "goon.neighborhood.n18",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r03.06",
+      "label": "Local street",
+      "from": "goon.neighborhood.n18",
+      "to": "goon.neighborhood.n13",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r04.01",
+      "label": "Local street",
+      "from": "goon.neighborhood.n19",
+      "to": "goon.neighborhood.n20",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r04.02",
+      "label": "Local street",
+      "from": "goon.neighborhood.n20",
+      "to": "goon.neighborhood.n21",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r04.03",
+      "label": "Local street",
+      "from": "goon.neighborhood.n21",
+      "to": "goon.neighborhood.n22",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r04.04",
+      "label": "Local street",
+      "from": "goon.neighborhood.n22",
+      "to": "goon.neighborhood.n23",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r04.05",
+      "label": "Local street",
+      "from": "goon.neighborhood.n23",
+      "to": "goon.neighborhood.n24",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r04.06",
+      "label": "Local street",
+      "from": "goon.neighborhood.n24",
+      "to": "goon.neighborhood.n19",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r05.01",
+      "label": "Local street",
+      "from": "goon.neighborhood.n25",
+      "to": "goon.neighborhood.n26",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r05.02",
+      "label": "Local street",
+      "from": "goon.neighborhood.n26",
+      "to": "goon.neighborhood.n27",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r05.03",
+      "label": "Local street",
+      "from": "goon.neighborhood.n27",
+      "to": "goon.neighborhood.n28",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r05.04",
+      "label": "Local street",
+      "from": "goon.neighborhood.n28",
+      "to": "goon.neighborhood.n29",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r05.05",
+      "label": "Local street",
+      "from": "goon.neighborhood.n29",
+      "to": "goon.neighborhood.n30",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r05.06",
+      "label": "Local street",
+      "from": "goon.neighborhood.n30",
+      "to": "goon.neighborhood.n25",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r06.01",
+      "label": "Local street",
+      "from": "goon.neighborhood.n31",
+      "to": "goon.neighborhood.n32",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r06.02",
+      "label": "Local street",
+      "from": "goon.neighborhood.n32",
+      "to": "goon.neighborhood.n33",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1,
+        "rail": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r06.03",
+      "label": "Local street",
+      "from": "goon.neighborhood.n33",
+      "to": "goon.neighborhood.n34",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r06.04",
+      "label": "Local street",
+      "from": "goon.neighborhood.n34",
+      "to": "goon.neighborhood.n35",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r06.05",
+      "label": "Local street",
+      "from": "goon.neighborhood.n35",
+      "to": "goon.neighborhood.n36",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r06.06",
+      "label": "Local street",
+      "from": "goon.neighborhood.n36",
+      "to": "goon.neighborhood.n31",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r07.01",
+      "label": "Local street",
+      "from": "goon.neighborhood.n37",
+      "to": "goon.neighborhood.n38",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r07.02",
+      "label": "Local street",
+      "from": "goon.neighborhood.n38",
+      "to": "goon.neighborhood.n39",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r07.03",
+      "label": "Local street",
+      "from": "goon.neighborhood.n39",
+      "to": "goon.neighborhood.n40",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r07.04",
+      "label": "Local street",
+      "from": "goon.neighborhood.n40",
+      "to": "goon.neighborhood.n41",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r07.05",
+      "label": "Local street",
+      "from": "goon.neighborhood.n41",
+      "to": "goon.neighborhood.n42",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r07.06",
+      "label": "Local street",
+      "from": "goon.neighborhood.n42",
+      "to": "goon.neighborhood.n37",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r08.01",
+      "label": "Local street",
+      "from": "goon.neighborhood.n43",
+      "to": "goon.neighborhood.n44",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r08.02",
+      "label": "Local street",
+      "from": "goon.neighborhood.n44",
+      "to": "goon.neighborhood.n47",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r08.03",
+      "label": "Local street",
+      "from": "goon.neighborhood.n47",
+      "to": "goon.neighborhood.n48",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.local.r08.04",
+      "label": "Local street",
+      "from": "goon.neighborhood.n48",
+      "to": "goon.neighborhood.n43",
+      "kind": "corridor",
+      "description": "Original neighborhood street ring",
+      "bidirectional": true,
+      "modes": {
+        "walk": 2,
+        "car": 1,
+        "bus": 1
+      },
+      "access": "public"
+    },
+    {
+      "id": "goon.edge.access.p001",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n01",
+      "to": "goon.poi.p001",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p002",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n01",
+      "to": "goon.poi.p002",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p003",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n02",
+      "to": "goon.poi.p003",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p004",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n02",
+      "to": "goon.poi.p004",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p005",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n03",
+      "to": "goon.poi.p005",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p006",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n03",
+      "to": "goon.poi.p006",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p007",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n04",
+      "to": "goon.poi.p007",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p008",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n04",
+      "to": "goon.poi.p008",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p009",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n05",
+      "to": "goon.poi.p009",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p010",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n05",
+      "to": "goon.poi.p010",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p011",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n06",
+      "to": "goon.poi.p011",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p012",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n06",
+      "to": "goon.poi.p012",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p013",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n02",
+      "to": "goon.poi.p013",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p014",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n04",
+      "to": "goon.poi.p014",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p015",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n06",
+      "to": "goon.poi.p015",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p016",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n07",
+      "to": "goon.poi.p016",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p017",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n07",
+      "to": "goon.poi.p017",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p018",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n08",
+      "to": "goon.poi.p018",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p019",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n08",
+      "to": "goon.poi.p019",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p020",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n09",
+      "to": "goon.poi.p020",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p021",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n09",
+      "to": "goon.poi.p021",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p022",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n10",
+      "to": "goon.poi.p022",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p023",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n10",
+      "to": "goon.poi.p023",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p024",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n11",
+      "to": "goon.poi.p024",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p025",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n11",
+      "to": "goon.poi.p025",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p026",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n12",
+      "to": "goon.poi.p026",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p027",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n12",
+      "to": "goon.poi.p027",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p028",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n08",
+      "to": "goon.poi.p028",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p029",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n11",
+      "to": "goon.poi.p029",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p030",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n10",
+      "to": "goon.poi.p030",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p031",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n13",
+      "to": "goon.poi.p031",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p032",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n13",
+      "to": "goon.poi.p032",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p033",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n14",
+      "to": "goon.poi.p033",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p034",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n14",
+      "to": "goon.poi.p034",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p035",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n15",
+      "to": "goon.poi.p035",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p036",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n15",
+      "to": "goon.poi.p036",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p037",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n16",
+      "to": "goon.poi.p037",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p038",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n16",
+      "to": "goon.poi.p038",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p039",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n17",
+      "to": "goon.poi.p039",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p040",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n17",
+      "to": "goon.poi.p040",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p041",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n18",
+      "to": "goon.poi.p041",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p042",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n18",
+      "to": "goon.poi.p042",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p043",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n14",
+      "to": "goon.poi.p043",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p044",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n17",
+      "to": "goon.poi.p044",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p045",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n15",
+      "to": "goon.poi.p045",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p046",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n19",
+      "to": "goon.poi.p046",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p047",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n19",
+      "to": "goon.poi.p047",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p048",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n20",
+      "to": "goon.poi.p048",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p049",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n20",
+      "to": "goon.poi.p049",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p050",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n21",
+      "to": "goon.poi.p050",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p051",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n21",
+      "to": "goon.poi.p051",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p052",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n22",
+      "to": "goon.poi.p052",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p053",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n22",
+      "to": "goon.poi.p053",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p054",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n23",
+      "to": "goon.poi.p054",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p055",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n23",
+      "to": "goon.poi.p055",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p056",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n24",
+      "to": "goon.poi.p056",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p057",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n24",
+      "to": "goon.poi.p057",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p058",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n19",
+      "to": "goon.poi.p058",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p059",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n23",
+      "to": "goon.poi.p059",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p060",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n22",
+      "to": "goon.poi.p060",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p061",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n25",
+      "to": "goon.poi.p061",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p062",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n25",
+      "to": "goon.poi.p062",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p063",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n26",
+      "to": "goon.poi.p063",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p064",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n26",
+      "to": "goon.poi.p064",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p065",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n27",
+      "to": "goon.poi.p065",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p066",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n27",
+      "to": "goon.poi.p066",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p067",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n28",
+      "to": "goon.poi.p067",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p068",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n28",
+      "to": "goon.poi.p068",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p069",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n25",
+      "to": "goon.poi.p069",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p070",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n29",
+      "to": "goon.poi.p070",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p071",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n30",
+      "to": "goon.poi.p071",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p072",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n30",
+      "to": "goon.poi.p072",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p073",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n30",
+      "to": "goon.poi.p073",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p074",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n30",
+      "to": "goon.poi.p074",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p075",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n27",
+      "to": "goon.poi.p075",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p076",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n31",
+      "to": "goon.poi.p076",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p077",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n31",
+      "to": "goon.poi.p077",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p078",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n32",
+      "to": "goon.poi.p078",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p079",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n32",
+      "to": "goon.poi.p079",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p080",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n33",
+      "to": "goon.poi.p080",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p081",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n33",
+      "to": "goon.poi.p081",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p082",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n34",
+      "to": "goon.poi.p082",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p083",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n34",
+      "to": "goon.poi.p083",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p084",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n35",
+      "to": "goon.poi.p084",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p085",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n35",
+      "to": "goon.poi.p085",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p086",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n36",
+      "to": "goon.poi.p086",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p087",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n36",
+      "to": "goon.poi.p087",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p088",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n35",
+      "to": "goon.poi.p088",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p089",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n31",
+      "to": "goon.poi.p089",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p090",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n32",
+      "to": "goon.poi.p090",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p091",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n37",
+      "to": "goon.poi.p091",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p092",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n37",
+      "to": "goon.poi.p092",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p093",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n38",
+      "to": "goon.poi.p093",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p094",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n38",
+      "to": "goon.poi.p094",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p095",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n39",
+      "to": "goon.poi.p095",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p096",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n39",
+      "to": "goon.poi.p096",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p097",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n40",
+      "to": "goon.poi.p097",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p098",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n40",
+      "to": "goon.poi.p098",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p099",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n41",
+      "to": "goon.poi.p099",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p100",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n41",
+      "to": "goon.poi.p100",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p101",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n42",
+      "to": "goon.poi.p101",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p102",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n42",
+      "to": "goon.poi.p102",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p103",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n37",
+      "to": "goon.poi.p103",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p104",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n41",
+      "to": "goon.poi.p104",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p105",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n42",
+      "to": "goon.poi.p105",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p106",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n43",
+      "to": "goon.poi.p106",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p107",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n43",
+      "to": "goon.poi.p107",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p108",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n44",
+      "to": "goon.poi.p108",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p109",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n44",
+      "to": "goon.poi.p109",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p110",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n45",
+      "to": "goon.poi.p110",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p111",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n45",
+      "to": "goon.poi.p111",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p112",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n46",
+      "to": "goon.poi.p112",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p113",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n46",
+      "to": "goon.poi.p113",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p114",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n47",
+      "to": "goon.poi.p114",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p115",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n47",
+      "to": "goon.poi.p115",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p116",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n48",
+      "to": "goon.poi.p116",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p117",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n48",
+      "to": "goon.poi.p117",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p118",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n44",
+      "to": "goon.poi.p118",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p119",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n43",
+      "to": "goon.poi.p119",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    },
+    {
+      "id": "goon.edge.access.p120",
+      "label": "Local approach",
+      "from": "goon.neighborhood.n43",
+      "to": "goon.poi.p120",
+      "kind": "access",
+      "description": "Frontage/reception only; entry profile applies",
+      "bidirectional": true,
+      "modes": {
+        "walk": 0
+      },
+      "access": "location"
+    }
+  ],
+  "starting_home_id": "goon.poi.p031",
+  "profile_descriptions": {
+    "access": {
+      "PUB": "Public frontage/counter during published game-day availability; no membership requirement",
+      "ENT": "Customer, ticket or booking terms where applicable; only public parts, with any price shown",
+      "WORK": "Valid contract, invitation or work authorization for the selected area",
+      "HOME": "Resident/owner consent or a valid housing agreement; public street remains separate",
+      "CARE": "Public request/intake and informed care consent; evaluation/admission/ward access require distinct approved rules, never conviction alone",
+      "VIS": "Valid visit, work, representation or transfer purpose; separate receiving permission; not access to every ward/cell",
+      "SEC": "Explicit staff/service/investigation permission to the specific restricted area",
+      "HELP": "Basic zero-cash information/support route; no arrest, villain meeting or purchased rescue prerequisite"
+    },
+    "economy": {
+      "E1": "Housing and household services; wages/agreements need their own funding rules",
+      "E2": "Retail, professional services and small business",
+      "E3": "Manufacturing, repair and skilled labor",
+      "E4": "Transport, freight and dispatch",
+      "E5": "Civic, education, advocacy or nonprofit services",
+      "E6": "Health, voluntary care, supported housing and reentry",
+      "E7": "Entertainment, hospitality and social work",
+      "E8": "Green space, ecology, utilities and maintenance"
+    },
+    "security": {
+      "S1": "Public/community setting with ordinary service coverage and specific witnesses",
+      "S2": "Staffed commercial/service frontage; controlled back rooms",
+      "S3": "Civic/institutional/private controlled perimeter; public counter distinct from secure interior",
+      "S4": "Transport/port checks with separate public, worker and regulated areas",
+      "S5": "Safety-supervised industrial/utility area; hazards and authorization are explicit"
+    },
+    "criminal": {
+      "C0": "No specific criminal commission scheduled by this profile",
+      "C1": "Disputed freight, contraband allegations or coercive delivery terms",
+      "C2": "Property loss, misrepresented identity or a disputed service claim",
+      "C3": "Intimidation, unpaid shares or coercive obligations",
+      "C4": "Corruption, confidentiality abuse or contested legal/institutional information",
+      "C5": "Unsafe/destructive commissions, exposure or responsibility for harm",
+      "C6": "Rumors, manipulative recruitment, uncertain promises or personal loyalties",
+      "C7": "Disputed ownership, fencing or a harmful acquisition commission"
+    },
+    "civilian": {
+      "V1": "Shopping, services, food and honest commerce",
+      "V2": "Housing, personal support, household commitments",
+      "V3": "Paid work, repair, training and maintenance",
+      "V4": "Lawful travel, cargo, dispatch and transfers",
+      "V5": "Public administration, education, legal aid and civic support",
+      "V6": "Medical care, voluntary counseling, recovery and reentry",
+      "V7": "Arts, leisure, hospitality and social contact",
+      "V8": "Parks, ecology, outdoor recreation and conservation"
+    },
+    "npc_pool": {
+      "N1": "Residents, tenants, local traders and ordinary coworkers",
+      "N2": "Drivers, dispatchers, transit and ferry workers",
+      "N3": "Advocates, court staff, civic workers and investigators",
+      "N4": "Ethical practitioners, care staff and independently consenting service users",
+      "N5": "Dock workers, brokers and eligible minor-crew contacts",
+      "N6": "Engineers, repairers, technical specialists and labor representatives",
+      "N7": "Performers, stagehands, hospitality workers and patrons",
+      "N8": "Park staff, gardeners, conservation workers and neighbors",
+      "N9": "Institutional administrators, guards, advocates and family visitors",
+      "N10": "Eligible rogues/employer intermediaries from approved content, never spawned merely by visiting"
+    }
+  }
+}

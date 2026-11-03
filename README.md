@@ -7,9 +7,9 @@
 A deterministic, offline, single-player crime-city simulation and terminal RPG
 prototype about an ordinary criminal surviving work, loyalties, and a changing
 city. Python 3.14 standard library only: no packages, external AI services,
-or paid APIs are required. The executable remains **M013 — Sustainable Faction
-Competition**; **M013.1 — Branding, Criminal Careers & Narrative Foundation**
-adds documentation, design proposals and CLI display text only.
+or paid APIs are required. The executable is **M014 — Gotham World Runtime &
+Navigation Foundation**, built on M013 faction competition and the merged M013.1
+narrative/atlas foundation. Combat is deferred to an unassigned future milestone.
 
 This is an independent, unofficial prototype. Its intended future creative
 setting is the DC universe; it has no endorsement, authorization, or affiliation
@@ -31,6 +31,14 @@ drama, survival, and occasional horror. Current gameplay is described below;
 future employment, personalities, civilian life, combat, and DC content remain
 design work.
 
+M014 loads the complete documented atlas as local data and implements a small
+home/store/return slice with public navigation. See the
+[runtime contract](docs/GOON_WORLD_RUNTIME.md),
+[current roadmap](docs/GOON_MILESTONE_ROADMAP.md), and
+[future prologue contract](docs/GOON_PLAYABLE_PROLOGUE_CONTRACT.md).
+Older design documents describe M013.1 proposals; the runtime contract identifies
+the implemented subset and supersedes their historical M014 combat numbering.
+
 | Document | Purpose |
 | --- | --- |
 | [Narrative design bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md) | Player fantasy, tone, 16 design areas, feature-status legend, and originality boundaries |
@@ -50,9 +58,12 @@ design work.
 | [Institutions and recovery](docs/GOON_INSTITUTIONS_AND_RECOVERY.md) | Distinct Blackgate, Arkham, voluntary care, review and reentry paths with continuity/agency rules |
 | [Gameplay principles](docs/GOON_GAMEPLAY_PRINCIPLES.md) | Sourced reference-game lessons, meaningful-choice gates, current limits, and manual scenarios |
 | [Content architecture](docs/GOON_CONTENT_ARCHITECTURE.md) | Proposed definition/state separation and service integration; no content migration |
-| [M014 combat design contract](docs/M014_COMBAT_DESIGN_CONTRACT.md) | Bounded solo-combat proposal and acceptance criteria for human review; no implementation authorization |
+| [Deferred combat design contract](docs/M014_COMBAT_DESIGN_CONTRACT.md) | Retained historical M014 proposal; future milestone unassigned, no combat implementation |
 | [Project state](PROJECT_STATE.md) | Runtime capabilities, compatibility, limitations, and next review |
 | [Final integration audit](docs/M013_1_FINAL_INTEGRATION_AUDIT.md) | Verified corrections, compatibility findings, reproducible graph/document checks and conditional merge gates |
+| [M014 validation](docs/M014_VALIDATION_REPORT.md) | Executed regressions, historical compatibility, real CLI walkthrough and reproducible navigation campaigns |
+| [M014 final audit](docs/M014_FINAL_AUDIT.md) | Independent acceptance gates, corrections, compatibility results and PR disposition |
+| [M015 daily-life proposal](docs/GOON_M015_DAILY_LIFE_CONTRACT.md) | Smallest viable obligations, home, location-dependent work, contacts and seven-day acceptance scenario; no implementation |
 
 M013.1 preserves the `gotham-underworld` repository name, Python modules, package
 layout, save filenames/identifiers, and historical milestone documents. The CLI
@@ -60,16 +71,78 @@ banner and prompt use the new working title; historical and workflow labels stil
 identify Gotham Underworld. Technical renames require a separately approved
 migration plan. None of the proposed DC employers is added to the executable or
 substituted for an existing faction.
-Review this milestone before authorizing M014; combat is not implemented here.
+M014 is navigation only; combat and the prologue remain future design work.
 The rogues addendum changes documentation only. Its roster is not assumed to
 coexist in every continuity, and no minor crew automatically becomes a district
 owner. Formal Joker initiation is optional and conditional; a career can finish
 without it. No new character, recruitment gate or save field is implemented.
-The city-atlas addition is research/documentation only: 176 proposed place records
-(8 regions, 48 neighborhoods, 120 POIs) and an original network specification.
+The M013.1 city-atlas design supplied 176 place records (8 regions, 48 neighborhoods,
+120 POIs) and an original network specification, now loaded as M014 content.
 Geography, faction territory, minor-crew influence, properties and police coverage
-are separate. All current gameplay and district values remain governed by M013;
-the travel allowance, migration and UI are unimplemented proposals.
+are separate. Existing jobs, legal rules and faction accounting retain M013 behavior;
+M014 implements the bounded subset documented below, with a CLI and no GUI.
+
+## World navigation and the playable slice
+
+New careers start at **East Side Housing Cooperative** in Upper East Side,
+with recorded home access and the existing $40 start. Enter:
+
+```text
+look
+nearby
+route p032
+travel p032
+look
+join 1
+job courier
+travel home
+wait
+save
+quit
+```
+
+The store visit and return cost **2 travel TU**; the existing courier costs one
+gameplay action. Saving/resuming preserves the home, location, spent TU, jobs and
+day. `look` inspects a frontage, not a shop transaction or institutional admission.
+No prologue, local payroll, health, combat or NPC scheduling is implemented.
+
+| Navigation command | Behavior |
+| --- | --- |
+| `look [place]` | Current or known place metadata, entry requirements and free help |
+| `nearby`, `places` | Known local destinations or public atlas; private homes need permission |
+| `route <place> [mode]` | Detached preview of outbound/return TU and affordability |
+| `travel <place> [mode]` | Atomic movement; modes `auto`, `walk`, `bus`, `rail`, `ferry` |
+| `enable_navigation <neighborhood>` | Historical career opt-in at a public hub, active after next `wait` |
+
+Use short IDs such as `p032`/`n13`, their full stable IDs, or `home` when a recorded
+home exists. Regions are containers, not travel destinations. All mutations use
+the game service. Read APIs are `location_report`, `nearby_destinations`,
+`known_places`, and `plan_route`; commands take named string arguments, for example
+`execute_command(world, 'travel', destination='p032', mode='auto')`.
+
+Travel uses a separate **18-TU/day** initial policy and zero daily gameplay actions.
+Walking/transit costs follow the atlas, with one TU per transit-mode boarding.
+A completed local journey costs at least one TU, deliberately bounding the earlier
+zero-cost-approach proposal. Inspections remain free; no travel grants rewards.
+Known failures reject without mutation. A hidden closure stops a valid journey
+at its last safe node and charges only its traversed prefix. Controlled closures
+expire within two advanced days; there is no closure-editing player command or
+random incident generator. Direction, mode and restricted entry are enforced.
+Free visitors retain lawful egress; travel never bypasses custody or admits a
+patient/prisoner. Cars, boats, schedules and emergency transport remain future work.
+
+Not every journey fits eighteen TU: n01→n40 costs 19 one way. Preview the return,
+choose nearby work or an explicit safe waypoint. Waiting advances the real city
+once and refreshes both allowances; loading/reporting never does. Help, saving,
+reports and explicit waiting remain available when broke or exhausted. Existing
+jobs/missions remain location-independent, preserving legacy RNG and accounting.
+
+Historical saves load with **no invented location/home** and unchanged budgets,
+resources and events. Opt in explicitly, for example `enable_navigation n13`,
+then `wait`. No navigation is imposed by migration or loading. The independent
+`navigation_version: 1` extension pins atlas/rules/content fingerprint; missing or
+incompatible required content fails clearly. All three existing territory accounts
+remain authoritative; 176 places do not multiply income or warfare turns.
 
 ## Start or resume a career
 
@@ -361,9 +434,9 @@ RNG remains local to seeded operations. M013 preserves legacy job outcomes and
 adds no random draws. Command history, action usage, investigation markers,
 committed responses, and review dates
 survive saving. Reports and snapshots expose no mutable world references.
-M013.1 changes only Markdown and CLI display strings; it changes no simulation
-rules, commands, tests, workflows, save formats or runtime content definitions.
-The regression baseline is 198 tests. Combat, career, influence and institutional
+M013.1 changed only Markdown and CLI display strings. M014 adds the optional
+navigation extension, local definitions, service/CLI integration and navigation
+tests while preserving the 198 existing regressions. Combat, career, influence and institutional
 acceptance checks are future requirements, not executed feature tests.
 
 Tests include all 166 M012 regressions, real M001-M012 fixtures, persistence failure
@@ -378,5 +451,5 @@ insertion-order independence, and the required multi-seed long campaigns. See
 Economic balance, courts, NPC policies, and the three-district geography remain simplified.
 Unanswered cases still resolve automatically; responses support documented
 collection cases and charged cases. No attorneys, warrants, probation, parole,
-undercover officers, combat, drugs, Bat-family encounters, or M014 systems are
+undercover officers, combat, drugs, Bat-family encounters, or playable prologue are
 included. The prototype remains offline-capable.

@@ -1,6 +1,9 @@
 # Gotham: The Goon — Location Registry
 
-**Status: proposed content only; no runtime registry or save schema is added.**
+**M013.1 source registry.** M014 converts these records to validated
+[local runtime data](../content/gotham_atlas_v1.json); see the
+[runtime contract](GOON_WORLD_RUNTIME.md) for current access/frontage semantics.
+This source table itself adds no save state or admission rules.
 Totals: **8 regions, 48 neighborhoods, 120 POIs = 176 place records**. The planning
 root `goon.city.gotham` is a namespace/container, excluded from those totals.
 Full proposed IDs are printed below; names may change without changing identity.

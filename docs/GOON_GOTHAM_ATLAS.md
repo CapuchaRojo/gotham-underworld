@@ -1,8 +1,11 @@
 # Gotham: The Goon — Metropolitan Atlas
 
-**Status: research and original design specification only.** No active districts,
-travel commands, geography fields, GUI or rendered map are added. Runtime remains
-M013 with three economic districts. This atlas is an original project continuity
+**M013.1 geographical source specification, used by M014's local registry.**
+[M014's runtime contract](GOON_WORLD_RUNTIME.md) identifies the implemented
+location/navigation subset. This source defines no additional economic district,
+GUI or rendered map; the three M013 territory accounts remain authoritative.
+The remaining design sections retain proposed services and provenance, not a
+claim that all metropolitan life is simulated. This is an original project continuity
 proposal, not a definitive DC map or a claim of licensed status.
 
 Companion specifications: [location registry](GOON_LOCATION_REGISTRY.md),

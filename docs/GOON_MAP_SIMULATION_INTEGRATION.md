@@ -1,7 +1,10 @@
 # Gotham: The Goon — Map and Simulation Integration
 
-**Status: future migration proposal only.** No save schema, migration, registry,
-territory rule or command changes in this milestone. The [atlas](GOON_GOTHAM_ATLAS.md)
+**M013.1 migration design source.** [M014's runtime contract](GOON_WORLD_RUNTIME.md)
+implements explicit historical adoption/next-day activation and a pinned optional
+navigation extension, retaining the three territory accounts. Broader economic
+repartition remains deferred. The sequence below retains M013.1's original proposal;
+the runtime contract governs the implemented subset. The [atlas](GOON_GOTHAM_ATLAS.md)
 and [location registry](GOON_LOCATION_REGISTRY.md) describe geography; they are
 not new economic districts. [Travel](GOON_TRAVEL_NETWORK.md) and
 [visual layers](GOON_MAP_VISUAL_SPEC.md) depend on this separation.

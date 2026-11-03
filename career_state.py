@@ -220,6 +220,8 @@ def validate(world):
         _integer(world.get('command_sequence'), 'command_sequence', max(command_ids))
     validate_legal(world)
     validate_competition(world)
+    from navigation import validate as validate_navigation
+    validate_navigation(world)
     return world
 
 

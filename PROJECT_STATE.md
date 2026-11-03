@@ -2,9 +2,9 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Documentation milestone: **M013.1 — Branding, Criminal Careers & Narrative Foundation**
-- Runtime baseline: **M013 — Sustainable Faction Competition**, merged via PR #12
-  at `eb931ce33c079018159aad14c2327561d9fa195f`; 198 regression tests
+- Current milestone: **M014 — Gotham World Runtime & Navigation Foundation**, for review
+- Baseline: **M013.1**, merged via PR #13 at
+  `8b68e1efc338a532293262edafd85240cdfa65a3`; 198 existing regression tests preserved
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
 - Entry point: `python gameplay.py`; resume with `python gameplay.py --load`
 - Save contract: version 1; additive migration of unversioned M001-M010 saves
@@ -36,6 +36,10 @@
   initiative and explicit fallback reasons when current plans become invalid
 
 ## M013.1 design foundation
+
+This section records the prior documentation milestone. Mission 007 now authorizes
+world/navigation implementation; historical references to proposed M014 combat
+are deferred under the [current roadmap](docs/GOON_MILESTONE_ROADMAP.md).
 
 This milestone changes Markdown documentation and CLI display strings only.
 Repository/module names, package structure, save identifiers, runtime content
@@ -131,8 +135,8 @@ rule, dependency, gameplay/CLI behavior or M014 scope changes.
 
 Run `python -B -m unittest discover -s tests -v`.
 
-The M013.1 scope retains all 198 existing tests and adds no runtime tests for
-documentation/display-only changes. The
+The M013.1 scope retained all 198 existing tests and added no runtime tests for
+documentation/display-only changes. Its
 [final integration audit](docs/M013_1_FINAL_INTEGRATION_AUDIT.md) records executed
 regression, compatibility and specification checks. Future scenarios and acceptance
 criteria are not passing-test claims.
@@ -188,12 +192,42 @@ Saves assume one writer and a
 filesystem supporting hard links and replacement. Recovery is explicit; no GUI
 is included.
 
-M013 is merged. Mission 006 authorizes merging PR #13 only after its final reviewed
-commit passes the documented audit and CI gates. The final disposition and merge
-hash are recorded in GitHub and the mission report, rather than predicted here.
-M014 remains unapproved. Review tactical/daily action separation, exit/recovery
-guarantees, tuning/style modifiers, initial fixture scope and the compatible
-legal-source migration. No large content migration or new gameplay is authorized
-by these documents. Do not begin M014 in this milestone.
+M013.1 is merged. Mission 007 reserves M014 for world/navigation, with no combat
+or playable prologue. The deferred combat contract still requires review of
+tactical/daily costs, exits, tuning and compatible legal sources before separate
+implementation approval. Do not merge the M014 feature PR automatically.
 `INSTALL_M002.md` through `INSTALL_M010.md` describe historical installations,
 not the current setup workflow.
+
+## M014 implemented scope
+
+- [Local atlas](content/gotham_atlas_v1.json): 176 validated places, 63 corridors,
+  120 gated POI spurs, source/profile metadata and a declared new-career home.
+- [Registry loader](location_registry.py): unique IDs, hierarchy, references,
+  profile tokens, modes/directions/costs, detached definitions and content fingerprint.
+- [Navigation](navigation.py): stable public-mode routing, entry/lawful egress,
+  separate 18 TU, minimum 1 TU for completed local travel, advisory return previews,
+  finite direction/mode closures and safe-prefix discovery. No vehicle mechanic.
+- New careers start at p031; old saves stay navigation-free until an explicit
+  public anchor choice and next-day post-court activation. Load never refreshes TU.
+- Independent `navigation_version: 1`; outer save version, historical keys,
+  atomic backup behavior, legacy RNG/legal/faction rules and three actions remain.
+- Commands: `travel(destination, mode)`, `enable_navigation(anchor)` through the
+  existing service. Detached reads: location, nearby, known places and route.
+- CLI: `look`, `nearby`, `places`, `route`, `travel`, `enable_navigation`; current
+  jobs can be used from the slice without a mission rewrite or location gate.
+- [Runtime policy](docs/GOON_WORLD_RUNTIME.md), [roadmap](docs/GOON_MILESTONE_ROADMAP.md)
+  and [future five-chapter prologue](docs/GOON_PLAYABLE_PROLOGUE_CONTRACT.md).
+
+No combat, prologue scenes, rent/payroll, NPC schedule, private institutional
+interior, new major faction or district revenue is added. Public frontages and
+static services remain mechanically shallow; future work must make place and
+commitments matter without mandatory commute grind. No licensed map assets are
+included. Tests and actual simulation results are reported in the feature PR.
+
+[M014 submission evidence](docs/M014_VALIDATION_REPORT.md): 229 passing regressions
+(198 unchanged plus 31 new), actual historical fixtures, real CLI resume and two
+100-day navigation/reference campaigns. The independent [Mission 008 final audit](docs/M014_FINAL_AUDIT.md)
+records additional corrections, the final test count, CI and PR disposition.
+The [M015 daily-life contract](docs/GOON_M015_DAILY_LIFE_CONTRACT.md) is a proposal
+only; no M015 gameplay is implemented by this audit.

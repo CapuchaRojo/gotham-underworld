@@ -1,0 +1,40 @@
+# M015 readiness proposal: Daily Life & Opportunity Engine
+
+**Planning only.** Mission 008 audits M014; none of the rules below are implemented or tested gameplay. Preserve the current five-chapter [playable prologue contract](GOON_PLAYABLE_PROLOGUE_CONTRACT.md) as a future content milestone. M015 should supply reusable daily-life mechanics without writing that prologue, a dialogue tree, combat, or a citywide NPC scheduler.
+
+## Smallest useful vertical slice
+
+1. **One personal obligation and one room agreement.** A new career may explicitly accept disclosed terms for its existing p031 home: a weekly $30 contribution due after seven real day advances and one optional, dated promise to an original contact. The initial amount is a tuning proposal. Historical careers retain their exact home and financial history; adoption is explicit and starts future obligations only. A broken promise changes a bounded contact standing or offer, with a recorded cause. Rent failure enters one bounded grace/review state, leaves the current location and public services available, and neither compounds debt nor forces a dead-end eviction. Existing $40 cash remains untouched until a disclosed payment is due.
+2. **Home is a useful place, not a free resource loop.** The recorded home permission permits inspecting terms, reviewing obligations, and planning the next day. It does not refresh TU/actions, teleport, grant income, or automatically heal. A historical career without a recorded home may opt in to a valid support/shelter offer; loading never invents one.
+3. **Two distinct local work offers.** Supply one original lawful paid shift and one criminal offer at accessible public frontages in or near n13. Both publish stable offer ID, place, day window, pay source, expected pay, action cost, travel quote/return estimate, and known legal risk. The lawful shift has its own funded settlement; it must not relabel a faction courier job. The criminal offer can invoke existing job/legal resolution only after its explicit prerequisites and location check pass. Do not change old `job` commands, seed draws, or district accounts. An accepted offer pins terms and resolves at most once; failed eligibility or TU rejects atomically.
+4. **Finite opportunities.** At most a small, fixed number of live offers per contact/window. Eligibility, accepted terms, expiration day, refusal, and settlement are versioned state with unique IDs. Reports and reloads do not reroll or settle them. A day boundary expires unaccepted offers once; an accepted job retains its agreed terms until completed or explicitly abandoned under disclosed conditions. No real-time waiting or premium currency.
+5. **Two recurring original contacts.** One housing/support contact and one work contact with stable content IDs and bounded standing/commitment records. Availability follows simple day windows, not hour-by-hour schedules or autonomous faction warfare. Refusing an offer, keeping a promise, and missing a promise produce specific, visible changes. Neither contact must be a DC character or district-owning faction. Their definitions, job terms, and narrative text remain separate from the engine.
+6. **One deterministic daily-life phase.** Place obligation due checks and offer expiration in a single, idempotent phase of the existing `wait`/day pipeline, after current legal/court and navigation processing. One marker per day and event IDs/causal references prevent repeated charges or expirations. Existing three gameplay actions and 18 TU remain authoritative. A paid shift costs one gameplay action; reading, declining, reviewing, and saving have no action cost and no repeatable reward. Travel remains a separate choice and never advances the day or faction economy.
+
+## Compatibility and interface contract
+
+- Use a small, optional `daily_life_version` extension, with strict nested validation and migration checks. Existing saves load unchanged and remain valid without daily-life state. Activate explicitly on a valid day transition, without backdated rent, wages, contacts, or events. Preserve current atlas fingerprint, save identifiers, job outcomes, legal profile, faction resources, and action/TU usage.
+- Add only named service commands and detached read models needed for terms, work, commitments, and a home report. Execute every mutation on the service's private candidate world. A rejected command changes neither cash, RNG state, action/TU budgets, event history, nor offer availability.
+- Keep definitions offline and data driven: stable IDs for contacts, employers, opportunities, places, and obligation kinds; compact rule adapters for lawful wages versus existing criminal/legal jobs. No DC-specific names in reducers. Pin any accepted economic terms against later content edits.
+- Structured events identify command, offer/obligation/contact, day, cause, before/after cash or standing, and settlement identity. Daily checks never run on a read or load. Save/resume and insertion-order replay must match a fresh-process run.
+- A low-cash career retains inspectable local lawful work and a bounded hardship path. Do not make commuting or repeating filler jobs mandatory to retain basic play. A rejected criminal job or absent contact cannot block ordinary day advancement.
+
+## Acceptance gates for M015 implementation
+
+Preserve the final merged M014 suite and all historical fixtures. Add focused tests for: opt-in migration and unsupported versions; cash/obligation bounds and single settlement; zero cash, refusal, and missed promises; location and action/TU eligibility; offer expiration/acceptance races; returned-reference isolation; rejection atomicity; legal/faction equivalence when daily life is unused; deterministic replay across insertion orders and independent processes; save/resume every day of the scenario below; and at least one multi-week simulation without compounding debt or job-payout farming. Demonstrate a player path with meaningful work and contacts while staying within local n13 travel and without mandatory repeated commuting.
+
+## Seven-day playable acceptance scenario (proposed, not executed)
+
+Start with a new $40 career at p031. On day 0, the player inspects and accepts the disclosed $30 room contribution due at the day-7 transition, then sees one local lawful shift, one criminal offer, and a dated coworker promise. Each numbered day begins with exactly one explicit `wait`; all other commands use the existing allowances. The lawful-shift wage below is a **proposed fixed $20**, not an existing game rule.
+
+| Day after `wait` | Choice and observable effect | Cash at end of day |
+| --- | --- | ---: |
+| 1 | Work the lawful local shift (one action); record one funded wage and completed offer. | $60 |
+| 2 | Keep the coworker promise instead of taking the criminal offer; record bounded contact standing and an offer consequence. | $60 |
+| 3 | Work a different lawful shift; explicitly decline the still-live criminal offer. The declined ID cannot be redeemed later. | $80 |
+| 4 | Inspect the contact and the offer ledger; a separate unaccepted, day-4 opportunity expires once on this transition. No payout for inspection. | $80 |
+| 5 | Choose a third optional lawful shift. No repeating the same settled offer or required commute. | $100 |
+| 6 | Review the room obligation and plan a day off; save and resume without changing windows or payment dates. | $100 |
+| 7 | The transition charges the disclosed $30 once. Home remains usable; the kept promise and declined/expired offers remain visible. | $70 |
+
+Test an alternate branch in which lawful work is refused and day-7 cash is insufficient: only available cash is charged, the unpaid balance is bounded to one disclosed contribution, grace/review is offered, and the character can still inspect, work locally, and advance. Test a criminal-work branch through the existing legal resolver with a real location requirement, one job payout, and persisted heat/case consequences. Both branches must remain playable without a villain meeting, combat, real-time timer, or prologue scene.
