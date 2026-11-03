@@ -43,7 +43,20 @@ def advance(world):
         # Defend the most vulnerable holding before pursuing expansion.
         weak = min(owned, key=lambda item: (item[1]['control'], item[0])) if owned else None
         actor = _representative(world, faction)
-        if weak and weak[1]['control'] <= DEFENSE_THRESHOLD and treasury['cash'] >= DEFENSE_COST:
+        plan = world.get('faction_strategy', {}).get(faction)
+        if not isinstance(plan, dict) or plan.get('day') != world['day']:
+            plan = None
+        if plan:
+            objective = plan['objective']
+            target_name = plan.get('district')
+            if objective == 'recover':
+                continue
+            if objective in ('defend', 'consolidate'):
+                weak = next(((n, d) for n, d in owned if n == target_name), None)
+            elif objective == 'expand':
+                rivals = [(n, d) for n, d in rivals if n == target_name]
+                weak = None
+        if weak and (plan is not None or weak[1]['control'] <= DEFENSE_THRESHOLD) and treasury['cash'] >= DEFENSE_COST:
             name, district = weak
             before = district['control']
             gain = min(100 - before, 6 + treasury['power'] // 25)
@@ -71,6 +84,9 @@ def advance(world):
                         captured=captured, cause='faction_offensive', npc=actor)
         else:
             continue
+        if plan:
+            data['strategy_objective'] = plan['objective']
+            data['strategy_reason'] = plan['reason']
         if actor:
             remember(world, actor, message)
         emitted.append(event(world, 'faction_warfare', message, **data))
