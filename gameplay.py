@@ -92,6 +92,8 @@ def next_day(world, *, legal_rules=False):
     if world['player']['arrested']:
         from legal_engine import resolve
         resolve(world, legacy=not legal_rules)
+    from navigation import begin_day as navigation_day
+    navigation_day(world)
     return world
 
 
@@ -116,11 +118,12 @@ def show(world):
 
 def play(world, filename, *, new_career=False):
     from game_service import actions_remaining, execute_command
+    from game_service import location_report, nearby_destinations, known_places, plan_route
     prepare(world)
     print('Gotham: The Goon - A Living Gotham Crime RPG')
     print("Everybody wants to rule Gotham. You're just trying to survive it.")
     print('Unofficial DC-inspired prototype; no claimed endorsement or license. Working title not legally cleared.')
-    print('M013 faction competition. Three actions per day; wait to refresh.')
+    print('M014 world navigation. Three actions and 18 travel TU per day; wait to refresh.')
     print('Type help for commands.')
     while True:
         try:
@@ -133,7 +136,31 @@ def play(world, filename, *, new_career=False):
         verb, *args = command
         try:
             if verb == 'help':
+                print('look [place] | nearby | places | route <place> [auto|walk|bus|rail|ferry] | travel <place> [mode] | enable_navigation <neighborhood>')
                 print('status | legal | lay_low | cooperate <case-id> | contest <case-id> | accept <case-id> | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+            elif verb == 'look' and len(args) <= 1:
+                report = location_report(world, args[0] if args else None)
+                place = report['place']
+                print(f'{place["label"]} ({place["id"]}) | {place["type"]} | access {"/".join(place["access"])}')
+                print(f'Parent: {place["parent_id"]} | {report["remaining_tu"]} TU remain | entry {"available" if report["accessible"] else "restricted"}')
+                print('Activities:', '; '.join(report['activities']))
+                print('Entry:', '; '.join(report['entry_requirements']))
+                print(report['scope'])
+                print(report['help'])
+            elif verb in ('nearby', 'places') and not args:
+                rows = nearby_destinations(world) if verb == 'nearby' else known_places(world)
+                for place in rows:
+                    print(f'{place["id"]}: {place["label"]} | {place["type"]} | access {"/".join(place["access"])}')
+            elif verb == 'route' and 1 <= len(args) <= 2:
+                quote = plan_route(world, args[0], args[1] if len(args) == 2 else 'auto')
+                print(f'{quote["cost"]} TU outbound; {quote["return_cost"]} TU return; {quote["remaining_tu"]} remain | affordable: {quote["affordable"]} | round trip fits: {quote["return_fits_today"]}')
+                for leg in quote['legs']:
+                    print(f'{leg["mode"]}: {leg["from_id"]} -> {leg["to_id"]} ({leg["tu"]} TU)')
+                print('Local journeys cost at least 1 TU. Unobserved disruptions may interrupt a journey at a safe node.')
+            elif verb == 'travel' and 1 <= len(args) <= 2:
+                print(execute_command(world, 'travel', destination=args[0], mode=args[1] if len(args) == 2 else 'auto')['result']['message'])
+            elif verb == 'enable_navigation' and len(args) == 1:
+                print(execute_command(world, 'enable_navigation', anchor=args[0])['result']['message'])
             elif verb == 'status':
                 show(world)
                 print('Daily actions remaining:', actions_remaining(world))
