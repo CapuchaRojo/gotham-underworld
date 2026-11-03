@@ -10,6 +10,7 @@ from city_economy import prepare as prepare_economy, advance as economy_advance,
 
 from district_missions import prepare as prepare_missions, mission as run_mission, available as mission_districts
 from faction_warfare import prepare as prepare_warfare, advance as warfare_advance
+from city_strategy import prepare as prepare_strategy, advance as strategy_advance, summary as strategy_summary
 
 GANGS = ('Harbor Syndicate', 'Carnival Crew', 'Iron Mask Outfit')
 JOBS = {
@@ -29,6 +30,7 @@ def prepare(world):
     prepare_economy(world)
     prepare_missions(world)
     prepare_warfare(world)
+    prepare_strategy(world)
     return world
 
 
@@ -69,6 +71,7 @@ def next_day(world):
     investigate(world)
     npc_act(world)
     economy_advance(world)
+    strategy_advance(world)
     warfare_advance(world)
     if world['player']['arrested']:
         resolve_case(world)
@@ -97,7 +100,7 @@ def show(world):
 
 def play(world, filename):
     prepare(world)
-    print('UNDERWORLD - M008 autonomous faction warfare prototype. Type help for commands.')
+    print('UNDERWORLD - M009 living city intelligence prototype. Type help for commands.')
     while True:
         try:
             command = input('underworld> ').strip().split()
@@ -109,13 +112,19 @@ def play(world, filename):
         verb, *args = command
         try:
             if verb == 'help':
-                print('status | factions | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+                print('status | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
             elif verb == 'status':
                 show(world)
             elif verb == 'relationships':
                 for name, person in world['people'].items():
                     choice = decision(world, name)
                     print(f'{name}: {person["relationship"]} | {choice["action"]} ({choice["reason"]})')
+            elif verb == 'strategy':
+                for faction, plan in strategy_summary(world):
+                    if plan:
+                        print(f'{faction}: {plan["objective"]} | target {plan["district"] or "none"} | {plan["reason"]}')
+                    else:
+                        print(f'{faction}: no strategy assessed yet')
             elif verb == 'districts':
                 for name, data in district_summary(world):
                     print(f'{name}: {data["owner"]} | wealth {data["wealth"]} | control {data["control"]}')
