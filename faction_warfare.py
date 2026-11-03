@@ -26,6 +26,15 @@ def _representative(world, faction):
     return None
 
 
+def _hold(world, faction, plan, reason, actor):
+    """A changed target must not turn a defense plan into a mislabeled attack."""
+    return event(world, 'faction_warfare', f'{faction} held position: {reason}.',
+                 faction=faction, district=plan.get('district'), action='hold',
+                 cost=0, control_delta=0, cause='strategy_fallback', npc=actor,
+                 strategy_objective='hold', strategy_reason=reason,
+                 planned_objective=plan.get('objective'), fallback_reason=reason)
+
+
 def advance(world):
     """At most one deterministic action per gang per day; repeat calls do nothing."""
     prepare(world)
@@ -44,7 +53,11 @@ def advance(world):
         weak = min(owned, key=lambda item: (item[1]['control'], item[0])) if owned else None
         actor = _representative(world, faction)
         plan = world.get('faction_strategy', {}).get(faction)
+        fallback_reason = None
+        planned_objective = plan.get('objective') if isinstance(plan, dict) else None
         if not isinstance(plan, dict) or plan.get('day') != world['day']:
+            if plan is not None:
+                fallback_reason = 'no valid current-day strategy; legacy warfare policy applied'
             plan = None
         if plan:
             objective = plan['objective']
@@ -53,9 +66,21 @@ def advance(world):
                 continue
             if objective in ('defend', 'consolidate'):
                 weak = next(((n, d) for n, d in owned if n == target_name), None)
+                if weak is None:
+                    emitted.append(_hold(world, faction, plan, 'planned defense target is no longer owned', actor))
+                    continue
+                if weak[1]['control'] >= 100 or treasury['cash'] < DEFENSE_COST:
+                    emitted.append(_hold(world, faction, plan, 'planned defense has no capacity or funding', actor))
+                    continue
             elif objective == 'expand':
                 rivals = [(n, d) for n, d in rivals if n == target_name]
                 weak = None
+                if not rivals or treasury['cash'] < ATTACK_COST:
+                    emitted.append(_hold(world, faction, plan, 'planned expansion target or funding is no longer available', actor))
+                    continue
+            else:
+                emitted.append(_hold(world, faction, plan, 'planned objective is unsupported', actor))
+                continue
         if weak and (plan is not None or weak[1]['control'] <= DEFENSE_THRESHOLD) and treasury['cash'] >= DEFENSE_COST:
             name, district = weak
             before = district['control']
@@ -87,6 +112,11 @@ def advance(world):
         if plan:
             data['strategy_objective'] = plan['objective']
             data['strategy_reason'] = plan['reason']
+        elif fallback_reason:
+            data['strategy_objective'] = 'defend' if data['action'] == 'defend' else 'expand'
+            data['strategy_reason'] = fallback_reason
+            data['planned_objective'] = planned_objective
+            data['fallback_reason'] = fallback_reason
         if actor:
             remember(world, actor, message)
         emitted.append(event(world, 'faction_warfare', message, **data))

@@ -44,7 +44,8 @@ def execute_job(world, kind, details):
             case_id = max((c['id'] for c in world['cases']), default=0) + 1
             case = {'id': case_id, 'crime': 'collection intimidation', 'evidence': 1,
                     'status': 'pending', 'suspect': player['name'], 'source_attempt': attempt,
-                    'witnessed': True, 'investigation_days': 0}
+                    'witnessed': True, 'investigation_days': 0,
+                    'last_investigated_day': world['day']}
             world['cases'].append(case)
             event(world, 'witness', f'Witness reported collection job attempt {attempt}; case {case_id} opened.',
                   case_id=case_id, source_attempt=attempt, cause='witness_report')
@@ -62,6 +63,9 @@ def investigate(world):
     for case in world['cases']:
         if case['status'] != 'pending':
             continue
+        if case.get('last_investigated_day', -1) >= world['day']:
+            continue
+        case['last_investigated_day'] = world['day']
         case['investigation_days'] += 1
         case['evidence'] += 1
         remember(world, 'Detective Vale', f'Case {case["id"]}: evidence from job attempt {case["source_attempt"]}.')

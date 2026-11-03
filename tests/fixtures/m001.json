@@ -1,0 +1,122 @@
+{
+  "seed": 42,
+  "day": 4,
+  "factions": {
+    "Harbor Syndicate": {
+      "power": 64,
+      "cash": 80
+    },
+    "Carnival Crew": {
+      "power": 43,
+      "cash": 35
+    },
+    "Iron Mask Outfit": {
+      "power": 59,
+      "cash": 65
+    },
+    "Civic Police": {
+      "power": 75,
+      "cash": 70
+    },
+    "Night Watch": {
+      "power": 35,
+      "cash": 20
+    }
+  },
+  "people": {
+    "Mara Voss": {
+      "faction": "Harbor Syndicate",
+      "memory": [
+        {
+          "day": 0,
+          "fact": "Rookie robbed a warehouse."
+        }
+      ]
+    },
+    "Eli Crowe": {
+      "faction": "Carnival Crew",
+      "memory": []
+    },
+    "Detective Vale": {
+      "faction": "Civic Police",
+      "memory": [
+        {
+          "day": 1,
+          "fact": "Case 1: new evidence recovered."
+        },
+        {
+          "day": 2,
+          "fact": "Case 1: new evidence recovered."
+        }
+      ]
+    }
+  },
+  "player": {
+    "name": "Rookie",
+    "heat": 1,
+    "cash": 65,
+    "arrested": false
+  },
+  "cases": [
+    {
+      "id": 1,
+      "crime": "warehouse robbery",
+      "evidence": 3,
+      "status": "convicted",
+      "suspect": "Rookie"
+    }
+  ],
+  "events": [
+    {
+      "day": 0,
+      "kind": "crime",
+      "message": "Rookie robbed a warehouse; a witness reported it.",
+      "case_id": 1
+    },
+    {
+      "day": 1,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Carnival Crew; Carnival Crew lost 3 power."
+    },
+    {
+      "day": 1,
+      "kind": "investigation",
+      "message": "Detective Vale found evidence in case 1."
+    },
+    {
+      "day": 2,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Harbor Syndicate; Harbor Syndicate lost 2 power."
+    },
+    {
+      "day": 2,
+      "kind": "investigation",
+      "message": "Detective Vale found evidence in case 1."
+    },
+    {
+      "day": 2,
+      "kind": "arrest",
+      "message": "Rookie arrested and charged; hearing pending."
+    },
+    {
+      "day": 2,
+      "kind": "prison",
+      "message": "Rookie served an accelerated sentence; the city kept changing."
+    },
+    {
+      "day": 3,
+      "kind": "feud",
+      "message": "Carnival Crew struck Iron Mask Outfit; Iron Mask Outfit lost 4 power."
+    },
+    {
+      "day": 3,
+      "kind": "court",
+      "message": "Case 1 outcome: convicted."
+    },
+    {
+      "day": 4,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Harbor Syndicate; Harbor Syndicate lost 4 power."
+    }
+  ]
+}

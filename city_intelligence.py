@@ -1,4 +1,5 @@
 """M010: read-only, deterministic intelligence over documented city state."""
+from copy import deepcopy
 from city_economy import GANGS
 
 TERRITORY_CAUSES = {'control_exhausted', 'faction_offensive'}
@@ -31,7 +32,7 @@ def territory_history(world, limit=10):
             transfers.append(item)
         elif item.get('kind') == 'district_mission' and item.get('captured') is True:
             transfers.append(item)
-    return transfers[-limit:] if limit else []
+    return deepcopy(transfers[-limit:]) if limit else []
 
 
 def player_influence(world):

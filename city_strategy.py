@@ -1,4 +1,5 @@
 """M009: explainable, deterministic faction strategic planning."""
+from copy import deepcopy
 from city_economy import GANGS, prepare as prepare_economy
 from simulation import event
 
@@ -23,19 +24,18 @@ def _recent_pressure(world, faction):
         if item.get('faction') == faction:
             continue
         district = item.get('district')
-        if district in world['districts'] and world['districts'][district]['owner'] == faction:
+        if district in world.get('districts', {}) and world['districts'][district]['owner'] == faction:
             pressure[district] = pressure.get(district, 0) + 8
     return pressure
 
 
 def assess(world, faction):
     """Read-only, stable strategic assessment; no random draws."""
-    prepare(world)
     if faction not in GANGS or faction not in world['factions']:
         raise ValueError('Unknown faction')
     treasury = world['factions'][faction]
-    owned = [(n, d) for n, d in world['districts'].items() if d['owner'] == faction]
-    rivals = [(n, d) for n, d in world['districts'].items()
+    owned = [(n, d) for n, d in world.get('districts', {}).items() if d['owner'] == faction]
+    rivals = [(n, d) for n, d in world.get('districts', {}).items()
               if d['owner'] in GANGS and d['owner'] != faction]
     pressure = _recent_pressure(world, faction)
     threatened = sorted(owned, key=lambda x: (x[1]['control'] - pressure.get(x[0], 0), x[0]))
@@ -84,5 +84,4 @@ def advance(world):
 
 
 def summary(world):
-    prepare(world)
-    return [(faction, world['faction_strategy'].get(faction)) for faction in GANGS]
+    return [(faction, deepcopy(world.get('faction_strategy', {}).get(faction))) for faction in GANGS]
