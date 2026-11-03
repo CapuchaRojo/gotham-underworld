@@ -59,7 +59,8 @@ def briefing(world, day=None):
         raise ValueError('day must be an elapsed nonnegative day')
     events = [e for e in world.get('events', []) if e.get('day') == day]
     kinds = ('faction_strategy', 'faction_warfare', 'territory', 'district_mission',
-             'npc_action', 'arrest', 'court', 'sentencing')
+             'npc_action', 'arrest', 'court', 'sentencing', 'heat_change',
+             'police_attention', 'legal_response', 'legal_review', 'legal_outcome')
     highlights = [e['message'] for e in events if e.get('kind') in kinds]
     income = sum(e.get('income', 0) for e in events if e.get('kind') == 'economy')
     return {'day': day, 'event_count': len(events), 'income': income,

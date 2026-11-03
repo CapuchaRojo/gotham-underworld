@@ -66,7 +66,7 @@ def advance(world):
     return world
 
 
-def resolve_case(world):
+def resolve_case(world, *, fine=50, heat_relief=2):
     charged = next((c for c in world['cases'] if c['status'] == 'charged'), None)
     if not charged:
         return event(world, 'court', 'No charged case is awaiting a hearing.')
@@ -75,8 +75,8 @@ def resolve_case(world):
     if charged['status'] == 'convicted':
         world['player']['custody'] = 'sentenced'
         event(world, 'sentencing', 'Rookie sentenced to accelerated custody.')
-        world['player']['cash'] = max(0, world['player']['cash'] - 50)
-        world['player']['heat'] = max(0, world['player']['heat'] - 2)
+        world['player']['cash'] = max(0, world['player']['cash'] - fine)
+        world['player']['heat'] = max(0, world['player']['heat'] - heat_relief)
         event(world, 'prison', 'Rookie completed an accelerated sentence; the city kept changing.')
     else:
         event(world, 'release', 'Rookie released after dismissal.')

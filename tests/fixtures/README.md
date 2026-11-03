@@ -26,3 +26,9 @@ M001's historical accelerated-custody clock behavior is preserved in its fixture
 The migration tests preserve historical events and values, verify idempotent
 initialization and a disk round trip, then advance another day. The M010 fixture
 also supplies fixed expected job outcomes for the legacy resolver.
+
+`career_m011.json` comes from merged M011 commit `c8d6bf6`, generated before M012:
+`create_career(42)`, join Harbor Syndicate through `execute_command`, run three
+collection commands, then `advance_day` twice. It retains a completed case,
+command sequence, allowance, and M011 state without a legal profile. M012 tests
+preserve every original value and do not invent historical fine amounts/dates.

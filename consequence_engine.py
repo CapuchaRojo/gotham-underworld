@@ -13,7 +13,7 @@ def prepare(world):
     return world
 
 
-def execute_job(world, kind, details):
+def execute_job(world, kind, details, *, scrutiny=None):
     """Resolve one job; no global random state, all rolls stored in event metadata."""
     prepare(world)
     player = world['player']
@@ -22,24 +22,37 @@ def execute_job(world, kind, details):
     world['job_attempts'] += 1
     rng = random.Random(f'{world["seed"]}:{world["day"]}:{attempt}:{kind}')
     chance = min(95, max(10, RISKS[kind] - min(15, player['reputation'][faction] * 2)))
+    if scrutiny is not None:
+        chance = min(75, chance + scrutiny['risk_bonus'])
     roll = rng.randrange(100)
     success = roll >= chance
     payout = details['reward'] if success else 0
     player['cash'] += payout
     player['heat'] += details['heat'] + (1 if not success else 0)
+    if scrutiny is not None and kind == 'collection':
+        player['heat'] += scrutiny['collection_heat_bonus']
     player['reputation'][faction] += details['reputation'] if success else -1
     if success:
         player['jobs_completed'] += 1
     result = event(world, 'job', f'Rookie {"completed" if success else "failed"} {kind} for {faction}; earned ${payout}.',
                    job=kind, attempt=attempt, success=success, roll=roll, failure_chance=chance,
                    payout=payout, cause='player_job')
+    if scrutiny is not None:
+        result.update(heat_tier=scrutiny['tier'], risk_bonus=scrutiny['risk_bonus'],
+                      witness_roll=None, witness_chance=0, witnessed=False)
     for name, person in world['people'].items():
         if person['faction'] == faction:
             remember(world, name, f'Rookie {"completed" if success else "failed"} {kind} for {faction} (attempt {attempt}).')
     rival = next((g for g in GANGS if g != faction), None)
     on_job(world, faction, kind, success, attempt, rival=rival)
     if kind == 'collection':
-        witnessed = rng.randrange(100) < (65 if not success else 35)
+        witness_roll = rng.randrange(100)
+        witness_chance = 65 if not success else 35
+        if scrutiny is not None:
+            witness_chance = min(90, witness_chance + scrutiny['witness_bonus'])
+        witnessed = witness_roll < witness_chance
+        if scrutiny is not None:
+            result.update(witness_roll=witness_roll, witness_chance=witness_chance, witnessed=witnessed)
         if witnessed:
             case_id = max((c['id'] for c in world['cases']), default=0) + 1
             case = {'id': case_id, 'crime': 'collection intimidation', 'evidence': 1,
@@ -57,21 +70,26 @@ def execute_job(world, kind, details):
     return result
 
 
-def investigate(world):
+def investigate(world, *, pressure=0, deferred_cases=()):
     """Advance M003 cases once per day, keeping legacy M001 cases untouched."""
     prepare(world)
     for case in world['cases']:
         if case['status'] != 'pending':
             continue
+        if case['id'] in deferred_cases:
+            continue
         if case.get('last_investigated_day', -1) >= world['day']:
             continue
         case['last_investigated_day'] = world['day']
         case['investigation_days'] += 1
-        case['evidence'] += 1
+        before = case['evidence']
+        case['evidence'] += 1 + pressure
         remember(world, 'Detective Vale', f'Case {case["id"]}: evidence from job attempt {case["source_attempt"]}.')
         on_investigation(world, case)
-        event(world, 'investigation', f'Detective Vale recovered evidence in case {case["id"]}.',
+        result = event(world, 'investigation', f'Detective Vale recovered evidence in case {case["id"]}.',
               case_id=case['id'], source_attempt=case['source_attempt'], cause='witness_followup')
+        if pressure:
+            result.update(evidence_before=before, evidence_after=case['evidence'], evidence_bonus=pressure)
         if case['evidence'] >= 3 and not world['player']['arrested']:
             case['status'] = 'charged'
             world['player']['arrested'] = True
