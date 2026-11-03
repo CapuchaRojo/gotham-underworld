@@ -1,6 +1,10 @@
-# Project State
+# Gotham: The Goon — Project State
 
-- Milestone: **M013 — Sustainable Faction Competition**
+- Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
+- Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
+- Documentation milestone: **M013.1 — Branding, Criminal Careers & Narrative Foundation**
+- Runtime baseline: **M013 — Sustainable Faction Competition**, merged via PR #12
+  at `eb931ce33c079018159aad14c2327561d9fa195f`; 198 regression tests
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
 - Entry point: `python gameplay.py`; resume with `python gameplay.py --load`
 - Save contract: version 1; additive migration of unversioned M001-M010 saves
@@ -31,9 +35,107 @@
 - Strategy: recover/regroup/defend/expand/consolidate; deterministic rotating
   initiative and explicit fallback reasons when current plans become invalid
 
+## M013.1 design foundation
+
+This milestone changes Markdown documentation and CLI display strings only.
+Repository/module names, package structure, save identifiers, runtime content
+definitions, workflow labels and all existing gameplay remain intact. The CLI
+banner and prompt use the working title; historical Gotham Underworld references
+remain where they identify technical interfaces or past milestones.
+
+- [Narrative bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md): ordinary workers as
+  protagonists; workplace comedy, crime drama, survival, relationships, and many
+  possible careers. Separates implemented behavior, endorsed creative direction,
+  proposed mechanics, and speculative concepts. Endorsed direction is not
+  implementation authorization or a delivery schedule.
+- [Career web](docs/GOON_CRIMINAL_CAREER_WEB.md): nineteen overlapping criminal
+  specializations plus lawful work, informing, rehabilitation and retirement;
+  references and commitments matter alongside skills. Three original paper
+  scenarios show divergent work, recovery and post-custody careers.
+- [Conditional opportunities](docs/GOON_CONDITIONAL_OPPORTUNITIES.md): prerequisites,
+  demand, capacity, seeded selection, expiry and revalidation; no named encounter
+  is guaranteed or required to complete a campaign.
+- [Employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md): eleven proposed DC employer
+  cultures; recruitment, compensation, risk, loyalty, advancement and fallout.
+  Broad canonical anchors are sourced; workplace mechanics are original proposals.
+- [Gameplay principles](docs/GOON_GAMEPLAY_PRINCIPLES.md): sourced historical
+  criticism, seven feature gates, ten-field design reviews, current mechanical
+  shallows, a current-game reproduction recipe and paper exercises. No new player
+  decisions or consequences are implemented by M013.1.
+- [Villain influence](docs/GOON_VILLAIN_INFLUENCE_SYSTEM.md): fictional exposure,
+  coercion and vulnerability separated from chosen allegiance; meaningful choices,
+  bounded conditions, credible recovery and ethical alternatives. Unimplemented.
+- [Institutions/recovery](docs/GOON_INSTITUTIONS_AND_RECOVERY.md): distinct criminal
+  custody, psychiatric admission, voluntary care and supervision; lawful fictional
+  entry/review/exit rules require continuity approval. No conviction-only Arkham
+  commitment, guaranteed villain, forced treatment grind or villain-exclusive cure.
+- [Content architecture](docs/GOON_CONTENT_ARCHITECTURE.md): future stable IDs and
+  definitions, separate runtime facts/knowledge/presentation, service-driven GUI
+  and narrative, and the legal case-source integration prerequisite for combat.
+- [M014 combat contract](docs/M014_COMBAT_DESIGN_CONTRACT.md): proposed bounded
+  solo turns, health/stamina, injury/recovery, exits, legal/reputation outcomes,
+  deterministic resume, high-threat survival and future crew extension points.
+  Numerical rules and acceptance criteria await review; combat is not implemented.
+
+### Rogues gallery addendum
+
+This addition changes Markdown only; it adds no further CLI, gameplay, schema,
+dependency or module changes. All concepts below are unimplemented proposals.
+
+- [Registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md): 35 entries, stable proposed
+  IDs, variant/source boundaries, conservative canon anchors and original work,
+  behavioral, faction-relationship and consequence ideas. Terrible Trio contains
+  three actors. Secondary factual references are labeled; primary-edition and
+  continuity review remains necessary before implementation.
+- [Minor ecosystem](docs/GOON_MINOR_CRIMINAL_ECOSYSTEM.md): major district factions,
+  minor crews and individuals; ordinary original workers, bounded contracts,
+  optional strategic participation, growth, setbacks, defection, arrest and exits.
+- [Joker recruitment](docs/GOON_JOKER_RECRUITMENT.md): an original campaign gate,
+  not DC canon. Citywide cell work can occur without membership; formal initiation
+  requires a direct Joker encounter during an Arkham storyline, a valid offer
+  and explicit acceptance. No guarantee of presence, encounter or invitation;
+  refusal and non-Joker career completion remain viable. Cells can work during
+  Joker's absence; care/release never depends on his cooperation.
+
+These documents are integrated into the bible, career web, opportunity rules,
+employer matrix, institution design and architecture. No rogue is mapped onto
+an existing faction or assumed to own a district merely because they are a boss.
+
+## City atlas and world-map design submission
+
+The [atlas](docs/GOON_GOTHAM_ATLAS.md) and
+[registry](docs/GOON_LOCATION_REGISTRY.md) propose 8 regions, 48 neighborhoods and
+120 POIs (176 place records). Brown's design account is the primary geographical
+inspiration; Arkham Knight, Gotham Knights and Monolith publisher material provide
+secondary organizational/atmospheric references. No source map is traced/rendered;
+the full commercial RPG map was not inspected. Borrowed names and original
+placements/profiles are explicitly distinguished, with continuity questions open.
+
+The [network](docs/GOON_TRAVEL_NETWORK.md) specifies 63 physical neighborhood
+corridors plus 120 POI access links. Its provisional separate 18-TU travel allowance
+preserves three daily gameplay actions, free basic public mobility and useful local
+alternatives; no travel command, vehicle or schedule is implemented.
+The [integration proposal](docs/GOON_MAP_SIMULATION_INTEGRATION.md) retains all
+legacy territory keys/resources/events, uses optional display footprints, and
+requires explicit versioned opt-in/activation before a future geography feature.
+Geographic expansion does not automatically multiply income, upkeep or warfare.
+
+[Career geography](docs/GOON_CAREER_GEOGRAPHY.md) connects all established work
+specializations with civilian services and three paper scenarios.
+The [visual specification](docs/GOON_MAP_VISUAL_SPEC.md) separates actual world
+facts from public data, observations and rumors; no GUI/read adapter is added.
+This submission changes Markdown only. No active district, save schema, faction
+rule, dependency, gameplay/CLI behavior or M014 scope changes.
+
 ## Validation
 
 Run `python -B -m unittest discover -s tests -v`.
+
+The M013.1 scope retains all 198 existing tests and adds no runtime tests for
+documentation/display-only changes. The
+[final integration audit](docs/M013_1_FINAL_INTEGRATION_AUDIT.md) records executed
+regression, compatibility and specification checks. Future scenarios and acceptance
+criteria are not passing-test claims.
 
 All 166 M012 tests remain unchanged. Coverage includes persistence failure
 injection, malformed/current-version state, M001-M010 migration fixtures, bounded
@@ -64,6 +166,13 @@ affiliation. Executable content remains original placeholders. Future content
 should use stable identifiers and definitions separated from mechanics, dialogue,
 missions/events, assets, and progression. Proposed distribution, commercialization,
 fundraising, or pitch materials require separate rights review.
+The new working title remains subject to future licensing and title clearance;
+this milestone performs neither. No third-party scripts, copied narrator
+characters/jokes, or extracted media are introduced. No named DC actor is added
+to runtime content, and no existing placeholder is silently reinterpreted as one.
+No DC license is claimed and the working title is not legally cleared. Fictional
+institutional rules and influence conditions are design proposals, not real-world
+medical/legal guidance or a selected universal DC continuity.
 
 ## Known limits and next review
 
@@ -79,6 +188,12 @@ Saves assume one writer and a
 filesystem supporting hard links and replacement. Recovery is explicit; no GUI
 is included.
 
-Review the M013 feature PR before any M014 work. Do not merge automatically.
+M013 is merged. Mission 006 authorizes merging PR #13 only after its final reviewed
+commit passes the documented audit and CI gates. The final disposition and merge
+hash are recorded in GitHub and the mission report, rather than predicted here.
+M014 remains unapproved. Review tactical/daily action separation, exit/recovery
+guarantees, tuning/style modifiers, initial fixture scope and the compatible
+legal-source migration. No large content migration or new gameplay is authorized
+by these documents. Do not begin M014 in this milestone.
 `INSTALL_M002.md` through `INSTALL_M010.md` describe historical installations,
 not the current setup workflow.

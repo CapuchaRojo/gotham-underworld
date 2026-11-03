@@ -1,16 +1,75 @@
-# Gotham Underworld — M013 Sustainable Faction Competition
+# Gotham: The Goon
+
+*A Living Gotham Crime RPG*
+
+> Everybody wants to rule Gotham. You're just trying to survive it.
 
 A deterministic, offline, single-player crime-city simulation and terminal RPG
-prototype. Python 3.14 standard library only: no packages, external AI services,
-or paid APIs are required.
+prototype about an ordinary criminal surviving work, loyalties, and a changing
+city. Python 3.14 standard library only: no packages, external AI services,
+or paid APIs are required. The executable remains **M013 — Sustainable Faction
+Competition**; **M013.1 — Branding, Criminal Careers & Narrative Foundation**
+adds documentation, design proposals and CLI display text only.
 
 This is an independent, unofficial prototype. Its intended future creative
 setting is the DC universe; it has no endorsement, authorization, or affiliation
 with DC, Warner Bros., or their partners. The executable retains its original
 placeholder characters, factions, and districts. M013 introduces no DC characters,
-new storylines, combat, or imported assets. Any proposed public distribution,
+new storylines, combat, or imported assets. The working title and setting are
+subject to future licensing and title clearance. Any proposed public distribution,
 commercial release, fundraising, or external pitch materials need separate
 rights and legal review.
+No DC license is claimed, and the working title is not legally cleared.
+
+## Design foundation and status
+
+Ordinary goons are the protagonists. Professional henchman, lieutenant,
+independent operator, boss, informant, reformed citizen, and tragic casualty are
+future career possibilities, not an implemented campaign or a single promotion
+ladder. The intended tone combines dark workplace comedy, street-level crime
+drama, survival, and occasional horror. Current gameplay is described below;
+future employment, personalities, civilian life, combat, and DC content remain
+design work.
+
+| Document | Purpose |
+| --- | --- |
+| [Narrative design bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md) | Player fantasy, tone, 16 design areas, feature-status legend, and originality boundaries |
+| [Criminal career web](docs/GOON_CRIMINAL_CAREER_WEB.md) | Nineteen overlapping specializations, lawful work, informing, rehabilitation, retirement and three worked scenarios |
+| [Conditional opportunities](docs/GOON_CONDITIONAL_OPPORTUNITIES.md) | Eligibility, demand, recorded probability, expiry and viable careers without guaranteed villain meetings |
+| [Faction and employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md) | Eleven proposed employer cultures, entry, pay, risk, advancement, and consequences |
+| [Rogues gallery registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md) | Thirty-five versioned entries with lore/source boundaries and original jobs/roles; no guaranteed active roster |
+| [Minor criminal ecosystem](docs/GOON_MINOR_CRIMINAL_ECOSYSTEM.md) | Major factions, minor crews and individuals; original workers and rise/fall/exit proposals without universal territory simulation |
+| [Joker recruitment contract](docs/GOON_JOKER_RECRUITMENT.md) | Original campaign proposal: street association differs from formal Arkham/direct-encounter initiation |
+| [Metropolitan atlas](docs/GOON_GOTHAM_ATLAS.md) | Original 8-region geography and source/continuity decisions; no traced or rendered map |
+| [Location registry](docs/GOON_LOCATION_REGISTRY.md) | 48 neighborhoods and 120 POIs with IDs, access, economy, security, civilian/criminal activities and potential contacts |
+| [Travel network](docs/GOON_TRAVEL_NETWORK.md) | Typed routes, modes, closures, deterministic planning and proposed separate TU allowance; not implemented |
+| [Map/simulation integration](docs/GOON_MAP_SIMULATION_INTEGRATION.md) | Preserve the three territory accounts while adding optional hierarchical geography through a future reviewed migration |
+| [Career geography](docs/GOON_CAREER_GEOGRAPHY.md) | Location-dependent work, civilian life, care and meaningful commitments rather than commute grind |
+| [Map visual specification](docs/GOON_MAP_VISUAL_SPEC.md) | Future layered views with player-knowledge boundaries; no GUI or map image |
+| [Villain influence and recovery](docs/GOON_VILLAIN_INFLUENCE_SYSTEM.md) | Fictional exposure, coercion, resistance, consent and credible recovery; no clinical implementation |
+| [Institutions and recovery](docs/GOON_INSTITUTIONS_AND_RECOVERY.md) | Distinct Blackgate, Arkham, voluntary care, review and reentry paths with continuity/agency rules |
+| [Gameplay principles](docs/GOON_GAMEPLAY_PRINCIPLES.md) | Sourced reference-game lessons, meaningful-choice gates, current limits, and manual scenarios |
+| [Content architecture](docs/GOON_CONTENT_ARCHITECTURE.md) | Proposed definition/state separation and service integration; no content migration |
+| [M014 combat design contract](docs/M014_COMBAT_DESIGN_CONTRACT.md) | Bounded solo-combat proposal and acceptance criteria for human review; no implementation authorization |
+| [Project state](PROJECT_STATE.md) | Runtime capabilities, compatibility, limitations, and next review |
+| [Final integration audit](docs/M013_1_FINAL_INTEGRATION_AUDIT.md) | Verified corrections, compatibility findings, reproducible graph/document checks and conditional merge gates |
+
+M013.1 preserves the `gotham-underworld` repository name, Python modules, package
+layout, save filenames/identifiers, and historical milestone documents. The CLI
+banner and prompt use the new working title; historical and workflow labels still
+identify Gotham Underworld. Technical renames require a separately approved
+migration plan. None of the proposed DC employers is added to the executable or
+substituted for an existing faction.
+Review this milestone before authorizing M014; combat is not implemented here.
+The rogues addendum changes documentation only. Its roster is not assumed to
+coexist in every continuity, and no minor crew automatically becomes a district
+owner. Formal Joker initiation is optional and conditional; a career can finish
+without it. No new character, recruitment gate or save field is implemented.
+The city-atlas addition is research/documentation only: 176 proposed place records
+(8 regions, 48 neighborhoods, 120 POIs) and an original network specification.
+Geography, faction territory, minor-crew influence, properties and police coverage
+are separate. All current gameplay and district values remain governed by M013;
+the travel allowance, migration and UI are unimplemented proposals.
 
 ## Start or resume a career
 
@@ -292,6 +351,9 @@ IDs from display names and keep character/faction, dialogue, mission/event,
 asset, and progression data separate from mechanics. New systems should extend
 the command/event interfaces and explicit additive save migrations, without
 requiring a particular fictional property.
+The [content architecture proposal](docs/GOON_CONTENT_ARCHITECTURE.md) identifies
+the remaining name coupling, version/ID requirements, and the case-source adapter
+needed before non-job incidents can create compatible legal cases.
 
 ## Determinism, tests, and scope
 
@@ -299,6 +361,10 @@ RNG remains local to seeded operations. M013 preserves legacy job outcomes and
 adds no random draws. Command history, action usage, investigation markers,
 committed responses, and review dates
 survive saving. Reports and snapshots expose no mutable world references.
+M013.1 changes only Markdown and CLI display strings; it changes no simulation
+rules, commands, tests, workflows, save formats or runtime content definitions.
+The regression baseline is 198 tests. Combat, career, influence and institutional
+acceptance checks are future requirements, not executed feature tests.
 
 Tests include all 166 M012 regressions, real M001-M012 fixtures, persistence failure
 injection, malformed saves, command atomicity, CLI save/resume, fresh-process

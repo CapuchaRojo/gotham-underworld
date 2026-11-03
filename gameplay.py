@@ -117,11 +117,14 @@ def show(world):
 def play(world, filename, *, new_career=False):
     from game_service import actions_remaining, execute_command
     prepare(world)
-    print('UNDERWORLD - M013 faction competition. Three actions per day; wait to refresh.')
+    print('Gotham: The Goon - A Living Gotham Crime RPG')
+    print("Everybody wants to rule Gotham. You're just trying to survive it.")
+    print('Unofficial DC-inspired prototype; no claimed endorsement or license. Working title not legally cleared.')
+    print('M013 faction competition. Three actions per day; wait to refresh.')
     print('Type help for commands.')
     while True:
         try:
-            command = input('underworld> ').strip().split()
+            command = input('goon> ').strip().split()
         except (EOFError, KeyboardInterrupt):
             print('\nSession ended; use save to persist changes next time.')
             break
