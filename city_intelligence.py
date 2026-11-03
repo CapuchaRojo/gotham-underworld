@@ -8,7 +8,8 @@ TERRITORY_CAUSES = {'control_exhausted', 'faction_offensive'}
 def rankings(world):
     """Rank gangs by holdings, aggregate control, power and treasury."""
     rows = []
-    for faction in GANGS:
+    factions = sorted(world.get('competition', {}).get('factions', GANGS))
+    for faction in factions:
         if faction not in world.get('factions', {}):
             continue
         owned = [d for d in world.get('districts', {}).values() if d['owner'] == faction]
@@ -60,7 +61,8 @@ def briefing(world, day=None):
     events = [e for e in world.get('events', []) if e.get('day') == day]
     kinds = ('faction_strategy', 'faction_warfare', 'territory', 'district_mission',
              'npc_action', 'arrest', 'court', 'sentencing', 'heat_change',
-             'police_attention', 'legal_response', 'legal_review', 'legal_outcome')
+             'police_attention', 'legal_response', 'legal_review', 'legal_outcome',
+             'faction_economy', 'territory_pressure')
     highlights = [e['message'] for e in events if e.get('kind') in kinds]
     income = sum(e.get('income', 0) for e in events if e.get('kind') == 'economy')
     return {'day': day, 'event_count': len(events), 'income': income,
@@ -69,7 +71,9 @@ def briefing(world, day=None):
 
 def dashboard(world):
     """Snapshot only: reading it must not prepare or mutate saves."""
+    from faction_profiles import summary as competition_summary
     return {'day': world['day'], 'rankings': rankings(world),
+            'competition': competition_summary(world),
             'territory_history': territory_history(world),
             'player_influence': player_influence(world),
             'briefing': briefing(world)}

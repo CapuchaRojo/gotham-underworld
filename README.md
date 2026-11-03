@@ -1,4 +1,4 @@
-# Gotham Underworld — M012 Meaningful Crime & Consequences
+# Gotham Underworld — M013 Sustainable Faction Competition
 
 A deterministic, offline, single-player crime-city simulation and terminal RPG
 prototype. Python 3.14 standard library only: no packages, external AI services,
@@ -7,7 +7,7 @@ or paid APIs are required.
 This is an independent, unofficial prototype. Its intended future creative
 setting is the DC universe; it has no endorsement, authorization, or affiliation
 with DC, Warner Bros., or their partners. The executable retains its original
-placeholder characters, factions, and districts. M012 introduces no DC characters,
+placeholder characters, factions, and districts. M013 introduces no DC characters,
 new storylines, combat, or imported assets. Any proposed public distribution,
 commercial release, fundraising, or external pitch materials need separate
 rights and legal review.
@@ -107,6 +107,88 @@ and dismissals retain unknown historical dates/fines as null. No warrants,
 probation, parole, supervision, undercover agents, or vigilante encounters are
 implemented; later versions can add sections without character-name rules.
 
+## Faction economics and competition
+
+From day two in a new career, factions use the economic profiles saved in
+`competition.profiles`, bound through `competition.factions`. Existing careers
+begin these rules on the day after migration, without replaying earlier turns.
+The first-day income/mobilization contract and low-level legacy resolvers remain
+compatible. Player commands and M012 heat/legal rules keep their existing budget.
+
+Profiles are data, not character-name policies. New organizations can bind to an
+independent profile without changing the engine. Defaults are copied into each
+career, so customizing one save does not change another or the global defaults.
+No new DC organizations or story content are included.
+
+| Faction / profile | District revenue | Recovery income / power | Recruitment cost / gain | Treasury / recovery cap |
+| --- | --- | --- | --- | --- |
+| Harbor / `trade_network` | 125% | $6 / +2 | $6 / +7 | $240 / $60 |
+| Carnival / `street_network` | 100% | $8 / +3 | $4 / +6 | $180 / $50 |
+| Iron / `industrial_network` | 135% | $5 / +2 | $5 / +9 | $220 / $70 |
+
+| Profile | Attack / defense cost | Expansion reserve | Minimum attack power | Defense / consolidation threshold |
+| --- | --- | --- | --- | --- |
+| Trade | $12 / $8 | $36 | 25 | 45 / 75 |
+| Street | $10 / $9 | $28 | 20 | 35 / 65 |
+| Industrial | $13 / $7 | $40 | 30 | 55 / 85 |
+
+Daily district revenue is `max(1, wealth // 15) * revenue_percent // 100`,
+credited only up to the treasury cap. Upkeep is operating cost + holdings times
+holding cost + power divided by the upkeep divisor (integer division). Defaults
+use $1 operating cost, $1 per holding, and divisors 35/40/30. Payment is limited
+by available cash. Fully funded upkeep restores one power; a shortfall loses one.
+Existing above-cap reserves are retained and spent normally, while receiving no
+additional income until they fall below the cap.
+
+Each faction gets **one operation per day**, in a deterministic rotating order
+derived from seed, day, and sorted faction identifiers:
+
+- **Recover:** spend the turn rebuilding an off-map network; add the profile's
+  recovery income up to its recovery cap, and bounded organizational power.
+- **Regroup:** pay the recruitment cost for faster power recovery.
+- **Defend:** pay for control restoration in a threatened holding.
+- **Expand:** pay for an offensive against an explicitly selected rival district.
+- **Consolidate:** pay the defense cost for slower control improvement and some
+  recruitment when there is no funded expansion target.
+
+Low operating strength prioritizes regroup/recovery. Otherwise threatened owned
+districts take priority, then insufficient reserves trigger recovery, funded
+rival targets permit expansion, and secure holdings permit consolidation or
+recruitment. Recent player expansion pressure affects defense assessment.
+Invalidated targets, missing funding, changed profiles, or exhausted recovery
+capacity produce explicit fallback reasons. Stale/missing plans are reassessed
+from current resources and record that fallback.
+
+Pressure reduces district control by 1–3 daily, stopping at one; it cannot hand
+territory to an unfunded challenger. Modern transfers require a paid offensive
+or player expansion, exhaust control, and reset it to 35 through one shared
+ownership operation. The compatibility first-day/legacy pressure claim also
+requires money and power. Attacks consume one attacker power and up to two
+defender power, abstract organizational losses rather than a combat system.
+All power changes remain within 0–100. Legacy seeded feuds continue; upkeep,
+recovery, and recruitment counter their former long-term power collapse.
+
+Faction income, upkeep, operations, captures, and fallbacks have structured
+before/after values. `factions`, `strategy`, `intel`, and `briefing` expose the
+results through detached reports. District numbering and targeting use stable
+sorting rather than dictionary insertion order. Modern economy/strategy/warfare
+resolvers share the existing daily markers and do not execute twice in a day.
+
+Reproduce the idle-city audit with `python -B faction_campaigns.py`. See
+[M013_SIMULATION_REPORT.md](M013_SIMULATION_REPORT.md) for the actual four
+365-day campaigns and one 1,000-day campaign. Iron leads every one-year sample;
+Harbor leads at day 1,000 in seed 42. All factions remain operational, including
+displaced organizations. Tests enforce bounds and recovery, not equal outcomes.
+
+This remains a three-district economy with static wealth and abstract power.
+Defensive identity has a strong early advantage in the tested seeds; recovering
+factions often approach maximum readiness while still poor or displaced. There
+is no elimination mechanic: default profiles all have a funded rebuilding path.
+No rank-based handicap, forced turnover, or equalizing grant is applied.
+The economic/strategic roster is configurable; the retained legacy feud sampler
+still uses the original three gangs. Expanding that sampler is separate from
+adding economic profile bindings.
+
 ## Safe saves and compatibility
 
 M011 uses `save_version: 1`; unversioned M001-M010 careers receive additive
@@ -123,6 +205,11 @@ Unsupported legal versions and inconsistent responses, records, or legal/heat
 event metadata are rejected; unknown extension fields are retained. An old raw
 heat counter above 100 is preserved on load, displayed as effective heat 100,
 then normalized with an audit event on the next successful player command.
+M013 adds `competition_version: 1` with persisted economic definitions/bindings
+and an activation day. M001-M012 careers keep their existing values and event
+history on load; competition starts on the following advanced day. Unsupported
+versions, missing profile state, invalid economic parameters, and inconsistent
+economic event metadata are rejected. Profile edits are local to that career.
 
 Saving stages and flushes UTF-8 JSON in the destination directory, then uses
 `os.replace` to publish it. Overwriting first preserves the previous valid bytes
@@ -179,6 +266,8 @@ large-world performance at this prototype scale.
 | Base world, events, legacy feuds and courts | `simulation.py` |
 | Jobs, investigation, NPC relationships/actions | `consequence_engine.py`, `relationship_engine.py`, `npc_actions.py` |
 | Heat policy, legal choices, profile schema | `legal_engine.py`, `legal_state.py` |
+| Economic identities and modern faction operations | `faction_profiles.py`, `faction_competition.py` |
+| Shared ownership mutation | `territory.py` |
 | Economy, missions, strategy, warfare | `city_economy.py`, `district_missions.py`, `city_strategy.py`, `faction_warfare.py` |
 | Detached reports | `city_intelligence.py`, strategy assessment/summary |
 
@@ -198,7 +287,7 @@ The original `python simulation.py --days 10 --seed 42` batch demonstration
 remains available; it is not the career interface.
 
 Current content definitions and named NPC policies remain in their original
-modules. M012 does not migrate content. Future registries should separate stable
+modules. M013 does not migrate content. Future registries should separate stable
 IDs from display names and keep character/faction, dialogue, mission/event,
 asset, and progression data separate from mechanics. New systems should extend
 the command/event interfaces and explicit additive save migrations, without
@@ -206,20 +295,22 @@ requiring a particular fictional property.
 
 ## Determinism, tests, and scope
 
-RNG remains local to seeded operations. M012 preserves legacy job outcomes and
+RNG remains local to seeded operations. M013 preserves legacy job outcomes and
 adds no random draws. Command history, action usage, investigation markers,
 committed responses, and review dates
 survive saving. Reports and snapshots expose no mutable world references.
 
-Tests include all 131 M011 regressions, real M001-M011 fixtures, persistence failure
+Tests include all 166 M012 regressions, real M001-M012 fixtures, persistence failure
 injection, malformed saves, command atomicity, CLI save/resume, fresh-process
 hash-seed checks, a 365-day campaign with disk resumes, and a 90-day legal-choice
 replay/resume. M012 covers heat/risk bounds, legal atomicity, event integrity,
-and multi-day review/court outcomes. See
+and multi-day review/court outcomes. M013 adds economic identity, recovery,
+recruitment, profile validation, transfer reconstruction, phase idempotency,
+insertion-order independence, and the required multi-seed long campaigns. See
 `tests/fixtures/README.md` for provenance.
 
-Economy balance, courts, NPC policies, and faction recovery remain simplified.
+Economic balance, courts, NPC policies, and the three-district geography remain simplified.
 Unanswered cases still resolve automatically; responses support documented
 collection cases and charged cases. No attorneys, warrants, probation, parole,
-undercover officers, combat, drugs, Bat-family encounters, or M013 systems are
+undercover officers, combat, drugs, Bat-family encounters, or M014 systems are
 included. The prototype remains offline-capable.

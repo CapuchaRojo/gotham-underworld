@@ -3,6 +3,7 @@ from city_economy import GANGS
 from relationship_engine import METRICS
 from simulation import FACTIONS, new_world
 from legal_state import prepare as prepare_legal, validate as validate_legal
+from faction_profiles import prepare as prepare_competition, validate as validate_competition
 
 SAVE_VERSION = 1
 DAILY_ACTION_ALLOWANCE = 3
@@ -54,6 +55,7 @@ def prepare(world):
         if case['status'] == 'pending':
             case.setdefault('last_investigated_day', world['day'])
     prepare_legal(world)
+    prepare_competition(world)
     return world
 
 
@@ -196,10 +198,10 @@ def validate(world):
         _mapping(plan, 'faction_strategy.' + name)
         _require(name in factions and plan.get('faction') == name, 'faction_strategy.faction', 'must match a known faction')
         _integer(plan.get('day'), 'faction_strategy.day', 0, day)
-        _require(plan.get('objective') in ('recover', 'defend', 'consolidate', 'expand'), 'faction_strategy.objective', 'is unsupported')
+        _require(plan.get('objective') in ('recover', 'defend', 'consolidate', 'expand', 'regroup'), 'faction_strategy.objective', 'is unsupported')
         target = plan.get('district')
-        _require((target is None and plan['objective'] == 'recover') or
-                 (isinstance(target, str) and target in world.get('districts', {})), 'faction_strategy.district', 'must reference a district or be null for recovery')
+        _require((target is None and plan['objective'] in ('recover', 'regroup')) or
+                 (isinstance(target, str) and target in world.get('districts', {})), 'faction_strategy.district', 'must reference a district or be null for recovery/regrouping')
         _text(plan.get('reason'), 'faction_strategy.reason')
         for key in ('treasury', 'owned_count', 'power'):
             _integer(plan.get(key), 'faction_strategy.' + key, 0)
@@ -217,6 +219,7 @@ def validate(world):
     if command_ids:
         _integer(world.get('command_sequence'), 'command_sequence', max(command_ids))
     validate_legal(world)
+    validate_competition(world)
     return world
 
 

@@ -29,8 +29,13 @@ def _recent_pressure(world, faction):
     return pressure
 
 
-def assess(world, faction):
+def assess(world, faction, *, competition=False):
     """Read-only, stable strategic assessment; no random draws."""
+    if competition:
+        from faction_competition import assess as economic_assessment
+        if faction not in world.get('competition', {}).get('factions', {}):
+            raise ValueError('Unknown configured faction')
+        return economic_assessment(world, faction, _recent_pressure(world, faction))
     if faction not in GANGS or faction not in world['factions']:
         raise ValueError('Unknown faction')
     treasury = world['factions'][faction]
@@ -62,16 +67,25 @@ def assess(world, faction):
             'owned_count': len(owned), 'day': world['day']}
 
 
-def advance(world):
+def advance(world, *, competition=False):
     """Commit a daily plan once; planning never spends or moves territory."""
     prepare(world)
+    if competition:
+        from faction_competition import active
+        if not active(world):
+            return []
     if world['day'] < 2 or world['strategy_last_day'] >= world['day']:
         return []
     emitted = []
-    for faction in GANGS:
+    factions = sorted(world['competition']['factions']) if competition else GANGS
+    for faction in factions:
         if faction not in world['factions']:
             continue
-        plan = assess(world, faction)
+        if competition:
+            from faction_competition import assess as economic_assessment
+            plan = economic_assessment(world, faction, _recent_pressure(world, faction))
+        else:
+            plan = assess(world, faction)
         world['faction_strategy'][faction] = plan
         emitted.append(event(world, 'faction_strategy',
                              f'{faction} chose {plan["objective"]}' +
@@ -79,9 +93,12 @@ def advance(world):
                              faction=faction, objective=plan['objective'],
                              district=plan['district'], reason=plan['reason'],
                              cause='strategic_assessment'))
+        if competition:
+            emitted[-1].update(profile=plan['profile'], treasury=plan['treasury'], power=plan['power'])
     world['strategy_last_day'] = world['day']
     return emitted
 
 
 def summary(world):
-    return [(faction, deepcopy(world.get('faction_strategy', {}).get(faction))) for faction in GANGS]
+    factions = sorted(world['competition']['factions']) if 'competition' in world else GANGS
+    return [(faction, deepcopy(world.get('faction_strategy', {}).get(faction))) for faction in factions]

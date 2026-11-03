@@ -1,0 +1,708 @@
+{
+  "seed": 17,
+  "day": 3,
+  "factions": {
+    "Harbor Syndicate": {
+      "power": 63,
+      "cash": 68
+    },
+    "Carnival Crew": {
+      "power": 41,
+      "cash": 24
+    },
+    "Iron Mask Outfit": {
+      "power": 62,
+      "cash": 50
+    },
+    "Civic Police": {
+      "power": 75,
+      "cash": 70
+    },
+    "Night Watch": {
+      "power": 35,
+      "cash": 20
+    }
+  },
+  "people": {
+    "Mara Voss": {
+      "faction": "Harbor Syndicate",
+      "memory": [
+        {
+          "day": 0,
+          "fact": "Rookie joined Harbor Syndicate."
+        },
+        {
+          "day": 0,
+          "fact": "Rookie failed collection for Harbor Syndicate (attempt 0)."
+        },
+        {
+          "day": 2,
+          "fact": "Harbor Syndicate attacked Ironworks held by Iron Mask Outfit (-6 control)."
+        },
+        {
+          "day": 3,
+          "fact": "Harbor Syndicate attacked Ironworks held by Iron Mask Outfit (-6 control)."
+        }
+      ],
+      "relationship": {
+        "trust": 0,
+        "respect": -1,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": [
+        {
+          "day": 0,
+          "cause": "recruitment",
+          "changes": {
+            "trust": 5,
+            "respect": 2
+          }
+        },
+        {
+          "day": 0,
+          "cause": "job_failure",
+          "changes": {
+            "trust": -5,
+            "respect": -3
+          },
+          "source_attempt": 0
+        }
+      ]
+    },
+    "Eli Crowe": {
+      "faction": "Carnival Crew",
+      "memory": [
+        {
+          "day": 1,
+          "fact": "Eli Crowe obstructed Harbor Syndicate; it lost 2 power."
+        },
+        {
+          "day": 2,
+          "fact": "Carnival Crew attacked Harbor Docks held by Harbor Syndicate (-5 control)."
+        },
+        {
+          "day": 3,
+          "fact": "Carnival Crew defended Carnival Row (+7 control)."
+        }
+      ],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 5,
+        "suspicion": 0
+      },
+      "relationship_history": [
+        {
+          "day": 0,
+          "cause": "rival_retaliation",
+          "changes": {
+            "hostility": 5
+          },
+          "source_attempt": 0
+        }
+      ]
+    },
+    "Detective Vale": {
+      "faction": "Civic Police",
+      "memory": [
+        {
+          "day": 1,
+          "fact": "Case 1: evidence from job attempt 0."
+        },
+        {
+          "day": 2,
+          "fact": "Case 1: evidence from job attempt 0."
+        }
+      ],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 16
+      },
+      "relationship_history": [
+        {
+          "day": 1,
+          "cause": "evidence_recovered",
+          "changes": {
+            "suspicion": 8
+          },
+          "source_attempt": 0,
+          "case_id": 1
+        },
+        {
+          "day": 2,
+          "cause": "evidence_recovered",
+          "changes": {
+            "suspicion": 8
+          },
+          "source_attempt": 0,
+          "case_id": 1
+        }
+      ]
+    }
+  },
+  "player": {
+    "name": "Rookie",
+    "heat": 0,
+    "cash": 0,
+    "arrested": false,
+    "custody": "free",
+    "faction": "Harbor Syndicate",
+    "reputation": {
+      "Harbor Syndicate": 0,
+      "Carnival Crew": -1,
+      "Iron Mask Outfit": 0
+    },
+    "jobs_completed": 0
+  },
+  "cases": [
+    {
+      "id": 1,
+      "crime": "collection intimidation",
+      "evidence": 3,
+      "status": "convicted",
+      "suspect": "Rookie",
+      "source_attempt": 0,
+      "witnessed": true,
+      "investigation_days": 2,
+      "last_investigated_day": 2
+    }
+  ],
+  "events": [
+    {
+      "day": 0,
+      "kind": "recruitment",
+      "message": "Rookie joined Harbor Syndicate."
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 1: join.",
+      "command": "join",
+      "command_id": 1,
+      "actor": "player",
+      "arguments": {
+        "faction": "Harbor Syndicate"
+      },
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 0,
+      "kind": "job",
+      "message": "Rookie failed collection for Harbor Syndicate; earned $0.",
+      "job": "collection",
+      "attempt": 0,
+      "success": false,
+      "roll": 7,
+      "failure_chance": 38,
+      "payout": 0,
+      "cause": "player_job",
+      "heat_tier": "low",
+      "risk_bonus": 0,
+      "witness_roll": 34,
+      "witness_chance": 65,
+      "witnessed": true
+    },
+    {
+      "day": 0,
+      "kind": "witness",
+      "message": "Witness reported collection job attempt 0; case 1 opened.",
+      "case_id": 1,
+      "source_attempt": 0,
+      "cause": "witness_report"
+    },
+    {
+      "day": 0,
+      "kind": "retaliation",
+      "message": "Carnival Crew exploited the failed collection; Harbor Syndicate lost 1 power.",
+      "source_attempt": 0,
+      "cause": "failed_collection"
+    },
+    {
+      "day": 0,
+      "kind": "heat_change",
+      "message": "Heat changed from 0 to 3: player_job.",
+      "before": 0,
+      "after": 3,
+      "delta": 3,
+      "tier_before": "low",
+      "tier_after": "low",
+      "cause": "player_job",
+      "source_attempt": 0
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 2: job.",
+      "command": "job",
+      "command_id": 2,
+      "actor": "player",
+      "arguments": {
+        "kind": "collection"
+      },
+      "action_cost": 1,
+      "cause": "player_command"
+    },
+    {
+      "day": 1,
+      "kind": "feud",
+      "message": "Harbor Syndicate struck Carnival Crew; Carnival Crew lost 3 power."
+    },
+    {
+      "day": 1,
+      "kind": "investigation",
+      "message": "Detective Vale recovered evidence in case 1.",
+      "case_id": 1,
+      "source_attempt": 0,
+      "cause": "witness_followup"
+    },
+    {
+      "day": 1,
+      "kind": "npc_action",
+      "message": "Eli Crowe obstructed Harbor Syndicate; it lost 2 power.",
+      "npc": "Eli Crowe",
+      "action": "refuse_cooperation",
+      "cause": "relationship_policy",
+      "reason": "hostility=5 (threshold 5)"
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Harbor Syndicate earned $4 from Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "income": 4,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Carnival Crew earned $3 from Carnival Row.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Iron Mask Outfit earned $3 from Ironworks.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "player_command",
+      "message": "Player command 3: wait.",
+      "command": "wait",
+      "command_id": 3,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 2,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Harbor Syndicate; Harbor Syndicate lost 5 power."
+    },
+    {
+      "day": 2,
+      "kind": "heat_change",
+      "message": "Heat changed from 3 to 1: quiet_day.",
+      "before": 3,
+      "after": 1,
+      "delta": -2,
+      "tier_before": "low",
+      "tier_after": "low",
+      "cause": "quiet_day"
+    },
+    {
+      "day": 2,
+      "kind": "investigation",
+      "message": "Detective Vale recovered evidence in case 1.",
+      "case_id": 1,
+      "source_attempt": 0,
+      "cause": "witness_followup"
+    },
+    {
+      "day": 2,
+      "kind": "arrest",
+      "message": "Rookie arrested on case 1.",
+      "case_id": 1,
+      "source_attempt": 0,
+      "cause": "evidence_threshold"
+    },
+    {
+      "day": 2,
+      "kind": "economy",
+      "message": "Harbor Syndicate earned $4 from Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "income": 4,
+      "cause": "district_income"
+    },
+    {
+      "day": 2,
+      "kind": "economy",
+      "message": "Carnival Crew earned $3 from Carnival Row.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 2,
+      "kind": "economy",
+      "message": "Iron Mask Outfit earned $3 from Ironworks.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 2,
+      "kind": "faction_strategy",
+      "message": "Harbor Syndicate chose expand at Ironworks.",
+      "faction": "Harbor Syndicate",
+      "objective": "expand",
+      "district": "Ironworks",
+      "reason": "treasury=$88; target control=60, wealth=50",
+      "cause": "strategic_assessment"
+    },
+    {
+      "day": 2,
+      "kind": "faction_strategy",
+      "message": "Carnival Crew chose expand at Harbor Docks.",
+      "faction": "Carnival Crew",
+      "objective": "expand",
+      "district": "Harbor Docks",
+      "reason": "treasury=$41; target control=60, wealth=60",
+      "cause": "strategic_assessment"
+    },
+    {
+      "day": 2,
+      "kind": "faction_strategy",
+      "message": "Iron Mask Outfit chose expand at Harbor Docks.",
+      "faction": "Iron Mask Outfit",
+      "objective": "expand",
+      "district": "Harbor Docks",
+      "reason": "treasury=$71; target control=60, wealth=60",
+      "cause": "strategic_assessment"
+    },
+    {
+      "day": 2,
+      "kind": "faction_warfare",
+      "message": "Harbor Syndicate attacked Ironworks held by Iron Mask Outfit (-6 control).",
+      "district": "Ironworks",
+      "faction": "Harbor Syndicate",
+      "action": "attack",
+      "cost": 12,
+      "control_delta": -6,
+      "previous_owner": "Iron Mask Outfit",
+      "captured": false,
+      "cause": "faction_offensive",
+      "npc": "Mara Voss",
+      "strategy_objective": "expand",
+      "strategy_reason": "treasury=$88; target control=60, wealth=50"
+    },
+    {
+      "day": 2,
+      "kind": "faction_warfare",
+      "message": "Carnival Crew attacked Harbor Docks held by Harbor Syndicate (-5 control).",
+      "district": "Harbor Docks",
+      "faction": "Carnival Crew",
+      "action": "attack",
+      "cost": 12,
+      "control_delta": -5,
+      "previous_owner": "Harbor Syndicate",
+      "captured": false,
+      "cause": "faction_offensive",
+      "npc": "Eli Crowe",
+      "strategy_objective": "expand",
+      "strategy_reason": "treasury=$41; target control=60, wealth=60"
+    },
+    {
+      "day": 2,
+      "kind": "faction_warfare",
+      "message": "Iron Mask Outfit attacked Harbor Docks held by Harbor Syndicate (-6 control).",
+      "district": "Harbor Docks",
+      "faction": "Iron Mask Outfit",
+      "action": "attack",
+      "cost": 12,
+      "control_delta": -6,
+      "previous_owner": "Harbor Syndicate",
+      "captured": false,
+      "cause": "faction_offensive",
+      "npc": null,
+      "strategy_objective": "expand",
+      "strategy_reason": "treasury=$71; target control=60, wealth=60"
+    },
+    {
+      "day": 2,
+      "kind": "court",
+      "message": "Case 1 outcome: convicted.",
+      "case_id": 1,
+      "outcome": "convicted",
+      "fine_assessed": 50,
+      "fine_paid": 40,
+      "response": "none"
+    },
+    {
+      "day": 2,
+      "kind": "sentencing",
+      "message": "Rookie sentenced to accelerated custody."
+    },
+    {
+      "day": 2,
+      "kind": "prison",
+      "message": "Rookie completed an accelerated sentence; the city kept changing."
+    },
+    {
+      "day": 2,
+      "kind": "heat_change",
+      "message": "Heat changed from 1 to 0: court_resolution.",
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "tier_before": "low",
+      "tier_after": "low",
+      "cause": "court_resolution",
+      "case_id": 1
+    },
+    {
+      "day": 2,
+      "kind": "legal_outcome",
+      "message": "Case 1: convicted; fine paid $40.",
+      "case_id": 1,
+      "outcome": "convicted",
+      "fine_assessed": 50,
+      "fine_paid": 40,
+      "response": "none",
+      "evidence": 3,
+      "cause": "case_resolution"
+    },
+    {
+      "day": 2,
+      "kind": "player_command",
+      "message": "Player command 4: wait.",
+      "command": "wait",
+      "command_id": 4,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 3,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Carnival Crew; Carnival Crew lost 1 power."
+    },
+    {
+      "day": 3,
+      "kind": "economy",
+      "message": "Harbor Syndicate earned $4 from Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "income": 4,
+      "cause": "district_income"
+    },
+    {
+      "day": 3,
+      "kind": "economy",
+      "message": "Carnival Crew earned $3 from Carnival Row.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 3,
+      "kind": "economy",
+      "message": "Iron Mask Outfit earned $3 from Ironworks.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 3,
+      "kind": "faction_strategy",
+      "message": "Harbor Syndicate chose expand at Ironworks.",
+      "faction": "Harbor Syndicate",
+      "objective": "expand",
+      "district": "Ironworks",
+      "reason": "treasury=$80; target control=53, wealth=50",
+      "cause": "strategic_assessment"
+    },
+    {
+      "day": 3,
+      "kind": "faction_strategy",
+      "message": "Carnival Crew chose consolidate at Carnival Row.",
+      "faction": "Carnival Crew",
+      "objective": "consolidate",
+      "district": "Carnival Row",
+      "reason": "no funded expansion; weakest control=59",
+      "cause": "strategic_assessment"
+    },
+    {
+      "day": 3,
+      "kind": "faction_strategy",
+      "message": "Iron Mask Outfit chose expand at Harbor Docks.",
+      "faction": "Iron Mask Outfit",
+      "objective": "expand",
+      "district": "Harbor Docks",
+      "reason": "treasury=$62; target control=48, wealth=60",
+      "cause": "strategic_assessment"
+    },
+    {
+      "day": 3,
+      "kind": "faction_warfare",
+      "message": "Harbor Syndicate attacked Ironworks held by Iron Mask Outfit (-6 control).",
+      "district": "Ironworks",
+      "faction": "Harbor Syndicate",
+      "action": "attack",
+      "cost": 12,
+      "control_delta": -6,
+      "previous_owner": "Iron Mask Outfit",
+      "captured": false,
+      "cause": "faction_offensive",
+      "npc": "Mara Voss",
+      "strategy_objective": "expand",
+      "strategy_reason": "treasury=$80; target control=53, wealth=50"
+    },
+    {
+      "day": 3,
+      "kind": "faction_warfare",
+      "message": "Carnival Crew defended Carnival Row (+7 control).",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "action": "defend",
+      "cost": 8,
+      "control_delta": 7,
+      "cause": "faction_defense",
+      "npc": "Eli Crowe",
+      "strategy_objective": "consolidate",
+      "strategy_reason": "no funded expansion; weakest control=59"
+    },
+    {
+      "day": 3,
+      "kind": "faction_warfare",
+      "message": "Iron Mask Outfit attacked Harbor Docks held by Harbor Syndicate (-6 control).",
+      "district": "Harbor Docks",
+      "faction": "Iron Mask Outfit",
+      "action": "attack",
+      "cost": 12,
+      "control_delta": -6,
+      "previous_owner": "Harbor Syndicate",
+      "captured": false,
+      "cause": "faction_offensive",
+      "npc": null,
+      "strategy_objective": "expand",
+      "strategy_reason": "treasury=$62; target control=48, wealth=60"
+    },
+    {
+      "day": 3,
+      "kind": "player_command",
+      "message": "Player command 5: wait.",
+      "command": "wait",
+      "command_id": 5,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    }
+  ],
+  "job_attempts": 1,
+  "consequence_version": 1,
+  "npc_action_version": 1,
+  "npc_action_last_day": {
+    "Eli Crowe": 1
+  },
+  "districts": {
+    "Harbor Docks": {
+      "owner": "Harbor Syndicate",
+      "wealth": 60,
+      "control": 42
+    },
+    "Carnival Row": {
+      "owner": "Carnival Crew",
+      "wealth": 45,
+      "control": 66
+    },
+    "Ironworks": {
+      "owner": "Iron Mask Outfit",
+      "wealth": 50,
+      "control": 47
+    }
+  },
+  "economy_last_day": 3,
+  "district_mission_version": 1,
+  "district_mission_last_day": -1,
+  "district_intel": {},
+  "warfare_version": 1,
+  "warfare_last_day": 3,
+  "strategy_version": 1,
+  "strategy_last_day": 3,
+  "faction_strategy": {
+    "Harbor Syndicate": {
+      "faction": "Harbor Syndicate",
+      "objective": "expand",
+      "district": "Ironworks",
+      "reason": "treasury=$80; target control=53, wealth=50",
+      "treasury": 80,
+      "power": 63,
+      "owned_count": 1,
+      "day": 3
+    },
+    "Carnival Crew": {
+      "faction": "Carnival Crew",
+      "objective": "consolidate",
+      "district": "Carnival Row",
+      "reason": "no funded expansion; weakest control=59",
+      "treasury": 32,
+      "power": 41,
+      "owned_count": 1,
+      "day": 3
+    },
+    "Iron Mask Outfit": {
+      "faction": "Iron Mask Outfit",
+      "objective": "expand",
+      "district": "Harbor Docks",
+      "reason": "treasury=$62; target control=48, wealth=60",
+      "treasury": 62,
+      "power": 62,
+      "owned_count": 1,
+      "day": 3
+    }
+  },
+  "save_version": 1,
+  "action_day": 3,
+  "actions_used": 0,
+  "command_sequence": 5,
+  "legal_version": 1,
+  "legal": {
+    "last_tick_day": 3,
+    "last_lay_low_day": -1,
+    "last_crime_day": 0,
+    "responses": {},
+    "record": [
+      {
+        "case_id": 1,
+        "day": 2,
+        "outcome": "convicted",
+        "fine_assessed": 50,
+        "fine_paid": 40,
+        "response": "none"
+      }
+    ]
+  }
+}

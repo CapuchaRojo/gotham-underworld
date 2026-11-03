@@ -32,3 +32,9 @@ also supplies fixed expected job outcomes for the legacy resolver.
 collection commands, then `advance_day` twice. It retains a completed case,
 command sequence, allowance, and M011 state without a legal profile. M012 tests
 preserve every original value and do not invent historical fine amounts/dates.
+
+`career_m012.json` comes from merged M012 commit `e6539cc`, generated before M013:
+`create_career(17)`, join Harbor Syndicate, run one collection command, then advance
+three days through the game service. M013 tests preserve every original value,
+including legal state and action usage, add profiles without replay, and activate
+the new competition policy only on the next advanced day.

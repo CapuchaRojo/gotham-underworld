@@ -2,6 +2,7 @@
 from city_economy import GANGS, prepare as prepare_economy
 from relationship_engine import prepare as prepare_relationships
 from simulation import event, remember
+from territory import capture
 
 ATTACK_COST = 12
 DEFENSE_COST = 8
@@ -35,9 +36,12 @@ def _hold(world, faction, plan, reason, actor):
                  planned_objective=plan.get('objective'), fallback_reason=reason)
 
 
-def advance(world):
+def advance(world, *, competition=False):
     """At most one deterministic action per gang per day; repeat calls do nothing."""
     prepare(world)
+    if competition:
+        from faction_competition import warfare
+        return warfare(world)
     # Day one is mobilization; preserve the original first-day economy baseline.
     if world['day'] < 2 or world['warfare_last_day'] >= world['day']:
         return []
@@ -99,14 +103,15 @@ def advance(world):
             district['control'] -= damage
             captured = district['control'] == 0
             if captured:
-                district['owner'] = faction
-                district['control'] = 35
+                transfer = capture(world, name, faction)
                 message = f'{faction} captured {name} from {previous_owner} in a faction offensive.'
             else:
                 message = f'{faction} attacked {name} held by {previous_owner} (-{damage} control).'
             data = dict(district=name, faction=faction, action='attack', cost=ATTACK_COST,
                         control_delta=-damage, previous_owner=previous_owner,
                         captured=captured, cause='faction_offensive', npc=actor)
+            if captured:
+                data.update(transfer)
         else:
             continue
         if plan:
