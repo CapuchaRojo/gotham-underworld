@@ -73,3 +73,30 @@ follow-up can settle. See the implemented section of
 [After Dark](GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) and
 [executed validation](M017_NIGHT_SHIFT_VALIDATION.md). No generic rogue dialogue,
 membership, clock, citywide rumor or non-job prosecution system is implied.
+
+## M018 extension — sources and targeted corrections
+
+`incident_dispatch` now routes both independently adopted definitions through
+the same discovery/choice commands and `incident_lifecycle` stage settlement.
+Night Shift keeps its original stage records and source IDs. Wrong Notice uses
+compare, verify, response, repair, followup and aftermath stages rather than
+copying a daily-life roster/job. Each stage settles once or expires.
+
+World truth is not a UI prerequisite. Initially the journal offers conflicting
+limited claims, not the correct answer. Verification reveals only the local
+ledger; it does not correct residents. A board correction, tomorrow's desk posting
+and a warning to Sam's group have distinct recipients/timing. Unchecked sharing
+can hurt trust; a verified retraction earns no bonus. Late correction cannot erase
+delivery-day harm. Refusal invents no promise and preserves ordinary work/home.
+
+All substantive choices cost one of the existing three actions; refusal and
+receiving the local final circular are zero-cost, one-shot informational choices.
+Helping guarantees no wages. A verified vacancy permits a selfish lawful
+reservation with a disclosed social cost and one optional $5 shift. No new crime,
+job-risk roll, prosecution or automatic membership is fabricated for this episode.
+Player projections do not receive automatic private reactions before a source
+delivers them. Full audit state remains available to save validation/debugging.
+
+The [After Dark contract](GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) specifies
+exact eligibility/timing and [M018 validation](M018_WRONG_NOTICE_VALIDATION.md)
+records executed acceptance, replay and CLI evidence.

@@ -1,18 +1,14 @@
 """Replay validation for optional version-1 incident state and delegated effects."""
 import json
 
-from incident_content import fingerprint, load
-from world_incidents import initial, reduce, transition_id
-
-COMMANDS = {'enable_incidents', 'discover_incident', 'incident_choose'}
-
+from incident_lifecycle import transition_id
 
 def _same(left, right):
     # JSON distinguishes bool from int, unlike Python dictionary equality.
     return json.dumps(left, sort_keys=True, allow_nan=False) == json.dumps(right, sort_keys=True, allow_nan=False)
 
 
-def _discovery_sources(world, state, item, position):
+def _discovery_sources(world, state, item, position, enabled_kind='incident_enabled'):
     """Check a discovery snapshot against existing domain records, without I/O.
 
     Sources precede discovery by both append order and completed command ID.
@@ -50,13 +46,14 @@ def _discovery_sources(world, state, item, position):
         return end, command
 
     frame(position, item, discovery_id, 'discover_incident')
-    enabled_index, enabled = one('incident_enabled', 'kind', 'incident_enabled')
-    enabled_end, _ = frame(enabled_index, enabled, enabled['command_id'], 'enable_incidents')
+    enabled_index, enabled = one(enabled_kind, 'kind', enabled_kind)
+    enabled_command = commands[enabled['command_id']][1]['command']
+    enabled_end, _ = frame(enabled_index, enabled, enabled['command_id'], enabled_command)
     require(enabled['command_id'] < discovery_id, 'enrollment must finish before discovery')
     require(state['world_status'] != 'eligible' and item['day'] >= state['occurrence_day'],
             'requires prior incident occurrence, not a snapshot claim')
     for tick_index, tick in enumerate(events[:position]):
-        if tick['kind'] == 'incident_transition' and tick.get('operation') == 'tick':
+        if tick['kind'] == 'incident_transition' and tick.get('operation') == 'tick' and tick.get('incident_id') == state['id']:
             day_index, _ = one('life_day', 'day', tick['day'])
             require(enabled_end < day_index < tick_index, 'occurrence must follow enrollment and daily processing')
 
@@ -134,27 +131,35 @@ def _discovery_sources(world, state, item, position):
     require(ctx['tess_reference'] is reference, 'Tess reference must match source-backed knowledge at discovery')
 
 
-def replay(world):
+def replay(world, definition_id='goon.incident.night_shift.v1'):
     from career_state import _integer, _mapping, _require
-    history = [(i, e) for i, e in enumerate(world['events']) if e['kind'].startswith('incident_')]
-    commands = {e['command_id']: e for e in world['events'] if e['kind'] == 'player_command' and e['command'] in COMMANDS}
-    if 'incident_version' not in world:
-        _require('incidents' not in world and not history and not commands, 'incident_version', 'is required with state/history')
+    from incident_dispatch import binding, owns_command, validate_ownership
+    validate_ownership(world)
+    spec = binding(definition_id)
+    adapter = spec['adapter']
+    saved = world.get(spec['state'])
+    ident = saved.get('id') if isinstance(saved, dict) else None
+    history = [(i, e) for i, e in enumerate(world['events']) if e['kind'] == spec['enabled'] or
+               (e['kind'] == 'incident_transition' and ident is not None and e.get('incident_id') == ident)]
+    commands = {e['command_id']: e for e in world['events'] if e['kind'] == 'player_command' and owns_command(e, definition_id, saved)}
+    if spec['version'] not in world:
+        _require(spec['state'] not in world and not history and not commands, spec['version'], 'is required with state/history')
         return None
-    _integer(world['incident_version'], 'incident_version', 1, 1)
-    _mapping(world.get('incidents'), 'incidents')
+    _integer(world[spec['version']], spec['version'], 1, 1)
+    _mapping(saved, spec['state'])
     _require('daily_life_version' in world and isinstance(world.get('daily_life'), dict), 'incidents', 'requires active daily life')
-    _require(bool(history) and history[0][1]['kind'] == 'incident_enabled', 'incidents.history', 'requires initial explicit enrollment')
+    _require(bool(history) and history[0][1]['kind'] == spec['enabled'], 'incidents.history', 'requires initial explicit enrollment')
     first = history[0][1]
     _integer(first.get('schema_version'), 'incidents.schema_version', 1, 1)
     _integer(first.get('day'), 'incidents.enabled_day', world['daily_life']['activation_day'], world['day'])
     _integer(first.get('command_id'), 'incidents.command_id', 1)
     command = commands.get(first['command_id'])
-    _require(command is not None and command['command'] == 'enable_incidents' and command['day'] == first['day'] and
-             command['arguments'] == {} and type(command['action_cost']) is int and command['action_cost'] == 0,
+    legacy_enable = command is not None and definition_id == 'goon.incident.night_shift.v1' and command['command'] == 'enable_incidents'
+    _require(command is not None and command['command'] == ('enable_incidents' if legacy_enable else 'enable_incident') and command['day'] == first['day'] and
+             command['arguments'] == ({} if legacy_enable else dict(definition_id=definition_id)) and type(command['action_cost']) is int and command['action_cost'] == 0,
              'incidents.enrollment', 'must reference one explicit zero-cost command')
-    _require(first.get('content_fingerprint') == fingerprint(), 'incidents.content', 'requires pinned local definitions')
-    state, used = initial(world['seed'], first['day']), {first['command_id']}
+    _require(first.get('content_fingerprint') == adapter.fingerprint(), 'incidents.content', 'requires pinned local definitions')
+    state, used = adapter.initial(world['seed'], first['day']), {first['command_id']}
     previous_day = first['day']
     for position, item in history[1:]:
         _require(item['kind'] == 'incident_transition', 'incidents.history', 'has an unsupported or duplicate enrollment')
@@ -185,20 +190,19 @@ def replay(world):
             _require(command is not None and command['command'] == expected_command and command['day'] == item['day'] and
                      command['arguments'] == arguments, 'incidents.command', 'must match committed arguments/day')
             if operation == 'choose':
-                from world_incidents import _assess
                 import choice_engine
                 stage = arguments['stage']
                 _require(stage in state['stages'], 'incidents.stage', 'is unsupported')
-                cost = choice_engine.eligible({'day': item['day']}, state['stages'][stage], load()['stages'][stage],
-                    arguments['option_id'], lambda o: _assess(state, stage, o, ctx))['actions']
+                cost = choice_engine.eligible({'day': item['day']}, state['stages'][stage], adapter.load()['stages'][stage],
+                    arguments['option_id'], lambda o: adapter._assess(state, stage, o, ctx))['actions']
             else:
-                _discovery_sources(world, state, item, position)
+                _discovery_sources(world, state, item, position, spec['enabled'])
                 cost = 0
             _require(type(command['action_cost']) is int and command['action_cost'] == cost, 'incidents.action_cost', 'must match the option')
             used.add(ident)
         try:
             before, start = state['world_status'], len(state['receipts'])
-            result = reduce(state, operation, item['day'], arguments, ctx)
+            result = adapter.reduce(state, operation, item['day'], arguments, ctx)
         except (KeyError, TypeError, ValueError) as exc:
             raise ValueError('Invalid save: incidents contains an invalid transition: ' + str(exc)) from exc
         _require(_same(item.get('result'), result) and item['message'] == result['message'], 'incidents.result', 'must match deterministic replay')
@@ -208,31 +212,41 @@ def replay(world):
         _require(all(_same(item.get(k), v) for k, v in expected.items()),
                  'incidents.transition', 'must retain unique identity, source, phases and effect references')
     _require(used == set(commands), 'incidents.commands', 'must settle every incident command exactly once')
-    _require(_same(world['incidents'], state), 'incidents.state', 'must match pinned deterministic history')
+    _require(_same(saved, state), 'incidents.state', 'must match pinned deterministic history')
     return state
 
 
 def memories(world):
-    state = replay(world)
-    if state is None:
-        return {}
-    contact = load()['contact_id']
-    return {(contact, r['fact'], r['source_id']): r for r in state['receipts']}
+    from incident_dispatch import bindings
+    result = {}
+    for ident, spec in sorted(bindings().items()):
+        state = replay(world, ident)
+        if state is not None:
+            default = spec['adapter'].load().get('contact_id')
+            for receipt in state['receipts']:
+                key = (receipt.get('contact_id', default), receipt['fact'], receipt['source_id'])
+                if key in result:
+                    raise ValueError('Duplicate delegated incident memory')
+                result[key] = receipt
+    return result
 
 
 def validate(world):
     from career_state import _require
-    state = replay(world)
-    if state is None:
-        return
-    life, contact = world['daily_life'], load()['contact_id']
-    expected = {(r['fact'], r['source_id'], r['day']) for r in state['receipts']}
-    actual = {(m['fact'], m['source_id'], m['day']) for m in life['contacts'][contact]['memories']}
-    _require(actual == expected and len(actual) == len(life['contacts'][contact]['memories']), 'incidents.memories', 'must delegate every effect once')
-    for receipt in state['receipts']:
-        if receipt['pay']:
-            transactions = [t for t in life['transactions'] if t['command_id'] == receipt['command_id']]
-            _require(len(transactions) == 1 and transactions[0]['amount'] == receipt['pay'] and
-                     transactions[0]['cause'] == 'existing_rules' and
-                     transactions[0]['source_id'] == f'goon.command.{receipt["command_id"]}',
-                     'incidents.payment', 'must match one actual cash-ledger receipt')
+    from incident_dispatch import bindings
+    for ident, spec in sorted(bindings().items()):
+        state = replay(world, ident)
+        if state is None:
+            continue
+        life, data = world['daily_life'], spec['adapter'].load()
+        for contact in data.get('contacts', {data.get('contact_id'): None}):
+            expected = {(r['fact'], r['source_id'], r['day']) for r in state['receipts'] if r.get('contact_id', data.get('contact_id')) == contact}
+            actual = {(m['fact'], m['source_id'], m['day']) for m in life['contacts'][contact]['memories']}
+            _require(actual == expected and len(actual) == len(life['contacts'][contact]['memories']), 'incidents.memories', 'must delegate every effect once')
+        for receipt in state['receipts']:
+            if receipt['pay']:
+                transactions = [t for t in life['transactions'] if t['command_id'] == receipt['command_id']]
+                _require(len(transactions) == 1 and transactions[0]['amount'] == receipt['pay'] and
+                         transactions[0]['cause'] == 'existing_rules' and
+                         transactions[0]['source_id'] == f'goon.command.{receipt["command_id"]}',
+                         'incidents.payment', 'must match one actual cash-ledger receipt')

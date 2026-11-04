@@ -2,9 +2,12 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current local slice: **Mission 016 / M017 branch — The Night Shift**, for review
-- Implementation branch: `feature/m017-night-shift-event`, from approved remote
-  master `37fc4b502e43ac3d241898b7d6a017c2906badc7`; 336 baseline tests preserved
+- Current local slice: **Mission 019 / M018 — The Wrong Notice**, for review
+- Implementation branch: `feature/m018-wrong-notice`, from verified M017-B merge
+  `14bfc5084b1f9f50fb305a69ac2f6c64f0412739`; 389 baseline tests preserved
+- PR #17 is merged into `audit/m017-independent-acceptance`, **not master**.
+  Remote master remains `43d81973e03c63d0ac8b4c759b5dd95b9e884c6d`.
+  Existing branches/merged PRs are preserved; M018 is not pushed or proposed in a PR.
 - PR #15 (M015) and #16 (M016-A) are merged. The prior open-PR requirement was
   superseded explicitly; both original feature branches remain unchanged.
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
@@ -269,7 +272,7 @@ The original submission passed 274 tests (237 M014 plus 37 new). Mission 010's
 promise-source validation, stale-clock roster creation and public memory projection.
 The corrected M015 baseline passed **283 tests**, including nine audit regressions;
 the five seven-day/daily-resume and 56-day campaign results remain unchanged.
-PR #15 remains open and unmerged pending explicit user authorization.
+PR #15 subsequently merged; this paragraph preserves the M015 audit's test evidence.
 
 This is one neighborhood with two original contacts and finite roster templates.
 The full prologue, background selection, broad employment economy, combat, advanced
@@ -341,3 +344,37 @@ slice, now merged. Do not push the new implementation without authorization.
 - **371 tests passed**, including all 336 baseline tests and 35 new acceptance
   cases. Exact campaigns/results and current limitations belong in the
   [Mission 016 validation report](docs/M017_NIGHT_SHIFT_VALIDATION.md).
+
+## M018 implemented scope and current limits
+
+- Explicit two-definition dispatch, shared day/stage/receipt settlement and common
+  replay validation; Night Shift keeps its old slot, IDs, content and event shape.
+  Original mobility and Night Shift replay hashes remain unchanged.
+- `enable_incident(definition_id)` adds only the requested definition after life
+  activates. `enable_incidents` retains its historical Night Shift-only meaning.
+  Optional `notice_version: 1` / `wrong_notice` state has its own content pin.
+  No outer save-version bump, implicit adoption, fresh budgets or retroactive event.
+- One independent Wrong Notice: delivery dates in a board notice and handbill
+  disagree with the actual local ledger. Nora Reed and Sam Ortega are original
+  local contacts under the existing life memory/standing authority.
+- Separate truth, source limitations, recipient beliefs, source transmissions,
+  player observations and reconciliation. Board-only help, delayed desk posting,
+  private tenant warnings and retractions reach only their actual recipients.
+  Delivery-day impact persists after late corrections.
+- Success, partial help, failed sharing, refusal, ignored-known, missed-unknown
+  and selfish lawful reservation have distinct aftermath. No automatic wage;
+  a verified vacancy permits one optional $5 shift with a social cost.
+  Existing ordinary work, room grace, legal rules, 3 actions and 18 TU are unchanged.
+- Player reports/events hide unreceived automatic reactions until the local final
+  circular is read. Full save/debug snapshots remain an audit view of world truth.
+- [M018 validation](docs/M018_WRONG_NOTICE_VALIDATION.md) records exact commands,
+  historical bytes/hashes, failed saves, deterministic campaigns and CLI evidence.
+  No new GitHub CI is claimed for local work.
+
+This is one versioned episode per definition per career, not recurring citywide
+content. There is no global rumor network, police case, clock, recruitment or
+new rogue gameplay. Abstract tenant/board audiences have small local consequences;
+there is no individual resident schedule, inventory loss or business economy.
+The future prologue and broader creative proposals remain unimplemented. Before
+a future PR to master, account explicitly for the audit/provenance branch ancestry;
+no integration merge is authorized by this local implementation mission.

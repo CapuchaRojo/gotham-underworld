@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "id": "goon.incident.wrong_notice.v1",
+  "title": "The Wrong Notice",
+  "place": "goon.poi.p032",
+  "hub": "goon.neighborhood.n13",
+  "contacts": {
+    "goon.contact.notice_clerk": {"name": "Nora Reed", "role": "Local delivery-desk clerk", "personality": "Precise about her ledger, less impressed by queue jumping.", "need": "Find which obsolete notices still send residents to the wrong day.", "knowledge": "Her delivery ledger, statements actually supplied to her, and her own correction orders."},
+    "goon.contact.notice_neighbor": {"name": "Sam Ortega", "role": "Resident delivery coordinator", "personality": "Helpful, hurried, and sometimes working from yesterday's handbill.", "need": "Keep the tenant group from missing its delivery.", "knowledge": "His handbill, conversations with him, and corrections delivered to the tenant group."}
+  },
+  "standby_pay": 5,
+  "stages": {
+    "compare": {"title": "A second report", "speaker": "Your incident journal", "situation": "A posted date and a resident's handbill may disagree. Neither is the dispatch ledger.", "options": [
+      {"id": "board", "label": "Read the shop board", "actions": 1, "tradeoff": "Visit p032. Learn that source's current claim, not an automatically correct answer."},
+      {"id": "residents", "label": "Ask Sam about the handbill", "actions": 1, "tradeoff": "Visit n13. Hear the tenant group's current report and its limitations."}
+    ]},
+    "verify": {"title": "Check an accountable source", "speaker": "Nora Reed", "situation": "Nora can show the local delivery ledger once it is available. It covers this delivery only.", "options": [
+      {"id": "ledger", "label": "Verify against the delivery ledger", "actions": 1, "tradeoff": "One action at n13; no wage. Learn the authenticated date and whether a lawful standby slot exists."}
+    ]},
+    "response": {"title": "Whom do you help?", "speaker": "Your incident journal", "situation": "Correcting one channel does not magically inform the others. Refusal creates no promise or debt.", "options": [
+      {"id": "correct_board", "label": "Post a signed, verified correction", "actions": 1, "tradeoff": "At p032. Corrects the board only; the tenant group may still follow its old handbill."},
+      {"id": "notify_desk", "label": "Notify Nora of the conflicting notice", "actions": 1, "tradeoff": "At n13 with verified findings. Nora orders a board correction for the next day; residents still need their own warning."},
+      {"id": "repeat_notice", "label": "Pass on the unchecked posted date", "actions": 1, "tradeoff": "At n13. Saves verification effort but explicitly risks misleading Sam's group. No payment or invented legal guilt."},
+      {"id": "reserve_slot", "label": "Take a lawful standby slot for yourself", "actions": 1, "tradeoff": "At n13 after observing the poster and verifying a vacancy. Disclose the discrepancy but request its freed slot instead of a correction order: Nora standing -1. Opens one optional $5 shift, not an immediate reward."},
+      {"id": "refuse", "label": "Refuse involvement", "actions": 0, "tradeoff": "No debt or penalty. Independent correction still proceeds."}
+    ]},
+    "repair": {"title": "The other audience", "speaker": "Sam Ortega", "situation": "A private warning reaches Sam's group, not the shop board. A retraction removes a bad claim without a trust-farming reward.", "options": [
+      {"id": "warn_group", "label": "Deliver the verified date to Sam's group", "actions": 1, "tradeoff": "At n13 after checking the ledger. Corrects only the tenant group; a timely warning can prevent a missed delivery."},
+      {"id": "retract", "label": "Retract your unchecked date", "actions": 1, "tradeoff": "At n13 with verified findings. Corrects your recipients, avoids later blame, earns no bonus."}
+    ]},
+    "aftermath": {"title": "Read the final circular", "speaker": "Your incident journal", "situation": "An authenticated final circular is available locally after independent resolution. Your old journal does not update itself.", "options": [
+      {"id": "read", "label": "Read the issued correction", "actions": 0, "tradeoff": "At n13. Learn the final source once; no wage, relationship reward or allowance refresh."}
+    ]},
+    "followup": {"title": "The reserved standby shift", "speaker": "Nora Reed", "situation": "Only an actually reserved vacancy opens this small lawful shift. It is optional and expires.", "options": [
+      {"id": "work", "label": "Work the reserved standby shift", "actions": 1, "tradeoff": "At n13, after resolution. $5 once; no repeat reservation or automatic employer membership."}
+    ]}
+  }
+}
