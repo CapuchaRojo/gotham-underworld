@@ -2,13 +2,16 @@
 
 ## Authority and scope
 
-**PROPOSED DESIGN CONTRACT — Mission 015, November 4, 2026. Not implemented.**
-This document selects no DC continuity, adds no clock or encounter runtime, and
-authorizes no future implementation. The user-approved direction is a reactive,
+**PROPOSED DESIGN CONTRACT — Mission 015, November 4, 2026; Mission 016 status update.**
+Sections 1–11 preserve the prior proposal/evidence; the implemented Night Shift
+subset and current limitations are explicitly recorded in section 12. No global
+clock, DC encounter or institutional career is implemented. This document selects
+no DC continuity and authorizes no future implementation. The user-approved direction is a reactive,
 offline city with ordinary people as protagonists, independent institutions,
 predominantly nighttime dramatic incidents and meaningful lawful careers.
 The mechanisms, role assignments, weights, schemas and sequencing below remain
-**proposed**, including every numerical policy beyond the existing budgets.
+**proposed** outside the expressly implemented section 12, including future
+numerical policies beyond the existing budgets.
 
 Companion contracts: [Rogue Encounters](GOON_ROGUE_ENCOUNTERS_DESIGN.md),
 [narrative bible](GOON_NARRATIVE_DESIGN_BIBLE.md),
@@ -32,7 +35,7 @@ dependency. A table entry may contain more than one status with different scope.
 
 | Status / exact seam | What exists | What must still be built or approved |
 | --- | --- | --- |
-| I/T — [service](../game_service.py#L74), [snapshots](../game_service.py#L60) | Commands execute on a private candidate, produce detached results and retain three gameplay actions/day. Adopted mobility candidates receive final validation. | P: encounter commands use the same boundary and resource owners; no narrative side channel. This is not a universal pre-command validator for arbitrary externally corrupted dictionaries. |
+| I/T — [service](../game_service.py#L79), [snapshots](../game_service.py#L65) | Commands execute on a private candidate, produce detached results and retain three gameplay actions/day. Adopted mobility candidates receive final validation. | P: encounter commands use the same boundary and resource owners; no narrative side channel. This is not a universal pre-command validator for arbitrary externally corrupted dictionaries. |
 | I — [day increment](../simulation.py#L47), [daily pipeline](../gameplay.py#L77) | One integer world day. Advance, legal pressure, investigation, NPCs, economy, strategy, warfare, court when arrested, navigation and life execute in that order. | M: time of day, actor shifts and a general world-incident scheduler. P: one idempotent incident phase after life, without reordering existing phases. |
 | I/T — [daily travel reset](../navigation.py#L299), [route preview](../mobility.py#L268), [journey](../mobility.py#L321) | 18 TU/day, explicit travel, closure/access checks, conditional return quotes, two-station mobility pilot and atomic fare effects. | M: time-dependent transit and facility schedules. No new walking/vehicle costs or timetable is established here. |
 | I — [life day](../daily_life.py#L172), [slot key](../daily_life.py#L226), [life definitions](../content/neighborhood_life_v1.json) | Opportunity windows use integer days. `morning.1`, `morning.3` and `late.roster` distinguish roster slots, not timestamps. Housing, contacts and promises have existing owners. | M: morning/evening elapsed time, sleeping hours, actor availability and business opening hours. Keep historical slot keys and windows unchanged. |
@@ -410,3 +413,99 @@ source line references, balanced fences and no trailing whitespace. This is a
 local structural/link check, not a third-party Markdown linter or a live check
 of every external URL. Read-only GitHub verification found PR #15 still OPEN at
 `3251381177bf11c0b07cd940329ebd0be3a7bb52`, unchanged from the initial check.
+
+## 12. Mission 016 — implemented independent Night Shift subset
+
+The approved baseline correction supersedes the historical PR restrictions:
+PRs #15 and #16 are merged, remote `master` is `37fc4b5`, and the new local
+branch is `feature/m017-night-shift-event`. Neither earlier branch/PR is changed.
+Current executed evidence is in [validation](M017_NIGHT_SHIFT_VALIDATION.md).
+The rest of this document's global clock, 80/20 scheduling policy, licensed
+actors, institutional careers and broader rogue chains remain **PROPOSED**.
+
+### Implemented lifecycle and definitions
+
+[`night_shift_v1.json`](../content/night_shift_v1.json) is one original definition
+pack. [`incident_content.py`](../incident_content.py) validates it and pins its
+sorted-JSON SHA-256. [`world_incidents.py`](../world_incidents.py) separates a pure
+versioned transition reducer from service/day publication and player projections.
+[`incident_state.py`](../incident_state.py) reconstructs the state from explicit
+enrollment and transitions, checks exact committed commands/costs/results and
+cross-checks payments/memories. This is a reusable lifecycle seam with one bound
+adapter, not an arbitrary mission scripting language or general NPC scheduler.
+
+| Stage | Implemented cause, identity and boundary |
+| --- | --- |
+| Eligibility | Active M015 life plus explicit zero-cost `enable_incidents`. Adds one original owner, Ada Quinn, to the existing contact authority. No affiliation to Harley or other DC actors; no old-contact personality change. |
+| Occurrence | Source is definition + enrollment day; instance is that source's alarm. SHA-256 over seed, content pin and source chooses one of three causes and occurrence one/two future days later. No global RNG or insertion-order dependence. |
+| Information | Next day, owner inspection establishes the cause; the desk receives only an alarm report. These are separate recipient facts. No player knowledge is added. |
+| Discovery | Explicit `discover_incident`: read p032's local public notice, or ask Tess at n13 after an actual kept-promise reference. No guaranteed remote delivery, proximity teleport, true-cause disclosure or acknowledgment by inspection. |
+| Participation eligibility | Shared choice assessment on current day/location/access, freedom, known stage, prior acceptance and three-action budget. Travel remains explicit under existing navigation/mobility. |
+| Decision/nonparticipation | Accept/inspect, help, disclose observed findings, withhold optional statement, refuse, let a known offer lapse, or remain unaware. Each stage settles once. |
+| Independent resolution | Four days after occurrence, owner completes review/reopening and actually supplies that review to the Civic Police desk. Does not require player discovery, work or a police case. |
+| Aftermath | Shop safety status, accepted-work outcome, actual owner memories, scoped desk receipt and an earned follow-up persist. After all stage windows close/settle, terminal state freezes; no respawn or daily incident-log growth. |
+
+The three hidden causes are a real break-in with unidentified offender, faulty
+alarm contact, or authorized delivery using the wrong entrance. Nothing implies
+the player committed the incident. The initial public claim confirms an alarm
+only. World truth lives in debug/save state; the player projection reveals the
+cause only after actual complete inspection. Raw developer snapshots are not
+the player journal. New world-only event messages/results never disclose that
+hidden cause; inspection feedback is based on the player's acquired evidence.
+
+There is still no clock: `overnight` is occurrence metadata. The existing daily
+pipeline is unchanged through daily life, followed by one idempotent incident
+phase. Skipped legacy clock days can catch up without retroactive offers.
+Neither 80/20 weighting nor institutional hours were introduced.
+
+### Choices, commitments and observable consequences
+
+| Player act | Cost / effect | Distinct persistent future |
+| --- | --- | --- |
+| Accept inspection | One action; disclosed $12/$6/$0 agreement. | Work stage becomes eligible from evidence day. Acceptance is not automatic delivery or knowledge. |
+| Inspect first evidence day | One action, $12, owner standing +2. True cause learned and delivered to owner. | Complete private work can open a private-records shift; optional accurate disclosure can instead open statement review. |
+| Inspect second evidence day | One action, $6, owner standing unchanged; limited observations only. | May submit an honestly incomplete statement for a later review; never learns the hidden cause by guessing. |
+| Inspect third evidence day | One action, $0, owner standing -1. No useful findings. | No earned event follow-up; ordinary life remains available. |
+| Leave accepted work unfinished | One deadline reaction, $0, owner standing -1. | Recorded failed commitment, not unknown/refused work. No extra fine or fabricated guilt. |
+| Help secure shop | One action, no immediate pay, owner standing +2. | Different shop reopening status and safety-preparation follow-up. |
+| Disclose actual findings | One action, owner standing +1 after desk acknowledgment. | Desk knows only the complete/limited statement actually supplied; scoped statement-review access, no private police-case access. |
+| Lawfully withhold optional statement | Zero actions, no guilt or standing penalty. | Desk does not acquire player findings; a complete private reference remains useful. Later independent owner review is a different source. |
+| Refuse / ignored known / missed unknown | Refusal zero actions; no reward or promise. | Separate outcome records; no automatic debt, blame, global hostility or career lock. |
+| Earned follow-up | Opens day after independent resolution for three days; one action, $8 and owner standing +1. | One safety shift, private-records shift or statement review according to actual prior acts. Never repeats. |
+
+Only player cash is spendable. The finite authored work agreement pays at most
+$20 total; there is no new account, currency, treasury, reputation score or
+relationship meter. M015 owns Ada's standing/memories; the existing cash ledger
+observes the real payment. The incident keeps auditable causal receipts, not a
+second balance. An inspection and follow-up have separate effect keys and costs.
+Each structured transition records a stable transition ID, source/incident IDs,
+before/after world phase and the exact delegated effect IDs. Validation replays
+and checks these causal links as well as command arguments and outcomes.
+An ordinary lawful career can ignore the whole episode, keep its room and use
+the existing work roster. No mandatory commuting, waiting for pay, criminal act,
+rogue meeting or vigilante approval was added.
+
+### Persistence and remaining integration limits
+
+The optional `incident_version: 1` state is absent from all non-adopted careers.
+Enrollment does not refresh actions/TU, replay old nights or migrate old events.
+The outer save schema, original atlas, life and mobility fingerprints are
+unchanged. JSON round-trip and current-reader disk resume preserve every stage.
+Older executables do not know the phase and are unsupported for advancing
+incident-adopted careers; compatibility here is historical saves loading into
+the new reader, not a promise of forward-compatible play in old binaries.
+
+No new legal evidence source exists. Civic Police facts are incident-local
+records of actual reports/review, not warrants, cases, charges or proof of player
+guilt. Owner standing is the existing contact score; statement credibility is
+the sourced acknowledgment/reference, not an invented global witness meter.
+There is no citywide rumor graph, NPC movement, combat, health, court calendar,
+institutional staffing, membership or licensed character behavior.
+
+Meaningful decisions trade limited actions, current wages, information sharing
+and different future work. Variety comes from three grounded causes, discovery
+channels, evidence age, commitments and disclosure. The single authored event
+and fixed performance windows remain shallow; do not increase frequency into
+repetitive inspect/collect grinding. A future second original incident should
+reuse this seam only after an independent contract review; richer non-job law
+and licensed actor content require separate source/continuity approval.

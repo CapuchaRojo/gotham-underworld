@@ -47,3 +47,29 @@ One post-court/post-navigation daily phase activates enrollment, settles due roo
 The optional `daily_life_version: 1` extension pins its content/rules and validates nested housing, ledger, contacts, promises, choices and event references. M001–M014 saves remain valid without it. Unsupported versions, changed required content, malformed receipts, duplicated settlements and inconsistent cash fail before play. The outer save version and atlas fingerprint remain unchanged.
 
 Tests must cover visibility, stale previews, zero actions/TU/cash, custody, travel, every branch/refusal, changed deadlines, exactly-once money and memory, ordinary missed-obligation recovery, malformed saves, historical opt-in, independent-process determinism and disk resume. Five seven-day campaigns and longer continuations must execute through service commands. Meaningful differences are actual money/risk, a kept/broken/moved promise, access to different work, and bounded household debt; flavor alone is not a branch.
+
+## Mission 016 extension — implemented optional Night Shift
+
+The existing `choice_engine.present/eligible` assessment pattern also serves the
+incident adapter. Its four stage records settle independently: offer, work,
+optional report and earned follow-up. They use `incident_choose`, with explicit
+stable incident/stage/option IDs. The adapter records `incident_transition`
+events instead of pretending these are M015 roster selections or reusing a slot.
+Current place, lawful access, freedom, disclosed dates, knowledge and remaining
+shared actions are rechecked; only currently eligible options are offered.
+
+Ada is an optional original shop owner added only by incident enrollment. Her
+standing and memory history remain under `daily_life`, with incident receipts
+validated as delegated sources. Tess/Cal's existing facts, rewards, rosters and
+content fingerprint are unchanged. The player cash balance and life ledger
+remain authoritative. A report is scoped information, never a fabricated job,
+automatic charge or additional reputation meter.
+
+Complete inspection, partial observations, failed inspection, unfinished accepted
+work, lawful safety help, refusal, optional disclosure/withholding, ignored known
+offers and missed unknown incidents are distinct. The world review and shop
+reopening happen independently. At most one $12 inspection and one separate $8
+follow-up can settle. See the implemented section of
+[After Dark](GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) and
+[executed validation](M017_NIGHT_SHIFT_VALIDATION.md). No generic rogue dialogue,
+membership, clock, citywide rumor or non-job prosecution system is implied.

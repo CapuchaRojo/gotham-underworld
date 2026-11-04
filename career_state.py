@@ -224,6 +224,8 @@ def validate(world):
     validate_navigation(world)
     from daily_life_state import validate as validate_life
     validate_life(world)
+    from incident_state import validate as validate_incidents
+    validate_incidents(world)
     return world
 
 

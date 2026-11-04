@@ -2,11 +2,11 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current local slice: **M016-A — versioned mobility and two-station monorail pilot**, for review
-- Implementation branch: `feature/m016a-mobility-pilot`; baseline audited M015
-  `3251381177bf11c0b07cd940329ebd0be3a7bb52`, 283 existing tests preserved
-- PR #15 remains open and unmerged; its submitted branch is unchanged. Last
-  merged baseline remains M014 at `fa2f9f5bbf081bde080c6d8b2e46512487027c66`
+- Current local slice: **Mission 016 / M017 branch — The Night Shift**, for review
+- Implementation branch: `feature/m017-night-shift-event`, from approved remote
+  master `37fc4b502e43ac3d241898b7d6a017c2906badc7`; 336 baseline tests preserved
+- PR #15 (M015) and #16 (M016-A) are merged. The prior open-PR requirement was
+  superseded explicitly; both original feature branches remain unchanged.
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
 - Entry point: `python gameplay.py`; resume with `python gameplay.py --load`
 - Save contract: version 1; additive migration of unversioned M001-M010 saves
@@ -311,5 +311,33 @@ new citywide disruption generator, advanced schedules or prologue are implemente
 Search is bounded; it can return an explicit planning limit requiring a simpler
 profile/waypoint. Full candidate validation and save history grow with career
 length. Only two stations and a modest cash/TU trade-off exist; no transport XP,
-real-time timers or commuting reward. Keep PR #15 unmerged and do not push this
-isolated implementation without explicit authorization.
+real-time timers or commuting reward. This section records the prior M016-A
+slice, now merged. Do not push the new implementation without authorization.
+
+## Mission 016 — independent overnight incident, local M017 branch
+
+- Explicit `enable_incidents` after active daily life; no historical auto-adoption,
+  clock, retroactive incident, fee or allowance refresh.
+- One original alarm at p032, with a pinned seed-selected break-in, faulty alarm
+  or delivery error. Occurs one or two future day transitions after enrollment;
+  evidence follows next day; independent resolution four days after occurrence.
+- A new idempotent phase follows daily life, preserving every preceding phase.
+  One-shot terminal state freezes; no endless daily incident spam or respawning.
+- World truth, owner knowledge, desk reports and player knowledge are separate.
+  Explicit local notice/contact discovery; no automatic player proximity or true
+  cause in the initial report. No rogue, Batman or new legal-case source.
+- Shared choice assessment, three actions and 18 TU; current eligibility checked
+  on execution. Inspection completion/partial/failure, lawful safety help,
+  refusal, disclosure/withholding, ignored known offers and missed unknown events.
+- Existing contact authority owns Ada's bounded standing/memories; player cash
+  and the existing life ledger own all compensation. At most $12 inspection +
+  $8 distinct follow-up; no double collection. Ordinary work/home remain viable.
+- Optional `incident_version: 1`, pinned content, deterministic transition replay,
+  exact command/effect references and cross-checked delegated memories/payments.
+  Outer save/navigation/mobility schemas and old content fingerprints unchanged.
+- [After Dark](docs/GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) distinguishes
+  this implemented slice from future proposals. [Rogue Encounters](docs/GOON_ROGUE_ENCOUNTERS_DESIGN.md)
+  now has exactly 35 proposed distinct roles; no rogue gameplay was added.
+- **371 tests passed**, including all 336 baseline tests and 35 new acceptance
+  cases. Exact campaigns/results and current limitations belong in the
+  [Mission 016 validation report](docs/M017_NIGHT_SHIFT_VALIDATION.md).

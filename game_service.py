@@ -16,6 +16,8 @@ import navigation
 from navigation import location_report, nearby_destinations, known_places, plan_route
 import daily_life
 import mobility
+import world_incidents
+from world_incidents import report as incident_report
 from mobility import mobility_report, mobility_receipt
 from daily_life import life_report, home_report, contact_report, opportunities, choice_report
 
@@ -36,6 +38,9 @@ COMMANDS = {
     'settle_in': (0, (), daily_life.settle_in),
     'pay_room': (0, (), daily_life.pay_room),
     'choose': (daily_life.choice_cost, ('choice_id', 'option_id'), daily_life.choose),
+    'enable_incidents': (0, (), world_incidents.enable_incidents),
+    'discover_incident': (0, ('incident_id', 'channel'), world_incidents.discover_incident),
+    'incident_choose': (world_incidents.choice_cost, ('incident_id', 'stage', 'option_id'), world_incidents.choose),
 }
 
 
@@ -108,7 +113,7 @@ def execute_command(world, command, **arguments):
     event(candidate, 'player_command', f'Player command {sequence}: {command}.',
           command=command, command_id=sequence, actor='player',
           arguments=deepcopy(arguments), action_cost=cost, cause='player_command')
-    if 'mobility_version' in candidate:
+    if 'mobility_version' in candidate or 'incident_version' in candidate:
         validate(candidate)
     response = deepcopy({'command': command, 'sequence': sequence,
                          'day': candidate['day'], 'result': result,

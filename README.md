@@ -7,11 +7,12 @@
 A deterministic, offline, single-player crime-city simulation and terminal RPG
 prototype about an ordinary criminal surviving work, loyalties, and a changing
 city. Python 3.14 standard library only: no packages, external AI services,
-or paid APIs are required. The local executable includes **M016-A — optional
-versioned mobility and a two-station monorail pilot**, alongside M015 daily life
-and the merged M014 navigation foundation. This is an isolated implementation
-for review; M015 PR #15 remains open and unmerged. Broader M016 vehicle systems
-and combat are not implemented.
+or paid APIs are required. The local executable includes **The Night Shift — an
+optional independent overnight incident with daylight consequences**, alongside
+M016-A mobility, M015 daily life and M014 navigation. PRs #15 and #16 are merged;
+this new work is local on `feature/m017-night-shift-event` from audited master
+`37fc4b5`. No push or new PR is authorized. A global clock, rogue/Bat-Family
+encounters, broader vehicle systems and combat are not implemented.
 
 This is an independent, unofficial prototype. Its intended future creative
 setting is the DC universe; it has no endorsement, authorization, or affiliation
@@ -232,6 +233,51 @@ prologue remain unimplemented. The broader M016 milestone is not complete.
 Local M016-A verification: **336 tests pass** (332 preserved plus4 metadata-repair cases), with
 seeded365-day replay and final30-day daily disk-resume checks. Exact commands,
 hashes, limitations and the distinction from existing GitHub CI are in the report.
+
+## The Night Shift — optional independent world incident
+
+After `settle_in` activates, `incidents` explains enrollment; `enable_incidents`
+adopts exactly one original shop-alarm episode, starting on a future day. This
+adds neither a global clock nor extra actions/TU. The alarm occurs and the shop
+resolves it even if you never learn of it. A local public notice at p032, or Tess
+at n13 after an actual kept-promise reference, can disclose a report of the alarm.
+Reading `incidents` does not acknowledge it or reveal its cause.
+
+Use the stable incident ID shown by `incidents`:
+
+```text
+discover_incident <incident-id> public_notice
+incident_choose <incident-id> offer accept
+incident_choose <incident-id> work verify
+incident_choose <incident-id> report disclose
+```
+
+Discovery costs no action. Acceptance, inspection, lawful safety help, disclosure
+and a later follow-up each cost one of the existing three actions; refusal and
+lawful withholding cost zero and cannot repeat. Travel remains explicit, costing
+the existing 18 TU allowance. The journal gives the first evidence day and deadline:
+inspection on the first evidence day pays $12, on the next $6 for partial work,
+and on the last $0 for unusable evidence. Only a complete inspection reveals the
+true cause. Unfinished accepted work causes one bounded owner reaction; unknown
+or refused work creates no debt, crime or global reputation penalty.
+
+Alternative: choose `offer help` for unpaid lawful safety work and a different
+reference. Complete private work, actual disclosure and safety help can each open
+a different one-shot $8 follow-up after independent resolution. Inspect `incidents`
+for current eligible stages/options; `followup work` is never an infinite wage.
+Ada Quinn is an original shop owner, using M015's existing contact/standing
+authority; no relation to a DC character is implied. Compensation changes only
+player cash and is observed by the existing life ledger. The Civic Police desk
+records scoped incident facts, not fabricated job evidence, charges or guilt.
+
+Version-1 optional incident state pins definitions, replays its transitions during
+validation and checks delegated payments/memories. Historical careers do not
+adopt on load. New readers preserve historical saves; older executables are not
+supported for advancing incident-adopted saves because they lack this phase.
+Use the current executable throughout an adopted career. See the implemented
+section of [After Dark](docs/GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md),
+[choice contract](docs/GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md), and
+[Mission 016 evidence](docs/M017_NIGHT_SHIFT_VALIDATION.md).
 
 ## Living in the neighborhood — M015
 
@@ -597,6 +643,9 @@ M013.1 changed only Markdown and CLI display strings. M014 adds the optional
 navigation extension, local definitions, service/CLI integration and navigation
 tests while preserving the 198 existing regressions. M015 preserves all 237 M014
 regressions and adds neighborhood choice, ledger, housing, migration and campaign tests.
+The current local suite passes **371 tests** (336 preserved plus 35 Night Shift
+acceptance cases). Two 365-day incident campaigns with disk resume and two 30-day
+mobility campaigns were executed; see the Mission 016 evidence linked above.
 The audited M015 baseline passed **283 tests** (237 M014, 37 M015 and nine audit
 regressions); see the [M015 validation report](docs/M015_VALIDATION_REPORT.md) and
 [independent acceptance audit](docs/M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) for evidence.

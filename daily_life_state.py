@@ -187,10 +187,17 @@ def validate(world):
         _require(e['day'] == p['resolved_day'] and e.get('status') == p['status'] and e.get('due_day') == p['due_day'] and
                  e.get('source_id') == p['resolution_source'], path + '.promises.events', 'must match its recorded resolution')
 
-    _require(set(life['contacts']) == set(content['contacts']), path + '.contacts', 'must retain the declared contacts')
+    from daily_life import contact_definitions
+    from incident_state import memories as incident_memories
+    external_memories = incident_memories(world)
+    _require(set(life['contacts']) == set(contact_definitions(world)), path + '.contacts', 'must retain the declared contacts')
     memories = {}
     allowed = {'goon.contact.tess': {'work_completed', 'promise_accepted', 'promise_kept', 'promise_broken', 'promise_moved'},
                'goon.contact.cal': {'terms_disclosed', 'collection_completed', 'collection_failed', 'courier_completed', 'courier_failed'}}
+    if 'incident_version' in world:
+        from incident_content import load as incident_content
+        from world_incidents import FACT_DELTAS
+        allowed[incident_content()['contact_id']] = set(FACT_DELTAS)
     facts_seen = set()
     for ident, person in life['contacts'].items():
         _mapping(person, path + '.contacts[]')
@@ -200,7 +207,8 @@ def validate(world):
             _require(m.get('id') == f'{ident}.memory.{index}', path + '.contacts.memory.id', 'must have contiguous identities')
             _integer(m.get('day'), path + '.contacts.memory.day', life['activation_day'], day)
             _require(isinstance(m.get('fact'), str) and m['fact'] in allowed[ident], path + '.contacts.memory.fact', 'must be an observed fact appropriate to this contact')
-            _require(isinstance(m.get('source_id'), str) and (m['source_id'] in choices or m['source_id'] in promises), path + '.contacts.memory.source', 'must reference an interaction or promise')
+            external = external_memories.get((ident, m.get('fact'), m.get('source_id'))) if isinstance(m.get('source_id'), str) else None
+            _require(isinstance(m.get('source_id'), str) and (m['source_id'] in choices or m['source_id'] in promises or external is not None), path + '.contacts.memory.source', 'must reference an interaction or promise')
             fact_source = (ident, m['fact'], m['source_id'])
             _require(fact_source not in facts_seen, path + '.contacts.memory.source', 'cannot reward an interaction twice')
             facts_seen.add(fact_source)
@@ -208,12 +216,14 @@ def validate(world):
                 _integer(m.get(key), path + '.contacts.memory.' + key, -10, 10)
             _integer(m.get('delta'), path + '.contacts.memory.delta', -3, 3)
             _require(m['before'] == before and m['after'] - before == m['delta'], path + '.contacts.memory', 'must form a bounded standing history')
-            expected_delta = {'work_completed': 1, 'promise_accepted': 0, 'promise_moved': 0,
+            expected_delta = external['delta'] if external else {'work_completed': 1, 'promise_accepted': 0, 'promise_moved': 0,
                 'promise_kept': 3, 'promise_broken': -2, 'terms_disclosed': 0,
                 'collection_completed': 2, 'collection_failed': -1, 'courier_completed': 2, 'courier_failed': -1}[m['fact']]
             _require(m['after'] == max(-10, min(10, before + expected_delta)), path + '.contacts.memory.delta', 'must match the observed interaction')
             source = choices.get(m['source_id'])
-            if source is not None:
+            if external is not None:
+                _require(m['day'] == external['day'], path + '.contacts.memory.source', 'must match the incident effect day')
+            elif source is not None:
                 selection = source['selection']
                 expected_effect = {'work_completed': 'lawful_work', 'promise_accepted': 'make_promise', 'promise_moved': 'move_promise',
                     'promise_kept': 'keep_promise', 'promise_broken': 'break_promise', 'terms_disclosed': 'introduction'}.get(m['fact'], 'criminal_work')

@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "id": "goon.incident.night_shift.v1",
+  "title": "The Night Shift",
+  "place": "goon.poi.p032",
+  "hub": "goon.neighborhood.n13",
+  "contact_id": "goon.contact.ada",
+  "contact": {
+    "name": "Ada Quinn",
+    "role": "Neighborhood shop owner",
+    "personality": "Practical about losses, appreciative of accurate work, unimpressed by dramatic guesses.",
+    "need": "An accurate alarm inspection and safe daylight reopening.",
+    "knowledge": "Her shop, work commissioned by her, and information actually delivered to her."
+  },
+  "causes": {
+    "break_in": "A forced latch and missing stock confirm a break-in; no offender has been identified.",
+    "faulty_alarm": "A damaged alarm contact triggered the bell; there is no evidence of entry.",
+    "delivery_error": "An authorized delivery used the wrong entrance and triggered the alarm; no offender has been identified."
+  },
+  "complete_pay": 12,
+  "partial_pay": 6,
+  "followup_pay": 8,
+  "stages": {
+    "offer": {
+      "title": "The Night Shift: daylight help",
+      "situation": "Ada offers $12 for a complete inspection, $6 for incomplete observations, $0 if no useful work is delivered. The first evidence day permits a complete inspection, the next only partial work, and the last no useful inspection. A separate unpaid safety check can help the shop instead. Accepting is a real commitment; ignoring an unknown notice is not.",
+      "speaker": "Ada Quinn",
+      "options": [
+        {"id": "accept", "label": "Accept the inspection agreement", "actions": 1, "tradeoff": "One action now and one to inspect. Deadlines and reduced pay are disclosed; uncompleted commitments affect Ada's trust."},
+        {"id": "help", "label": "Help secure the shop lawfully", "actions": 1, "tradeoff": "No immediate wage; reduces disruption and earns a safety-work reference."},
+        {"id": "refuse", "label": "Refuse involvement", "actions": 0, "tradeoff": "No promise, payment, trust loss or forced follow-up."}
+      ]
+    },
+    "work": {
+      "title": "Inspect the alarm evidence",
+      "situation": "Only actual observations can establish a cause. Complete work pays $12; partial observations pay $6; no useful evidence pays $0. The independent shop review proceeds regardless.",
+      "speaker": "Ada Quinn",
+      "options": [{"id": "verify", "label": "Attempt the agreed inspection", "actions": 1, "tradeoff": "Evidence is complete on its first day, partial on its second, gone on its third. Findings are delivered to Ada; no offender is inferred."}]
+    },
+    "report": {
+      "title": "Choose who receives the observations",
+      "situation": "You may submit your actual findings to the Civic Police public incident desk, or lawfully keep them between yourself and the owner. Neither choice creates a player crime or promises a prosecution.",
+      "speaker": "Your incident journal",
+      "options": [
+        {"id": "disclose", "label": "Submit an accurate scoped statement", "actions": 1, "tradeoff": "The desk receives only what you observed and acknowledges the submission to Ada. A later statement-review opportunity may open."},
+        {"id": "withhold", "label": "Withhold the optional statement lawfully", "actions": 0, "tradeoff": "No police disclosure, legal penalty or guilt; a complete private inspection can still earn a shop reference."}
+      ]
+    },
+    "followup": {
+      "title": "A reference changes tomorrow's work",
+      "situation": "Your recorded contribution opened one funded $8 daylight follow-up: safety preparation, private shop records, or a scoped statement review. This is not membership or private-case access.",
+      "speaker": "Ada Quinn",
+      "options": [{"id": "work", "label": "Complete the offered follow-up", "actions": 1, "tradeoff": "One action, one $8 payment, one reference; cannot repeat or reopen this incident."}]
+    }
+  }
+}

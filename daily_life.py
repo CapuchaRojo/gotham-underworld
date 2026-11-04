@@ -74,7 +74,7 @@ def _memory(world, contact, fact, delta, source):
     item = dict(id=f'{contact}.memory.{len(person["memories"]) + 1}', day=world['day'],
         fact=fact, source_id=source, before=before, after=person['standing'], delta=person['standing'] - before)
     person['memories'].append(item)
-    event(world, 'life_memory', f'{load()["contacts"][contact]["name"]} remembers {fact.replace("_", " ")}.',
+    event(world, 'life_memory', f'{contact_definitions(world)[contact]["name"]} remembers {fact.replace("_", " ")}.',
           schema_version=1, contact_id=contact, **deepcopy(item))
     return item['id']
 
@@ -337,8 +337,17 @@ def opportunities(world):
             if r['state'] == 'open' and r['expires_day'] > world['day']]
 
 
+def contact_definitions(world):
+    definitions = load()['contacts']
+    if 'incident_version' in world:
+        from incident_content import load as incident_content
+        content = incident_content()
+        definitions[content['contact_id']] = content['contact']
+    return definitions
+
+
 def contact_report(world):
-    life, definitions = _state(world), load()['contacts']
+    life, definitions = _state(world), contact_definitions(world)
     public_fields = ('name', 'role', 'personality', 'need', 'knowledge')
     memory_fields = ('id', 'day', 'fact', 'source_id', 'before', 'after', 'delta')
     return deepcopy([dict(id=ident, standing=person['standing'],

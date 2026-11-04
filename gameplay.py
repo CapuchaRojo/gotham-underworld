@@ -96,6 +96,8 @@ def next_day(world, *, legal_rules=False):
     navigation_day(world)
     from daily_life import begin_day as life_day
     life_day(world)
+    from world_incidents import begin_day as incident_day
+    incident_day(world)
     return world
 
 
@@ -119,7 +121,7 @@ def show(world):
 
 
 def play(world, filename, *, new_career=False):
-    from game_service import actions_remaining, execute_command
+    from game_service import actions_remaining, execute_command, incident_report
     from game_service import location_report, nearby_destinations, known_places, plan_route
     from game_service import life_report, home_report, contact_report, opportunities, choice_report
     from life_presentation import render_choice, render_life, render_contacts
@@ -144,10 +146,19 @@ def play(world, filename, *, new_career=False):
         verb, *args = command
         try:
             if verb == 'help':
+                print('incidents | enable_incidents | discover_incident <incident-id> <public_notice|contact> | incident_choose <incident-id> <stage> <option-id>')
                 print('life | settle_in | home | pay_room | contacts | opportunities | choices <choice-id> | choose <choice-id> <option-id|displayed-letter>')
                 print('look [place] | nearby | places | route <place> [auto|walk|bus|rail|ferry] | travel <place> [mode] | enable_navigation <neighborhood>')
                 print('mobility | adopt_mobility | receipt <request-id> | route/travel profiles after adoption: auto|free|walk|bus|ferry|monorail')
                 print('status | legal | lay_low | cooperate <case-id> | contest <case-id> | accept <case-id> | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+            elif verb == 'incidents' and not args:
+                print(incident_report(world))
+            elif verb == 'enable_incidents' and not args:
+                print(execute_command(world, verb)['result']['message'])
+            elif verb == 'discover_incident' and len(args) == 2:
+                print(execute_command(world, verb, incident_id=args[0], channel=args[1])['result']['message'])
+            elif verb == 'incident_choose' and len(args) == 3:
+                print(execute_command(world, verb, incident_id=args[0], stage=args[1], option_id=args[2])['result']['message'])
             elif verb in ('life', 'home') and not args:
                 print(render_life(home_report(world) if verb == 'home' else life_report(world)))
             elif verb in ('settle_in', 'pay_room') and not args:
