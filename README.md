@@ -511,8 +511,9 @@ M013.1 changed only Markdown and CLI display strings. M014 adds the optional
 navigation extension, local definitions, service/CLI integration and navigation
 tests while preserving the 198 existing regressions. M015 preserves all 237 M014
 regressions and adds neighborhood choice, ledger, housing, migration and campaign tests.
-The final local suite passes **274 tests** (237 baseline plus 37 new); see the
-[M015 validation report](docs/M015_VALIDATION_REPORT.md) for exact commands and results.
+The corrected local suite passes **283 tests** (237 M014, 37 M015 and nine audit
+regressions); see the [M015 validation report](docs/M015_VALIDATION_REPORT.md) and
+[independent acceptance audit](docs/M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) for evidence.
 Full prologue, combat, broader career, influence and institutional
 acceptance checks are future requirements, not executed feature tests.
 

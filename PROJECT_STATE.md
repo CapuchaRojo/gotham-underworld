@@ -260,9 +260,12 @@ Mission 009 authorizes the bounded implementation below.
 - [Choice contract](docs/GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md), reproducible
   [campaign runner](daily_life_campaigns.py) and [validation evidence](docs/M015_VALIDATION_REPORT.md).
 
-Final local regression result: **274 passed**, including all 237 M014 tests and
-37 new regressions. Five seven-day daily-resume campaigns and five 56-day
-continuations completed; actual outcomes and limits are in the validation report.
+The original submission passed 274 tests (237 M014 plus 37 new). Mission 010's
+[independent acceptance audit](docs/M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) corrected
+promise-source validation, stale-clock roster creation and public memory projection.
+The corrected local suite passes **283 tests**, including nine audit regressions;
+the five seven-day/daily-resume and 56-day campaign results remain unchanged.
+PR #15 remains open and unmerged pending explicit user authorization.
 
 This is one neighborhood with two original contacts and finite roster templates.
 The full prologue, background selection, broad employment economy, combat, advanced

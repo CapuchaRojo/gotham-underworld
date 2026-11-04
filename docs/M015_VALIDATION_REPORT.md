@@ -4,6 +4,11 @@ Mission 009, November 4, 2026. Base: merged M014/PR #14 at
 `fa2f9f5bbf081bde080c6d8b2e46512487027c66`. Feature branch:
 `feature/m015-living-gotham`. Submit a PR against master and **leave it open**.
 
+Mission 010 independently re-executed this submission and added bounded integrity
+corrections. The [acceptance audit](M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) records
+confirmed defects, nine new regressions, unchanged campaign fingerprints and the
+283-test corrected result. The results below retain the original submission's provenance.
+
 ## Foundation audit and implementation decisions
 
 Fetched master, verified equal local/remote hashes and a clean tree, read the
