@@ -2,9 +2,9 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current milestone: **M014 — Gotham World Runtime & Navigation Foundation**, for review
-- Baseline: **M013.1**, merged via PR #13 at
-  `8b68e1efc338a532293262edafd85240cdfa65a3`; 198 existing regression tests preserved
+- Current milestone: **M015 — Living Gotham**, submitted for review; do not merge automatically
+- Baseline: **M014**, merged via PR #14 at
+  `fa2f9f5bbf081bde080c6d8b2e46512487027c66`; 237 existing regression tests preserved
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
 - Entry point: `python gameplay.py`; resume with `python gameplay.py --load`
 - Save contract: version 1; additive migration of unversioned M001-M010 saves
@@ -229,5 +229,43 @@ included. Tests and actual simulation results are reported in the feature PR.
 (198 unchanged plus 31 new), actual historical fixtures, real CLI resume and two
 100-day navigation/reference campaigns. The independent [Mission 008 final audit](docs/M014_FINAL_AUDIT.md)
 records additional corrections, the final test count, CI and PR disposition.
-The [M015 daily-life contract](docs/GOON_M015_DAILY_LIFE_CONTRACT.md) is a proposal
-only; no M015 gameplay is implemented by this audit.
+Mission 008 proposed the [M015 daily-life contract](docs/GOON_M015_DAILY_LIFE_CONTRACT.md).
+Mission 009 authorizes the bounded implementation below.
+
+## M015 implemented scope
+
+- Optional `daily_life_version: 1`, explicitly enrolled with `settle_in` and activated
+  on the next day. No automatic defaults, retroactive charges, invented history,
+  free actions or TU on historical load. Existing `create_career` behavior stays compatible.
+- A disclosed $30/seven-day room arrangement at p031; first due seven advances
+  after acceptance. Prepayment, cash-limited settlement, receipts, $30 arrears cap,
+  basic grace access, and one bounded maintenance credit per unpaid review.
+- Original Tess Navarro and Cal Mercer contact definitions in a separate local
+  pack, with event-backed observed memories and standing bounded to -10..10.
+  Neither reads private legal/household actions unrelated to their own work.
+- Generic consequential choices, stable option/source IDs, hidden/visible-disabled
+  states, advisory detached previews and current-state revalidation. Effect
+  adapters settle actual work/promises; CLI letters map to displayed stable IDs.
+- Finite weekly store shifts, a real personal promise, one renegotiation/follow-up,
+  Cal's explicitly disclosed criminal referral and observed later courier offer.
+  References change future work; refusals and misses have coherent continuations.
+- A continuous actual-cash ledger from enrollment. Criminal referrals invoke the
+  existing legal job resolver once; the ledger records the payout without paying again.
+  Legacy legal fines/NPC support retain detailed domain events plus a net ledger entry.
+- Shared three actions, separate 18 TU, explicit travel, and one idempotent
+  post-court/post-navigation daily phase. No chore or cash reward for home inspection.
+- Commands: `settle_in`, `pay_room`, `choose(choice_id, option_id)`. Detached views:
+  `life_report`, `home_report`, `contact_report`, `opportunities`, `choice_report`.
+  CLI adds `life`, `home`, `contacts`, `opportunities`, `choices` and contextual menus.
+- [Choice contract](docs/GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md), reproducible
+  [campaign runner](daily_life_campaigns.py) and [validation evidence](docs/M015_VALIDATION_REPORT.md).
+
+Final local regression result: **274 passed**, including all 237 M014 tests and
+37 new regressions. Five seven-day daily-resume campaigns and five 56-day
+continuations completed; actual outcomes and limits are in the validation report.
+
+This is one neighborhood with two original contacts and finite roster templates.
+The full prologue, background selection, broad employment economy, combat, advanced
+NPC schedules, new DC actors, graphical frontend and future milestones remain unimplemented.
+Weekly repetition and the legacy faction-support advantage are recorded limitations;
+low cash does not erase home access or block ordinary continuation.

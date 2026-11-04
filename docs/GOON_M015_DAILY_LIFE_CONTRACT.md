@@ -1,6 +1,16 @@
-# M015 readiness proposal: Daily Life & Opportunity Engine
+# M015 daily life — implemented slice and historical readiness proposal
 
-**Planning only.** Mission 008 audits M014; none of the rules below are implemented or tested gameplay. Preserve the current five-chapter [playable prologue contract](GOON_PLAYABLE_PROLOGUE_CONTRACT.md) as a future content milestone. M015 should supply reusable daily-life mechanics without writing that prologue, a dialogue tree, combat, or a citywide NPC scheduler.
+**Mission 009 update:** the bounded implementation is governed by the
+[consequential choice contract](GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md), with actual
+commands and migration behavior in [README](../README.md#living-in-the-neighborhood--m015)
+and executed results in [validation](M015_VALIDATION_REPORT.md). It uses optional
+explicit enrollment, a $30 weekly contribution, finite local rosters, Tess/Cal,
+observed relationship consequences and actual lawful/criminal resolution.
+The five-chapter [playable prologue contract](GOON_PLAYABLE_PROLOGUE_CONTRACT.md)
+remains future content. No full prologue, dialogue tree, combat or NPC scheduler
+is implemented. The sections below retain **Mission 008's historical proposal**,
+including its paper-only seven-day example; the current contract and validation
+supersede its provisional details and identify what actually runs.
 
 ## Smallest useful vertical slice
 
