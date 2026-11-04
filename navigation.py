@@ -27,6 +27,16 @@ def initialize(world, *, home=None, anchor=None):
 
 
 def validate(world):
+    if (world.get('navigation_version') == 2 or 'mobility_version' in world or 'mobility' in world
+            or any(e.get('kind', '').startswith('mobility_') or
+                   (e.get('kind') == 'player_command' and e.get('command') in ('journey', 'enable_mobility'))
+                   for e in world['events'])):
+        from mobility_state import validate as validate_mobility
+        return validate_mobility(world)
+    return _validate_v1(world)
+
+
+def _validate_v1(world):
     from career_state import _integer, _mapping, _require
     version = world.get('navigation_version')
     history = [e for e in world['events'] if e['kind'] in ('navigation_enabled', 'navigation_activated', 'travel')]
@@ -213,6 +223,9 @@ def _search(places, edges, nav, day, origin, destination, policy):
 
 
 def plan_route(world, destination, mode='auto'):
+    from mobility import active, plan_route as mobility_route
+    if active(world):
+        return mobility_route(world, destination, mode)
     nav = _active(world)
     if world['player']['arrested']:
         raise ValueError('Cannot plan current travel while detained; wait for the existing court process')
@@ -233,6 +246,9 @@ def plan_route(world, destination, mode='auto'):
 
 
 def travel(world, destination, mode):
+    from mobility import active
+    if active(world):
+        raise ValueError('Mobility is active; preview and execute a journey through the game service')
     nav = _active(world)
     if world['player']['arrested']:
         raise ValueError('Cannot travel while detained; wait for the existing court process')
@@ -285,11 +301,14 @@ def begin_day(world):
     nav = world.get('navigation')
     if nav is None or nav['tu_day'] >= world['day']:
         return
+    from mobility import checkpoint, activate
+    boundary = checkpoint(world)
     nav['tu_day'], nav['tu_used'] = world['day'], 0
     if nav['location_id'] is None and world['day'] >= nav['activation_day']:
         nav['location_id'] = nav['anchor_id']
         event(world, 'navigation_activated', 'Navigation activated at the selected public anchor.',
               location_id=nav['location_id'], cause='scheduled_adoption')
+    activate(world, boundary)
 
 
 def location_report(world, destination=None):

@@ -2,12 +2,16 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current milestone: **M015 — Living Gotham**, submitted for review; do not merge automatically
-- Baseline: **M014**, merged via PR #14 at
-  `fa2f9f5bbf081bde080c6d8b2e46512487027c66`; 237 existing regression tests preserved
+- Current local slice: **M016-A — versioned mobility and two-station monorail pilot**, for review
+- Implementation branch: `feature/m016a-mobility-pilot`; baseline audited M015
+  `3251381177bf11c0b07cd940329ebd0be3a7bb52`, 283 existing tests preserved
+- PR #15 remains open and unmerged; its submitted branch is unchanged. Last
+  merged baseline remains M014 at `fa2f9f5bbf081bde080c6d8b2e46512487027c66`
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
 - Entry point: `python gameplay.py`; resume with `python gameplay.py --load`
 - Save contract: version 1; additive migration of unversioned M001-M010 saves
+- Mobility contract: optional paired nav2/mobility1; explicit next-wait adoption,
+  immutable legacy checkpoint/schema1 history, typed schema2 journeys and receipts
 - Legal contract: independent `legal_version: 1`; additive M001-M011 migration
 - Competition contract: `competition_version: 1`; persisted profiles/bindings,
   additive M001-M012 migration, and activation on the next advanced day
@@ -263,7 +267,7 @@ Mission 009 authorizes the bounded implementation below.
 The original submission passed 274 tests (237 M014 plus 37 new). Mission 010's
 [independent acceptance audit](docs/M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) corrected
 promise-source validation, stale-clock roster creation and public memory projection.
-The corrected local suite passes **283 tests**, including nine audit regressions;
+The corrected M015 baseline passed **283 tests**, including nine audit regressions;
 the five seven-day/daily-resume and 56-day campaign results remain unchanged.
 PR #15 remains open and unmerged pending explicit user authorization.
 
@@ -272,3 +276,37 @@ The full prologue, background selection, broad employment economy, combat, advan
 NPC schedules, new DC actors, graphical frontend and future milestones remain unimplemented.
 Weekly repetition and the legacy faction-support advantage are recorded limitations;
 low cash does not erase home access or block ordinary continuation.
+
+## M016-A implemented scope and limits
+
+- Explicit service adoption, pending save/resume without activation, and one
+  activation inside the existing post-court navigation reset before daily life.
+  Three actions/day and 18 TU/day remain separate and unchanged.
+- Additive overlay only: p039/p071 platforms, four existing underlying rail
+  corridors, 7-TU/$2 station-frontage journey versus free 8-TU bus. No atlas edit.
+- Policy C: abstract rail remains for non-adopters and old history; active rules2
+  requires the station service and prevents old travel/rail command bypass.
+- Atomic candidate execution, per-request retry rejection, one boarding charge,
+  safe-prefix closure observations, detached status/quotes/receipts and projected
+  return using remaining resources. Reuse CLI `route`/`travel`; new `mobility`,
+  `adopt_mobility`, `receipt` expose status, enrollment and accepted receipts.
+- Existing persistence/backup and daily-life cash observer reused. Frozen M015
+  fixture generated from baseline source is outside the legacy fixture collection
+  so existing pre-life fixture tests retain their intended scope.
+- Overlay fingerprint:
+  `d59fe323290fd1216d8b5e1ffdcde5924b123cedc0404ce22215d538779ec7ee`.
+- Executed results and exact files are maintained in the
+  [M016-A implementation/validation report](docs/M016_A_IMPLEMENTATION_VALIDATION.md).
+  The three preserved M016 contracts distinguish this slice from future proposals.
+- Final local regression: **332 passing tests** (283 existing plus49 new),
+  two365-day seeded replay campaigns and final-code30-day daily disk-resume
+  checks; full worlds match at every command/day. These are local results,
+  not new GitHub CI on this unpushed implementation.
+
+No skateboards, bicycles, cars, acquisition gameplay, licensing, theft, impound,
+new citywide disruption generator, advanced schedules or prologue are implemented.
+Search is bounded; it can return an explicit planning limit requiring a simpler
+profile/waypoint. Full candidate validation and save history grow with career
+length. Only two stations and a modest cash/TU trade-off exist; no transport XP,
+real-time timers or commuting reward. Keep PR #15 unmerged and do not push this
+isolated implementation without explicit authorization.

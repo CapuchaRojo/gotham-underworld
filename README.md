@@ -7,9 +7,11 @@
 A deterministic, offline, single-player crime-city simulation and terminal RPG
 prototype about an ordinary criminal surviving work, loyalties, and a changing
 city. Python 3.14 standard library only: no packages, external AI services,
-or paid APIs are required. The executable is **M015 — Living Gotham: Daily Life,
-Opportunity Engine & Consequential Choices**, built on the merged M014 navigation
-foundation. Combat is deferred to an unassigned future milestone.
+or paid APIs are required. The local executable includes **M016-A — optional
+versioned mobility and a two-station monorail pilot**, alongside M015 daily life
+and the merged M014 navigation foundation. This is an isolated implementation
+for review; M015 PR #15 remains open and unmerged. Broader M016 vehicle systems
+and combat are not implemented.
 
 This is an independent, unofficial prototype. Its intended future creative
 setting is the DC universe; it has no endorsement, authorization, or affiliation
@@ -114,7 +116,7 @@ health, combat or NPC scheduling is implemented.
 | `look [place]` | Current or known place metadata, entry requirements and free help |
 | `nearby`, `places` | Known local destinations or public atlas; private homes need permission |
 | `route <place> [mode]` | Detached preview of outbound/return TU and affordability |
-| `travel <place> [mode]` | Atomic movement; modes `auto`, `walk`, `bus`, `rail`, `ferry` |
+| `travel <place> [mode]` | Atomic movement; before mobility adoption: `auto`, `walk`, `bus`, `rail`, `ferry`; adopted profiles below |
 | `enable_navigation <neighborhood>` | Historical career opt-in at a public hub, active after next `wait` |
 
 Use short IDs such as `p032`/`n13`, their full stable IDs, or `home` when a recorded
@@ -146,6 +148,90 @@ then `wait`. No navigation is imposed by migration or loading. The independent
 `navigation_version: 1` extension pins atlas/rules/content fingerprint; missing or
 incompatible required content fails clearly. All three existing territory accounts
 remain authoritative; 176 places do not multiply income or warfare turns.
+
+## Optional station mobility — M016-A
+
+New and historical careers keep their existing navigation until explicit
+adoption. Loading or inspecting never enrolls a career. Historical careers
+without navigation first use `enable_navigation n17`, then `wait`.
+
+| Command | Behavior |
+| --- | --- |
+| `mobility` | Detached status, adoption availability, stations and known service disruption information |
+| `adopt_mobility` | Schedule mobility once; it activates during the next explicit `wait`, with no resource grant |
+| `route <place> [profile]` | Read-only door-to-door TU/fare quote, policy return and free-return alternatives |
+| `travel <place> [profile]` | Commit the quoted journey atomically using the existing CLI verb |
+| `receipt <request-id>` | Inspect a detached accepted-request receipt without repeating effects |
+
+After activation, profiles are `auto` (alias `fastest`), `free`, `walk`, `bus`,
+`ferry`, `monorail`. Legacy abstract `rail` is retired **only for adopters**.
+Old rail journeys and all non-adopted routing keep their original interpretation.
+The pilot links **p039 Highbridge Metro Stop → p071 South Gate Subway Stop**,
+following n17–n18–n23–n22–n30 via four existing atlas corridors. Only these two
+public frontages have monorail gates; neighborhoods cannot board directly.
+
+The **7 TU/$2** scope is frontage-to-frontage: zero-cost gates/alighting,
+1-TU boarding and 6-TU ride. Actual approach/onward travel is additional. From
+home, a walking-only approach to p039 adds 4 TU; `free` can use the existing
+3-TU bus approach separately. Current p039↔p071 bus costs **8 TU/$0** each way;
+walking costs 18. No fare is charged for merely previewing or reaching a station.
+
+```text
+mobility
+travel p039
+adopt_mobility
+wait
+route p071 monorail
+travel p071 monorail
+route p039 bus
+travel p039 bus
+save
+```
+
+The two committed station trips above use **15 TU/$2**, zero gameplay actions
+and no day advance. Return previews target the journey origin by default,
+preserving `route` semantics. The API can specify another `return_to`. They use
+the actual cash/TU left after outbound settlement and distinguish policy return
+from a free alternative. An outbound cap limits that transaction, not the actual
+resources available for a later return command. Returns remain conditional on
+known access/disruptions; a quote is not a reservation.
+
+Known closures affect planning. An unknown underlying rail closure is observed
+at the departure station before boarding; only an actual approach prefix is
+charged, never the untraveled fare/ride. Free bus/walking remain available where
+the atlas permits. With $0 and insufficient TU for the return, inspect/save and
+explicitly wait; only a real day transition restores the normal 18 TU and three
+actions. Waiting can expire an existing promise/offer. No paid rescue or vehicle
+purchase is required; restricted institutions and custody remain enforced.
+
+Service integrations use `execute_command(world, 'enable_mobility',
+overlay_id=OVERLAY_ID, request_id='client.adopt.1')`, then `advance_day(world)`.
+For travel, call `mobility.plan_route(world, 'p071', 'monorail')` and pass its
+`arguments` to `execute_command(world, 'journey', **quote['arguments'])`.
+Reuse the same request ID only to detect a retry: duplicates reject unchanged;
+`mobility_receipt` retrieves the old receipt. Route views and responses are detached.
+
+Outer save version stays 1. Opt-in pairs `navigation_version: 2` with
+`mobility_version: 1`; pending routing remains rules1 until activation, then
+rules2. Schema1 travel events are unchanged and checked at the legacy checkpoint;
+schema2 events record typed legs, resource deltas, discoveries and charge/receipt
+IDs. The base atlas fingerprint stays unchanged. Separately pinned overlay:
+`d59fe323290fd1216d8b5e1ffdcde5924b123cedc0404ce22215d538779ec7ee`.
+Missing/changed required content fails clearly; old binaries reject nav2 instead
+of ignoring mobility. Existing atomic replacement/backup behavior is reused.
+
+See the [implementation/validation report](docs/M016_A_IMPLEMENTATION_VALIDATION.md),
+[architecture](docs/M016_MOBILITY_ARCHITECTURE.md),
+[acceptance matrix](docs/M016_MOBILITY_ACCEPTANCE_MATRIX.md) and
+[risk register](docs/M016_INTEGRATION_RISK_REGISTER.md). Repeat deterministic
+campaign evidence with `python -B mobility_campaigns.py --days 365 --seeds 17 42
+--resume-every 30`. These stress commutes are test policies, not reward-generating
+missions. Vehicles, theft, licensing, impound, expanded schedules and the full
+prologue remain unimplemented. The broader M016 milestone is not complete.
+
+Local M016-A verification: **332 tests pass** (283 existing plus49 new), with
+seeded365-day replay and final30-day daily disk-resume checks. Exact commands,
+hashes, limitations and the distinction from existing GitHub CI are in the report.
 
 ## Living in the neighborhood — M015
 
@@ -511,7 +597,7 @@ M013.1 changed only Markdown and CLI display strings. M014 adds the optional
 navigation extension, local definitions, service/CLI integration and navigation
 tests while preserving the 198 existing regressions. M015 preserves all 237 M014
 regressions and adds neighborhood choice, ledger, housing, migration and campaign tests.
-The corrected local suite passes **283 tests** (237 M014, 37 M015 and nine audit
+The audited M015 baseline passed **283 tests** (237 M014, 37 M015 and nine audit
 regressions); see the [M015 validation report](docs/M015_VALIDATION_REPORT.md) and
 [independent acceptance audit](docs/M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) for evidence.
 Full prologue, combat, broader career, influence and institutional

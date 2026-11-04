@@ -123,12 +123,14 @@ def play(world, filename, *, new_career=False):
     from game_service import location_report, nearby_destinations, known_places, plan_route
     from game_service import life_report, home_report, contact_report, opportunities, choice_report
     from life_presentation import render_choice, render_life, render_contacts
+    import mobility
+    from mobility_content import OVERLAY_ID
     menus = {}
     prepare(world)
     print('Gotham: The Goon - A Living Gotham Crime RPG')
     print("Everybody wants to rule Gotham. You're just trying to survive it.")
     print('Unofficial DC-inspired prototype; no claimed endorsement or license. Working title not legally cleared.')
-    print('M015 neighborhood life. Three actions and 18 travel TU per day; wait to refresh.')
+    print('M016-A optional station mobility. Three actions and 18 travel TU per day; wait to refresh.')
     print('Use life to inspect optional room terms and settle_in to begin the neighborhood week.')
     print('Type help for commands.')
     while True:
@@ -144,6 +146,7 @@ def play(world, filename, *, new_career=False):
             if verb == 'help':
                 print('life | settle_in | home | pay_room | contacts | opportunities | choices <choice-id> | choose <choice-id> <option-id|displayed-letter>')
                 print('look [place] | nearby | places | route <place> [auto|walk|bus|rail|ferry] | travel <place> [mode] | enable_navigation <neighborhood>')
+                print('mobility | adopt_mobility | receipt <request-id> | route/travel profiles after adoption: auto|free|walk|bus|ferry|monorail')
                 print('status | legal | lay_low | cooperate <case-id> | contest <case-id> | accept <case-id> | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
             elif verb in ('life', 'home') and not args:
                 print(render_life(home_report(world) if verb == 'home' else life_report(world)))
@@ -181,12 +184,30 @@ def play(world, filename, *, new_career=False):
                     print(f'{place["id"]}: {place["label"]} | {place["type"]} | access {"/".join(place["access"])}')
             elif verb == 'route' and 1 <= len(args) <= 2:
                 quote = plan_route(world, args[0], args[1] if len(args) == 2 else 'auto')
+                if mobility.active(world):
+                    print(f'{quote["cost"]} TU / ${quote["fare"]} outbound | affordable: {quote["affordable"]} | return target: {quote["return_to"]}')
+                    print(f'Policy return: {quote["return_cost"]} TU / ${quote["return_fare"]}, fits: {quote["return_fits_today"]}; free return: {quote["free_return_cost"]} TU, fits: {quote["free_return_fits_today"]}')
+                    print(quote.get('reason', 'Return is conditional on known access/closures; no fare or TU spent by preview.'))
+                    for leg in quote['legs']:
+                        print(f'{leg["kind"]}/{leg["mode"]}: {leg["from_id"]} -> {leg["to_id"]} ({leg["tu"]} TU, ${leg["cash_cost"]})')
+                    continue
                 print(f'{quote["cost"]} TU outbound; {quote["return_cost"]} TU return; {quote["remaining_tu"]} remain | affordable: {quote["affordable"]} | round trip fits: {quote["return_fits_today"]}')
                 for leg in quote['legs']:
                     print(f'{leg["mode"]}: {leg["from_id"]} -> {leg["to_id"]} ({leg["tu"]} TU)')
                 print('Local journeys cost at least 1 TU. Unobserved disruptions may interrupt a journey at a safe node.')
             elif verb == 'travel' and 1 <= len(args) <= 2:
-                print(execute_command(world, 'travel', destination=args[0], mode=args[1] if len(args) == 2 else 'auto')['result']['message'])
+                if mobility.active(world):
+                    quote = mobility.plan_route(world, args[0], args[1] if len(args) == 2 else 'fastest')
+                    print(execute_command(world, 'journey', **quote['arguments'])['result']['message'])
+                else:
+                    print(execute_command(world, 'travel', destination=args[0], mode=args[1] if len(args) == 2 else 'auto')['result']['message'])
+            elif verb == 'mobility' and not args:
+                print(mobility.mobility_report(world))
+            elif verb == 'adopt_mobility' and not args:
+                print(execute_command(world, 'enable_mobility', overlay_id=OVERLAY_ID,
+                    request_id=f'goon.request.adopt.{world["command_sequence"] + 1}')['result']['message'])
+            elif verb == 'receipt' and len(args) == 1:
+                print(mobility.mobility_receipt(world, args[0]))
             elif verb == 'enable_navigation' and len(args) == 1:
                 print(execute_command(world, 'enable_navigation', anchor=args[0])['result']['message'])
             elif verb == 'status':
