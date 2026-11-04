@@ -14,6 +14,8 @@ from legal_engine import (accept, advance_day as legal_day, change_heat, contest
                           cooperate, job as legal_job, lay_low)
 import navigation
 from navigation import location_report, nearby_destinations, known_places, plan_route
+import daily_life
+from daily_life import life_report, home_report, contact_report, opportunities, choice_report
 
 # Stable command IDs; future commands can reuse the same result/event envelope.
 COMMANDS = {
@@ -27,6 +29,9 @@ COMMANDS = {
     'accept': (1, ('case_id',), accept),
     'travel': (0, ('destination', 'mode'), navigation.travel),
     'enable_navigation': (0, ('anchor',), navigation.enable_navigation),
+    'settle_in': (0, (), daily_life.settle_in),
+    'pay_room': (0, (), daily_life.pay_room),
+    'choose': (daily_life.choice_cost, ('choice_id', 'option_id'), daily_life.choose),
 }
 
 
@@ -74,6 +79,8 @@ def execute_command(world, command, **arguments):
     cost, names, handler = COMMANDS[command]
     if set(arguments) != set(names) or any(not isinstance(arguments[n], str) for n in names):
         raise ValueError(f'{command} requires string arguments: {", ".join(names) or "none"}')
+    if callable(cost):
+        cost = cost(world, *(arguments[name] for name in names))
     if actions_remaining(world) < cost:
         raise ValueError('Daily actions exhausted; use wait')
     candidate = deepcopy(world)
@@ -83,6 +90,8 @@ def execute_command(world, command, **arguments):
         candidate['actions_used'] = 0
     change_heat(candidate, 0, 'legacy_heat_normalization')
     result = handler(candidate, *(arguments[name] for name in names))
+    daily_life.record_balance(candidate, 'existing_rules', f'goon.command.{candidate["command_sequence"] + 1}',
+                              command_id=candidate['command_sequence'] + 1)
     if command == 'wait':
         candidate['action_day'] = candidate['day']
         candidate['actions_used'] = 0

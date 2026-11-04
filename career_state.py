@@ -222,6 +222,8 @@ def validate(world):
     validate_competition(world)
     from navigation import validate as validate_navigation
     validate_navigation(world)
+    from daily_life_state import validate as validate_life
+    validate_life(world)
     return world
 
 

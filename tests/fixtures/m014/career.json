@@ -1,0 +1,455 @@
+{
+  "seed": 17,
+  "day": 0,
+  "factions": {
+    "Harbor Syndicate": {
+      "power": 70,
+      "cash": 80
+    },
+    "Carnival Crew": {
+      "power": 45,
+      "cash": 35
+    },
+    "Iron Mask Outfit": {
+      "power": 60,
+      "cash": 65
+    },
+    "Civic Police": {
+      "power": 75,
+      "cash": 70
+    },
+    "Night Watch": {
+      "power": 35,
+      "cash": 20
+    }
+  },
+  "people": {
+    "Mara Voss": {
+      "faction": "Harbor Syndicate",
+      "memory": [
+        {
+          "day": 0,
+          "fact": "Rookie joined Harbor Syndicate."
+        },
+        {
+          "day": 0,
+          "fact": "Rookie completed courier for Harbor Syndicate (attempt 0)."
+        },
+        {
+          "day": 0,
+          "fact": "Rookie completed courier for Harbor Syndicate (attempt 1)."
+        },
+        {
+          "day": 0,
+          "fact": "Rookie completed courier for Harbor Syndicate (attempt 2)."
+        }
+      ],
+      "relationship": {
+        "trust": 14,
+        "respect": 8,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": [
+        {
+          "day": 0,
+          "cause": "recruitment",
+          "changes": {
+            "trust": 5,
+            "respect": 2
+          }
+        },
+        {
+          "day": 0,
+          "cause": "job_success",
+          "changes": {
+            "trust": 3,
+            "respect": 2
+          },
+          "source_attempt": 0
+        },
+        {
+          "day": 0,
+          "cause": "job_success",
+          "changes": {
+            "trust": 3,
+            "respect": 2
+          },
+          "source_attempt": 1
+        },
+        {
+          "day": 0,
+          "cause": "job_success",
+          "changes": {
+            "trust": 3,
+            "respect": 2
+          },
+          "source_attempt": 2
+        }
+      ]
+    },
+    "Eli Crowe": {
+      "faction": "Carnival Crew",
+      "memory": [],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": []
+    },
+    "Detective Vale": {
+      "faction": "Civic Police",
+      "memory": [],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": []
+    }
+  },
+  "player": {
+    "name": "Rookie",
+    "heat": 0,
+    "cash": 115,
+    "arrested": false,
+    "custody": "free",
+    "faction": "Harbor Syndicate",
+    "reputation": {
+      "Harbor Syndicate": 4,
+      "Carnival Crew": 0,
+      "Iron Mask Outfit": 0
+    },
+    "jobs_completed": 3
+  },
+  "cases": [],
+  "events": [
+    {
+      "day": 0,
+      "kind": "recruitment",
+      "message": "Rookie joined Harbor Syndicate."
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 1: join.",
+      "command": "join",
+      "command_id": 1,
+      "actor": "player",
+      "arguments": {
+        "faction": "Harbor Syndicate"
+      },
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 0,
+      "kind": "job",
+      "message": "Rookie completed courier for Harbor Syndicate; earned $25.",
+      "job": "courier",
+      "attempt": 0,
+      "success": true,
+      "roll": 95,
+      "failure_chance": 16,
+      "payout": 25,
+      "cause": "player_job",
+      "heat_tier": "low",
+      "risk_bonus": 0,
+      "witness_roll": null,
+      "witness_chance": 0,
+      "witnessed": false
+    },
+    {
+      "day": 0,
+      "kind": "territory",
+      "message": "Harbor Syndicate reinforced Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "control_delta": 2,
+      "source_attempt": 0,
+      "cause": "successful_job"
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 2: job.",
+      "command": "job",
+      "command_id": 2,
+      "actor": "player",
+      "arguments": {
+        "kind": "courier"
+      },
+      "action_cost": 1,
+      "cause": "player_command"
+    },
+    {
+      "day": 0,
+      "kind": "job",
+      "message": "Rookie completed courier for Harbor Syndicate; earned $25.",
+      "job": "courier",
+      "attempt": 1,
+      "success": true,
+      "roll": 55,
+      "failure_chance": 14,
+      "payout": 25,
+      "cause": "player_job",
+      "heat_tier": "low",
+      "risk_bonus": 0,
+      "witness_roll": null,
+      "witness_chance": 0,
+      "witnessed": false
+    },
+    {
+      "day": 0,
+      "kind": "territory",
+      "message": "Harbor Syndicate reinforced Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "control_delta": 2,
+      "source_attempt": 1,
+      "cause": "successful_job"
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 3: job.",
+      "command": "job",
+      "command_id": 3,
+      "actor": "player",
+      "arguments": {
+        "kind": "courier"
+      },
+      "action_cost": 1,
+      "cause": "player_command"
+    },
+    {
+      "day": 0,
+      "kind": "job",
+      "message": "Rookie completed courier for Harbor Syndicate; earned $25.",
+      "job": "courier",
+      "attempt": 2,
+      "success": true,
+      "roll": 34,
+      "failure_chance": 12,
+      "payout": 25,
+      "cause": "player_job",
+      "heat_tier": "low",
+      "risk_bonus": 0,
+      "witness_roll": null,
+      "witness_chance": 0,
+      "witnessed": false
+    },
+    {
+      "day": 0,
+      "kind": "territory",
+      "message": "Harbor Syndicate reinforced Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "control_delta": 2,
+      "source_attempt": 2,
+      "cause": "successful_job"
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 4: job.",
+      "command": "job",
+      "command_id": 4,
+      "actor": "player",
+      "arguments": {
+        "kind": "courier"
+      },
+      "action_cost": 1,
+      "cause": "player_command"
+    },
+    {
+      "day": 0,
+      "kind": "travel",
+      "message": "Arrived at Uptown General Store; spent 1 TU.",
+      "schema_version": 1,
+      "journey_id": 1,
+      "command_id": 5,
+      "origin": "goon.poi.p031",
+      "destination": "goon.poi.p032",
+      "arrived": "goon.poi.p032",
+      "tu_before": 0,
+      "tu_cost": 1,
+      "tu_after": 1,
+      "interrupted": false,
+      "mode": "auto",
+      "legs": [
+        {
+          "edge_id": "goon.edge.access.p031",
+          "from_id": "goon.poi.p031",
+          "to_id": "goon.neighborhood.n13",
+          "mode": "walk",
+          "tu": 0
+        },
+        {
+          "edge_id": "goon.edge.access.p032",
+          "from_id": "goon.neighborhood.n13",
+          "to_id": "goon.poi.p032",
+          "mode": "walk",
+          "tu": 0
+        }
+      ],
+      "traversed": [
+        "goon.edge.access.p031",
+        "goon.edge.access.p032"
+      ],
+      "discoveries": [],
+      "cause": "player_travel"
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 5: travel.",
+      "command": "travel",
+      "command_id": 5,
+      "actor": "player",
+      "arguments": {
+        "destination": "p032",
+        "mode": "auto"
+      },
+      "action_cost": 0,
+      "cause": "player_command"
+    }
+  ],
+  "job_attempts": 3,
+  "consequence_version": 1,
+  "npc_action_version": 1,
+  "npc_action_last_day": {},
+  "districts": {
+    "Harbor Docks": {
+      "owner": "Harbor Syndicate",
+      "wealth": 60,
+      "control": 71
+    },
+    "Carnival Row": {
+      "owner": "Carnival Crew",
+      "wealth": 45,
+      "control": 65
+    },
+    "Ironworks": {
+      "owner": "Iron Mask Outfit",
+      "wealth": 50,
+      "control": 65
+    }
+  },
+  "economy_last_day": -1,
+  "district_mission_version": 1,
+  "district_mission_last_day": -1,
+  "district_intel": {},
+  "warfare_version": 1,
+  "warfare_last_day": -1,
+  "strategy_version": 1,
+  "strategy_last_day": 0,
+  "faction_strategy": {},
+  "save_version": 1,
+  "action_day": 0,
+  "actions_used": 3,
+  "command_sequence": 5,
+  "legal_version": 1,
+  "legal": {
+    "last_tick_day": 0,
+    "last_lay_low_day": -1,
+    "last_crime_day": -1,
+    "responses": {},
+    "record": []
+  },
+  "competition_version": 1,
+  "competition": {
+    "activation_day": 2,
+    "profiles": {
+      "trade_network": {
+        "revenue_percent": 125,
+        "recovery_income": 6,
+        "recovery_power": 2,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 35,
+        "recruitment_cost": 6,
+        "recruitment_gain": 7,
+        "attack_cost": 12,
+        "defense_cost": 8,
+        "attack_base": 5,
+        "defense_base": 6,
+        "defense_threshold": 45,
+        "consolidation_threshold": 75,
+        "attack_reserve": 36,
+        "min_attack_power": 25,
+        "treasury_cap": 240,
+        "recovery_cap": 60
+      },
+      "street_network": {
+        "revenue_percent": 100,
+        "recovery_income": 8,
+        "recovery_power": 3,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 40,
+        "recruitment_cost": 4,
+        "recruitment_gain": 6,
+        "attack_cost": 10,
+        "defense_cost": 9,
+        "attack_base": 5,
+        "defense_base": 5,
+        "defense_threshold": 35,
+        "consolidation_threshold": 65,
+        "attack_reserve": 28,
+        "min_attack_power": 20,
+        "treasury_cap": 180,
+        "recovery_cap": 50
+      },
+      "industrial_network": {
+        "revenue_percent": 135,
+        "recovery_income": 5,
+        "recovery_power": 2,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 30,
+        "recruitment_cost": 5,
+        "recruitment_gain": 9,
+        "attack_cost": 13,
+        "defense_cost": 7,
+        "attack_base": 4,
+        "defense_base": 7,
+        "defense_threshold": 55,
+        "consolidation_threshold": 85,
+        "attack_reserve": 40,
+        "min_attack_power": 30,
+        "treasury_cap": 220,
+        "recovery_cap": 70
+      }
+    },
+    "factions": {
+      "Harbor Syndicate": "trade_network",
+      "Carnival Crew": "street_network",
+      "Iron Mask Outfit": "industrial_network"
+    }
+  },
+  "navigation_version": 1,
+  "navigation": {
+    "atlas_version": 1,
+    "atlas_fingerprint": "14a38c5376989351d83bf90ed172c557a3dbf13c1323a115d2c2144f5136860a",
+    "rules_version": 1,
+    "enabled_day": 0,
+    "activation_day": 0,
+    "anchor_id": "goon.neighborhood.n13",
+    "home_id": "goon.poi.p031",
+    "location_id": "goon.poi.p032",
+    "tu_day": 0,
+    "tu_used": 1,
+    "journey_sequence": 1,
+    "permissions": [
+      "goon.poi.p031"
+    ],
+    "closures": []
+  }
+}

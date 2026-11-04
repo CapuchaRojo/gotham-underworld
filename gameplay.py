@@ -94,6 +94,8 @@ def next_day(world, *, legal_rules=False):
         resolve(world, legacy=not legal_rules)
     from navigation import begin_day as navigation_day
     navigation_day(world)
+    from daily_life import begin_day as life_day
+    life_day(world)
     return world
 
 
@@ -119,11 +121,15 @@ def show(world):
 def play(world, filename, *, new_career=False):
     from game_service import actions_remaining, execute_command
     from game_service import location_report, nearby_destinations, known_places, plan_route
+    from game_service import life_report, home_report, contact_report, opportunities, choice_report
+    from life_presentation import render_choice, render_life, render_contacts
+    menus = {}
     prepare(world)
     print('Gotham: The Goon - A Living Gotham Crime RPG')
     print("Everybody wants to rule Gotham. You're just trying to survive it.")
     print('Unofficial DC-inspired prototype; no claimed endorsement or license. Working title not legally cleared.')
-    print('M014 world navigation. Three actions and 18 travel TU per day; wait to refresh.')
+    print('M015 neighborhood life. Three actions and 18 travel TU per day; wait to refresh.')
+    print('Use life to inspect optional room terms and settle_in to begin the neighborhood week.')
     print('Type help for commands.')
     while True:
         try:
@@ -136,8 +142,30 @@ def play(world, filename, *, new_career=False):
         verb, *args = command
         try:
             if verb == 'help':
+                print('life | settle_in | home | pay_room | contacts | opportunities | choices <choice-id> | choose <choice-id> <option-id|displayed-letter>')
                 print('look [place] | nearby | places | route <place> [auto|walk|bus|rail|ferry] | travel <place> [mode] | enable_navigation <neighborhood>')
                 print('status | legal | lay_low | cooperate <case-id> | contest <case-id> | accept <case-id> | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+            elif verb in ('life', 'home') and not args:
+                print(render_life(home_report(world) if verb == 'home' else life_report(world)))
+            elif verb in ('settle_in', 'pay_room') and not args:
+                print(execute_command(world, verb)['result']['message'])
+            elif verb == 'contacts' and not args:
+                print(render_contacts(contact_report(world)))
+            elif verb == 'opportunities' and not args:
+                for row in opportunities(world):
+                    print(f'{row["id"]}: {row["title"]} | {row["speaker"]} | days {row["open_day"]}-{row["expires_day"] - 1}')
+                print('Use choices <id> for current options and their locations, costs, and consequences.')
+            elif verb == 'choices' and len(args) == 1:
+                text, menus[args[0]] = render_choice(choice_report(world, args[0]))
+                print(text)
+            elif verb == 'choose' and len(args) == 2:
+                choice_id, option_id = args
+                if option_id in menus.get(choice_id, {}):
+                    option_id = menus[choice_id][option_id]
+                elif (len(option_id) == 1 and option_id.isupper()) or option_id.isdecimal():
+                    raise ValueError('Display choices first to use a letter, or pass its stable option ID')
+                print(execute_command(world, 'choose', choice_id=choice_id, option_id=option_id)['result']['message'])
+                print(render_life(life_report(world)))
             elif verb == 'look' and len(args) <= 1:
                 report = location_report(world, args[0] if args else None)
                 place = report['place']
