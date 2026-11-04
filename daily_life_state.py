@@ -146,6 +146,10 @@ def validate(world):
                  path + '.' + kind, 'must identify each source exactly once')
 
     promises = life['promises']
+    accepted = {f'goon.promise.{r["week"]}.tess': r['id'] for r in choices.values()
+                if r['selection'] and r['selection']['outcome']['effect'] == 'make_promise'}
+    _require(set(promises) == set(accepted), path + '.promises',
+             'must retain one commitment for every accepted invitation')
     for ident, p in promises.items():
         _mapping(p, path + '.promises[]')
         _integer(p.get('week'), path + '.promises.week', 0, max_week)
@@ -154,7 +158,8 @@ def validate(world):
         due = life['activation_day'] + p['week'] * 7 + (4 if p['renegotiated'] else 2)
         _integer(p.get('due_day'), path + '.promises.due_day', due, due)
         source = choices.get(p.get('source_id')) if isinstance(p.get('source_id'), str) else None
-        _require(source is not None and source['selection'] is not None and source['selection']['outcome']['effect'] == 'make_promise', path + '.promises.source_id', 'must reference its accepted invitation')
+        _require(p.get('source_id') == accepted[ident] and source is not None and source['selection'] is not None and
+                 source['selection']['outcome']['effect'] == 'make_promise', path + '.promises.source_id', 'must reference its own accepted invitation')
         _require(p.get('status') in ('pending', 'kept', 'broken'), path + '.promises.status', 'is unsupported')
         if p['status'] == 'pending':
             _require(p.get('resolved_day') is None and p.get('resolution_source') is None and p['due_day'] > life['last_tick_day'], path + '.promises', 'must await a future deadline')
@@ -167,9 +172,9 @@ def validate(world):
                 resolution = choices[p['resolution_source']]['selection']
                 effect = 'keep_promise' if p['status'] == 'kept' else 'break_promise'
                 _require(resolution is not None and resolution['outcome']['effect'] == effect and resolution['day'] == p['resolved_day'], path + '.promises', 'must match its selected resolution')
-        if p['renegotiated']:
-            moved = choices.get(f'goon.choice.{p["week"]}.crossroads', {}).get('selection')
-            _require(moved is not None and moved['outcome']['effect'] == 'move_promise', path + '.promises', 'must reference its one renegotiation')
+        moved = choices.get(f'goon.choice.{p["week"]}.crossroads', {}).get('selection')
+        was_moved = moved is not None and moved['outcome']['effect'] == 'move_promise'
+        _require(p['renegotiated'] == was_moved, path + '.promises.renegotiated', 'must match its committed renegotiation choice')
     terminal_promises = {k: p for k, p in promises.items() if p['status'] != 'pending'}
     promise_events = [e for e in history if e['kind'] == 'life_promise']
     _require(len(promise_events) == len(terminal_promises), path + '.promises.events', 'must record each terminal promise once')

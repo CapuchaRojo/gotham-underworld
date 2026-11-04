@@ -105,8 +105,14 @@ def _week_roster(world):
     for key, definition in sorted(content['choices'].items()):
         if definition.get('dynamic') or (key == 'cal_intro' and _knows(life, 'cal_terms')):
             continue
+        open_day = base + definition['start']
+        expires_day = open_day + definition['duration']
+        # A supported legacy clock-only save may resume partway through a new
+        # roster week. Do not create already-expired offers at its next tick.
+        if expires_day <= world['day']:
+            continue
         _open(world, f'goon.choice.{week}.{key}', key, week,
-              base + definition['start'], base + definition['start'] + definition['duration'],
+              open_day, expires_day,
               f'goon.roster.{week}.{key}')
 
 
@@ -334,7 +340,9 @@ def opportunities(world):
 def contact_report(world):
     life, definitions = _state(world), load()['contacts']
     public_fields = ('name', 'role', 'personality', 'need', 'knowledge')
-    return deepcopy([dict(id=ident, standing=person['standing'], memories=person['memories'],
+    memory_fields = ('id', 'day', 'fact', 'source_id', 'before', 'after', 'delta')
+    return deepcopy([dict(id=ident, standing=person['standing'],
+                         memories=[{key: memory[key] for key in memory_fields} for memory in person['memories']],
                          **{key: definitions[ident][key] for key in public_fields})
                      for ident, person in sorted(life['contacts'].items())])
 
