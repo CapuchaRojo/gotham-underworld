@@ -72,6 +72,9 @@ def validate(world):
     legacy = [e for e in trips if e['schema_version'] == 1]
     modern = sorted([e for e in trips if e['schema_version'] == 2], key=lambda e: e.get('journey_id', -1) if type(e.get('journey_id')) is int else -1)
     activations = [e for e in world['events'] if e['kind'] == 'mobility_activated']
+    # Check the original metadata before the legacy projection replaces it.
+    _integer(nav.get('rules_version'), 'navigation.rules_version', 1, 2)
+    _integer(nav.get('journey_sequence'), 'navigation.journey_sequence', 0)
     projection = dict(world)
     projection['navigation_version'] = 1
     projection['navigation'] = dict(nav, rules_version=1, journey_sequence=len(legacy))

@@ -229,7 +229,7 @@ campaign evidence with `python -B mobility_campaigns.py --days 365 --seeds 17 42
 missions. Vehicles, theft, licensing, impound, expanded schedules and the full
 prologue remain unimplemented. The broader M016 milestone is not complete.
 
-Local M016-A verification: **332 tests pass** (283 existing plus49 new), with
+Local M016-A verification: **336 tests pass** (332 preserved plus4 metadata-repair cases), with
 seeded365-day replay and final30-day daily disk-resume checks. Exact commands,
 hashes, limitations and the distinction from existing GitHub CI are in the report.
 

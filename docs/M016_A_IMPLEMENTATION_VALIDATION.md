@@ -1,5 +1,10 @@
 # M016-A implementation and validation — Mission 013
 
+**Latest update — Mission 015:** the pending integer-metadata P2 recorded in
+Mission 014 is repaired below. The current local suite passes336 methods,
+including53 focused mobility tests. Earlier delivery/audit counts and findings
+remain historical evidence, not the current unresolved status of that defect.
+
 **Preservation update — Mission 014:** the independent local re-verification
 below supersedes the earlier uncommitted delivery status. The implementation
 and associated documentation are being preserved in a focused local commit;
@@ -265,3 +270,47 @@ diff check did not see: an extra blank line at EOF in the newly added
 `tests/test_mobility_compatibility.py`. It is retained to preserve the tested
 source byte-for-byte; no test behavior or runtime file changed. This P3 formatting
 warning does not block the local preservation commit or the unittest workflow.
+
+## Mission 015 metadata repair
+
+Verified baseline `0e2162e33bae56d5f28dae0e92b2fa861ab94968` on the unchanged
+`feature/m016a-mobility-pilot` branch. The only initial uncommitted file was the
+expected Rogue Encounters proposal, preserved separately before edits and excluded
+from this focused repair commit. PR #15 remains OPEN at its original head.
+
+Root cause: pending `navigation.rules_version` used equality against1 and
+`navigation.journey_sequence` against the history count. Python booleans compare
+equal to0/1; the legacy projection then replaced both fields before the old
+strict integer validator could see them. [The fix](../mobility_state.py) invokes
+the existing type-exact `_integer` helper on the original rules_version (1–2)
+and journey_sequence (nonnegative) before constructing that projection. Active
+and pending paths both pass through the checks; their existing value/continuity
+rules remain. No coercion, schema bump, normalization, fare, routing or allowance
+change is introduced.
+
+Four regression methods in `tests/test_mobility_compatibility.py` verify valid
+integers/pending/active/historical data remain unchanged; both boolean values are
+rejected across zero/one legacy histories and active states; invalid metadata
+fails both real save validation and malformed disk load without damaging the
+primary or mutating caller state; and a rejected paying job leaves the complete
+world, resources, attempts and global RNG unchanged. Existing replay tests remain.
+
+| Executed check | Actual result |
+| --- | --- |
+| `python -B -m unittest discover -s tests -p 'test_mobility*.py' -q` | **53 passed,5.774s**. |
+| `python -B -m unittest discover -s tests -q` | **336 passed,49.656s**, zero failures/errors. |
+| `python -B mobility_campaigns.py --days 30 --seeds 17 42 --resume-every 1` | Exact equality after every command/day and30 real daily save/resumes per seed; both original day31 hashes match. Elapsed6.188s and5.875s. |
+
+Initial new-test runs had one failure: the rollback fixture used travel, whose
+increment turned the deliberately invalid boolean counter into an integer before
+the candidate-validation gate. The fixture now uses a paying job, preserving
+the malformed fields long enough to test actual rollback. No additional runtime
+fix or navigation rewrite was required. The corrected full and focused results
+above were executed after that test change.
+
+The focused repair changes only `mobility_state.py`, its compatibility tests and
+this report/README/PROJECT_STATE test status. Valid historical schemas/events,
+base/overlay fingerprints and job RNG remain unchanged. The two metadata-field
+P2 issues are closed; history-scaling, bounded search and limited pilot depth
+remain P2 limitations. No new P0/P1 defect was confirmed. Narrative proposals are
+separate documentation work and add no Rogue/clock/law/Bat-Family runtime.

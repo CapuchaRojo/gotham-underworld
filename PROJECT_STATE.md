@@ -298,10 +298,13 @@ low cash does not erase home access or block ordinary continuation.
 - Executed results and exact files are maintained in the
   [M016-A implementation/validation report](docs/M016_A_IMPLEMENTATION_VALIDATION.md).
   The three preserved M016 contracts distinguish this slice from future proposals.
-- Final local regression: **332 passing tests** (283 existing plus49 new),
+- Final local regression: **336 passing tests** (283 existing,49 M016-A and4 metadata-repair cases),
   two365-day seeded replay campaigns and final-code30-day daily disk-resume
   checks; full worlds match at every command/day. These are local results,
   not new GitHub CI on this unpushed implementation.
+- Mission015 repairs the two pending metadata type checks before legacy
+  projection: booleans cannot substitute for integer rules_version/journey_sequence.
+  No travel cost, schema, allowance or valid historical event changes.
 
 No skateboards, bicycles, cars, acquisition gameplay, licensing, theft, impound,
 new citywide disruption generator, advanced schedules or prologue are implemented.

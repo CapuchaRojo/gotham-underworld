@@ -2,6 +2,7 @@
 from copy import deepcopy
 import io
 import json
+import random
 from pathlib import Path
 import tempfile
 import unittest
@@ -58,6 +59,78 @@ class MobilityCompatibilityTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.enroll(world, rid)
             self.assertEqual(before, world)
+
+    def test_integer_navigation_metadata_remains_valid_and_unchanged(self):
+        pending = create_career()
+        self.enroll(pending)
+        active = deepcopy(pending)
+        advance_day(active)
+        for world in (pending, active, adopted()):
+            before = deepcopy(world)
+            validate(world)
+            self.assertEqual(world, before)
+            self.assertIs(type(world['navigation']['rules_version']), int)
+            self.assertIs(type(world['navigation']['journey_sequence']), int)
+            self.roundtrip(world)
+        for relative in ('fixtures/m014/career.json', 'mobility_fixtures/m015/career.json'):
+            path = Path(__file__).parent / relative
+            raw = json.loads(path.read_text(encoding='utf-8'))
+            world = load_career(path)
+            self.assertEqual(raw['events'], world['events'])
+            self.assertEqual(raw['navigation'], world['navigation'])
+
+    def test_boolean_navigation_metadata_rejects_before_legacy_projection(self):
+        pending_zero = create_career()
+        self.enroll(pending_zero)
+        pending_one = create_career()
+        execute_command(pending_one, 'travel', destination='p032', mode='walk')
+        self.enroll(pending_one)
+        active_zero = deepcopy(pending_zero)
+        advance_day(active_zero)
+        for source in (pending_zero, pending_one, active_zero, adopted()):
+            for field in ('rules_version', 'journey_sequence'):
+                for value in (False, True):
+                    with self.subTest(status=source['mobility']['adoption']['status'], field=field, value=value):
+                        invalid = deepcopy(source)
+                        invalid['navigation'][field] = value
+                        with self.assertRaisesRegex(ValueError, 'navigation.' + field + ' must be an integer'):
+                            validate(invalid)
+
+    def test_boolean_metadata_cannot_be_saved_or_loaded_and_primary_survives(self):
+        world = create_career()
+        self.enroll(world)
+        with tempfile.TemporaryDirectory() as folder:
+            path, bad_path = Path(folder) / 'career.json', Path(folder) / 'malformed.json'
+            save_career(world, path)
+            original = path.read_bytes()
+            for field, value in (('rules_version', True), ('journey_sequence', False)):
+                invalid = deepcopy(world)
+                invalid['navigation'][field] = value
+                before = deepcopy(invalid)
+                with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'must be an integer'):
+                    save_career(invalid, path)
+                self.assertEqual(path.read_bytes(), original)
+                self.assertFalse(Path(str(path) + '.bak').exists())
+                self.assertEqual(before, invalid)
+                bad_path.write_text(json.dumps(invalid), encoding='utf-8')
+                with self.assertRaisesRegex(ValueError, 'must be an integer'):
+                    load_career(bad_path)
+            self.assertEqual(load_career(path), world)
+
+    def test_rejected_boolean_metadata_command_changes_no_state_or_rng(self):
+        source = create_career()
+        execute_command(source, 'join', faction='Harbor Syndicate')
+        self.enroll(source)
+        for field, value in (('rules_version', True), ('journey_sequence', False)):
+            world = deepcopy(source)
+            world['navigation'][field] = value
+            before, rng = deepcopy(world), random.getstate()
+            with self.assertRaisesRegex(ValueError, 'must be an integer'):
+                # A paying action exercises rollback without incrementing the
+                # malformed journey field before the validation gate sees it.
+                execute_command(world, 'job', kind='courier')
+            self.assertEqual(world, before)
+            self.assertEqual(random.getstate(), rng)
 
     def test_historical_rail_and_pending_travel_survive_new_journeys(self):
         world = create_career()
