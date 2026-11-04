@@ -509,3 +509,64 @@ and fixed performance windows remain shallow; do not increase frequency into
 repetitive inspect/collect grinding. A future second original incident should
 reuse this seam only after an independent contract review; richer non-job law
 and licensed actor content require separate source/continuity approval.
+
+### M017-B discovery provenance contract — specified before implementation
+
+Mission 018 closes the independent audit's discovery-context gap. This contract
+was recorded after reproducing the unchanged M017 forged-reference save and
+preserving valid original public/contact saves, **before changing validator code**.
+It adds read-only proof checks, not another history, save schema, clock or NPC
+knowledge system. The existing version-1 definition and emitted records stay pinned.
+
+**Authority:** existing navigation outcomes, contact memories, selected life
+choices/promises and their structured events and committed player-command
+receipts. Incident replay establishes incident eligibility. A context dictionary
+is a claim to check against those sources, not a source that proves itself.
+Current cash, standing, location or a later fact cannot establish an earlier fact.
+Only canonical fact fields participate in source equality; unrelated optional
+metadata remains preserved under the existing additive save contract.
+
+| Historical fact | Required evidence at discovery |
+| --- | --- |
+| Player location | Latest completed schema-1/schema-2 `travel` outcome before discovery, using `arrived`, not requested destination. It must match its actual `travel`/`journey` command, day and command frame. Earlier public navigation activation may establish an anchor when no later movement exists. Never substitute final `navigation.location_id` or a journey that happened later. |
+| Tess reference | An actual Tess `promise_kept` memory with one matching `life_memory` event, a kept promise, its resolving `keep_promise` life choice/event and completed `choose` command, plus the original accepted promise choice/event/command. These must be consistent with the existing life validator and causally ordered before discovery. Standing alone, a forged memory label or `tess_reference: true` is insufficient. |
+| Knowledge available then | Only references already earned in completed earlier commands can justify contact discovery. A genuine reference earned later, even on the same logical day, must not be backfilled into earlier knowledge. A false snapshot also cannot deny a reference that already existed. Discovery still grants only the alarm report; cause knowledge remains tied to actual inspection. |
+| Public notice | The pinned incident's occurrence day has arrived, and prior incident replay has actually processed occurrence. Its tick must follow same-day `life_day` processing. Local discovery additionally requires the historically proven shop location; a contact reference is not a public-notice bypass. |
+| Command ordering | Each supporting command-bound outcome lies inside its own command frame: after the preceding completed command and before its matching receipt. Supporting command IDs and receipts precede discovery; the discovery transition precedes its own receipt. Relevant source days cannot lie in the future. Sorting a contradictory history to make it appear valid is forbidden. |
+
+Day-driven source events may legitimately come from an existing low-level daily
+pipeline without a service `wait` receipt; preserve that established batch-tool
+behavior. A same-day `life_day` then incident tick is the daily source proof;
+do not fabricate a wait command. Player choices and travel, however, already
+require their committed service receipts under the current save contracts.
+
+The reference proof follows the existing M015 authority rather than accepting a
+second incident-owned reference flag. The existing life validator continues to
+validate promise dates, option semantics, memory deltas and unique matching
+events. Provenance adds the missing historical identity/order checks and must
+not recursively invoke that validator. All indexes/proof facts are ephemeral;
+validation must not append, reorder, normalize, initialize or mutate any state.
+
+**Compatibility:** careers without discovery are not asked to invent a discovery
+trace, and non-adopted historical careers remain unchanged. Published valid M017
+public/contact histories already contain the required source events; no new
+field, content fingerprint or schema version is needed. Later travel, later
+references and custody changes do not invalidate an earlier valid discovery.
+Legacy origin information outside the recorded navigation era is not invented.
+If an adopted discovery has no sufficient recorded location/reference source,
+reject it clearly as unverifiable/contradictory; do not grant knowledge, silently
+erase the encounter or create retroactive source events. A current-position or
+boolean fallback would preserve the defect rather than compatibility.
+
+This checks internal consistency with independent domain records. It does not
+authenticate a save against coordinated rewriting of all supporting histories,
+nor reconstruct every legacy legal/action/access predicate. No general rumor
+graph, multi-incident framework or new legal authority is part of this repair.
+
+**Implementation/verification:** M017-B now enforces this contract in
+[`incident_state._discovery_sources`](../incident_state.py#L15), using existing
+domain records only. All 371 prior tests plus 18 new provenance regressions pass
+(389 total); both preserved original public/contact saves round-trip byte-for-byte
+and all four recorded mobility/Night Shift campaign hashes are unchanged. See
+the appended Mission 018 section of [validation](M017_NIGHT_SHIFT_VALIDATION.md)
+for actual commands, red/green evidence and compatibility limits.
