@@ -1,0 +1,493 @@
+{
+  "seed": 42,
+  "day": 1,
+  "factions": {
+    "Harbor Syndicate": {
+      "power": 70,
+      "cash": 84
+    },
+    "Carnival Crew": {
+      "power": 42,
+      "cash": 38
+    },
+    "Iron Mask Outfit": {
+      "power": 61,
+      "cash": 68
+    },
+    "Civic Police": {
+      "power": 75,
+      "cash": 70
+    },
+    "Night Watch": {
+      "power": 35,
+      "cash": 20
+    }
+  },
+  "people": {
+    "Mara Voss": {
+      "faction": "Harbor Syndicate",
+      "memory": [],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": []
+    },
+    "Eli Crowe": {
+      "faction": "Carnival Crew",
+      "memory": [],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": []
+    },
+    "Detective Vale": {
+      "faction": "Civic Police",
+      "memory": [],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": []
+    }
+  },
+  "player": {
+    "name": "Rookie",
+    "heat": 0,
+    "cash": 40,
+    "arrested": false,
+    "custody": "free",
+    "faction": null,
+    "reputation": {
+      "Harbor Syndicate": 0,
+      "Carnival Crew": 0,
+      "Iron Mask Outfit": 0
+    },
+    "jobs_completed": 0
+  },
+  "cases": [],
+  "events": [
+    {
+      "day": 0,
+      "kind": "life_enabled",
+      "message": "Accepted the cooperative arrangement: $30 every seven days, first due day 7; available cash is charged, unpaid balance is capped at $30, and basic room access continues. Local opportunities begin after the next wait.",
+      "schema_version": 1,
+      "activation_day": 1,
+      "due_day": 7,
+      "home_id": "goon.poi.p031",
+      "command_id": 1,
+      "cause": "explicit_enrollment"
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 1: settle_in.",
+      "command": "settle_in",
+      "command_id": 1,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 1,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Carnival Crew; Carnival Crew lost 3 power."
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Carnival Crew earned $3 from Carnival Row.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Harbor Syndicate earned $4 from Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "income": 4,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Iron Mask Outfit earned $3 from Ironworks.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: Cal's account of the work.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.cal_intro",
+      "source_id": "goon.roster.0.cal_intro",
+      "open_day": 1,
+      "expires_day": 3,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: One morning, several demands.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.crossroads",
+      "source_id": "goon.roster.0.crossroads",
+      "open_day": 2,
+      "expires_day": 3,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: A little flexibility late in the week.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.late_work",
+      "source_id": "goon.roster.0.late_work",
+      "open_day": 5,
+      "expires_day": 7,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: The fourth-morning shift.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.midweek_shift",
+      "source_id": "goon.roster.0.midweek_shift",
+      "open_day": 4,
+      "expires_day": 5,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: A place on the repair roster.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.opening_shift",
+      "source_id": "goon.roster.0.opening_shift",
+      "open_day": 1,
+      "expires_day": 2,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: A promise with an actual date.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.promise",
+      "source_id": "goon.roster.0.promise",
+      "open_day": 1,
+      "expires_day": 2,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_day",
+      "message": "Neighborhood obligations and opportunities reviewed once.",
+      "schema_version": 1,
+      "processed_day": 1,
+      "cause": "day_transition"
+    },
+    {
+      "day": 1,
+      "kind": "player_command",
+      "message": "Player command 2: wait.",
+      "command": "wait",
+      "command_id": 2,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 1,
+      "kind": "travel",
+      "message": "Arrived at Uptown General Store; spent 1 TU.",
+      "schema_version": 1,
+      "journey_id": 1,
+      "command_id": 3,
+      "origin": "goon.poi.p031",
+      "destination": "goon.poi.p032",
+      "arrived": "goon.poi.p032",
+      "tu_before": 0,
+      "tu_cost": 1,
+      "tu_after": 1,
+      "interrupted": false,
+      "mode": "auto",
+      "legs": [
+        {
+          "edge_id": "goon.edge.access.p031",
+          "from_id": "goon.poi.p031",
+          "to_id": "goon.neighborhood.n13",
+          "mode": "walk",
+          "tu": 0
+        },
+        {
+          "edge_id": "goon.edge.access.p032",
+          "from_id": "goon.neighborhood.n13",
+          "to_id": "goon.poi.p032",
+          "mode": "walk",
+          "tu": 0
+        }
+      ],
+      "traversed": [
+        "goon.edge.access.p031",
+        "goon.edge.access.p032"
+      ],
+      "discoveries": [],
+      "cause": "player_travel"
+    },
+    {
+      "day": 1,
+      "kind": "player_command",
+      "message": "Player command 3: travel.",
+      "command": "travel",
+      "command_id": 3,
+      "actor": "player",
+      "arguments": {
+        "destination": "p032",
+        "mode": "auto"
+      },
+      "action_cost": 0,
+      "cause": "player_command"
+    }
+  ],
+  "job_attempts": 0,
+  "consequence_version": 1,
+  "npc_action_version": 1,
+  "npc_action_last_day": {},
+  "districts": {
+    "Harbor Docks": {
+      "owner": "Harbor Syndicate",
+      "wealth": 60,
+      "control": 63
+    },
+    "Carnival Row": {
+      "owner": "Carnival Crew",
+      "wealth": 45,
+      "control": 63
+    },
+    "Ironworks": {
+      "owner": "Iron Mask Outfit",
+      "wealth": 50,
+      "control": 63
+    }
+  },
+  "economy_last_day": 1,
+  "district_mission_version": 1,
+  "district_mission_last_day": -1,
+  "district_intel": {},
+  "warfare_version": 1,
+  "warfare_last_day": -1,
+  "strategy_version": 1,
+  "strategy_last_day": 0,
+  "faction_strategy": {},
+  "save_version": 1,
+  "action_day": 1,
+  "actions_used": 0,
+  "command_sequence": 3,
+  "legal_version": 1,
+  "legal": {
+    "last_tick_day": 1,
+    "last_lay_low_day": -1,
+    "last_crime_day": -1,
+    "responses": {},
+    "record": []
+  },
+  "competition_version": 1,
+  "competition": {
+    "activation_day": 2,
+    "profiles": {
+      "trade_network": {
+        "revenue_percent": 125,
+        "recovery_income": 6,
+        "recovery_power": 2,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 35,
+        "recruitment_cost": 6,
+        "recruitment_gain": 7,
+        "attack_cost": 12,
+        "defense_cost": 8,
+        "attack_base": 5,
+        "defense_base": 6,
+        "defense_threshold": 45,
+        "consolidation_threshold": 75,
+        "attack_reserve": 36,
+        "min_attack_power": 25,
+        "treasury_cap": 240,
+        "recovery_cap": 60
+      },
+      "street_network": {
+        "revenue_percent": 100,
+        "recovery_income": 8,
+        "recovery_power": 3,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 40,
+        "recruitment_cost": 4,
+        "recruitment_gain": 6,
+        "attack_cost": 10,
+        "defense_cost": 9,
+        "attack_base": 5,
+        "defense_base": 5,
+        "defense_threshold": 35,
+        "consolidation_threshold": 65,
+        "attack_reserve": 28,
+        "min_attack_power": 20,
+        "treasury_cap": 180,
+        "recovery_cap": 50
+      },
+      "industrial_network": {
+        "revenue_percent": 135,
+        "recovery_income": 5,
+        "recovery_power": 2,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 30,
+        "recruitment_cost": 5,
+        "recruitment_gain": 9,
+        "attack_cost": 13,
+        "defense_cost": 7,
+        "attack_base": 4,
+        "defense_base": 7,
+        "defense_threshold": 55,
+        "consolidation_threshold": 85,
+        "attack_reserve": 40,
+        "min_attack_power": 30,
+        "treasury_cap": 220,
+        "recovery_cap": 70
+      }
+    },
+    "factions": {
+      "Harbor Syndicate": "trade_network",
+      "Carnival Crew": "street_network",
+      "Iron Mask Outfit": "industrial_network"
+    }
+  },
+  "navigation_version": 1,
+  "navigation": {
+    "atlas_version": 1,
+    "atlas_fingerprint": "14a38c5376989351d83bf90ed172c557a3dbf13c1323a115d2c2144f5136860a",
+    "rules_version": 1,
+    "enabled_day": 0,
+    "activation_day": 0,
+    "anchor_id": "goon.neighborhood.n13",
+    "home_id": "goon.poi.p031",
+    "location_id": "goon.poi.p032",
+    "tu_day": 1,
+    "tu_used": 1,
+    "journey_sequence": 1,
+    "permissions": [
+      "goon.poi.p031"
+    ],
+    "closures": []
+  },
+  "daily_life_version": 1,
+  "daily_life": {
+    "rules_version": 1,
+    "content_fingerprint": "653746c2ecf66e3218674c95072b81e313b5634bfbcd886ac944c05860fb14cf",
+    "enabled_day": 0,
+    "activation_day": 1,
+    "last_tick_day": 1,
+    "home_id": "goon.poi.p031",
+    "opening_cash": 40,
+    "housing": {
+      "next_due_day": 7,
+      "arrears": 0,
+      "prepaid": 0,
+      "history": []
+    },
+    "contacts": {
+      "goon.contact.cal": {
+        "standing": 0,
+        "memories": []
+      },
+      "goon.contact.tess": {
+        "standing": 0,
+        "memories": []
+      }
+    },
+    "promises": {},
+    "choices": {
+      "goon.choice.0.cal_intro": {
+        "id": "goon.choice.0.cal_intro",
+        "definition_id": "cal_intro",
+        "source_id": "goon.roster.0.cal_intro",
+        "week": 0,
+        "open_day": 1,
+        "expires_day": 3,
+        "state": "open",
+        "selection": null
+      },
+      "goon.choice.0.crossroads": {
+        "id": "goon.choice.0.crossroads",
+        "definition_id": "crossroads",
+        "source_id": "goon.roster.0.crossroads",
+        "week": 0,
+        "open_day": 2,
+        "expires_day": 3,
+        "state": "open",
+        "selection": null
+      },
+      "goon.choice.0.late_work": {
+        "id": "goon.choice.0.late_work",
+        "definition_id": "late_work",
+        "source_id": "goon.roster.0.late_work",
+        "week": 0,
+        "open_day": 5,
+        "expires_day": 7,
+        "state": "open",
+        "selection": null
+      },
+      "goon.choice.0.midweek_shift": {
+        "id": "goon.choice.0.midweek_shift",
+        "definition_id": "midweek_shift",
+        "source_id": "goon.roster.0.midweek_shift",
+        "week": 0,
+        "open_day": 4,
+        "expires_day": 5,
+        "state": "open",
+        "selection": null
+      },
+      "goon.choice.0.opening_shift": {
+        "id": "goon.choice.0.opening_shift",
+        "definition_id": "opening_shift",
+        "source_id": "goon.roster.0.opening_shift",
+        "week": 0,
+        "open_day": 1,
+        "expires_day": 2,
+        "state": "open",
+        "selection": null
+      },
+      "goon.choice.0.promise": {
+        "id": "goon.choice.0.promise",
+        "definition_id": "promise",
+        "source_id": "goon.roster.0.promise",
+        "week": 0,
+        "open_day": 1,
+        "expires_day": 2,
+        "state": "open",
+        "selection": null
+      }
+    },
+    "transactions": []
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "content_version": 1,
+  "home_id": "goon.poi.p031",
+  "hub_id": "goon.neighborhood.n13",
+  "room_amount": 30,
+  "room_period": 7,
+  "contacts": {
+    "goon.contact.tess": {
+      "name": "Tess Navarro",
+      "role": "Repair worker and cooperative coordinator",
+      "personality": "Practical, dry, and protective of other workers' time. An honest refusal beats an impossible promise.",
+      "need": "Cover a small repair roster and help prepare the cooperative's shared room.",
+      "knowledge": "Her own shifts, the cooperative account, and promises made to her."
+    },
+    "goon.contact.cal": {
+      "name": "Cal Mercer",
+      "role": "Neighborhood runner and criminal work contact",
+      "personality": "Talks confidently about other people's plans; records his own work and pay with unusual care.",
+      "need": "Find a reliable affiliated worker for a local collection referral.",
+      "knowledge": "Terms he disclosed and the results of his own referrals."
+    }
+  },
+  "choices": {
+    "opening_shift": {
+      "speaker": "goon.contact.tess", "title": "A place on the repair roster", "start": 0, "duration": 1, "slot": "morning.0",
+      "situation": "The store has one funded repair shift. Tess needs a worker, not a declaration of lifelong loyalty.",
+      "options": [
+        {"id": "work", "label": "Work the repair shift", "effect": "lawful_work", "actions": 1, "place": "goon.poi.p032", "pay": 20, "tradeoff": "$20 guaranteed from the store's roster; one action and this shift slot."},
+        {"id": "decline", "label": "Decline this shift", "effect": "decline", "actions": 0, "tradeoff": "No wage; later local work remains possible."}
+      ]
+    },
+    "promise": {
+      "speaker": "goon.contact.tess", "title": "A promise with an actual date", "start": 0, "duration": 1, "slot": null,
+      "situation": "Tess asks for help setting up the cooperative's shared room on the second morning. There is no pay. She can use an honest answer.",
+      "options": [
+        {"id": "promise", "label": "Promise to help on the second morning", "effect": "make_promise", "actions": 0, "place": "home", "tradeoff": "Reserve a personal commitment; keeping it later costs one action and the morning slot."},
+        {"id": "decline", "label": "Say you cannot promise that", "effect": "decline", "actions": 0, "tradeoff": "No promise, reward, or penalty. Lawful work remains open."}
+      ]
+    },
+    "cal_intro": {
+      "speaker": "goon.contact.cal", "title": "Cal's account of the work", "start": 0, "duration": 2, "slot": null,
+      "situation": "Cal has a collection referral for somebody already affiliated. He will explain the terms if you ask; he cannot promise that the police will look away.",
+      "options": [
+        {"id": "ask", "label": "Ask Cal about the referral", "effect": "introduction", "actions": 0, "place": "goon.neighborhood.n13", "tradeoff": "Learn his terms. No gang membership or money is granted."},
+        {"id": "decline", "label": "Leave Cal's work alone", "effect": "decline", "actions": 0, "tradeoff": "No referral this window; other neighborhood opportunities remain."}
+      ]
+    },
+    "crossroads": {
+      "speaker": "player", "title": "One morning, several demands", "start": 1, "duration": 1, "slot": "morning.1",
+      "situation": "The repair shift, Cal's local pickup, and the cooperative favor share the same morning roster slot. Choose one commitment; other daily actions remain usable elsewhere.",
+      "options": [
+        {"id": "lawful", "label": "Take the lawful repair shift", "effect": "lawful_work", "actions": 1, "place": "goon.poi.p032", "pay": 20, "tradeoff": "$20 guaranteed; the other morning commitments are forgone."},
+        {"id": "collection", "label": "Try the collection job through Cal", "effect": "criminal_work", "actions": 1, "place": "goon.neighborhood.n13", "job": "collection", "known": "cal_terms", "tradeoff": "Existing collection rules: up to $60, heat, possible witnesses/case, and faction consequences. No guaranteed success."},
+        {"id": "help", "label": "Keep the promise to Tess", "effect": "keep_promise", "actions": 1, "place": "home", "tradeoff": "No money. Keep the dated promise and earn a personal reference."},
+        {"id": "renegotiate", "label": "Ask to move the favor to the fourth morning", "effect": "move_promise", "actions": 0, "place": "home", "tradeoff": "Move it once; forgo this morning's work. A later shift can still conflict."},
+        {"id": "withdraw", "label": "Leave the morning uncommitted", "effect": "decline", "actions": 0, "tradeoff": "No wage or free recovery. Any accepted promise still has its deadline."}
+      ]
+    },
+    "midweek_shift": {
+      "speaker": "goon.contact.tess", "title": "The fourth-morning shift", "start": 3, "duration": 1, "slot": "morning.3",
+      "situation": "The store has another funded shift. It conflicts with a favor moved to this same morning.",
+      "options": [
+        {"id": "work", "label": "Work the repair shift", "effect": "lawful_work", "actions": 1, "place": "goon.poi.p032", "pay": 20, "tradeoff": "$20; one action and the fourth-morning slot."},
+        {"id": "decline", "label": "Pass on this shift", "effect": "decline", "actions": 0, "tradeoff": "No wage; keep the time for another commitment."}
+      ]
+    },
+    "late_work": {
+      "speaker": "player", "title": "A little flexibility late in the week", "start": 4, "duration": 2, "slot": "late.roster",
+      "situation": "Your known offers compete for one prearranged late-week roster slot, usable on either of the next two days. Choose one commitment; the store and Cal pay through their own separate rules.",
+      "options": [
+        {"id": "work", "label": "Take a regular repair shift", "effect": "lawful_work", "actions": 1, "place": "goon.poi.p032", "pay": 20, "tradeoff": "$20; one action. No reference required."},
+        {"id": "audit", "label": "Use Tess's reference for the stock audit", "effect": "lawful_work", "actions": 2, "place": "goon.poi.p032", "pay": 25, "known": "tess_reference", "standing_contact": "goon.contact.tess", "minimum_standing": 2, "tradeoff": "$25; two actions for the more involved audit. Needs Tess's standing at least 2 and uses this offer's only allocation."},
+        {"id": "courier", "label": "Try Cal's quieter courier referral", "effect": "criminal_work", "actions": 1, "place": "goon.neighborhood.n13", "job": "courier", "known": "cal_quiet_work", "standing_contact": "goon.contact.cal", "minimum_standing": 1, "tradeoff": "Existing courier rules: up to $25, failure risk and faction effects; no new collection case. Needs Cal's standing at least 1."},
+        {"id": "decline", "label": "Leave the allocation for someone else", "effect": "decline", "actions": 0, "tradeoff": "No money or standing reward; next week's basic work remains available."}
+      ]
+    },
+    "rescheduled_help": {
+      "speaker": "goon.contact.tess", "title": "The favor you moved", "start": 3, "duration": 1, "slot": "morning.3", "dynamic": true,
+      "situation": "Tess kept the fourth morning free after your request. This is the new date, not a second favor reward.",
+      "options": [
+        {"id": "help", "label": "Keep the rescheduled promise", "effect": "keep_promise", "actions": 1, "place": "home", "tradeoff": "No wage; fulfill the original promise and earn its reference once."},
+        {"id": "decline", "label": "Say you will not make it", "effect": "break_promise", "actions": 0, "tradeoff": "Close the promise honestly; Tess remembers the broken commitment."}
+      ]
+    },
+    "room_review": {
+      "speaker": "goon.contact.tess", "title": "Keeping the room workable", "start": 0, "duration": 7, "slot": null, "dynamic": true,
+      "situation": "The cooperative keeps basic room access during a shortfall. It offers one small maintenance credit per review; it does not pay cash or stack late fees.",
+      "options": [
+        {"id": "help", "label": "Do one maintenance task against the balance", "effect": "room_help", "actions": 1, "place": "home", "tradeoff": "One action reduces existing arrears by up to $10; no cash or friendship points."},
+        {"id": "grace", "label": "Keep the grace arrangement for now", "effect": "decline", "actions": 0, "tradeoff": "The bounded unpaid balance remains. Home and local work remain accessible."}
+      ]
+    }
+  }
+}

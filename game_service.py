@@ -14,6 +14,10 @@ from legal_engine import (accept, advance_day as legal_day, change_heat, contest
                           cooperate, job as legal_job, lay_low)
 import navigation
 from navigation import location_report, nearby_destinations, known_places, plan_route
+import daily_life
+import mobility
+from mobility import mobility_report, mobility_receipt
+from daily_life import life_report, home_report, contact_report, opportunities, choice_report
 
 # Stable command IDs; future commands can reuse the same result/event envelope.
 COMMANDS = {
@@ -27,6 +31,11 @@ COMMANDS = {
     'accept': (1, ('case_id',), accept),
     'travel': (0, ('destination', 'mode'), navigation.travel),
     'enable_navigation': (0, ('anchor',), navigation.enable_navigation),
+    'enable_mobility': (0, ('overlay_id', 'request_id'), mobility.enable_mobility),
+    'journey': (0, mobility.JOURNEY_ARGUMENTS, mobility.journey),
+    'settle_in': (0, (), daily_life.settle_in),
+    'pay_room': (0, (), daily_life.pay_room),
+    'choose': (daily_life.choice_cost, ('choice_id', 'option_id'), daily_life.choose),
 }
 
 
@@ -74,6 +83,8 @@ def execute_command(world, command, **arguments):
     cost, names, handler = COMMANDS[command]
     if set(arguments) != set(names) or any(not isinstance(arguments[n], str) for n in names):
         raise ValueError(f'{command} requires string arguments: {", ".join(names) or "none"}')
+    if callable(cost):
+        cost = cost(world, *(arguments[name] for name in names))
     if actions_remaining(world) < cost:
         raise ValueError('Daily actions exhausted; use wait')
     candidate = deepcopy(world)
@@ -82,7 +93,10 @@ def execute_command(world, command, **arguments):
         candidate['action_day'] = candidate['day']
         candidate['actions_used'] = 0
     change_heat(candidate, 0, 'legacy_heat_normalization')
-    result = handler(candidate, *(arguments[name] for name in names))
+    with mobility.command_scope(command, candidate['command_sequence'] + 1):
+        result = handler(candidate, *(arguments[name] for name in names))
+    daily_life.record_balance(candidate, 'existing_rules', f'goon.command.{candidate["command_sequence"] + 1}',
+                              command_id=candidate['command_sequence'] + 1)
     if command == 'wait':
         candidate['action_day'] = candidate['day']
         candidate['actions_used'] = 0
@@ -94,6 +108,8 @@ def execute_command(world, command, **arguments):
     event(candidate, 'player_command', f'Player command {sequence}: {command}.',
           command=command, command_id=sequence, actor='player',
           arguments=deepcopy(arguments), action_cost=cost, cause='player_command')
+    if 'mobility_version' in candidate:
+        validate(candidate)
     response = deepcopy({'command': command, 'sequence': sequence,
                          'day': candidate['day'], 'result': result,
                          'events': candidate['events'][start:],

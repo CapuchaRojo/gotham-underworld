@@ -48,3 +48,11 @@ active M013 profiles/operations and all three spent actions, with no navigation.
 M014 tests preserve its resources/events on load, require explicit public-anchor
 adoption and next-day activation, and never invent a historical home or refresh
 the spent action budget on adoption/loading.
+
+`m014/career.json` was generated in isolation from the merged M014 root Python
+modules and atlas at `fa2f9f5bbf081bde080c6d8b2e46512487027c66`. Recipe:
+`create_career(17)`, service join Harbor, three courier jobs, travel to p032, save.
+It preserves day 0, $115, three spent actions, p032 and 1 spent TU, with no
+daily-life extension. M015 requires exact load equality and explicit room
+adoption without a budget refresh. This fixture uses a subdirectory because the
+unchanged M014 migration test intentionally treats root fixtures as pre-navigation saves.

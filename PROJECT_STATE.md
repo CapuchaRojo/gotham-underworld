@@ -2,12 +2,16 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current milestone: **M014 — Gotham World Runtime & Navigation Foundation**, for review
-- Baseline: **M013.1**, merged via PR #13 at
-  `8b68e1efc338a532293262edafd85240cdfa65a3`; 198 existing regression tests preserved
+- Current local slice: **M016-A — versioned mobility and two-station monorail pilot**, for review
+- Implementation branch: `feature/m016a-mobility-pilot`; baseline audited M015
+  `3251381177bf11c0b07cd940329ebd0be3a7bb52`, 283 existing tests preserved
+- PR #15 remains open and unmerged; its submitted branch is unchanged. Last
+  merged baseline remains M014 at `fa2f9f5bbf081bde080c6d8b2e46512487027c66`
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
 - Entry point: `python gameplay.py`; resume with `python gameplay.py --load`
 - Save contract: version 1; additive migration of unversioned M001-M010 saves
+- Mobility contract: optional paired nav2/mobility1; explicit next-wait adoption,
+  immutable legacy checkpoint/schema1 history, typed schema2 journeys and receipts
 - Legal contract: independent `legal_version: 1`; additive M001-M011 migration
 - Competition contract: `competition_version: 1`; persisted profiles/bindings,
   additive M001-M012 migration, and activation on the next advanced day
@@ -229,5 +233,83 @@ included. Tests and actual simulation results are reported in the feature PR.
 (198 unchanged plus 31 new), actual historical fixtures, real CLI resume and two
 100-day navigation/reference campaigns. The independent [Mission 008 final audit](docs/M014_FINAL_AUDIT.md)
 records additional corrections, the final test count, CI and PR disposition.
-The [M015 daily-life contract](docs/GOON_M015_DAILY_LIFE_CONTRACT.md) is a proposal
-only; no M015 gameplay is implemented by this audit.
+Mission 008 proposed the [M015 daily-life contract](docs/GOON_M015_DAILY_LIFE_CONTRACT.md).
+Mission 009 authorizes the bounded implementation below.
+
+## M015 implemented scope
+
+- Optional `daily_life_version: 1`, explicitly enrolled with `settle_in` and activated
+  on the next day. No automatic defaults, retroactive charges, invented history,
+  free actions or TU on historical load. Existing `create_career` behavior stays compatible.
+- A disclosed $30/seven-day room arrangement at p031; first due seven advances
+  after acceptance. Prepayment, cash-limited settlement, receipts, $30 arrears cap,
+  basic grace access, and one bounded maintenance credit per unpaid review.
+- Original Tess Navarro and Cal Mercer contact definitions in a separate local
+  pack, with event-backed observed memories and standing bounded to -10..10.
+  Neither reads private legal/household actions unrelated to their own work.
+- Generic consequential choices, stable option/source IDs, hidden/visible-disabled
+  states, advisory detached previews and current-state revalidation. Effect
+  adapters settle actual work/promises; CLI letters map to displayed stable IDs.
+- Finite weekly store shifts, a real personal promise, one renegotiation/follow-up,
+  Cal's explicitly disclosed criminal referral and observed later courier offer.
+  References change future work; refusals and misses have coherent continuations.
+- A continuous actual-cash ledger from enrollment. Criminal referrals invoke the
+  existing legal job resolver once; the ledger records the payout without paying again.
+  Legacy legal fines/NPC support retain detailed domain events plus a net ledger entry.
+- Shared three actions, separate 18 TU, explicit travel, and one idempotent
+  post-court/post-navigation daily phase. No chore or cash reward for home inspection.
+- Commands: `settle_in`, `pay_room`, `choose(choice_id, option_id)`. Detached views:
+  `life_report`, `home_report`, `contact_report`, `opportunities`, `choice_report`.
+  CLI adds `life`, `home`, `contacts`, `opportunities`, `choices` and contextual menus.
+- [Choice contract](docs/GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md), reproducible
+  [campaign runner](daily_life_campaigns.py) and [validation evidence](docs/M015_VALIDATION_REPORT.md).
+
+The original submission passed 274 tests (237 M014 plus 37 new). Mission 010's
+[independent acceptance audit](docs/M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) corrected
+promise-source validation, stale-clock roster creation and public memory projection.
+The corrected M015 baseline passed **283 tests**, including nine audit regressions;
+the five seven-day/daily-resume and 56-day campaign results remain unchanged.
+PR #15 remains open and unmerged pending explicit user authorization.
+
+This is one neighborhood with two original contacts and finite roster templates.
+The full prologue, background selection, broad employment economy, combat, advanced
+NPC schedules, new DC actors, graphical frontend and future milestones remain unimplemented.
+Weekly repetition and the legacy faction-support advantage are recorded limitations;
+low cash does not erase home access or block ordinary continuation.
+
+## M016-A implemented scope and limits
+
+- Explicit service adoption, pending save/resume without activation, and one
+  activation inside the existing post-court navigation reset before daily life.
+  Three actions/day and 18 TU/day remain separate and unchanged.
+- Additive overlay only: p039/p071 platforms, four existing underlying rail
+  corridors, 7-TU/$2 station-frontage journey versus free 8-TU bus. No atlas edit.
+- Policy C: abstract rail remains for non-adopters and old history; active rules2
+  requires the station service and prevents old travel/rail command bypass.
+- Atomic candidate execution, per-request retry rejection, one boarding charge,
+  safe-prefix closure observations, detached status/quotes/receipts and projected
+  return using remaining resources. Reuse CLI `route`/`travel`; new `mobility`,
+  `adopt_mobility`, `receipt` expose status, enrollment and accepted receipts.
+- Existing persistence/backup and daily-life cash observer reused. Frozen M015
+  fixture generated from baseline source is outside the legacy fixture collection
+  so existing pre-life fixture tests retain their intended scope.
+- Overlay fingerprint:
+  `d59fe323290fd1216d8b5e1ffdcde5924b123cedc0404ce22215d538779ec7ee`.
+- Executed results and exact files are maintained in the
+  [M016-A implementation/validation report](docs/M016_A_IMPLEMENTATION_VALIDATION.md).
+  The three preserved M016 contracts distinguish this slice from future proposals.
+- Final local regression: **336 passing tests** (283 existing,49 M016-A and4 metadata-repair cases),
+  two365-day seeded replay campaigns and final-code30-day daily disk-resume
+  checks; full worlds match at every command/day. These are local results,
+  not new GitHub CI on this unpushed implementation.
+- Mission015 repairs the two pending metadata type checks before legacy
+  projection: booleans cannot substitute for integer rules_version/journey_sequence.
+  No travel cost, schema, allowance or valid historical event changes.
+
+No skateboards, bicycles, cars, acquisition gameplay, licensing, theft, impound,
+new citywide disruption generator, advanced schedules or prologue are implemented.
+Search is bounded; it can return an explicit planning limit requiring a simpler
+profile/waypoint. Full candidate validation and save history grow with career
+length. Only two stations and a modest cash/TU trade-off exist; no transport XP,
+real-time timers or commuting reward. Keep PR #15 unmerged and do not push this
+isolated implementation without explicit authorization.

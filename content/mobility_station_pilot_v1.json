@@ -1,0 +1,26 @@
+{
+  "overlay_id": "goon.mobility.overlay.station_pilot.v1",
+  "overlay_version": 1,
+  "rules_version": 1,
+  "base_atlas_version": 1,
+  "base_atlas_fingerprint": "14a38c5376989351d83bf90ed172c557a3dbf13c1323a115d2c2144f5136860a",
+  "stations": [
+    {"id": "goon.mobility.station.p039", "place_id": "goon.poi.p039", "platform_id": "goon.mobility.node.p039.platform", "gate_id": "goon.mobility.gate.p039"},
+    {"id": "goon.mobility.station.p071", "place_id": "goon.poi.p071", "platform_id": "goon.mobility.node.p071.platform", "gate_id": "goon.mobility.gate.p071"}
+  ],
+  "line": {
+    "id": "goon.mobility.line.highbridge_south_gate.v1",
+    "ride_id": "goon.mobility.ride.highbridge_south_gate.v1",
+    "from_id": "goon.poi.p039",
+    "to_id": "goon.poi.p071",
+    "boarding_tu": 1,
+    "fare": 2,
+    "ride_tu": 6,
+    "segments": [
+      {"edge_id": "goon.edge.local.r03.05", "from_id": "goon.neighborhood.n17", "to_id": "goon.neighborhood.n18"},
+      {"edge_id": "goon.edge.e06", "from_id": "goon.neighborhood.n18", "to_id": "goon.neighborhood.n23"},
+      {"edge_id": "goon.edge.local.r04.04", "from_id": "goon.neighborhood.n23", "to_id": "goon.neighborhood.n22"},
+      {"edge_id": "goon.edge.e08", "from_id": "goon.neighborhood.n22", "to_id": "goon.neighborhood.n30"}
+    ]
+  }
+}

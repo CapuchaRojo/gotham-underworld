@@ -7,9 +7,11 @@
 A deterministic, offline, single-player crime-city simulation and terminal RPG
 prototype about an ordinary criminal surviving work, loyalties, and a changing
 city. Python 3.14 standard library only: no packages, external AI services,
-or paid APIs are required. The executable is **M014 — Gotham World Runtime &
-Navigation Foundation**, built on M013 faction competition and the merged M013.1
-narrative/atlas foundation. Combat is deferred to an unassigned future milestone.
+or paid APIs are required. The local executable includes **M016-A — optional
+versioned mobility and a two-station monorail pilot**, alongside M015 daily life
+and the merged M014 navigation foundation. This is an isolated implementation
+for review; M015 PR #15 remains open and unmerged. Broader M016 vehicle systems
+and combat are not implemented.
 
 This is an independent, unofficial prototype. Its intended future creative
 setting is the DC universe; it has no endorsement, authorization, or affiliation
@@ -28,8 +30,8 @@ independent operator, boss, informant, reformed citizen, and tragic casualty are
 future career possibilities, not an implemented campaign or a single promotion
 ladder. The intended tone combines dark workplace comedy, street-level crime
 drama, survival, and occasional horror. Current gameplay is described below;
-future employment, personalities, civilian life, combat, and DC content remain
-design work.
+the first local work, room obligations and two original contacts are implemented
+in M015. Broader careers, combat and DC character content remain design work.
 
 M014 loads the complete documented atlas as local data and implements a small
 home/store/return slice with public navigation. See the
@@ -50,7 +52,7 @@ the implemented subset and supersedes their historical M014 combat numbering.
 | [Joker recruitment contract](docs/GOON_JOKER_RECRUITMENT.md) | Original campaign proposal: street association differs from formal Arkham/direct-encounter initiation |
 | [Metropolitan atlas](docs/GOON_GOTHAM_ATLAS.md) | Original 8-region geography and source/continuity decisions; no traced or rendered map |
 | [Location registry](docs/GOON_LOCATION_REGISTRY.md) | 48 neighborhoods and 120 POIs with IDs, access, economy, security, civilian/criminal activities and potential contacts |
-| [Travel network](docs/GOON_TRAVEL_NETWORK.md) | Typed routes, modes, closures, deterministic planning and proposed separate TU allowance; not implemented |
+| [Travel network](docs/GOON_TRAVEL_NETWORK.md) | Source design for M014's implemented modes, closures and separate TU allowance; vehicles/schedules deferred |
 | [Map/simulation integration](docs/GOON_MAP_SIMULATION_INTEGRATION.md) | Preserve the three territory accounts while adding optional hierarchical geography through a future reviewed migration |
 | [Career geography](docs/GOON_CAREER_GEOGRAPHY.md) | Location-dependent work, civilian life, care and meaningful commitments rather than commute grind |
 | [Map visual specification](docs/GOON_MAP_VISUAL_SPEC.md) | Future layered views with player-knowledge boundaries; no GUI or map image |
@@ -63,7 +65,9 @@ the implemented subset and supersedes their historical M014 combat numbering.
 | [Final integration audit](docs/M013_1_FINAL_INTEGRATION_AUDIT.md) | Verified corrections, compatibility findings, reproducible graph/document checks and conditional merge gates |
 | [M014 validation](docs/M014_VALIDATION_REPORT.md) | Executed regressions, historical compatibility, real CLI walkthrough and reproducible navigation campaigns |
 | [M014 final audit](docs/M014_FINAL_AUDIT.md) | Independent acceptance gates, corrections, compatibility results and PR disposition |
-| [M015 daily-life proposal](docs/GOON_M015_DAILY_LIFE_CONTRACT.md) | Smallest viable obligations, home, location-dependent work, contacts and seven-day acceptance scenario; no implementation |
+| [M015 daily-life contract](docs/GOON_M015_DAILY_LIFE_CONTRACT.md) | Implemented scope and historical readiness proposal |
+| [Consequential choices](docs/GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md) | Stable choices, known prerequisites, settlement, branches and recovery |
+| [M015 validation](docs/M015_VALIDATION_REPORT.md) | Executed campaigns, regressions, compatibility, economy findings and limits |
 
 M013.1 preserves the `gotham-underworld` repository name, Python modules, package
 layout, save filenames/identifiers, and historical milestone documents. The CLI
@@ -75,7 +79,7 @@ M014 is navigation only; combat and the prologue remain future design work.
 The rogues addendum changes documentation only. Its roster is not assumed to
 coexist in every continuity, and no minor crew automatically becomes a district
 owner. Formal Joker initiation is optional and conditional; a career can finish
-without it. No new character, recruitment gate or save field is implemented.
+without it. That addendum implemented no rogue, recruitment gate or save field.
 The M013.1 city-atlas design supplied 176 place records (8 regions, 48 neighborhoods,
 120 POIs) and an original network specification, now loaded as M014 content.
 Geography, faction territory, minor-crew influence, properties and police coverage
@@ -104,14 +108,15 @@ quit
 The store visit and return cost **2 travel TU**; the existing courier costs one
 gameplay action. Saving/resuming preserves the home, location, spent TU, jobs and
 day. `look` inspects a frontage, not a shop transaction or institutional admission.
-No prologue, local payroll, health, combat or NPC scheduling is implemented.
+The optional M015 slice below adds local wages and room obligations. No prologue,
+health, combat or NPC scheduling is implemented.
 
 | Navigation command | Behavior |
 | --- | --- |
 | `look [place]` | Current or known place metadata, entry requirements and free help |
 | `nearby`, `places` | Known local destinations or public atlas; private homes need permission |
 | `route <place> [mode]` | Detached preview of outbound/return TU and affordability |
-| `travel <place> [mode]` | Atomic movement; modes `auto`, `walk`, `bus`, `rail`, `ferry` |
+| `travel <place> [mode]` | Atomic movement; before mobility adoption: `auto`, `walk`, `bus`, `rail`, `ferry`; adopted profiles below |
 | `enable_navigation <neighborhood>` | Historical career opt-in at a public hub, active after next `wait` |
 
 Use short IDs such as `p032`/`n13`, their full stable IDs, or `home` when a recorded
@@ -143,6 +148,154 @@ then `wait`. No navigation is imposed by migration or loading. The independent
 `navigation_version: 1` extension pins atlas/rules/content fingerprint; missing or
 incompatible required content fails clearly. All three existing territory accounts
 remain authoritative; 176 places do not multiply income or warfare turns.
+
+## Optional station mobility — M016-A
+
+New and historical careers keep their existing navigation until explicit
+adoption. Loading or inspecting never enrolls a career. Historical careers
+without navigation first use `enable_navigation n17`, then `wait`.
+
+| Command | Behavior |
+| --- | --- |
+| `mobility` | Detached status, adoption availability, stations and known service disruption information |
+| `adopt_mobility` | Schedule mobility once; it activates during the next explicit `wait`, with no resource grant |
+| `route <place> [profile]` | Read-only door-to-door TU/fare quote, policy return and free-return alternatives |
+| `travel <place> [profile]` | Commit the quoted journey atomically using the existing CLI verb |
+| `receipt <request-id>` | Inspect a detached accepted-request receipt without repeating effects |
+
+After activation, profiles are `auto` (alias `fastest`), `free`, `walk`, `bus`,
+`ferry`, `monorail`. Legacy abstract `rail` is retired **only for adopters**.
+Old rail journeys and all non-adopted routing keep their original interpretation.
+The pilot links **p039 Highbridge Metro Stop → p071 South Gate Subway Stop**,
+following n17–n18–n23–n22–n30 via four existing atlas corridors. Only these two
+public frontages have monorail gates; neighborhoods cannot board directly.
+
+The **7 TU/$2** scope is frontage-to-frontage: zero-cost gates/alighting,
+1-TU boarding and 6-TU ride. Actual approach/onward travel is additional. From
+home, a walking-only approach to p039 adds 4 TU; `free` can use the existing
+3-TU bus approach separately. Current p039↔p071 bus costs **8 TU/$0** each way;
+walking costs 18. No fare is charged for merely previewing or reaching a station.
+
+```text
+mobility
+travel p039
+adopt_mobility
+wait
+route p071 monorail
+travel p071 monorail
+route p039 bus
+travel p039 bus
+save
+```
+
+The two committed station trips above use **15 TU/$2**, zero gameplay actions
+and no day advance. Return previews target the journey origin by default,
+preserving `route` semantics. The API can specify another `return_to`. They use
+the actual cash/TU left after outbound settlement and distinguish policy return
+from a free alternative. An outbound cap limits that transaction, not the actual
+resources available for a later return command. Returns remain conditional on
+known access/disruptions; a quote is not a reservation.
+
+Known closures affect planning. An unknown underlying rail closure is observed
+at the departure station before boarding; only an actual approach prefix is
+charged, never the untraveled fare/ride. Free bus/walking remain available where
+the atlas permits. With $0 and insufficient TU for the return, inspect/save and
+explicitly wait; only a real day transition restores the normal 18 TU and three
+actions. Waiting can expire an existing promise/offer. No paid rescue or vehicle
+purchase is required; restricted institutions and custody remain enforced.
+
+Service integrations use `execute_command(world, 'enable_mobility',
+overlay_id=OVERLAY_ID, request_id='client.adopt.1')`, then `advance_day(world)`.
+For travel, call `mobility.plan_route(world, 'p071', 'monorail')` and pass its
+`arguments` to `execute_command(world, 'journey', **quote['arguments'])`.
+Reuse the same request ID only to detect a retry: duplicates reject unchanged;
+`mobility_receipt` retrieves the old receipt. Route views and responses are detached.
+
+Outer save version stays 1. Opt-in pairs `navigation_version: 2` with
+`mobility_version: 1`; pending routing remains rules1 until activation, then
+rules2. Schema1 travel events are unchanged and checked at the legacy checkpoint;
+schema2 events record typed legs, resource deltas, discoveries and charge/receipt
+IDs. The base atlas fingerprint stays unchanged. Separately pinned overlay:
+`d59fe323290fd1216d8b5e1ffdcde5924b123cedc0404ce22215d538779ec7ee`.
+Missing/changed required content fails clearly; old binaries reject nav2 instead
+of ignoring mobility. Existing atomic replacement/backup behavior is reused.
+
+See the [implementation/validation report](docs/M016_A_IMPLEMENTATION_VALIDATION.md),
+[architecture](docs/M016_MOBILITY_ARCHITECTURE.md),
+[acceptance matrix](docs/M016_MOBILITY_ACCEPTANCE_MATRIX.md) and
+[risk register](docs/M016_INTEGRATION_RISK_REGISTER.md). Repeat deterministic
+campaign evidence with `python -B mobility_campaigns.py --days 365 --seeds 17 42
+--resume-every 30`. These stress commutes are test policies, not reward-generating
+missions. Vehicles, theft, licensing, impound, expanded schedules and the full
+prologue remain unimplemented. The broader M016 milestone is not complete.
+
+Local M016-A verification: **336 tests pass** (332 preserved plus4 metadata-repair cases), with
+seeded365-day replay and final30-day daily disk-resume checks. Exact commands,
+hashes, limitations and the distinction from existing GitHub CI are in the report.
+
+## Living in the neighborhood — M015
+
+Daily life is **explicitly optional** for every career, including a new one. Run
+`life` to inspect terms, then `settle_in` at p031/home or n13 to accept them.
+Offers activate after the next `wait`. Starting on day 0 preserves the real $40
+and makes the first $30 cooperative room contribution due on day 7. Every later
+review is seven days apart. Available cash is charged, prepaid contributions are
+applied once, and an unpaid balance never exceeds $30. Basic home access continues
+in grace, with no stacked rent/fees while that balance remains. One maintenance
+opportunity per unpaid review can reduce it by up to $10 for one action, without cash.
+
+| Command | Behavior |
+| --- | --- |
+| `life` | Detached terms, cash history, room dates, promises and a state-grounded thought |
+| `settle_in` | Accept the disclosed room arrangement; activate next day without budget refresh |
+| `home`, `pay_room` | Inspect home/deadlines, or prepay/pay a bounded amount at home |
+| `contacts` | Tess and Cal's known roles, standing and observed interaction memories |
+| `opportunities` | Finite local offers with stable IDs and opening/expiration days |
+| `choices <id>` | Context, speaker, available options, known disabled reasons and action costs |
+| `choose <id> <option-id>` | Revalidate and resolve once through the game service |
+| `choose <id> A` | Use the letter mapped by your last `choices <id>` display; stable IDs remain authoritative |
+
+First-day example, from a fresh home career:
+
+```text
+life
+settle_in
+wait
+choices goon.choice.0.promise
+choose goon.choice.0.promise promise
+travel p032
+choices goon.choice.0.opening_shift
+choose goon.choice.0.opening_shift A
+travel home
+home
+save
+```
+
+On day 2, inspect `goon.choice.0.crossroads`. A lawful shift pays $20 at the store;
+keeping Tess's promise at home pays nothing but earns a reference; negotiation
+moves the favor once to day 4; withdrawal forgoes the morning roster. These share
+a disclosed roster slot. Cal's collection option appears only after his own
+introduction at n13 and requires an explicitly chosen existing faction. It calls
+the original legal job resolver once: up to $60, failure, heat and possible case
+consequences. His observed successful referral may open quieter courier work.
+No contact learns unrelated private work or police facts from these menus.
+
+The referenced stock-audit shift pays $25 for two actions; ordinary repair work
+pays $20 for one. Known follow-up offers also depend on current recorded standing;
+broken commitments can put a reference on hold without removing basic work.
+Offers expire and each settles once. Refusal is free, the shared
+three-action/18-TU rules remain, and a week has a finite roster rather than a wage
+button at every location. Save/load, reports and staying home grant no resources.
+All five branches—lawful, criminal, relationship-first, low cash, and mixed—are
+reproducible with `python -B daily_life_campaigns.py --days 7 --resume`.
+
+Existing saves load without daily-life state or retroactive rent. Pre-navigation
+careers first use `enable_navigation n13` and `wait`, then accept the room locally.
+An unknown home can become p031 through that explicit agreement without moving
+the player. An existing different home is never silently overwritten. The optional
+`daily_life_version: 1` extension pins its own content and validates receipts,
+cash, choices, promises and contact memories. Existing jobs remain available and
+retain their rules. The five-chapter playable prologue remains future content.
 
 ## Start or resume a career
 
@@ -402,10 +555,15 @@ large-world performance at this prototype scale.
 | Shared ownership mutation | `territory.py` |
 | Economy, missions, strategy, warfare | `city_economy.py`, `district_missions.py`, `city_strategy.py`, `faction_warfare.py` |
 | Detached reports | `city_intelligence.py`, strategy assessment/summary |
+| Local geography and navigation | `location_registry.py`, `navigation.py` |
+| Contextual choices | `choice_engine.py`; stable records, visibility and effect callbacks |
+| Neighborhood rules and save invariants | `daily_life.py`, `daily_life_state.py` |
+| Original local content and presentation | `content/neighborhood_life_v1.json`, `life_content.py`, `life_presentation.py` |
 
 Daily order is: base clock/feuds/legacy investigations, legal reviews/quiet-day
 cooling, career investigations with heat scrutiny,
-NPC actions, economy, planning, warfare, then court. Investigation runs once per
+NPC actions, economy, planning, warfare, court, navigation reset, then the optional
+daily-life phase. Investigation runs once per
 case per day; contested cases defer ordinary and NPC evidence until review.
 NPC acceleration otherwise retains its existing cooldown.
 Warfare revalidates current targets; invalidated or unfunded plans emit an
@@ -418,8 +576,9 @@ daily reducer.
 The original `python simulation.py --days 10 --seed 42` batch demonstration
 remains available; it is not the career interface.
 
-Current content definitions and named NPC policies remain in their original
-modules. M013 does not migrate content. Future registries should separate stable
+Legacy content definitions and named NPC policies remain in their original
+modules. M015's two original contacts and opportunity text use a separate local
+content pack; they are not added to the faction NPC policy roster. Future registries should separate stable
 IDs from display names and keep character/faction, dialogue, mission/event,
 asset, and progression data separate from mechanics. New systems should extend
 the command/event interfaces and explicit additive save migrations, without
@@ -436,7 +595,12 @@ committed responses, and review dates
 survive saving. Reports and snapshots expose no mutable world references.
 M013.1 changed only Markdown and CLI display strings. M014 adds the optional
 navigation extension, local definitions, service/CLI integration and navigation
-tests while preserving the 198 existing regressions. Combat, career, influence and institutional
+tests while preserving the 198 existing regressions. M015 preserves all 237 M014
+regressions and adds neighborhood choice, ledger, housing, migration and campaign tests.
+The audited M015 baseline passed **283 tests** (237 M014, 37 M015 and nine audit
+regressions); see the [M015 validation report](docs/M015_VALIDATION_REPORT.md) and
+[independent acceptance audit](docs/M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) for evidence.
+Full prologue, combat, broader career, influence and institutional
 acceptance checks are future requirements, not executed feature tests.
 
 Tests include all 166 M012 regressions, real M001-M012 fixtures, persistence failure
