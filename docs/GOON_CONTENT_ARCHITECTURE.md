@@ -3,10 +3,10 @@
 Mission 007 update: [M014 implements world/navigation](GOON_WORLD_RUNTIME.md).
 Combat references below retain the historical M013.1 proposal and are deferred;
 the [roadmap](GOON_MILESTONE_ROADMAP.md) assigns no combat milestone number.
-The minimal registry/navigation modules implement only the location subset of
-this broader design; other definition catalogs and case adapters remain proposals.
+Registry/navigation implement the location subset; the life, incident and intake
+subsets are identified below. Broader catalogs and legal case adapters remain proposals.
 
-**Status: broader M013.1 proposal; implemented M014–M018 subsets below.**
+**Status: broader M013.1 proposal; implemented M014–M019 subsets below.**
 The broad catalogs below remain proposals outside the explicitly implemented
 location/life/incident subsets. M014 retains the M013 legal/economic systems. This document supports the
 [narrative bible](GOON_NARRATIVE_DESIGN_BIBLE.md) and the separately reviewable
@@ -28,6 +28,34 @@ Future layers separate actual facts, public knowledge and sourced claims. No new
 schema or loader is introduced by the Markdown registry.
 
 ## Current boundary and constraints
+
+### Implemented M019 institutional response
+
+The [institution contract](GOON_INSTITUTIONS_AND_RECOVERY.md) is canonical for
+the two implemented desks; custody/care/recovery proposals remain unimplemented.
+`institution_sources.Sources` reconstructs actual source availability from existing
+incident enrollment/transitions. It does not persist another world-truth authority
+or inspect a private cause to invent a report. `institutional_response` owns the
+institutional queue, local beliefs/credibility and receipt-time player views;
+`institution_state` replays these against prior domain sources and command frames.
+
+The optional marker/state is independent: `institution_version: 1` /
+`institutions`. Adoption starts future automatic transmissions only; prior
+source-backed player observations may still be explicitly submitted. Old incident
+reducers, content pins and histories are unchanged. One post-incident daily hook
+and a post-handler service synchronization reuse existing ordering and rollback.
+No extra economy tick, RNG draw, payment, legal source or contact meter is added.
+
+The institution pack separates stable IDs, names, staff, counter locations,
+mandates and delays from mechanics. The explicit adapters support only the two
+current incidents and two mandates. They are not an inference/rumor framework.
+Player-facing institutional views exclude unreceived private processing and
+preserve previous response snapshots. Full saves/debug snapshots retain audit
+truth. See [executed validation](M019_INSTITUTIONAL_RESPONSE_VALIDATION.md).
+The one certified-copy source is created only after an actual local response
+hands it over. Replay derives the response first, then exposes that bounded
+documentary source for a later command; a saved boolean cannot authenticate it.
+This provides late record repair without a general knowledge/rumor network.
 
 ### Implemented M018 incident dispatch
 

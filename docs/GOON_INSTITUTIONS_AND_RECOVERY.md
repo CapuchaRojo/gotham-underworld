@@ -1,10 +1,121 @@
 # Gotham: The Goon — Institutions and Recovery
 
-**Status: unimplemented M013.1 proposal.** M013 currently has accelerated
+**Status: M019 implements only the bounded intake/service desks below.** The
+prison, care, supervision and recovery sections remain an M013.1 proposal.
+M013 currently has accelerated
 arrest/court resolution and a legal record, not prison episodes, psychiatric
 admission, counseling, parole or treatment. These proposals do not change current
 custody rules or authorize M014 expansion. They describe fictional Gotham rules,
 not real legal or medical procedure.
+
+## M019 implemented intake and knowledge contract
+
+Mission 023 builds on merged M018 `d0723b1551fc4e1aedf2d0fa4a5b5e3758902f49`.
+M017-B reached master through PR #18 (`8bc9700`); M018 through PR #19 (`d0723b1`).
+M019 is local on `feature/m019-institutional-response`; no publication or merge
+is authorized. This section describes executable behavior, not real procedure.
+
+| Actor | Place / routine | Authority |
+| --- | --- | --- |
+| Neighborhood Civilian Desk, original clerk Ruth Bell | Public n13 counter; one daily board/resident round; one day to process a received report | Local notice and safety records, clarification, one dated correction copy for a documented delivery matter. |
+| GCPD Intake Desk, original intake clerk Niko Shah | Existing public counter p044; next-day forwarded copies of Ada's actually delivered reports; two days to process | Log, classify and acknowledge alarm observations. No offender identification, guilt, case creation, warrant or arrest. Delivery administration belongs at the civilian desk. |
+
+Names, staff, places, mandates and delays live in a separate pinned JSON pack;
+mechanics use stable institution IDs. The public counter adds no access to
+restricted interiors. Existing daily-life contacts/standing are unchanged.
+
+### Explicit adoption and causal knowledge
+
+`enable_institutions` requires active daily life and freedom. It costs zero and
+refreshes neither the three gameplay actions nor eighteen travel units. Loading
+an old career never adopts. Optional `institution_version: 1` / `institutions`
+pins rules/content without changing the outer save version or old event IDs.
+Compatibility is old-to-new. Use an M019-capable executable throughout an adopted
+career; advancing it in an older executable is not supported.
+
+Institutional knowledge is built from **received sources**, not world truth:
+
+1. The world still owns the alarm cause and true delivery date.
+2. An ephemeral source adapter replays existing incident transitions, finding
+   actual public notices, observations, owner reports and issued circulars.
+3. Each institutional transmission names its source event, observer, observed
+   day, recipient, route, received day, credibility/limitation and processing day.
+4. A desk keeps its own reports, beliefs and unresolved contradictions. Multiple
+   conflicting unchecked dates request clarification, rather than choosing one
+   because it matches world truth. Documented support can resolve a contradiction;
+   the old claims and causal references remain recorded.
+5. The player receives only their submission acknowledgment and explicit local
+   follow-up snapshots. Automatic queue work stays out of service/CLI player
+   events. Remote views retain receipt-time information; previews at a counter
+   can explain its current submission policy without committing any interaction.
+
+The civilian round collects the Wrong Notice board claim and Sam's actual
+handbill, then later the issued public circular. It can also read the existing
+shop alarm notice. The intake forwarding route copies the original incident
+desk's received owner alarm report and later owner review. This is a new explicit
+copy, not a rename of the legacy Civic Police desk or automatic sharing of all
+its knowledge. Neither desk sees private inspections, player withholding, the
+other desk's records, or unrelated contact memories unless supported transmission
+actually occurs. A cause observation remains an observation, never legal guilt.
+
+Only source events **after adoption** trigger automatic rounds/forwarding. Late
+adoption does not fabricate old institutional records. A player may explicitly
+submit an observation acquired earlier if its genuine source history survives.
+Institutional replies are secondhand records in their own player journal; they
+do not backfill the old incident's primary-inspection facts or unlock expired work.
+A genuinely handed-over dated correction copy is an explicit, one-hop exception:
+it becomes a documentary source usable at the civilian desk. Its source is the
+actual received response, independently reconstructed during validation, not a
+saved assistance flag. It lets a player repair an old desk record after the
+original incident windows expire, without rewriting that incident or granting
+another copy, reward or automatic recipient update.
+
+### Player commands and consequences
+
+All mutations use `game_service.execute_command`. Counter commands recheck
+current location, lawful access, freedom, remaining actions and actual source
+knowledge. CLI aliases `civilian` / `intake` resolve to stable actor IDs.
+
+| Command | Cost and effect |
+| --- | --- |
+| `institution_submit(institution_id, source_id)` | One action at the appropriate counter. Submit an actually observed claim; the claim may be incomplete or false. An acknowledgment is not endorsement. No cash reward. |
+| `institution_correct(institution_id, report_id, source_id)` | One action. A known original report at this recipient needs documented, conflicting evidence for the same incident/topic. Own queued reports can be corrected; another sender's report must first be received in a local follow-up. No correction chains or repeated corrections. |
+| `institution_followup(institution_id, incident_id)` | One action at the counter for a known incident and an unread response version. Receives queued/clarification/closed/documented records and their limits. A documented civilian delivery matter issues one correction copy, recorded as assistance, not inventory, money or a world-wide correction. |
+| `institution_withhold(institution_id, incident_id)` | Zero actions, once per known matter. Private player intent only; no notice to the institution, promise, debt, penalty or permanent refusal lock. |
+
+Credibility is local administrative access, not a second faction/contact meter.
+An actually contradicted, uncorrected player claim puts that desk's unchecked
+submission route under `needs_documentation`. Documentary submissions remain
+possible; a processed verified correction repairs the record. A supported player
+record establishes `documented` access. The other desk and ordinary careers are
+unaffected. There is no score stacking or payment for reporting.
+
+### Bounded independent operation and validation
+
+After existing daily life and incident phases, each received source queues once.
+No new daily action is charged. Due work processes once per day; unanswered
+matters close for insufficient information after three clarification days.
+Additional unchecked reports do not extend that deadline. A later genuine
+document can reopen/resolve the record. No automatic notification spam or global
+clock is added. Closed idle queues generate no daily history. The two one-shot
+incidents provide a finite source set; each recipient/source and original
+correction settles once. Follow-up cannot repeatedly grant assistance.
+
+Replay validates source availability at transmission time, original command
+frames and completed movement, recipient, delay, processing order, response
+snapshots and the final state. Recorded flags are not proof of source knowledge.
+Receipt/processing days must match the day already established by prior domain
+events; source acquisition and arrival cannot come from a later day. This is
+ephemeral proof over the existing log, not another clock or saved history.
+Unverifiable/contradictory edits reject without changing the save. This proves
+consistency, not cryptographic authenticity of a completely rewritten career;
+it does not reconstruct all historical legal/access/action predicates.
+
+The existing atomic writer/backup is reused. No rent, wages, heat, investigations,
+custody, faction resources, travel policy or old incident settlement is changed.
+See [content architecture](GOON_CONTENT_ARCHITECTURE.md),
+[incident integration](GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) and
+[M019 validation](M019_INSTITUTIONAL_RESPONSE_VALIDATION.md) for executed evidence.
 
 ## Continuity and fictional legal contract
 

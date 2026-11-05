@@ -2,12 +2,12 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current local slice: **Mission 019 / M018 — The Wrong Notice**, for review
-- Implementation branch: `feature/m018-wrong-notice`, from verified M017-B merge
-  `14bfc5084b1f9f50fb305a69ac2f6c64f0412739`; 389 baseline tests preserved
-- PR #17 is merged into `audit/m017-independent-acceptance`, **not master**.
-  Remote master remains `43d81973e03c63d0ac8b4c759b5dd95b9e884c6d`.
-  Existing branches/merged PRs are preserved; M018 is not pushed or proposed in a PR.
+- Current local slice: **Mission 023 / M019 — Institutional Knowledge & Response**
+- Implementation branch: `feature/m019-institutional-response`, from verified master
+  `d0723b1551fc4e1aedf2d0fa4a5b5e3758902f49`; 426 baseline tests passed before edits
+- PR #17 first merged into the audit branch. PR #18 subsequently integrated that
+  provenance history into master (`8bc9700`); PR #19 merged M018 (`d0723b1`).
+  Existing branches/commits are preserved. M019 remains local; no publication authorized.
 - PR #15 (M015) and #16 (M016-A) are merged. The prior open-PR requirement was
   superseded explicitly; both original feature branches remain unchanged.
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
@@ -375,6 +375,36 @@ This is one versioned episode per definition per career, not recurring citywide
 content. There is no global rumor network, police case, clock, recruitment or
 new rogue gameplay. Abstract tenant/board audiences have small local consequences;
 there is no individual resident schedule, inventory loss or business economy.
-The future prologue and broader creative proposals remain unimplemented. Before
-a future PR to master, account explicitly for the audit/provenance branch ancestry;
-no integration merge is authorized by this local implementation mission.
+The future prologue and broader creative proposals remain unimplemented.
+Mission 022 integrated M018 using a merge commit after verifying provenance
+ancestry and the exact 20-file tree diff. Both PR checks, post-merge CI and all
+426 local regressions passed. The original feature branch remains preserved.
+
+## M019 local implemented scope
+
+- Explicit `institution_version: 1` / `institutions`; future NPC intake only,
+  with source-backed earlier player observations eligible for explicit submission.
+- Original staff at a civilian n13 service desk and existing p044 public police
+  counter. Separate mandates, received reports, beliefs, contradictions, queues,
+  local credibility and receipt-time player knowledge. No broad NPC simulation.
+- Bounded source adapters consume actual incident events; they never infer
+  receipt from world truth. Old incident reducers, content pins and IDs remain.
+- One-/two-day processing, three-day unanswered clarification closure, documented
+  correction/reopening, exactly-once submission and one correction copy.
+- A received copy can document a later explicit desk correction after old
+  incident windows expire; it grants no primary inspection credit or new reward.
+- Service-owned submit/correct/follow-up actions cost one; withholding is free,
+  private and bounded. Reporting access consequences remain local. No wage,
+  prosecution, warrant, arrest, rent change or travel/action allowance refresh.
+- Canonical [institution contract](docs/GOON_INSTITUTIONS_AND_RECOVERY.md) and
+  [validation report](docs/M019_INSTITUTIONAL_RESPONSE_VALIDATION.md) describe
+  actual behavior, source rules, executed evidence and limitations.
+- Final local validation: **468 tests passed** (426 preserved, 42 new), two
+  365-day institutional replay/resume campaigns, unchanged six historical
+  fingerprints, actual CLI outcomes and interrupted-writer recovery. The
+  confirmed receipt-time forgery was repaired and regression-tested. No new
+  `WinError 32` occurred; the earlier intermittent platform concern remains.
+
+Replies are secondhand records, not primary inspection credit. There is no global
+rumor propagation, inventory simulation for correction copies, new legal AI,
+care/prison episode, canon character, combat, global clock or M020 implementation.

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "clarification_days": 3,
+  "actors": {
+    "goon.institution.civilian_desk": {
+      "name": "Neighborhood Civilian Desk",
+      "staff": "Ruth Bell, civilian service clerk",
+      "kind": "civilian",
+      "place": "goon.neighborhood.n13",
+      "delay": 1,
+      "topics": ["alarm", "cause", "delivery_day"],
+      "routine": "One daily round reads the shop board and asks the resident coordinator; the final public circular is collected after issue.",
+      "mandate": "Local notices and safety assistance. A verified delivery record permits one dated correction copy; no money, legal finding or automatic recipient correction."
+    },
+    "goon.institution.police_intake": {
+      "name": "GCPD Intake Desk",
+      "staff": "Niko Shah, intake clerk",
+      "kind": "police_intake",
+      "place": "goon.poi.p044",
+      "delay": 2,
+      "topics": ["alarm", "cause"],
+      "routine": "Receives a next-day copy of Ada's actually delivered alarm report and later owner review through the existing incident desk.",
+      "mandate": "Log, classify and acknowledge observations. A logged cause is not proof of guilt; no suspects, warrants, charges or arrests. Administrative delivery disputes belong at the civilian desk."
+    }
+  }
+}
