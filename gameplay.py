@@ -146,13 +146,19 @@ def play(world, filename, *, new_career=False):
         verb, *args = command
         try:
             if verb == 'help':
+                print('incident_definitions | enable_incident <definition-id> | incidents [incident-id]')
                 print('incidents | enable_incidents | discover_incident <incident-id> <public_notice|contact> | incident_choose <incident-id> <stage> <option-id>')
                 print('life | settle_in | home | pay_room | contacts | opportunities | choices <choice-id> | choose <choice-id> <option-id|displayed-letter>')
                 print('look [place] | nearby | places | route <place> [auto|walk|bus|rail|ferry] | travel <place> [mode] | enable_navigation <neighborhood>')
                 print('mobility | adopt_mobility | receipt <request-id> | route/travel profiles after adoption: auto|free|walk|bus|ferry|monorail')
                 print('status | legal | lay_low | cooperate <case-id> | contest <case-id> | accept <case-id> | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
-            elif verb == 'incidents' and not args:
-                print(incident_report(world))
+            elif verb == 'incident_definitions' and not args:
+                from incident_dispatch import definitions
+                print(definitions())
+            elif verb == 'enable_incident' and len(args) == 1:
+                print(execute_command(world, verb, definition_id=args[0])['result']['message'])
+            elif verb == 'incidents' and len(args) <= 1:
+                print(incident_report(world, args[0] if args else ''))
             elif verb == 'enable_incidents' and not args:
                 print(execute_command(world, verb)['result']['message'])
             elif verb == 'discover_incident' and len(args) == 2:
@@ -307,10 +313,12 @@ def play(world, filename, *, new_career=False):
             elif verb == 'wait':
                 before = len(world['events'])
                 execute_command(world, 'wait')
-                for e in world['events'][before:]:
+                from incident_dispatch import player_events
+                for e in player_events(world, world['events'][before:]):
                     print(f'Day {e["day"]}: {e["message"]}')
             elif verb == 'events':
-                for e in world['events'][-10:]:
+                from incident_dispatch import player_events
+                for e in player_events(world, world['events'])[-10:]:
                     print(f'Day {e["day"]} [{e["kind"]}] {e["message"]}')
             elif verb == 'save':
                 print(f'Saved to {save(world, filename, overwrite=not new_career)}')

@@ -9,6 +9,8 @@ import hashlib
 import choice_engine
 from incident_content import fingerprint, load
 from simulation import event
+import incident_lifecycle as lifecycle
+from incident_lifecycle import transition_id
 
 VERSION = 1
 FACT_DELTAS = {'inspection_complete': 2, 'inspection_partial': 0, 'inspection_failed': -1,
@@ -22,15 +24,9 @@ def initial(seed, day):
     digest = hashlib.sha256(f'{seed}:{fingerprint()}:{source}'.encode()).digest()
     occurrence = day + 1 + digest[0] % 2
     ident = source + '.alarm'
-    stages = {}
-    for stage in sorted(content['stages']):
-        start = occurrence if stage == 'offer' else occurrence + 1
-        if stage == 'followup':
-            start = occurrence + 5
-        stages[stage] = dict(id=ident + '.' + stage, source_id=ident,
-            definition_id=content['id'] + '.' + stage, open_day=start,
-            expires_day=occurrence + (8 if stage == 'followup' else 4),
-            state='open', selection=None)
+    stages = lifecycle.stages(ident, content['id'], {stage:
+        (occurrence + (5 if stage == 'followup' else 0 if stage == 'offer' else 1),
+         occurrence + (8 if stage == 'followup' else 4)) for stage in content['stages']})
     return dict(rules_version=VERSION, content_fingerprint=fingerprint(), enabled_day=day,
         last_tick_day=day, id=ident, source_id=source, occurrence_day=occurrence,
         information_day=occurrence + 1, resolution_day=occurrence + 4,
@@ -46,9 +42,7 @@ def _selection(state, stage):
 
 
 def _receipt(state, stage, day, command_id, fact, pay=0):
-    source = state['id'] + '.' + stage
-    state['receipts'].append(dict(id=source + '.effect', source_id=source, day=day,
-        command_id=command_id, fact=fact, delta=FACT_DELTAS[fact], pay=pay))
+    lifecycle.receipt(state, stage, day, command_id, fact, FACT_DELTAS[fact], pay)
 
 
 def _assess(state, stage, option, context):
@@ -75,19 +69,14 @@ def reduce(state, operation, day, arguments, context=None):
     """Apply one version-1 transition; no world, I/O, RNG or resource references."""
     content = load()
     if operation == 'tick':
-        if arguments or context is not None or day <= state['last_tick_day']:
+        if arguments or context is not None:
             raise ValueError('Incident day already processed or invalid')
-        if state['world_status'] == 'resolved' and all(r['state'] != 'open' for r in state['stages'].values()):
-            raise ValueError('Incident lifecycle is already finished')
-        if day >= state['occurrence_day'] and state['world_status'] == 'eligible':
-            state['world_status'] = 'occurred'
+        def occur():
             state['owner_facts'] = ['alarm_observed']
-        if day >= state['information_day'] and state['world_status'] == 'occurred':
-            state['world_status'] = 'evidence_available'
+        def inform():
             state['owner_facts'].append('cause_verified')
             state['desk_facts'].append('owner_alarm_report')
-        if day >= state['resolution_day'] and state['world_status'] != 'resolved':
-            state['world_status'] = 'resolved'
+        def resolve():
             # The owner supplies her independent review, not magical police knowledge.
             state['desk_facts'].append('owner_review_received')
             offer, work = _selection(state, 'offer'), state['stages']['work']['selection']
@@ -104,10 +93,7 @@ def reduce(state, operation, day, arguments, context=None):
                 shop_status='reopened_with_safety_help' if offer == 'help' else 'reopened_by_owner',
                 disruption=state['truth'], player_outcome=(outcome or ('failed_commitment' if offer == 'accept' else offer) or
                     ('ignored_known' if state['discovery'] else 'missed_unknown')))
-        for record in state['stages'].values():
-            if record['state'] == 'open' and day >= record['expires_day']:
-                record['state'] = 'expired'
-        state['last_tick_day'] = day
+        lifecycle.advance(state, day, occur, inform, resolve)
         return dict(message='Independent incident processing completed.')
 
     if arguments.get('incident_id') != state['id']:
@@ -171,9 +157,7 @@ def reduce(state, operation, day, arguments, context=None):
         pay = content['followup_pay']
         _receipt(state, stage, day, context['command_id'], 'followup_completed', pay)
         outcome.update(pay=pay, feedback=f'Completed {state["followup"].replace("_", " ")}; earned ${pay} once.')
-    record['state'] = 'resolved'
-    record['selection'] = dict(option_id=selected, day=day, command_id=context['command_id'],
-        action_cost=option['actions'], outcome=outcome)
+    lifecycle.settle(record, option, day, context, outcome)
     return dict(message=outcome['feedback'], stage=stage, **deepcopy(outcome))
 
 
@@ -210,37 +194,13 @@ def _state(world):
 
 
 def _publish(world, operation, arguments, ctx=None):
-    import daily_life
-    state = _state(world)
-    start = len(state['receipts'])
-    before = state['world_status']
-    result = reduce(state, operation, world['day'], arguments, ctx)
-    for receipt in state['receipts'][start:]:
-        # Player cash is the sole balance; the service records its actual net change.
-        world['player']['cash'] += receipt['pay']
-        daily_life._memory(world, load()['contact_id'], receipt['fact'], receipt['delta'], receipt['source_id'])
-    event(world, 'incident_transition', result['message'], schema_version=VERSION,
-        transition_id=transition_id(state, operation, world['day'], arguments),
-        incident_id=state['id'], source_id=state['source_id'],
-        before=before, after=state['world_status'],
-        effect_ids=[r['id'] for r in state['receipts'][start:]],
-        operation=operation, arguments=deepcopy(arguments), context=deepcopy(ctx),
-        command_id=ctx['command_id'] if ctx else None, result=deepcopy(result))
-    return result
-
-
-def transition_id(state, operation, day, arguments):
-    suffix = str(day) if operation == 'tick' else arguments['stage'] if operation == 'choose' else 'notice'
-    return f'{state["id"]}.{operation}.{suffix}'
+    from incident_dispatch import publish, NIGHT_SHIFT
+    return publish(world, NIGHT_SHIFT, operation, arguments, ctx)
 
 
 def begin_day(world):
-    if 'incident_version' not in world or world['incidents']['last_tick_day'] >= world['day']:
-        return
-    state = world['incidents']
-    if state['world_status'] == 'resolved' and all(r['state'] != 'open' for r in state['stages'].values()):
-        return
-    _publish(world, 'tick', {})
+    from incident_dispatch import begin_day as dispatch_day
+    dispatch_day(world)
 
 
 def discover_incident(world, incident_id, channel):
@@ -282,11 +242,6 @@ def report(world):
             finding=content['causes'][state['truth']] if 'cause_verified' in state['player_facts'] else None,
             shop_status=state['aftermath']['shop_status'] if state['aftermath'] else None,
             followup=state['followup'] if state['aftermath'] else None)
-        for stage, definition in sorted(content['stages'].items()):
-            row = choice_engine.present(world, state['stages'][stage], definition,
-                lambda o, stage=stage: _assess(state, stage, o, ctx))
-            # Only actionable choices are offered. Known windows remain in the journal.
-            row['options'] = [o for o in row['options'] if o['availability'] == 'available']
-            if row['options']:
-                result['choices'].append(dict(stage=stage, **row))
+        result['choices'] = lifecycle.choices(world, state, content['stages'],
+            lambda stage, o: _assess(state, stage, o, ctx))
     return deepcopy(result)

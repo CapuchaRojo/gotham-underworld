@@ -4,13 +4,14 @@
 
 **PROPOSED DESIGN CONTRACT — Mission 015, November 4, 2026; Mission 016 status update.**
 Sections 1–11 preserve the prior proposal/evidence; the implemented Night Shift
-subset and current limitations are explicitly recorded in section 12. No global
+subset and current limitations are explicitly recorded in section 12. Section 13
+records the implemented M018 two-incident extension. No global
 clock, DC encounter or institutional career is implemented. This document selects
 no DC continuity and authorizes no future implementation. The user-approved direction is a reactive,
 offline city with ordinary people as protagonists, independent institutions,
 predominantly nighttime dramatic incidents and meaningful lawful careers.
 The mechanisms, role assignments, weights, schemas and sequencing below remain
-**proposed** outside the expressly implemented section 12, including future
+**proposed** outside the expressly implemented sections 12–13, including future
 numerical policies beyond the existing budgets.
 
 Companion contracts: [Rogue Encounters](GOON_ROGUE_ENCOUNTERS_DESIGN.md),
@@ -570,3 +571,75 @@ domain records only. All 371 prior tests plus 18 new provenance regressions pass
 and all four recorded mobility/Night Shift campaign hashes are unchanged. See
 the appended Mission 018 section of [validation](M017_NIGHT_SHIFT_VALIDATION.md)
 for actual commands, red/green evidence and compatibility limits.
+
+## 13. Implemented M018 — The Wrong Notice
+
+Mission 019 authorizes one original neighborhood delivery dispute and reusable
+dispatch. It does not authorize the broader law, Bat-Family, clock or rogue systems.
+Night Shift retains its definition, content fingerprint, stable IDs, histories
+and payouts. Its prior provenance contract above remains in force.
+
+### Lifecycle and authoritative boundaries
+
+After daily life activates, `enable_incident` with
+`goon.incident.wrong_notice.v1` explicitly adds `notice_version: 1` and
+`wrong_notice`. No retroactive occurrence, expense, action or TU refresh is given.
+A hash of seed, content fingerprint and enrollment identity fixes occurrence one
+or two **future** day transitions later, the authentic date and a lawful standby
+vacancy. This consumes no shared RNG. A local ledger becomes available the next
+day; actual delivery is three or four days after occurrence; independent
+reconciliation occurs five days after occurrence. No command silently waits.
+
+The game service owns all player mutations. `incident_dispatch` selects an explicit
+adapter, publishes transition/effect references and delegates memory/cash changes.
+The small shared lifecycle owns stage creation, day guards, progression/expiry,
+terminal settlement, receipt shape and choice projection. Adapter reducers own
+domain facts only. The same replay validator reconstructs each definition from
+its own events. Exactly-once effects cross-check against actual life memories
+and the existing cash ledger. There is no parallel journal that proves itself.
+
+### Information contract
+
+| Layer | Implemented authority and scope |
+| --- | --- |
+| World truth | Seed-pinned authentic delivery day/vacancy; hidden from initial player reports. |
+| Source claims | Obsolete printed board notice, Sam's earlier handbill and Nora's authenticated local ledger. Each carries a source, credibility and limitation; neither initial date is authoritative. |
+| Audience knowledge | Separate board, tenant group and desk beliefs. The desk initially receives its own ledger only. No police knowledge or broader faction propagation. |
+| Transmission | Stable source/recipient/claim/cause/command/day records. Authentic corrections cannot be overwritten by later unchecked claims. A desk notification orders tomorrow's board posting; it never instantly updates tenants. |
+| Discovery | Actual p032 board read or conversation with Sam at n13, after occurrence, justified by prior command/travel sources. Sam needs no Tess reference; the original Night Shift Tess gate is unchanged. |
+| Player knowledge | Only observed source claims; verification exposes the actual ledger. Independent correction does not rewrite the journal. |
+| Independent observations | Nora reviews the board; Sam reports local delivery experience. Their explicit limited observations reach the desk, which issues a public reconciliation circular. No character learns private motives. |
+| Receipt of aftermath | At n13 during resolution+1 through resolution+3, `aftermath read` receives the circular. Before that, player reports and service/CLI event/contact views hide unreceived automatic trust reactions and review details. Raw save/debug snapshots retain audit truth. |
+
+### Decisions, costs and consequences
+
+Every source comparison or ledger verification costs one shared action. Refusal
+and reading the final circular cost zero; neither pays or refreshes anything.
+Travel remains explicit and uses the existing separate 18 TU. Execution rechecks
+lawful access, freedom, location, knowledge, dates, prior stages and actions.
+
+| Response | Eligibility and cost | Persistent consequence |
+| --- | --- | --- |
+| Verify ledger | Discovered, ledger available, n13; 1 action | Player learns authenticated date/vacancy. No money or public correction. |
+| Post signed correction | Verified, p032; 1 action | Board corrected only. Nora acknowledges the signed help at her later independent review (+1). |
+| Notify desk | Verified and poster observed, n13; 1 action | Nora receives a genuine discrepancy (+1) and orders tomorrow's board correction. Tenants stay uninformed. |
+| Warn tenant group | Verified after board/desk help, n13; 1 action | Sam's recipients corrected (+1); no board change or wage. |
+| Repeat unchecked notice | Poster observed, ledger not checked, n13; 1 action | Only Sam's group receives the unchecked date. If left unretracted, actual reconciliation disproves it and Sam loses 1 trust; Nora does not learn that conversation. |
+| Retract | Previously shared unchecked date, now verified, n13; 1 action | Original recipients receive correction; no trust bonus. Delivery-day harm still persists if too late. |
+| Reserve lawful standby slot | Verified vacancy and observed poster, n13; 1 action | Player discloses the error but requests personal priority instead of help; Nora -1. One optional $5 shift opens after resolution, costs 1 action and expires after three days. No crime, automatic wage or faction membership. |
+| Refuse / ignore / miss | Free refusal, or no participation | No invented promise, debt, prosecution or lost ordinary career. Delivery and independent reconciliation still happen. |
+
+Delivery-day impact is captured during the day transition, before that day's
+player commands. Corrections must arrive before that transition to prevent harm;
+later work may still help future understanding but cannot undo a missed delivery.
+Resolution distinguishes success, partial, failed, refused, ignored-known,
+missed-unknown and selfish reservation. The desk's final correction reaches board
+and tenants only then. The state freezes once the bounded follow-up/read windows
+close; neither event recurs or grows an endless incident history.
+
+Nora and Sam are original local contacts in the existing daily-life authority,
+not the strategic faction NPC roster. No resident inventory losses, legal cases,
+global rumors, individual schedules or permanent shop lock are simulated.
+See [M018 validation](M018_WRONG_NOTICE_VALIDATION.md) for actual tests, CLI and
+save/resume evidence and [content architecture](GOON_CONTENT_ARCHITECTURE.md)
+for the internal adapter contract. Broader future proposals remain unimplemented.

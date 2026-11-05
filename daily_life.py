@@ -339,21 +339,21 @@ def opportunities(world):
 
 def contact_definitions(world):
     definitions = load()['contacts']
-    if 'incident_version' in world:
-        from incident_content import load as incident_content
-        content = incident_content()
-        definitions[content['contact_id']] = content['contact']
+    from incident_dispatch import contacts
+    definitions.update(contacts(world))
     return definitions
 
 
 def contact_report(world):
     life, definitions = _state(world), contact_definitions(world)
+    from incident_dispatch import contact_view
     public_fields = ('name', 'role', 'personality', 'need', 'knowledge')
     memory_fields = ('id', 'day', 'fact', 'source_id', 'before', 'after', 'delta')
-    return deepcopy([dict(id=ident, standing=person['standing'],
-                         memories=[{key: memory[key] for key in memory_fields} for memory in person['memories']],
+    return deepcopy([dict(id=ident, standing=standing,
+                         memories=[{key: memory[key] for key in memory_fields} for memory in memories],
                          **{key: definitions[ident][key] for key in public_fields})
-                     for ident, person in sorted(life['contacts'].items())])
+                     for ident, person in sorted(life['contacts'].items())
+                     for standing, memories in [contact_view(world, ident, person)]])
 
 
 def life_report(world):

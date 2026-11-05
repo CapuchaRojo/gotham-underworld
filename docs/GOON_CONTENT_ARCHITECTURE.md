@@ -6,9 +6,9 @@ the [roadmap](GOON_MILESTONE_ROADMAP.md) assigns no combat milestone number.
 The minimal registry/navigation modules implement only the location subset of
 this broader design; other definition catalogs and case adapters remain proposals.
 
-**Status: broader M013.1 architecture proposal with an M014 location subset.**
-The catalogs below remain proposals except the location registry/navigation
-identified above. M014 retains the M013 legal/economic systems. This document supports the
+**Status: broader M013.1 proposal; implemented M014–M018 subsets below.**
+The broad catalogs below remain proposals outside the explicitly implemented
+location/life/incident subsets. M014 retains the M013 legal/economic systems. This document supports the
 [narrative bible](GOON_NARRATIVE_DESIGN_BIBLE.md) and the separately reviewable
 [M014 combat contract](M014_COMBAT_DESIGN_CONTRACT.md).
 The expanded proposals cover [careers](GOON_CRIMINAL_CAREER_WEB.md),
@@ -28,6 +28,68 @@ Future layers separate actual facts, public knowledge and sourced claims. No new
 schema or loader is introduced by the Markdown registry.
 
 ## Current boundary and constraints
+
+### Implemented M018 incident dispatch
+
+The historical proposals in this file do not supersede the implemented service,
+navigation, life or incident contracts. The bounded two-incident extension uses:
+
+```text
+game_service.execute_command (candidate copy, budget, rollback, validation)
+  -> incident_dispatch (explicit definition/instance ownership)
+     -> world_incidents | wrong_notice (domain reducer and assessment)
+        -> incident_lifecycle (day progression, stages, settlement, receipts)
+  -> existing daily_life memories + player cash + actual-cash ledger
+  -> incident_state replay + independent domain-source validation
+  -> detached player reports/events
+```
+
+`incident_dispatch.bindings()` explicitly binds two stable definition IDs to
+their module, version marker, state slot and enrollment event. It performs no
+dynamic imports from saves, scripting, plugin discovery or arbitrary content
+execution. Both implement `initial`, `reduce`, `_assess`, `load`, `fingerprint`,
+`report`, and `FACT_DELTAS`. This is a small internal Python adapter contract.
+JSON holds original contacts, text, option IDs/costs and fixed pay; domain rules
+remain explicit Python. There is no universal quest language.
+
+| Definition | Optional marker / state | Enrollment |
+| --- | --- | --- |
+| `goon.incident.night_shift.v1` | `incident_version: 1` / `incidents` | Existing `enable_incidents`, or explicit generic `enable_incident` |
+| `goon.incident.wrong_notice.v1` | `notice_version: 1` / `wrong_notice` | `enable_incident(definition_id)` only |
+
+The old singleton shape is retained as a compatibility slot, not wrapped or
+renumbered. Each adopted adapter runs once after daily life, in sorted definition
+order. It stops ticking after all stages close. Each has its own enrollment,
+transition IDs, source records and replay, so one cannot settle another's command
+or borrow its occurrence tick. Identity ownership is validated before replay.
+For the bounded slice there is one episode per definition per career.
+
+Both share `discover_incident(incident_id, channel)` and
+`incident_choose(incident_id, stage, option_id)`. Costs are computed by current
+choice assessment and rechecked on the candidate. Replay reconstructs adapter
+state from its own chronological events and compares exact results/effect IDs.
+Delegated memories and nonzero payments are cross-checked against the existing
+life authority. Stable IDs plus terminal stages prevent duplicate settlement;
+no second cash balance, reputation metric or historical-location authority exists.
+
+Night Shift preserves its content pin, IDs, receipt/event shapes and legacy
+report shape when Wrong Notice is not adopted. A two-incident overview is used
+only when the new optional marker is present; passing an instance ID returns
+one adapter's report. Existing saves load without adoption or conversion.
+Wrong Notice saves require an executable that supports their explicit version.
+
+Source-backed discovery reuses M017-B's prior travel/command provenance; each
+adapter determines what its source can actually say. Wrong Notice additionally
+replays observations and targeted transmissions, rather than accepting saved
+knowledge booleans. The player journal shows observed claims only. Private
+automatic reactions are filtered from service events and contact summaries until
+the final circular is received. Raw save data and `snapshot` remain detached
+developer/audit world views; they are not a player knowledge API. A future UI must
+use player projections rather than relabeling raw state as known information.
+
+See the canonical [After Dark contract](GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md)
+and [executed validation](M018_WRONG_NOTICE_VALIDATION.md). No DC character data,
+global NPC inference, legal-case source, real-time scheduler or asset is added.
 
 | Responsibility | Current implementation | Constraint for extensions |
 | --- | --- | --- |
@@ -316,7 +378,8 @@ Future street intelligence needs an explicit player-knowledge read model.
 Existing omniscient city reports cannot simply be relabeled rumors. A false claim
 may cause a genuine player decision without changing the truth of the claim.
 NPC decisions must specify whether they use facts, observations, or beliefs.
-This is outside M014's minimum combat scope and adds no misinformation now.
+This was outside the historical M014 proposal. M018 implements only the small
+local information adapter described above, not this proposed citywide layer.
 
 ## Small, reviewable adoption sequence
 

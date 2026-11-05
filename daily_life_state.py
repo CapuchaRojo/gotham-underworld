@@ -194,10 +194,8 @@ def validate(world):
     memories = {}
     allowed = {'goon.contact.tess': {'work_completed', 'promise_accepted', 'promise_kept', 'promise_broken', 'promise_moved'},
                'goon.contact.cal': {'terms_disclosed', 'collection_completed', 'collection_failed', 'courier_completed', 'courier_failed'}}
-    if 'incident_version' in world:
-        from incident_content import load as incident_content
-        from world_incidents import FACT_DELTAS
-        allowed[incident_content()['contact_id']] = set(FACT_DELTAS)
+    from incident_dispatch import fact_definitions
+    allowed.update(fact_definitions(world))
     facts_seen = set()
     for ident, person in life['contacts'].items():
         _mapping(person, path + '.contacts[]')

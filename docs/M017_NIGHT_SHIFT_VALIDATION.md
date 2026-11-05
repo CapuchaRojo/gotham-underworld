@@ -532,3 +532,16 @@ predicate or all non-discovery contexts. Scanning/copying large histories still
 grows with career length. The single-incident adapter and broader event design
 limits remain. None warrants adding another history authority or implementing
 The Wrong Notice in this repair. Stop after local validation and commit.
+
+## M018 compatibility cross-reference — Mission 019
+
+The later authorized [Wrong Notice implementation/validation](M018_WRONG_NOTICE_VALIDATION.md)
+adds explicit two-adapter dispatch while retaining the Night Shift slot, IDs,
+content and event shapes above. The preserved public/contact saves were again
+round-tripped byte-for-byte, the original forgery still rejects, and all four
+recorded mobility/Night Shift hashes remain unchanged. This does not rewrite the
+historical M017/M017-B results or imply they were merged into master: PR #17
+merged to the audit branch, and M018 starts from its actual merge commit.
+The canonical [After Dark](GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) section 13
+describes the now-implemented second incident; earlier proposed/repair-only
+scope statements are historical. No rogue or Bat-Family gameplay was added.

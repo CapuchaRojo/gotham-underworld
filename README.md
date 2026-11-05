@@ -7,11 +7,12 @@
 A deterministic, offline, single-player crime-city simulation and terminal RPG
 prototype about an ordinary criminal surviving work, loyalties, and a changing
 city. Python 3.14 standard library only: no packages, external AI services,
-or paid APIs are required. The local executable includes **The Night Shift — an
-optional independent overnight incident with daylight consequences**, alongside
-M016-A mobility, M015 daily life and M014 navigation. PRs #15 and #16 are merged;
-this new work is local on `feature/m017-night-shift-event` from audited master
-`37fc4b5`. No push or new PR is authorized. A global clock, rogue/Bat-Family
+or paid APIs are required. The local executable includes **The Night Shift and
+The Wrong Notice**, two optional independent incidents, alongside M016-A mobility,
+M015 daily life and M014 navigation. M018 is local on `feature/m018-wrong-notice`
+from `14bfc50`, the M017-B PR #17 merge into `audit/m017-independent-acceptance`.
+Remote master remains `43d8197`; it does not yet contain that audit/provenance
+integration. No push or new PR is authorized. A global clock, rogue/Bat-Family
 encounters, broader vehicle systems and combat are not implemented.
 
 This is an independent, unofficial prototype. Its intended future creative
@@ -278,6 +279,54 @@ Use the current executable throughout an adopted career. See the implemented
 section of [After Dark](docs/GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md),
 [choice contract](docs/GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md), and
 [Mission 016 evidence](docs/M017_NIGHT_SHIFT_VALIDATION.md).
+
+## The Wrong Notice — M018
+
+After daily life activates, explicitly enroll with:
+
+```text
+incident_definitions
+enable_incident goon.incident.wrong_notice.v1
+incidents
+```
+
+Enrollment costs nothing and refreshes neither actions nor travel. It schedules
+one future neighborhood delivery dispute. It does not enable Night Shift for
+you; the existing `enable_incidents` command still enables only Night Shift.
+Use `incidents <incident-id>` for one detached player journal, or `incidents`
+for both when both are adopted. Discovery and choices use the same commands:
+
+```text
+discover_incident <incident-id> public_notice
+incident_choose <incident-id> verify ledger
+incident_choose <incident-id> response notify_desk
+incident_choose <incident-id> repair warn_group
+```
+
+The public board is at p032; Sam's tenant group and Nora's delivery desk are at
+n13. The board and handbill initially give conflicting dates. Hearing either
+does not reveal the true delivery day. Verification costs one action at the
+desk after its ledger arrives. Posting a verified correction reaches the board
+only; notifying Nora orders a board correction for **tomorrow**, and warning
+Sam reaches only his group. Each costs one action. Correcting late cannot undo
+delivery-day harm. Ordinary jobs, home access and lawful careers remain available.
+
+Passing on the unchecked date saves checking effort but may later cost Sam's
+trust. A verified retraction costs another action and earns no bonus. If the
+ledger shows a vacancy, requesting it instead of helping costs Nora's trust and
+opens one optional $5 standby shift after resolution. There is no guaranteed
+money for helping. Refusing is free and creates no promise or debt. Ignoring the
+incident does not prevent independent delivery/reconciliation.
+
+The issued circular can be read at n13 during the three days following resolution
+(`aftermath read`, zero actions). The journal and contact summaries do not learn
+private reactions or the final review remotely. Full saves/debug snapshots remain
+world truth; a frontend should use player reports and projected service events.
+Both incidents use explicit dispatch and a small shared lifecycle, not roster
+jobs or a quest language. Historical saves gain no notice state until explicit
+enrollment. See [architecture](docs/GOON_CONTENT_ARCHITECTURE.md),
+[After Dark](docs/GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) and
+[M018 validation](docs/M018_WRONG_NOTICE_VALIDATION.md) for costs, limits and evidence.
 
 ## Living in the neighborhood — M015
 
@@ -605,11 +654,13 @@ large-world performance at this prototype scale.
 | Contextual choices | `choice_engine.py`; stable records, visibility and effect callbacks |
 | Neighborhood rules and save invariants | `daily_life.py`, `daily_life_state.py` |
 | Original local content and presentation | `content/neighborhood_life_v1.json`, `life_content.py`, `life_presentation.py` |
+| Independent incident lifecycle and dispatch | `incident_lifecycle.py`, `incident_dispatch.py`, `incident_state.py` |
+| Explicit incident adapters and pinned content | `world_incidents.py` / `incident_content.py`; `wrong_notice.py` / `notice_content.py`; separate JSON definitions |
 
 Daily order is: base clock/feuds/legacy investigations, legal reviews/quiet-day
 cooling, career investigations with heat scrutiny,
 NPC actions, economy, planning, warfare, court, navigation reset, then the optional
-daily-life phase. Investigation runs once per
+daily-life phase, then sorted adopted incident adapters. Investigation runs once per
 case per day; contested cases defer ordinary and NPC evidence until review.
 NPC acceleration otherwise retains its existing cooldown.
 Warfare revalidates current targets; invalidated or unfunded plans emit an
@@ -643,9 +694,10 @@ M013.1 changed only Markdown and CLI display strings. M014 adds the optional
 navigation extension, local definitions, service/CLI integration and navigation
 tests while preserving the 198 existing regressions. M015 preserves all 237 M014
 regressions and adds neighborhood choice, ledger, housing, migration and campaign tests.
-The current local suite passes **371 tests** (336 preserved plus 35 Night Shift
-acceptance cases). Two 365-day incident campaigns with disk resume and two 30-day
-mobility campaigns were executed; see the Mission 016 evidence linked above.
+M017-B preserved 371 tests and added 18 provenance regressions (389 total).
+M018 passes **426 tests** (389 preserved plus 37 new). Its four preserved legacy replay hashes,
+two 365-day two-incident campaigns, daily resumes and actual CLI playthroughs are
+recorded in [M018 validation](docs/M018_WRONG_NOTICE_VALIDATION.md).
 The audited M015 baseline passed **283 tests** (237 M014, 37 M015 and nine audit
 regressions); see the [M015 validation report](docs/M015_VALIDATION_REPORT.md) and
 [independent acceptance audit](docs/M015_INDEPENDENT_ACCEPTANCE_AUDIT.md) for evidence.
