@@ -1,6 +1,7 @@
 # M020 Ordinary Gotham — implementation and validation
 
-Mission 026 authorizes local implementation, testing and commits only. No push,
+Mission 026 implementation and Mission 027 independent acceptance are local
+implementation, testing, targeted repairs and commits only. No push,
 PR, merge, M021, prologue, transportation mode or Court gameplay is authorized.
 This report is execution evidence; the existing daily-life contract remains the
 canonical design rather than a duplicate design bible.
@@ -360,3 +361,247 @@ The following report-only commit records that identity; runtime, content, tests
 and replay hashes are unchanged. Its final HEAD SHA is supplied in the Mission
 026 delivery, avoiding a self-referential commit hash inside its own file.
 Both commits are local only; no publication or M021 work was performed.
+
+## Mission 027 — independent acceptance and economy/persistence audit
+
+The earlier results above are retained as Mission 026 evidence. Everything in
+this section was independently executed against the actual completed branch,
+not inferred from that report. No feature/content expansion was undertaken.
+
+### Verified checkpoint and scope
+
+Initial worktree clean; branch `feature/m020-ordinary-gotham`, HEAD
+`cd20633db82132f38aeb9bd465ba93206394d111`, with implementation parent
+`a0ab17ff80407a0ea1e7bba38673f280c78ce403`. Fetch confirmed origin/master remains
+`6682019857ccad4553fcdc04f7a7e7e046b2def0`, the M019 PR #20 merge and M020 merge
+base. Local master remains preserved at `d0723b1`. The remote is the expected
+CapuchaRojo/gotham-underworld repository; no branch or history was rewritten.
+Reviewed the full **19-file** master-to-feature inventory above and its runtime,
+content, tests, integration and canonical documentation. No unrelated dependency,
+workflow, transport or gameplay change was present.
+
+Read-only preflight used `git status --porcelain=v1`, `git branch --show-current`,
+`git rev-parse HEAD origin/master master`, `git merge-base origin/master HEAD`,
+`git log --oneline origin/master..HEAD`, `git diff --name-status origin/master...HEAD`,
+`git remote -v`, `git fetch origin` and `gh pr view 20 --json state,mergeCommit,mergedAt`.
+The untouched baseline command `python -B -m unittest discover -s tests -q`
+passed **506 tests, 181.799s**, before audit source changes.
+
+### Confirmed P1 findings, reproductions and repairs
+
+The normal command boundary already prevented straightforward duplicate
+completion/borrowing. The confirmed defects involved **edited saves** whose
+contradictions passed validation, followed in several cases by real commands
+granting benefits. Test fixture generators bypass live eligibility deliberately;
+they do not represent a public CLI shortcut.
+
+| Finding | Reproduced behavior before repair | Minimal correction |
+| --- | --- | --- |
+| Inherited work eligibility | Native-looking repair records created at home, after three other paid actions, or as an unqualified stock audit loaded successfully and earned employment. An earlier false audit was accepted even with its real reference acquired only later. NPC-attributed invitations/deliveries or a delivery made away from home also qualified. | `ordinary_state.py` now checks consumed repair/reference sources against their actual historical place, freedom, window, remaining actions, own player frame, prior standing and prior invitation/delivery. It never uses the wage's own memory or future knowledge to qualify work. |
+| Counterfeit maintenance allocations | Two copied room offers with different IDs but the same actual obligation loaded. Three **real** help commands then credited $30 against one review rather than its funded $10. Unknown source IDs and moved review windows were also accepted. | `daily_life_state.py` binds every room review to its real unpaid due receipt, canonical cycle identity, actual processed opening day, expiry and original roster week. Real catchup reviews remain separate valid allocations. |
+| Unsupported repayment funding | After the legitimate $20 advance was spent on rent, one fabricated `existing_rules` credit inside the repayment frame financed a fake repayment. Null/wrong command attribution and moving the row into the previous payment frame also passed. Merely restricting closed frames still allowed relocating its event into an earlier wait while leaving the ledger order unchanged. | Known M015/M020/M019 commands now have exact financial transaction footprints and physical frame ownership. Cash-event order must equal the continuous ledger's order. No invented legacy credit can ride those commands or masquerade as earlier money through reordered events. |
+| Erased action costs | Editing only `actions_used=0` or an older `action_day` loaded. A real fourth same-day courier command then earned another payout. | Recorded command costs from adoption onward cannot exceed three/day. Effective saved usage must be at least the known committed cost, preserving unknown extra legacy usage rather than fabricating an exact missing history. |
+
+All new checks are read-only. They add no schema/version, balance, clock,
+content, event, RNG draw, wage, fee or gameplay rule. Only two production files
+changed: `ordinary_state.py` and `daily_life_state.py`.
+Code references: [consumed work/reference proof](../ordinary_state.py#L46),
+[saved action-cost proof](../ordinary_state.py#L185),
+[cash chronology](../daily_life_state.py#L72),
+[funded room review](../daily_life_state.py#L95), and
+[closed financial commands](../daily_life_state.py#L329).
+
+### Executed red/green regressions
+
+New file: [test_m020_acceptance.py](../tests/test_m020_acceptance.py), **16 methods**.
+It also includes positive qualified-audit, actual catchup and simultaneous
+work/rent/support controls. Original tests remain unchanged.
+
+| Command / stage | Actual result |
+| --- | --- |
+| `python -B -m unittest discover -s tests -p test_m020_acceptance.py -q`, original source | 11 methods, **11 failing assertions/subcases**, 0.553s: work/reference and counterfeit-room cases accepted. |
+| Same command after the first repair | 11 passed, 0.663s. |
+| Expanded same command before funding/counter repair | 16 methods, **8 failing assertions/subcases**, 1.067s. |
+| `PYTHONPATH=tests python -B -m unittest test_m020_acceptance.M020AcceptanceTests.test_repayment_cannot_be_financed_by_an_extra_closed_command_credit -q` after the first funding repair | One method, **one remaining failure**, 0.319s: event relocated into earlier wait. |
+| Original focused command after cash-order repair | **16 passed, 1.205s**. |
+| `PYTHONPATH=tests python -B -m unittest test_ordinary_life test_m020_acceptance -q` | **46 passed, 10.472s**, final source. |
+| `python -B -m unittest discover -s tests -q` | **522 passed, 205.102s**, final source: all 506 preserved plus 16 audit regressions. |
+
+The `PYTHONPATH=tests` notation above describes process-local configuration; on
+PowerShell it was `$env:PYTHONPATH = 'tests'` followed by the stated Python command.
+Intermediate existing-module checks also passed: 30 original M020 tests and 42
+institution tests; final full regression includes both after all repairs.
+
+Additional executed probes: four malformed command shapes reject with world/RNG
+unchanged; twelve saved contract-date mutations (boolean, null, string, negative,
+float and list for opening/expiry) reject on disk. A stale home-work preview
+rejects after leaving home. Eighteen TU remain exhausted after actual home work,
+and another trip rejects purely. Repeated reads/synchronization do not process
+misses twice. No early wage, paid withdrawal, duplicate completion, repeat
+rescheduling or deadline escape was reproduced through normal commands.
+
+### Independent extended campaigns
+
+Each campaign compares entire uninterrupted/resumed worlds after every day.
+These seeds are additional to Mission 026's seeds. The two 90-day campaigns also
+serve as the required extended low-income recovery and extended refusal runs;
+they are **four campaigns**, not six separately counted scenarios.
+
+```text
+python -B ordinary_campaigns.py --seed 1291 --policy stability --days 365 --resume-every 30 --incidents
+python -B ordinary_campaigns.py --seed 1543 --policy recovery --days 365 --resume-every 30 --incidents
+python -B ordinary_campaigns.py --seed 1723 --policy recovery --days 90 --resume-every 1
+python -B ordinary_campaigns.py --seed 1901 --policy refusal --days 90 --resume-every 1
+```
+
+| Campaign | Actual final state | Runtime |
+| --- | --- | --- |
+| 1291/stability/365 | 13 disk checkpoints; cash $1,556, arrears $0, employment 6, 35 completed kits, 17 supply cancellations, support unused. | 217.521s |
+| 1543/recovery/365 | 13 checkpoints; cash $1,434, arrears $0, employment 6, 33 kits completed, 17 cancelled, one expired, one accepted delivery missed; support repaid. | 214.714s |
+| 1723/recovery/90 | **90 daily checkpoints**; cash $296, arrears $0, employment 6, seven kits completed, one missed commitment, one $20 advance repaid. | 24.242s |
+| 1901/refusal/90 | **90 daily checkpoints**; cash $0, arrears $20, employment/Tess 0; nine allocations declined, support declined with no debt. | 16.282s |
+
+All four end with heat 0, no case/arrest and no criminal employment. Year runs
+enable both incidents/M019 but never discover or participate; both incidents
+progress independently. Short runs adopt neither incident. After a separate
+90-day refusal replay, **one actual lawful shift** followed by home payment
+cleared the $20 shortfall. No faction/crime, permanent loss of home or impossible
+qualification was required to recover.
+
+| Campaign | Full sorted compact-JSON world SHA-256 |
+| --- | --- |
+| 1291/stability/365 | `91a6017bac16f684ff84fecb5c5bc8c08bef2638e3dc4dabfc66ae6fc4d8458c` |
+| 1543/recovery/365 | `e0e2771112ffa734b02dfd84d9420d70b8e293e7919b82fd9855b5a512cd5eb2` |
+| 1723/recovery/90 | `9efbfa43bea868277f45af572645b598a3a0fdb1fc5cfcf09d30dda86beff3b9` |
+| 1901/refusal/90 | `0deac28742b158506653742774f1644dd87c31d601e120a7808e6c04d1023ae8` |
+
+A further 2333/negotiation/30/daily-resume probe in separate processes with
+`PYTHONHASHSEED=3` and `313`, and a run reversing faction/people/contact dictionary
+insertion order, all produced
+`cbc0591ac8bfb13243fe865c4cec89ac9a21c560a5bdd6ce5e80073cde225b26`.
+
+### Independently re-executed six historical fingerprints
+
+Executed all four historical commands already printed in Mission 026's section
+on the repaired source. Night/notice resumed 13 times/seed; mobility 30 times/seed.
+
+| Campaign | Unchanged SHA-256 | Actual runtime |
+| --- | --- | --- |
+| Night Shift 17 | `6bcad488e55c01db05cc5e83d6e1f370ede3bd7780bb0cdee5bb8813327566ed` | 69.239s |
+| Night Shift 42 | `578b6ae0543e40242b088e37700dfe64be28fbebc7a5f8f043873b7dcf1fff9f` | 58.881s |
+| Wrong Notice 73/help | `593386231e6df47bac4d9c279a10bd011b67d0f6a08e63d6f56ab3c68245bc09` | 79.724s |
+| Wrong Notice 191/unchecked | `ca5996dd6800bdd349f082b02ee67ff85d418673311d613ed9a2e51e806bbcae` | 77.978s |
+| Mobility 17 | `659df819879a25fc3d7db2939fffbd0b7d34101a922f4ec61c650e87c8f0a1e3` | 6.591s |
+| Mobility 42 | `afe4aac5a636b8aafbfb3acfbf0d41f7c09306c64b3ac7bd6de282335bfb851d` | 7.221s |
+
+No original fixture, golden hash, content pin or valid event outcome was edited.
+
+### Five real CLI audit scenarios — seed 23
+
+Executed actual `python -B gameplay.py --seed 23 --save <temporary-path>` sessions,
+then separate `--load --save <same-path>` processes with stdin, saved EOF
+interruptions, public choices/home reports and a deliberate closed-offer retry.
+No Python state edits, poor-start preset, criminal work or incident adoption.
+
+Common start: `settle_in`, `wait`, `enable_ordinary`, `wait`, `ordinary` (day 2).
+For worker paths, travel p032, take the actual day-2 lawful crossroads shift,
+and return home. Every intentional failed retry was followed by save/load and
+an exact whole-world comparison; none changed state.
+
+| Path | Actual choices and persistent differences |
+| --- | --- |
+| A Stable worker | Complete batch 0 on day 3, prepay with `pay_room`, then advance to day 14. Cash $24, arrears $0, employment/Tess 2; completed, unnegotiated kit and real prepayment/credit history. |
+| B Negotiator | Save at day 6 after requesting later delivery; resume into day 7, incur the real room charge while work is pending, then deliver. Day 14 cash/standing equal A, but negotiated date/wage and due-payment history differ. The future obligation was real, not a flavor label. |
+| C Support recipient | No wages until the day-14 $20 shortfall; borrow the actual support advance and pay the room. Day 15 opening shift funds repayment. Cash $0, arrears $0, employment 1, Tess 2, one repaid advance. |
+| D Recovery | Reserve day 3, miss its deadline day 6. Exhaust initial money through real room reviews, borrow day 21, and miss repayment day 28. Actual day-29/day-30 shifts repay the loan and clear room arrears. Ends cash $10, arrears $0, employment/Tess 2, missed accepted kit and overdue/repaid loan history retained. |
+| E Refusal | Decline support day 2 and kit day 3. Day 14 cash $0, arrears $20, employment/Tess 0, no loan debt. A further actual CLI continuation works day 15 and clears the shortfall at home. |
+
+All have zero heat/cases/arrest and no faction affiliation. A and B may converge
+financially while their obligations/history differ; no claim of five exclusive
+career endings is made. C/D retain the closed advance and cannot borrow again.
+E's change of direction needs no criminal participation or narrative forgiveness.
+
+| CLI checkpoint | Full-world SHA-256 |
+| --- | --- |
+| A/day 14 | `1248ba444de838b99a3577d1299914fbf931c99aa7df0b10c4fc3e29c7ed1789` |
+| B/day 14 | `4c8242de66215b7df799ab5587eb8b6bf38771c810325916722b17020c0422a8` |
+| C/day 15 | `408ff9d62d6ab41d54882cd5b6b81695130d350beec733816d6690bff47ca898` |
+| D/day 30 | `3cf23d7cc975e59e6e71d9d458eca7240164e97ccc3fe8e63f8b67dc9387ce21` |
+| E/day 14, before lawful recovery continuation | `ae8730769d90f9413b1f0be632c813753a304b872707831b57c0cd7af467bb97` |
+
+### Persistence, adoption and institutional isolation
+
+Generated genuine **pre-audit** files with original executables in disposable
+`git archive` checkouts, not the repaired producer. Each file underwent 20
+new-executable load/resaves with **byte-identical output**:
+
+| Source executable / state | Original file SHA-256 |
+| --- | --- |
+| cd20633 / pending reservation and owed support | `65d56aef484ef5a8b1cc32687506ca055120dda7c13b2431ba608734a2811fdb` |
+| cd20633 / completed work and repaid support | `947cb591daa35d70aa922dcc429afc4e0bba434132e569f69073e01b71018244` |
+| cd20633 / actual earlier promise/reference and qualified audit | `ffec58d4e62fb8b9aa509b78bcd27cc9665c5f9f0b96ebeafb4cfd52a89bb267` |
+| 6682019 / genuine M019 documented notice/copy | `4a3cfb4b1b3a066244880f24d068c5929b748dd99c08039d19192169b3e541ea` |
+
+The M019 file remained without ordinary state until explicit adoption, which
+preserved its player, old life, institution and navigation records and started
+employment at zero. Existing historical-fixture tests also passed in full;
+early unversioned fixtures retain their documented additive migrations, not a
+claim of byte identity before migration.
+
+An actual writer with a real loan **and** reserved work was killed just before
+primary replacement, after backup publication. Primary and `.bak` retained the
+old valid bytes, debt and reservation. Restart published the candidate's one
+completed wage; 25 additional load/resaves retained its owed $20 debt. Paid-work
+and second-advance retries rejected with world/RNG unchanged. One staged orphan
+remained until disposable-directory cleanup. No original career was overwritten.
+
+Thirty matched days with/without actual ordinary work/support produced exactly
+equal private institutional states despite different wages, loans and arrears.
+An actual loan followed by civilian submission, follow-up, documentary copy and
+correction left M020 wages, housing and loan state unchanged. The initial probe
+incorrectly assumed support was available on day 12; the engine correctly
+rejected it. Reading actual availability yielded day 13, and valid report/copy/
+correction actions then passed. Read-only institutional views remained detached
+and preserved world/RNG. No police receipt, rumor or guilt was inferred from
+work, debt or personal standing.
+
+Fifty exact repetitions of the old seed-3 stale-letter CLI scenario produced
+only its two intended errors (premature work and wrong location). No new
+unexpected baseline error or `WinError 32` reproduced anywhere in this audit;
+no speculative persistence/platform rewrite was made. Runtimes are actual
+observations under parallel testing, not controlled performance benchmarks.
+
+### Final assessment, remaining limits and exact audit inventory
+
+- **P0:** none confirmed.
+- **P1:** four demonstrated defect groups above repaired; no confirmed unresolved
+  P1 in the exercised, documented boundary. Normal/replayed duplicate wages,
+  support, funded review credit and repayment cannot survive these checks.
+- **P2:** full-history copying/replay cost; authored funding/availability; simple
+  negotiation and one cooperative arrangement. Grace/capped arrears are deliberately
+  forgiving and currently impose limited housing pressure; this audit neither
+  trivialized rent further nor added eviction or punitive locks. The previous
+  intermittent platform symptom remains unroot-caused, although not reproduced.
+  Legacy net financial authorities outside the known closed handlers are not a
+  universal replay of every economy/legal/NPC effect. Coordinated rewriting of
+  those facts or a whole career is not authenticated; no tamper-proof guarantee.
+
+**Ready for draft PR publication review**, with these P2 limits disclosed. Ordinary
+lawful survival/recovery, refusal, exactly-once effects, pending commitments,
+explicit adoption, historical compatibility, three actions, eighteen TU and M019
+information separation remain intact. No push, PR, merge, Court gameplay,
+early clue or M021 work was performed; no new GitHub CI result is claimed.
+
+Exactly **six audit files**: `ordinary_state.py`, `daily_life_state.py`,
+`tests/test_m020_acceptance.py`, this report,
+`docs/GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md`, and `PROJECT_STATE.md`.
+Combined master-to-audited-M020 scope is **20 files**: the original 19 plus one
+new audit test file. Existing tests, fixtures, producers, rules/content pins,
+schemas, persistence, navigation, incidents, institutions and dependencies are
+unchanged. Final audit commit identity is supplied in the Mission 027 delivery.
+
+Final scope/static verification found exactly these six audit files. All three
+changed Python files parse, Markdown fences balance and all relative file links
+resolve; `git diff --check` passes. No dependency or external validator was
+installed. A final fetch still places origin/master at `6682019`; prior local
+branches/master and the unpublished M020 source history are preserved.

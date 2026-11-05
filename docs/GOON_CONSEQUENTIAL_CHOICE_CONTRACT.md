@@ -135,6 +135,30 @@ identities. Real transactions and every delegated memory are checked against tho
 effects. Rejected commands and returned reports cannot mutate state or RNG.
 No work/help/loan information is sent to either M019 institution automatically.
 
+Mission 027 hardens the inherited sources as well as the new outcomes. A future
+repair completion credited to employment must have been accessible, within its
+window and daily budget, under its own player command. An audit reference must
+already exist before that command, with a real player-accepted invitation and
+home delivery. Its own wage memory or a later reference cannot qualify it.
+
+Room maintenance is funded by one actual unpaid due receipt. Its cycle ID,
+processed opening day, seven-day window and original roster week must agree;
+inventing more offer IDs cannot create more credit. Legitimate skipped-clock
+catchup can retain separate allocations for separate real due receipts.
+
+Cash events retain the same append order as the continuous ledger. M015 life,
+M020 work/support and M019 desk commands have closed financial contracts: each
+frame contains exactly its declared settlement, or none. An extra generic
+`existing_rules` row, null/wrong command tag or reordered event cannot finance a
+repayment. Recorded costs after ordinary adoption also bound effective saved
+action use; loading cannot erase costs or permit more than three actions.
+
+These are read-only consistency checks over existing authorities, without new
+state, signatures or a global economy replay. Older net cash sources in other
+legacy domains remain their existing authority. Coordinated rewriting of those
+source facts or an entire career is not authenticated; no tamper-proof-save claim
+is made. Valid rules, budgets, content pins and old saves remain unchanged.
+
 The finite employer allocation and $20 assistance reserve are authored funding,
 not district treasury withdrawals or a new lending economy. Rates and limits are
 separate JSON content; mechanics do not depend on fictional-property names.

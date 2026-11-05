@@ -2,7 +2,8 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current local slice: **M020 — Ordinary Gotham**, Mission 026; local only
+- Current local slice: **M020 — Ordinary Gotham**, Mission 026 implementation,
+  independently hardened in Mission 027; local only
 - Implementation branch: `feature/m020-ordinary-gotham`, from verified master
   `6682019857ccad4553fcdc04f7a7e7e046b2def0`; isolated baseline 476 tests passed
 - PR #17 first merged into the audit branch. PR #18 subsequently integrated that
@@ -432,9 +433,12 @@ extension follows; it was not part of M019's historical scope.
   notices; three actions and eighteen TU. No new transport or institutional feed.
 - `ordinary`, `ordinary_choices`, `ordinary_choose`, and the adopted home report
   expose eligibility, costs, actual terms, debt, standing and recovery routes.
-- **506 tests passed** (476 preserved, 30 new); all six historical hashes retained.
-  Five actual CLI paths, daily-resume campaigns, two 365-day integration campaigns
-  and interrupted-writer recovery are recorded in
+- **522 tests passed** (all 506 preserved, 16 independent audit tests added);
+  46 focused M020 tests passed; all six historical hashes retained. Mission 027
+  repaired inherited work/reference eligibility, counterfeit maintenance offers,
+  unsupported repayment funding and erased action-counter validation. Two new
+  365-day and two 90-day daily-resume campaigns, five real CLI paths, genuine
+  historical save compatibility and interrupted-writer recovery are recorded in
   [M020 validation](docs/M020_ORDINARY_GOTHAM_VALIDATION.md).
 - Approved design only: Milo removed from the future roster; 34 individual/mantle
   entries remain, with a separate optional Court organization that is entirely

@@ -39,6 +39,46 @@ def validate(world):
     location=(daily['home_id'] if world['navigation']['enabled_day']==world['navigation']['activation_day']==0
         and not any(e['kind']=='navigation_enabled' for e in events) else None)
     cash=daily['opening_cash'];due=daily['enabled_day']+7;arrears=0;free=True;known_day=0
+    choices_seen={};memories_seen=[]
+    from life_content import load as life_terms
+    choice_terms=life_terms()['choices']
+
+    def choice_proof(ident):
+        """Only consumed legacy sources; no second simulation or saved history."""
+        pos,source,place,was_free,available=choices_seen[ident]
+        record=daily['choices'][ident];spec=choice_terms[record['definition_id']]
+        option=next(o for o in spec['options'] if o['id']==source['option_id'])
+        end,c,start=frames[source['command_id']]
+        require(start<pos<end and c['actor']=='player' and c['command']=='choose' and
+            c['day']==source['day'] and _same(c['arguments'],dict(choice_id=ident,option_id=option['id'])) and
+            c['action_cost']==option['actions'],'work/reference source needs its own player command frame')
+        target=daily['home_id'] if option.get('place')=='home' else option.get('place')
+        require((target is None or place==target) and was_free and available>=option['actions'] and
+            record['open_day']<=source['day']<record['expires_day'],
+            'work/reference source was inaccessible, out of actions or outside its window')
+        return pos,source,option,start,end
+
+    def work_eligibility(ident):
+        pos,source,option,start,end=choice_proof(ident)
+        contact=option.get('standing_contact')
+        if contact:
+            prior=[m['after'] for j,m in memories_seen if j<=start and m['contact_id']==contact]
+            require((prior[-1] if prior else 0)>=option['minimum_standing'],
+                'work standing must precede the acquisition command, not its reward')
+        if option.get('known'):
+            require(option['known']=='tess_reference','unsupported work knowledge source')
+            references=[(j,m) for j,m in memories_seen if j<=start and
+                m['contact_id']=='goon.contact.tess' and m['fact']=='promise_kept']
+            require(bool(references),'work requires an earlier actually delivered reference')
+            for j,m in references:
+                keep_pos,kept,keep_option,keep_start,keep_end=choice_proof(m['source_id'])
+                require(keep_option['effect']=='keep_promise' and keep_start<j<keep_pos<keep_end<=start,
+                    'reference must be delivered inside its prior player command')
+                promises=[p for p in daily['promises'].values() if p.get('resolution_source')==m['source_id']]
+                require(len(promises)==1,'reference requires its original accepted promise')
+                _,invitation,invite_option,_,invite_end=choice_proof(promises[0]['source_id'])
+                require(invite_option['effect']=='make_promise' and invite_end<=keep_start,
+                    'reference invitation must complete before delivery')
 
     def frame(i,e,name,args,cost):
         ident=e['command_id'];_integer(ident,'ordinary.command_id',1)
@@ -86,8 +126,13 @@ def validate(world):
             elif kind=='player_command':
                 if e['command_id'] in arrivals:location=arrivals[e['command_id']]
                 spent[e['day']]=spent.get(e['day'],0)+e['action_cost']
-            elif kind=='life_choice' and e['outcome']['effect']=='lawful_work':
-                observed[e['choice_id']]=(i,e)
+            elif kind=='life_memory':memories_seen.append((i,e))
+            elif kind=='life_choice':
+                choices_seen[e['choice_id']]=(i,e,location,free,3-spent.get(e['day'],0))
+                if e['outcome']['effect']=='lawful_work':
+                    if state is not None and e['day']>=state['activation_day']:
+                        work_eligibility(e['choice_id'])
+                    observed[e['choice_id']]=(i,e)
             if not kind.startswith('ordinary_'):continue
             _integer(e.get('schema_version'),'ordinary.schema_version',1,1)
             if kind=='ordinary_enabled':
@@ -134,6 +179,10 @@ def validate(world):
                 require(key not in effects,'duplicate delegated memory')
                 effects[key]=dict(day=e['day'],delta=m['delta'])
         require(state is not None and _same(state,world.get('ordinary')),'saved ordinary state contradicts replay')
+        require(all(cost<=3 for day,cost in spent.items() if day>=state['enabled_day']),
+            'committed commands exceed the daily action allowance')
+        effective=world['actions_used'] if world['action_day']==world['day'] else 0
+        require(effective>=spent.get(world['day'],0),'saved action counter cannot erase committed costs')
         require(state['last_tick_day']==max(state['enabled_day'],daily['last_tick_day']),'daily processing was omitted')
         require(set(state['observed_work'])=={k for k,(_,s) in observed.items() if s['day']>=state['activation_day']},'work observation omitted')
         require(used=={c['command_id'] for _,c in receipts if c['command'] in ('enable_ordinary','ordinary_choose')},'every ordinary command must settle once')
