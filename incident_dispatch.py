@@ -170,6 +170,8 @@ def player_events(world, events):
     sources, effects = {r['source_id'] for r in private}, {r['id'] for r in private}
     result = []
     for e in events:
+        if e['kind']=='institution_transition' and e.get('command_id') is None:
+            continue
         if e['kind'] == 'life_memory' and e.get('source_id') in sources:
             continue
         row = deepcopy(e)

@@ -18,6 +18,8 @@ import daily_life
 import mobility
 import world_incidents
 import incident_dispatch
+import institutional_response
+from institutional_response import report as institution_report
 from incident_dispatch import report as incident_report
 from mobility import mobility_report, mobility_receipt
 from daily_life import life_report, home_report, contact_report, opportunities, choice_report
@@ -43,6 +45,11 @@ COMMANDS = {
     'enable_incident': (0, ('definition_id',), incident_dispatch.enable),
     'discover_incident': (0, ('incident_id', 'channel'), incident_dispatch.discover),
     'incident_choose': (incident_dispatch.choice_cost, ('incident_id', 'stage', 'option_id'), incident_dispatch.choose),
+    'enable_institutions': (0, (), institutional_response.enable),
+    'institution_submit': (1, ('institution_id','source_id'), institutional_response.submit),
+    'institution_correct': (1, ('institution_id','report_id','source_id'), institutional_response.correct),
+    'institution_followup': (1, ('institution_id','incident_id'), institutional_response.followup),
+    'institution_withhold': (0, ('institution_id','incident_id'), institutional_response.withhold),
 }
 
 
@@ -102,6 +109,7 @@ def execute_command(world, command, **arguments):
     change_heat(candidate, 0, 'legacy_heat_normalization')
     with mobility.command_scope(command, candidate['command_sequence'] + 1):
         result = handler(candidate, *(arguments[name] for name in names))
+    institutional_response.synchronize(candidate)
     daily_life.record_balance(candidate, 'existing_rules', f'goon.command.{candidate["command_sequence"] + 1}',
                               command_id=candidate['command_sequence'] + 1)
     if command == 'wait':
@@ -115,7 +123,7 @@ def execute_command(world, command, **arguments):
     event(candidate, 'player_command', f'Player command {sequence}: {command}.',
           command=command, command_id=sequence, actor='player',
           arguments=deepcopy(arguments), action_cost=cost, cause='player_command')
-    if 'mobility_version' in candidate or 'incident_version' in candidate or 'notice_version' in candidate:
+    if 'mobility_version' in candidate or 'incident_version' in candidate or 'notice_version' in candidate or 'institution_version' in candidate:
         validate(candidate)
     response = deepcopy({'command': command, 'sequence': sequence,
                          'day': candidate['day'], 'result': result,

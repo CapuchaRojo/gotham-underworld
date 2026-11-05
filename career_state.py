@@ -226,6 +226,8 @@ def validate(world):
     validate_life(world)
     from incident_state import validate as validate_incidents
     validate_incidents(world)
+    from institution_state import validate as validate_institutions
+    validate_institutions(world)
     return world
 
 

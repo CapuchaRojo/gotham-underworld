@@ -98,6 +98,8 @@ def next_day(world, *, legal_rules=False):
     life_day(world)
     from world_incidents import begin_day as incident_day
     incident_day(world)
+    from institutional_response import synchronize as institution_day
+    institution_day(world)
     return world
 
 
@@ -146,12 +148,29 @@ def play(world, filename, *, new_career=False):
         verb, *args = command
         try:
             if verb == 'help':
+                print('institutions [civilian|intake] | enable_institutions | institution_submit <desk> <source-id> | institution_correct <desk> <report-id> <source-id> | institution_followup <desk> <incident-id> | institution_withhold <desk> <incident-id>')
                 print('incident_definitions | enable_incident <definition-id> | incidents [incident-id]')
                 print('incidents | enable_incidents | discover_incident <incident-id> <public_notice|contact> | incident_choose <incident-id> <stage> <option-id>')
                 print('life | settle_in | home | pay_room | contacts | opportunities | choices <choice-id> | choose <choice-id> <option-id|displayed-letter>')
                 print('look [place] | nearby | places | route <place> [auto|walk|bus|rail|ferry] | travel <place> [mode] | enable_navigation <neighborhood>')
                 print('mobility | adopt_mobility | receipt <request-id> | route/travel profiles after adoption: auto|free|walk|bus|ferry|monorail')
                 print('status | legal | lay_low | cooperate <case-id> | contest <case-id> | accept <case-id> | intel | briefing [day] | factions | strategy | districts | missions | mission <scout|fortify|expand> <district-number> | relationships | join <number> | jobs | job <courier|collection> | wait | events | save | quit')
+            elif verb == 'institutions' and len(args)<=1:
+                from game_service import institution_report
+                from institution_content import CIVILIAN, INTAKE
+                desk = {'civilian': CIVILIAN, 'intake': INTAKE}.get(args[0],args[0]) if args else ''
+                print(institution_report(world,desk))
+            elif verb == 'enable_institutions' and not args:
+                print(execute_command(world,verb)['result']['message'])
+            elif verb in ('institution_submit','institution_correct','institution_followup','institution_withhold'):
+                from institutional_response import COMMANDS as institution_commands
+                from institution_content import CIVILIAN, INTAKE
+                names = institution_commands[verb][1]
+                if len(args)!=len(names):
+                    raise ValueError('Expected: '+', '.join(names))
+                values = dict(zip(names,args))
+                values['institution_id'] = {'civilian': CIVILIAN, 'intake': INTAKE}.get(values['institution_id'],values['institution_id'])
+                print(execute_command(world,verb,**values)['result'])
             elif verb == 'incident_definitions' and not args:
                 from incident_dispatch import definitions
                 print(definitions())

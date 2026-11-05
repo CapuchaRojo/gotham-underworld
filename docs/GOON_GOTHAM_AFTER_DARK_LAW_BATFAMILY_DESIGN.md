@@ -2,16 +2,16 @@
 
 ## Authority and scope
 
-**PROPOSED DESIGN CONTRACT — Mission 015, November 4, 2026; Mission 016 status update.**
+**Broader proposal from Mission 015, November 4, 2026; implemented slices updated through Mission 023.**
 Sections 1–11 preserve the prior proposal/evidence; the implemented Night Shift
 subset and current limitations are explicitly recorded in section 12. Section 13
-records the implemented M018 two-incident extension. No global
+records the implemented M018 two-incident extension; section 14 adds M019 intake. No global
 clock, DC encounter or institutional career is implemented. This document selects
 no DC continuity and authorizes no future implementation. The user-approved direction is a reactive,
 offline city with ordinary people as protagonists, independent institutions,
 predominantly nighttime dramatic incidents and meaningful lawful careers.
 The mechanisms, role assignments, weights, schemas and sequencing below remain
-**proposed** outside the expressly implemented sections 12–13, including future
+**proposed** outside the expressly implemented sections 12–14, including future
 numerical policies beyond the existing budgets.
 
 Companion contracts: [Rogue Encounters](GOON_ROGUE_ENCOUNTERS_DESIGN.md),
@@ -643,3 +643,30 @@ global rumors, individual schedules or permanent shop lock are simulated.
 See [M018 validation](M018_WRONG_NOTICE_VALIDATION.md) for actual tests, CLI and
 save/resume evidence and [content architecture](GOON_CONTENT_ARCHITECTURE.md)
 for the internal adapter contract. Broader future proposals remain unimplemented.
+
+## 14. Implemented M019 — bounded institutional knowledge and response
+
+The [institution contract](GOON_INSTITUTIONS_AND_RECOVERY.md) now specifies a
+Neighborhood Civilian Desk and GCPD Intake Desk. They receive different explicit
+sources, process delayed queues independently, retain contradictory claims and
+deliver new response versions through actual local follow-up. They cannot
+identify an offender or create a legal case. No Bat-Family, court, care, prison,
+global rumor or time-of-day system is added.
+
+An ephemeral adapter reads the actual M017/M018 event history: shop alarm notices,
+received owner reports/reviews, Wrong Notice claims, the issued circular and
+player observations acquired by real commands. Automatic sources enter only
+after explicit M019 adoption. Private observations require a player submission;
+withholding is a private choice. Desk replies do not rewrite old incident primary
+evidence, update other recipients, or reopen expired incident options.
+
+M019 appends its own stable transmissions/processing/receipts and leaves both
+incident definitions, reducers and IDs untouched. Player commands share the
+existing three actions; counter travel uses the existing eighteen TU. Documented
+corrections can restore that desk's reporting access; assistance is one recorded
+correction copy without automatic cash or legal effects. Ordinary work and home
+remain viable after refusal, false claims or insufficient records.
+
+See [architecture](GOON_CONTENT_ARCHITECTURE.md) and
+[M019 validation](M019_INSTITUTIONAL_RESPONSE_VALIDATION.md) for the implemented
+boundaries and executed compatibility/replay evidence.

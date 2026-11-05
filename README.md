@@ -9,10 +9,10 @@ prototype about an ordinary criminal surviving work, loyalties, and a changing
 city. Python 3.14 standard library only: no packages, external AI services,
 or paid APIs are required. The local executable includes **The Night Shift and
 The Wrong Notice**, two optional independent incidents, alongside M016-A mobility,
-M015 daily life and M014 navigation. M018 is local on `feature/m018-wrong-notice`
-from `14bfc50`, the M017-B PR #17 merge into `audit/m017-independent-acceptance`.
-Remote master remains `43d8197`; it does not yet contain that audit/provenance
-integration. No push or new PR is authorized. A global clock, rogue/Bat-Family
+M015 daily life and M014 navigation. Provenance integration PR #18 and M018 PR #19
+are merged into master at `8bc9700` and `d0723b1`. M019 adds optional civilian
+service and police intake locally on `feature/m019-institutional-response`
+from verified master `d0723b1`. No push or new PR is authorized. A global clock, rogue/Bat-Family
 encounters, broader vehicle systems and combat are not implemented.
 
 This is an independent, unofficial prototype. Its intended future creative
@@ -327,6 +327,50 @@ jobs or a quest language. Historical saves gain no notice state until explicit
 enrollment. See [architecture](docs/GOON_CONTENT_ARCHITECTURE.md),
 [After Dark](docs/GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) and
 [M018 validation](docs/M018_WRONG_NOTICE_VALIDATION.md) for costs, limits and evidence.
+
+## Institutional intake — M019
+
+After daily life activates, use `institutions` to inspect terms and
+`enable_institutions` to adopt explicitly. Old saves gain nothing automatically.
+The Neighborhood Civilian Desk is at public n13; the GCPD Intake Desk uses the
+existing p044 public counter. They have separate records and one-/two-day
+processing delays. The civilian desk handles delivery administration and local
+safety; police intake logs alarm observations without deciding guilt or creating
+arrests, warrants or cases. Names and mandates are separate local content data.
+
+```text
+institutions civilian
+institution_submit civilian <observed-source-id>
+institution_followup civilian <incident-id>
+institution_correct civilian <known-report-id> <documented-source-id>
+institution_withhold intake <incident-id>
+```
+
+Source IDs come from `institutions [civilian|intake]`. Submitting an observed
+notice can still pass on bad information. Checking the old incident's ledger or
+doing a genuine alarm inspection supplies stronger evidence. A desk learns only
+what reaches it; correcting its record does not update every resident or the
+other institution. Public-source rounds and owner forwarding continue without
+player involvement, while unanswered records close for insufficient information.
+
+Submissions, corrections and unread local follow-ups each cost one shared action;
+withholding is free and private. No reporting wage or allowance refresh exists.
+A contradicted, uncorrected report restricts that desk's unchecked submissions;
+a verified correction restores access after processing. Ordinary work, housing
+and legal choices remain available. A documented civilian matter can provide one
+dated correction copy recorded in its response, not a cash/inventory reward.
+That received copy appears as a documentary source and can repair the desk's
+old record even after the original incident's evidence window has closed.
+
+Remote views retain what the player actually received. Read-only inspection
+does not acknowledge replies; use an explicit local follow-up to receive them.
+Desk responses are separate secondhand records, not retroactive inspection credit
+in old incident journals. See the canonical [institution contract](docs/GOON_INSTITUTIONS_AND_RECOVERY.md)
+and [M019 validation](docs/M019_INSTITUTIONAL_RESPONSE_VALIDATION.md).
+The local M019 suite passes **468 tests** (426 preserved plus 42 new). Two
+365-day institutional disk-resume campaigns and all six recorded historical
+Night Shift/Wrong Notice/mobility fingerprints passed; exact evidence and limits
+are in that report. No new GitHub CI is claimed for this unpublished branch.
 
 ## Living in the neighborhood — M015
 
@@ -656,11 +700,12 @@ large-world performance at this prototype scale.
 | Original local content and presentation | `content/neighborhood_life_v1.json`, `life_content.py`, `life_presentation.py` |
 | Independent incident lifecycle and dispatch | `incident_lifecycle.py`, `incident_dispatch.py`, `incident_state.py` |
 | Explicit incident adapters and pinned content | `world_incidents.py` / `incident_content.py`; `wrong_notice.py` / `notice_content.py`; separate JSON definitions |
+| Source-backed institutional intake and replay | `institution_sources.py`, `institutional_response.py`, `institution_state.py`; `institution_content.py` / `content/institutions_v1.json` |
 
 Daily order is: base clock/feuds/legacy investigations, legal reviews/quiet-day
 cooling, career investigations with heat scrutiny,
 NPC actions, economy, planning, warfare, court, navigation reset, then the optional
-daily-life phase, then sorted adopted incident adapters. Investigation runs once per
+daily-life phase, sorted adopted incident adapters, then optional institutional intake. Investigation runs once per
 case per day; contested cases defer ordinary and NPC evidence until review.
 NPC acceleration otherwise retains its existing cooldown.
 Warfare revalidates current targets; invalidated or unfunded plans emit an

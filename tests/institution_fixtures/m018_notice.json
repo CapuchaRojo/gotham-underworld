@@ -1,0 +1,1608 @@
+{
+  "seed": 73,
+  "day": 3,
+  "factions": {
+    "Harbor Syndicate": {
+      "power": 51,
+      "cash": 64
+    },
+    "Carnival Crew": {
+      "power": 45,
+      "cash": 18
+    },
+    "Iron Mask Outfit": {
+      "power": 60,
+      "cash": 48
+    },
+    "Civic Police": {
+      "power": 75,
+      "cash": 70
+    },
+    "Night Watch": {
+      "power": 35,
+      "cash": 20
+    }
+  },
+  "people": {
+    "Mara Voss": {
+      "faction": "Harbor Syndicate",
+      "memory": [
+        {
+          "day": 2,
+          "fact": "Harbor Syndicate: attack at Ironworks."
+        },
+        {
+          "day": 3,
+          "fact": "Harbor Syndicate: attack at Ironworks."
+        }
+      ],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": []
+    },
+    "Eli Crowe": {
+      "faction": "Carnival Crew",
+      "memory": [
+        {
+          "day": 2,
+          "fact": "Carnival Crew: attack at Harbor Docks."
+        },
+        {
+          "day": 3,
+          "fact": "Carnival Crew: attack at Harbor Docks."
+        }
+      ],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": []
+    },
+    "Detective Vale": {
+      "faction": "Civic Police",
+      "memory": [],
+      "relationship": {
+        "trust": 0,
+        "respect": 0,
+        "fear": 0,
+        "hostility": 0,
+        "suspicion": 0
+      },
+      "relationship_history": []
+    }
+  },
+  "player": {
+    "name": "Rookie",
+    "heat": 0,
+    "cash": 40,
+    "arrested": false,
+    "custody": "free",
+    "faction": null,
+    "reputation": {
+      "Harbor Syndicate": 0,
+      "Carnival Crew": 0,
+      "Iron Mask Outfit": 0
+    },
+    "jobs_completed": 0
+  },
+  "cases": [],
+  "events": [
+    {
+      "day": 0,
+      "kind": "life_enabled",
+      "message": "Accepted the cooperative arrangement: $30 every seven days, first due day 7; available cash is charged, unpaid balance is capped at $30, and basic room access continues. Local opportunities begin after the next wait.",
+      "schema_version": 1,
+      "activation_day": 1,
+      "due_day": 7,
+      "home_id": "goon.poi.p031",
+      "command_id": 1,
+      "cause": "explicit_enrollment"
+    },
+    {
+      "day": 0,
+      "kind": "player_command",
+      "message": "Player command 1: settle_in.",
+      "command": "settle_in",
+      "command_id": 1,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 1,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Harbor Syndicate; Harbor Syndicate lost 4 power."
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Carnival Crew earned $3 from Carnival Row.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Harbor Syndicate earned $4 from Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "income": 4,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "economy",
+      "message": "Iron Mask Outfit earned $3 from Ironworks.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "income": 3,
+      "cause": "district_income"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: Cal's account of the work.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.cal_intro",
+      "source_id": "goon.roster.0.cal_intro",
+      "open_day": 1,
+      "expires_day": 3,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: One morning, several demands.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.crossroads",
+      "source_id": "goon.roster.0.crossroads",
+      "open_day": 2,
+      "expires_day": 3,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: A little flexibility late in the week.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.late_work",
+      "source_id": "goon.roster.0.late_work",
+      "open_day": 5,
+      "expires_day": 7,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: The fourth-morning shift.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.midweek_shift",
+      "source_id": "goon.roster.0.midweek_shift",
+      "open_day": 4,
+      "expires_day": 5,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: A place on the repair roster.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.opening_shift",
+      "source_id": "goon.roster.0.opening_shift",
+      "open_day": 1,
+      "expires_day": 2,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_opportunity",
+      "message": "Opportunity recorded: A promise with an actual date.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.promise",
+      "source_id": "goon.roster.0.promise",
+      "open_day": 1,
+      "expires_day": 2,
+      "cause": "local_roster"
+    },
+    {
+      "day": 1,
+      "kind": "life_day",
+      "message": "Neighborhood obligations and opportunities reviewed once.",
+      "schema_version": 1,
+      "processed_day": 1,
+      "cause": "day_transition"
+    },
+    {
+      "day": 1,
+      "kind": "player_command",
+      "message": "Player command 2: wait.",
+      "command": "wait",
+      "command_id": 2,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 1,
+      "kind": "incident_enabled",
+      "message": "Enabled one optional neighborhood incident; no clock or budget refresh.",
+      "schema_version": 1,
+      "command_id": 3,
+      "content_fingerprint": "c0b504780e5793fc1f6d7b2e05a30f45dce7daeac33b8fb4509d88bf4b78e1df"
+    },
+    {
+      "day": 1,
+      "kind": "player_command",
+      "message": "Player command 3: enable_incidents.",
+      "command": "enable_incidents",
+      "command_id": 3,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 1,
+      "kind": "notice_enabled",
+      "message": "Adopted one independent notice dispute; no cost, clock or budget refresh.",
+      "schema_version": 1,
+      "command_id": 4,
+      "content_fingerprint": "f90c10c7cb1b47cae8d83f402012d316bb93e117415e2c3193a8b6eb8d09abe8"
+    },
+    {
+      "day": 1,
+      "kind": "player_command",
+      "message": "Player command 4: enable_incident.",
+      "command": "enable_incident",
+      "command_id": 4,
+      "actor": "player",
+      "arguments": {
+        "definition_id": "goon.incident.wrong_notice.v1"
+      },
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 2,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Harbor Syndicate; Harbor Syndicate lost 4 power."
+    },
+    {
+      "day": 2,
+      "kind": "economy",
+      "message": "Carnival Crew earned $3 from Carnival Row.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "profile": "street_network",
+      "income": 3,
+      "gross_income": 3,
+      "cash_before": 38,
+      "cash_after": 41,
+      "cause": "district_income"
+    },
+    {
+      "day": 2,
+      "kind": "territory_pressure",
+      "message": "Carnival Row lost 3 control to local pressure.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "control_before": 63,
+      "control_after": 60,
+      "cause": "local_pressure"
+    },
+    {
+      "day": 2,
+      "kind": "economy",
+      "message": "Harbor Syndicate earned $5 from Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "profile": "trade_network",
+      "income": 5,
+      "gross_income": 5,
+      "cash_before": 84,
+      "cash_after": 89,
+      "cause": "district_income"
+    },
+    {
+      "day": 2,
+      "kind": "territory_pressure",
+      "message": "Harbor Docks lost 3 control to local pressure.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "control_before": 63,
+      "control_after": 60,
+      "cause": "local_pressure"
+    },
+    {
+      "day": 2,
+      "kind": "economy",
+      "message": "Iron Mask Outfit earned $4 from Ironworks.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "profile": "industrial_network",
+      "income": 4,
+      "gross_income": 4,
+      "cash_before": 68,
+      "cash_after": 72,
+      "cause": "district_income"
+    },
+    {
+      "day": 2,
+      "kind": "territory_pressure",
+      "message": "Ironworks lost 3 control to local pressure.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "control_before": 63,
+      "control_after": 60,
+      "cause": "local_pressure"
+    },
+    {
+      "day": 2,
+      "kind": "faction_economy",
+      "message": "Carnival Crew paid $3/$3 upkeep; power 46.",
+      "faction": "Carnival Crew",
+      "profile": "street_network",
+      "holdings": 1,
+      "upkeep": 3,
+      "paid": 3,
+      "cash_before": 41,
+      "cash_after": 38,
+      "power_before": 45,
+      "power_after": 46,
+      "cause": "organizational_upkeep"
+    },
+    {
+      "day": 2,
+      "kind": "faction_economy",
+      "message": "Harbor Syndicate paid $3/$3 upkeep; power 63.",
+      "faction": "Harbor Syndicate",
+      "profile": "trade_network",
+      "holdings": 1,
+      "upkeep": 3,
+      "paid": 3,
+      "cash_before": 89,
+      "cash_after": 86,
+      "power_before": 62,
+      "power_after": 63,
+      "cause": "organizational_upkeep"
+    },
+    {
+      "day": 2,
+      "kind": "faction_economy",
+      "message": "Iron Mask Outfit paid $4/$4 upkeep; power 63.",
+      "faction": "Iron Mask Outfit",
+      "profile": "industrial_network",
+      "holdings": 1,
+      "upkeep": 4,
+      "paid": 4,
+      "cash_before": 72,
+      "cash_after": 68,
+      "power_before": 62,
+      "power_after": 63,
+      "cause": "organizational_upkeep"
+    },
+    {
+      "day": 2,
+      "kind": "faction_strategy",
+      "message": "Carnival Crew chose expand at Harbor Docks.",
+      "faction": "Carnival Crew",
+      "objective": "expand",
+      "district": "Harbor Docks",
+      "reason": "funded expansion: target control=60, power=46",
+      "cause": "strategic_assessment",
+      "profile": "street_network",
+      "treasury": 38,
+      "power": 46
+    },
+    {
+      "day": 2,
+      "kind": "faction_strategy",
+      "message": "Harbor Syndicate chose expand at Ironworks.",
+      "faction": "Harbor Syndicate",
+      "objective": "expand",
+      "district": "Ironworks",
+      "reason": "funded expansion: target control=60, power=63",
+      "cause": "strategic_assessment",
+      "profile": "trade_network",
+      "treasury": 86,
+      "power": 63
+    },
+    {
+      "day": 2,
+      "kind": "faction_strategy",
+      "message": "Iron Mask Outfit chose expand at Harbor Docks.",
+      "faction": "Iron Mask Outfit",
+      "objective": "expand",
+      "district": "Harbor Docks",
+      "reason": "funded expansion: target control=60, power=63",
+      "cause": "strategic_assessment",
+      "profile": "industrial_network",
+      "treasury": 68,
+      "power": 63
+    },
+    {
+      "day": 2,
+      "kind": "faction_warfare",
+      "message": "Carnival Crew: attack at Harbor Docks.",
+      "faction": "Carnival Crew",
+      "profile": "street_network",
+      "district": "Harbor Docks",
+      "strategy_objective": "expand",
+      "strategy_reason": "funded expansion: target control=60, power=46",
+      "cash_before": 38,
+      "power_before": 46,
+      "captured": false,
+      "cost": 10,
+      "control_before": 60,
+      "action": "attack",
+      "previous_owner": "Harbor Syndicate",
+      "control_delta": -6,
+      "defender_power_before": 63,
+      "defender_power_after": 61,
+      "cause": "faction_offensive",
+      "control_after": 54,
+      "cash_after": 28,
+      "power_after": 45,
+      "npc": "Eli Crowe"
+    },
+    {
+      "day": 2,
+      "kind": "faction_warfare",
+      "message": "Harbor Syndicate: attack at Ironworks.",
+      "faction": "Harbor Syndicate",
+      "profile": "trade_network",
+      "district": "Ironworks",
+      "strategy_objective": "expand",
+      "strategy_reason": "funded expansion: target control=60, power=63",
+      "cash_before": 86,
+      "power_before": 61,
+      "captured": false,
+      "cost": 12,
+      "control_before": 60,
+      "action": "attack",
+      "previous_owner": "Iron Mask Outfit",
+      "control_delta": -7,
+      "defender_power_before": 63,
+      "defender_power_after": 61,
+      "cause": "faction_offensive",
+      "control_after": 53,
+      "cash_after": 74,
+      "power_after": 60,
+      "npc": "Mara Voss"
+    },
+    {
+      "day": 2,
+      "kind": "faction_warfare",
+      "message": "Iron Mask Outfit: attack at Harbor Docks.",
+      "faction": "Iron Mask Outfit",
+      "profile": "industrial_network",
+      "district": "Harbor Docks",
+      "strategy_objective": "expand",
+      "strategy_reason": "funded expansion: target control=60, power=63",
+      "cash_before": 68,
+      "power_before": 61,
+      "captured": false,
+      "cost": 13,
+      "control_before": 54,
+      "action": "attack",
+      "previous_owner": "Harbor Syndicate",
+      "control_delta": -6,
+      "defender_power_before": 60,
+      "defender_power_after": 58,
+      "cause": "faction_offensive",
+      "control_after": 48,
+      "cash_after": 55,
+      "power_after": 60,
+      "npc": null
+    },
+    {
+      "day": 2,
+      "kind": "life_expired",
+      "message": "An unselected opportunity expired; no payout.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.opening_shift",
+      "source_id": "goon.roster.0.opening_shift",
+      "cause": "offer_deadline"
+    },
+    {
+      "day": 2,
+      "kind": "life_expired",
+      "message": "An unselected opportunity expired; no payout.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.promise",
+      "source_id": "goon.roster.0.promise",
+      "cause": "offer_deadline"
+    },
+    {
+      "day": 2,
+      "kind": "life_day",
+      "message": "Neighborhood obligations and opportunities reviewed once.",
+      "schema_version": 1,
+      "processed_day": 2,
+      "cause": "day_transition"
+    },
+    {
+      "day": 2,
+      "kind": "incident_transition",
+      "message": "Independent incident processing completed.",
+      "schema_version": 1,
+      "transition_id": "goon.incident.night_shift.v1.enrollment.1.alarm.tick.2",
+      "incident_id": "goon.incident.night_shift.v1.enrollment.1.alarm",
+      "source_id": "goon.incident.night_shift.v1.enrollment.1",
+      "before": "eligible",
+      "after": "eligible",
+      "effect_ids": [],
+      "operation": "tick",
+      "arguments": {},
+      "context": null,
+      "command_id": null,
+      "result": {
+        "message": "Independent incident processing completed."
+      }
+    },
+    {
+      "day": 2,
+      "kind": "incident_transition",
+      "message": "Independent notice sources and correction deliveries processed.",
+      "schema_version": 1,
+      "transition_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.tick.2",
+      "incident_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+      "source_id": "goon.incident.wrong_notice.v1.enrollment.1",
+      "before": "eligible",
+      "after": "occurred",
+      "effect_ids": [],
+      "operation": "tick",
+      "arguments": {},
+      "context": null,
+      "command_id": null,
+      "result": {
+        "message": "Independent notice sources and correction deliveries processed."
+      }
+    },
+    {
+      "day": 2,
+      "kind": "player_command",
+      "message": "Player command 5: wait.",
+      "command": "wait",
+      "command_id": 5,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 3,
+      "kind": "feud",
+      "message": "Iron Mask Outfit struck Harbor Syndicate; Harbor Syndicate lost 5 power."
+    },
+    {
+      "day": 3,
+      "kind": "economy",
+      "message": "Carnival Crew earned $3 from Carnival Row.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "profile": "street_network",
+      "income": 3,
+      "gross_income": 3,
+      "cash_before": 28,
+      "cash_after": 31,
+      "cause": "district_income"
+    },
+    {
+      "day": 3,
+      "kind": "territory_pressure",
+      "message": "Carnival Row lost 1 control to local pressure.",
+      "district": "Carnival Row",
+      "faction": "Carnival Crew",
+      "control_before": 60,
+      "control_after": 59,
+      "cause": "local_pressure"
+    },
+    {
+      "day": 3,
+      "kind": "economy",
+      "message": "Harbor Syndicate earned $5 from Harbor Docks.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "profile": "trade_network",
+      "income": 5,
+      "gross_income": 5,
+      "cash_before": 74,
+      "cash_after": 79,
+      "cause": "district_income"
+    },
+    {
+      "day": 3,
+      "kind": "territory_pressure",
+      "message": "Harbor Docks lost 1 control to local pressure.",
+      "district": "Harbor Docks",
+      "faction": "Harbor Syndicate",
+      "control_before": 48,
+      "control_after": 47,
+      "cause": "local_pressure"
+    },
+    {
+      "day": 3,
+      "kind": "economy",
+      "message": "Iron Mask Outfit earned $4 from Ironworks.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "profile": "industrial_network",
+      "income": 4,
+      "gross_income": 4,
+      "cash_before": 55,
+      "cash_after": 59,
+      "cause": "district_income"
+    },
+    {
+      "day": 3,
+      "kind": "territory_pressure",
+      "message": "Ironworks lost 1 control to local pressure.",
+      "district": "Ironworks",
+      "faction": "Iron Mask Outfit",
+      "control_before": 53,
+      "control_after": 52,
+      "cause": "local_pressure"
+    },
+    {
+      "day": 3,
+      "kind": "faction_economy",
+      "message": "Carnival Crew paid $3/$3 upkeep; power 46.",
+      "faction": "Carnival Crew",
+      "profile": "street_network",
+      "holdings": 1,
+      "upkeep": 3,
+      "paid": 3,
+      "cash_before": 31,
+      "cash_after": 28,
+      "power_before": 45,
+      "power_after": 46,
+      "cause": "organizational_upkeep"
+    },
+    {
+      "day": 3,
+      "kind": "faction_economy",
+      "message": "Harbor Syndicate paid $3/$3 upkeep; power 54.",
+      "faction": "Harbor Syndicate",
+      "profile": "trade_network",
+      "holdings": 1,
+      "upkeep": 3,
+      "paid": 3,
+      "cash_before": 79,
+      "cash_after": 76,
+      "power_before": 53,
+      "power_after": 54,
+      "cause": "organizational_upkeep"
+    },
+    {
+      "day": 3,
+      "kind": "faction_economy",
+      "message": "Iron Mask Outfit paid $4/$4 upkeep; power 62.",
+      "faction": "Iron Mask Outfit",
+      "profile": "industrial_network",
+      "holdings": 1,
+      "upkeep": 4,
+      "paid": 4,
+      "cash_before": 59,
+      "cash_after": 55,
+      "power_before": 61,
+      "power_after": 62,
+      "cause": "organizational_upkeep"
+    },
+    {
+      "day": 3,
+      "kind": "faction_strategy",
+      "message": "Carnival Crew chose expand at Harbor Docks.",
+      "faction": "Carnival Crew",
+      "objective": "expand",
+      "district": "Harbor Docks",
+      "reason": "funded expansion: target control=47, power=46",
+      "cause": "strategic_assessment",
+      "profile": "street_network",
+      "treasury": 28,
+      "power": 46
+    },
+    {
+      "day": 3,
+      "kind": "faction_strategy",
+      "message": "Harbor Syndicate chose expand at Ironworks.",
+      "faction": "Harbor Syndicate",
+      "objective": "expand",
+      "district": "Ironworks",
+      "reason": "funded expansion: target control=52, power=54",
+      "cause": "strategic_assessment",
+      "profile": "trade_network",
+      "treasury": 76,
+      "power": 54
+    },
+    {
+      "day": 3,
+      "kind": "faction_strategy",
+      "message": "Iron Mask Outfit chose defend at Ironworks.",
+      "faction": "Iron Mask Outfit",
+      "objective": "defend",
+      "district": "Ironworks",
+      "reason": "control=52, player_pressure=0, defense threshold=55",
+      "cause": "strategic_assessment",
+      "profile": "industrial_network",
+      "treasury": 55,
+      "power": 62
+    },
+    {
+      "day": 3,
+      "kind": "faction_warfare",
+      "message": "Harbor Syndicate: attack at Ironworks.",
+      "faction": "Harbor Syndicate",
+      "profile": "trade_network",
+      "district": "Ironworks",
+      "strategy_objective": "expand",
+      "strategy_reason": "funded expansion: target control=52, power=54",
+      "cash_before": 76,
+      "power_before": 54,
+      "captured": false,
+      "cost": 12,
+      "control_before": 52,
+      "action": "attack",
+      "previous_owner": "Iron Mask Outfit",
+      "control_delta": -7,
+      "defender_power_before": 62,
+      "defender_power_after": 60,
+      "cause": "faction_offensive",
+      "control_after": 45,
+      "cash_after": 64,
+      "power_after": 53,
+      "npc": "Mara Voss"
+    },
+    {
+      "day": 3,
+      "kind": "faction_warfare",
+      "message": "Iron Mask Outfit: defend at Ironworks.",
+      "faction": "Iron Mask Outfit",
+      "profile": "industrial_network",
+      "district": "Ironworks",
+      "strategy_objective": "defend",
+      "strategy_reason": "control=52, player_pressure=0, defense threshold=55",
+      "cash_before": 55,
+      "power_before": 60,
+      "captured": false,
+      "cost": 7,
+      "control_before": 45,
+      "action": "defend",
+      "control_delta": 9,
+      "cause": "faction_defense",
+      "control_after": 54,
+      "cash_after": 48,
+      "power_after": 60,
+      "npc": null
+    },
+    {
+      "day": 3,
+      "kind": "faction_warfare",
+      "message": "Carnival Crew: attack at Harbor Docks.",
+      "faction": "Carnival Crew",
+      "profile": "street_network",
+      "district": "Harbor Docks",
+      "strategy_objective": "expand",
+      "strategy_reason": "funded expansion: target control=47, power=46",
+      "cash_before": 28,
+      "power_before": 46,
+      "captured": false,
+      "cost": 10,
+      "control_before": 47,
+      "action": "attack",
+      "previous_owner": "Harbor Syndicate",
+      "control_delta": -6,
+      "defender_power_before": 53,
+      "defender_power_after": 51,
+      "cause": "faction_offensive",
+      "control_after": 41,
+      "cash_after": 18,
+      "power_after": 45,
+      "npc": "Eli Crowe"
+    },
+    {
+      "day": 3,
+      "kind": "life_expired",
+      "message": "An unselected opportunity expired; no payout.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.cal_intro",
+      "source_id": "goon.roster.0.cal_intro",
+      "cause": "offer_deadline"
+    },
+    {
+      "day": 3,
+      "kind": "life_expired",
+      "message": "An unselected opportunity expired; no payout.",
+      "schema_version": 1,
+      "choice_id": "goon.choice.0.crossroads",
+      "source_id": "goon.roster.0.crossroads",
+      "cause": "offer_deadline"
+    },
+    {
+      "day": 3,
+      "kind": "life_day",
+      "message": "Neighborhood obligations and opportunities reviewed once.",
+      "schema_version": 1,
+      "processed_day": 3,
+      "cause": "day_transition"
+    },
+    {
+      "day": 3,
+      "kind": "incident_transition",
+      "message": "Independent incident processing completed.",
+      "schema_version": 1,
+      "transition_id": "goon.incident.night_shift.v1.enrollment.1.alarm.tick.3",
+      "incident_id": "goon.incident.night_shift.v1.enrollment.1.alarm",
+      "source_id": "goon.incident.night_shift.v1.enrollment.1",
+      "before": "eligible",
+      "after": "occurred",
+      "effect_ids": [],
+      "operation": "tick",
+      "arguments": {},
+      "context": null,
+      "command_id": null,
+      "result": {
+        "message": "Independent incident processing completed."
+      }
+    },
+    {
+      "day": 3,
+      "kind": "incident_transition",
+      "message": "Independent notice sources and correction deliveries processed.",
+      "schema_version": 1,
+      "transition_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.tick.3",
+      "incident_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+      "source_id": "goon.incident.wrong_notice.v1.enrollment.1",
+      "before": "occurred",
+      "after": "evidence_available",
+      "effect_ids": [],
+      "operation": "tick",
+      "arguments": {},
+      "context": null,
+      "command_id": null,
+      "result": {
+        "message": "Independent notice sources and correction deliveries processed."
+      }
+    },
+    {
+      "day": 3,
+      "kind": "player_command",
+      "message": "Player command 6: wait.",
+      "command": "wait",
+      "command_id": 6,
+      "actor": "player",
+      "arguments": {},
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 3,
+      "kind": "travel",
+      "message": "Arrived at Uptown General Store; spent 1 TU.",
+      "schema_version": 1,
+      "journey_id": 1,
+      "command_id": 7,
+      "origin": "goon.poi.p031",
+      "destination": "goon.poi.p032",
+      "arrived": "goon.poi.p032",
+      "tu_before": 0,
+      "tu_cost": 1,
+      "tu_after": 1,
+      "interrupted": false,
+      "mode": "walk",
+      "legs": [
+        {
+          "edge_id": "goon.edge.access.p031",
+          "from_id": "goon.poi.p031",
+          "to_id": "goon.neighborhood.n13",
+          "mode": "walk",
+          "tu": 0
+        },
+        {
+          "edge_id": "goon.edge.access.p032",
+          "from_id": "goon.neighborhood.n13",
+          "to_id": "goon.poi.p032",
+          "mode": "walk",
+          "tu": 0
+        }
+      ],
+      "traversed": [
+        "goon.edge.access.p031",
+        "goon.edge.access.p032"
+      ],
+      "discoveries": [],
+      "cause": "player_travel"
+    },
+    {
+      "day": 3,
+      "kind": "player_command",
+      "message": "Player command 7: travel.",
+      "command": "travel",
+      "command_id": 7,
+      "actor": "player",
+      "arguments": {
+        "destination": "p032",
+        "mode": "walk"
+      },
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 3,
+      "kind": "incident_transition",
+      "message": "This source reports delivery day 7. The printed notice predates the dispatch ledger.",
+      "schema_version": 1,
+      "transition_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.discover.notice",
+      "incident_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+      "source_id": "goon.incident.wrong_notice.v1.enrollment.1",
+      "before": "evidence_available",
+      "after": "evidence_available",
+      "effect_ids": [],
+      "operation": "discover",
+      "arguments": {
+        "incident_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "channel": "public_notice"
+      },
+      "context": {
+        "location": "goon.poi.p032",
+        "free": true,
+        "accessible": true,
+        "actions": 3,
+        "command_id": 8,
+        "tess_reference": false
+      },
+      "command_id": 8,
+      "result": {
+        "message": "This source reports delivery day 7. The printed notice predates the dispatch ledger."
+      }
+    },
+    {
+      "day": 3,
+      "kind": "player_command",
+      "message": "Player command 8: discover_incident.",
+      "command": "discover_incident",
+      "command_id": 8,
+      "actor": "player",
+      "arguments": {
+        "incident_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "channel": "public_notice"
+      },
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 3,
+      "kind": "travel",
+      "message": "Arrived at Upper East Side; spent 1 TU.",
+      "schema_version": 1,
+      "journey_id": 2,
+      "command_id": 9,
+      "origin": "goon.poi.p032",
+      "destination": "goon.neighborhood.n13",
+      "arrived": "goon.neighborhood.n13",
+      "tu_before": 1,
+      "tu_cost": 1,
+      "tu_after": 2,
+      "interrupted": false,
+      "mode": "walk",
+      "legs": [
+        {
+          "edge_id": "goon.edge.access.p032",
+          "from_id": "goon.poi.p032",
+          "to_id": "goon.neighborhood.n13",
+          "mode": "walk",
+          "tu": 0
+        }
+      ],
+      "traversed": [
+        "goon.edge.access.p032"
+      ],
+      "discoveries": [],
+      "cause": "player_travel"
+    },
+    {
+      "day": 3,
+      "kind": "player_command",
+      "message": "Player command 9: travel.",
+      "command": "travel",
+      "command_id": 9,
+      "actor": "player",
+      "arguments": {
+        "destination": "n13",
+        "mode": "walk"
+      },
+      "action_cost": 0,
+      "cause": "player_command"
+    },
+    {
+      "day": 3,
+      "kind": "life_memory",
+      "message": "Nora Reed remembers notice ledger checked.",
+      "schema_version": 1,
+      "contact_id": "goon.contact.notice_clerk",
+      "id": "goon.contact.notice_clerk.memory.1",
+      "fact": "notice_ledger_checked",
+      "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.verify.goon.contact.notice_clerk",
+      "before": 0,
+      "after": 0,
+      "delta": 0
+    },
+    {
+      "day": 3,
+      "kind": "incident_transition",
+      "message": "Nora shows the authenticated ledger: day 6. Standby vacancy: True. No wage or automatic public correction.",
+      "schema_version": 1,
+      "transition_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.choose.verify",
+      "incident_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+      "source_id": "goon.incident.wrong_notice.v1.enrollment.1",
+      "before": "evidence_available",
+      "after": "evidence_available",
+      "effect_ids": [
+        "goon.incident.wrong_notice.v1.enrollment.1.notice.verify.goon.contact.notice_clerk.effect"
+      ],
+      "operation": "choose",
+      "arguments": {
+        "incident_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "stage": "verify",
+        "option_id": "ledger"
+      },
+      "context": {
+        "location": "goon.neighborhood.n13",
+        "free": true,
+        "accessible": true,
+        "actions": 3,
+        "command_id": 10,
+        "tess_reference": false
+      },
+      "command_id": 10,
+      "result": {
+        "message": "Nora shows the authenticated ledger: day 6. Standby vacancy: True. No wage or automatic public correction.",
+        "stage": "verify",
+        "pay": 0,
+        "feedback": "Nora shows the authenticated ledger: day 6. Standby vacancy: True. No wage or automatic public correction."
+      }
+    },
+    {
+      "day": 3,
+      "kind": "player_command",
+      "message": "Player command 10: incident_choose.",
+      "command": "incident_choose",
+      "command_id": 10,
+      "actor": "player",
+      "arguments": {
+        "incident_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "stage": "verify",
+        "option_id": "ledger"
+      },
+      "action_cost": 1,
+      "cause": "player_command"
+    }
+  ],
+  "job_attempts": 0,
+  "consequence_version": 1,
+  "npc_action_version": 1,
+  "npc_action_last_day": {},
+  "districts": {
+    "Harbor Docks": {
+      "owner": "Harbor Syndicate",
+      "wealth": 60,
+      "control": 41
+    },
+    "Carnival Row": {
+      "owner": "Carnival Crew",
+      "wealth": 45,
+      "control": 59
+    },
+    "Ironworks": {
+      "owner": "Iron Mask Outfit",
+      "wealth": 50,
+      "control": 54
+    }
+  },
+  "economy_last_day": 3,
+  "district_mission_version": 1,
+  "district_mission_last_day": -1,
+  "district_intel": {},
+  "warfare_version": 1,
+  "warfare_last_day": 3,
+  "strategy_version": 1,
+  "strategy_last_day": 3,
+  "faction_strategy": {
+    "Carnival Crew": {
+      "faction": "Carnival Crew",
+      "objective": "expand",
+      "district": "Harbor Docks",
+      "reason": "funded expansion: target control=47, power=46",
+      "profile": "street_network",
+      "treasury": 28,
+      "power": 46,
+      "owned_count": 1,
+      "day": 3
+    },
+    "Harbor Syndicate": {
+      "faction": "Harbor Syndicate",
+      "objective": "expand",
+      "district": "Ironworks",
+      "reason": "funded expansion: target control=52, power=54",
+      "profile": "trade_network",
+      "treasury": 76,
+      "power": 54,
+      "owned_count": 1,
+      "day": 3
+    },
+    "Iron Mask Outfit": {
+      "faction": "Iron Mask Outfit",
+      "objective": "defend",
+      "district": "Ironworks",
+      "reason": "control=52, player_pressure=0, defense threshold=55",
+      "profile": "industrial_network",
+      "treasury": 55,
+      "power": 62,
+      "owned_count": 1,
+      "day": 3
+    }
+  },
+  "save_version": 1,
+  "action_day": 3,
+  "actions_used": 1,
+  "command_sequence": 10,
+  "legal_version": 1,
+  "legal": {
+    "last_tick_day": 3,
+    "last_lay_low_day": -1,
+    "last_crime_day": -1,
+    "responses": {},
+    "record": []
+  },
+  "competition_version": 1,
+  "competition": {
+    "activation_day": 2,
+    "profiles": {
+      "trade_network": {
+        "revenue_percent": 125,
+        "recovery_income": 6,
+        "recovery_power": 2,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 35,
+        "recruitment_cost": 6,
+        "recruitment_gain": 7,
+        "attack_cost": 12,
+        "defense_cost": 8,
+        "attack_base": 5,
+        "defense_base": 6,
+        "defense_threshold": 45,
+        "consolidation_threshold": 75,
+        "attack_reserve": 36,
+        "min_attack_power": 25,
+        "treasury_cap": 240,
+        "recovery_cap": 60
+      },
+      "street_network": {
+        "revenue_percent": 100,
+        "recovery_income": 8,
+        "recovery_power": 3,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 40,
+        "recruitment_cost": 4,
+        "recruitment_gain": 6,
+        "attack_cost": 10,
+        "defense_cost": 9,
+        "attack_base": 5,
+        "defense_base": 5,
+        "defense_threshold": 35,
+        "consolidation_threshold": 65,
+        "attack_reserve": 28,
+        "min_attack_power": 20,
+        "treasury_cap": 180,
+        "recovery_cap": 50
+      },
+      "industrial_network": {
+        "revenue_percent": 135,
+        "recovery_income": 5,
+        "recovery_power": 2,
+        "operating_cost": 1,
+        "holding_cost": 1,
+        "upkeep_divisor": 30,
+        "recruitment_cost": 5,
+        "recruitment_gain": 9,
+        "attack_cost": 13,
+        "defense_cost": 7,
+        "attack_base": 4,
+        "defense_base": 7,
+        "defense_threshold": 55,
+        "consolidation_threshold": 85,
+        "attack_reserve": 40,
+        "min_attack_power": 30,
+        "treasury_cap": 220,
+        "recovery_cap": 70
+      }
+    },
+    "factions": {
+      "Harbor Syndicate": "trade_network",
+      "Carnival Crew": "street_network",
+      "Iron Mask Outfit": "industrial_network"
+    }
+  },
+  "navigation_version": 1,
+  "navigation": {
+    "atlas_version": 1,
+    "atlas_fingerprint": "14a38c5376989351d83bf90ed172c557a3dbf13c1323a115d2c2144f5136860a",
+    "rules_version": 1,
+    "enabled_day": 0,
+    "activation_day": 0,
+    "anchor_id": "goon.neighborhood.n13",
+    "home_id": "goon.poi.p031",
+    "location_id": "goon.neighborhood.n13",
+    "tu_day": 3,
+    "tu_used": 2,
+    "journey_sequence": 2,
+    "permissions": [
+      "goon.poi.p031"
+    ],
+    "closures": []
+  },
+  "daily_life_version": 1,
+  "daily_life": {
+    "rules_version": 1,
+    "content_fingerprint": "653746c2ecf66e3218674c95072b81e313b5634bfbcd886ac944c05860fb14cf",
+    "enabled_day": 0,
+    "activation_day": 1,
+    "last_tick_day": 3,
+    "home_id": "goon.poi.p031",
+    "opening_cash": 40,
+    "housing": {
+      "next_due_day": 7,
+      "arrears": 0,
+      "prepaid": 0,
+      "history": []
+    },
+    "contacts": {
+      "goon.contact.cal": {
+        "standing": 0,
+        "memories": []
+      },
+      "goon.contact.tess": {
+        "standing": 0,
+        "memories": []
+      },
+      "goon.contact.ada": {
+        "standing": 0,
+        "memories": []
+      },
+      "goon.contact.notice_clerk": {
+        "standing": 0,
+        "memories": [
+          {
+            "id": "goon.contact.notice_clerk.memory.1",
+            "day": 3,
+            "fact": "notice_ledger_checked",
+            "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.verify.goon.contact.notice_clerk",
+            "before": 0,
+            "after": 0,
+            "delta": 0
+          }
+        ]
+      },
+      "goon.contact.notice_neighbor": {
+        "standing": 0,
+        "memories": []
+      }
+    },
+    "promises": {},
+    "choices": {
+      "goon.choice.0.cal_intro": {
+        "id": "goon.choice.0.cal_intro",
+        "definition_id": "cal_intro",
+        "source_id": "goon.roster.0.cal_intro",
+        "week": 0,
+        "open_day": 1,
+        "expires_day": 3,
+        "state": "expired",
+        "selection": null
+      },
+      "goon.choice.0.crossroads": {
+        "id": "goon.choice.0.crossroads",
+        "definition_id": "crossroads",
+        "source_id": "goon.roster.0.crossroads",
+        "week": 0,
+        "open_day": 2,
+        "expires_day": 3,
+        "state": "expired",
+        "selection": null
+      },
+      "goon.choice.0.late_work": {
+        "id": "goon.choice.0.late_work",
+        "definition_id": "late_work",
+        "source_id": "goon.roster.0.late_work",
+        "week": 0,
+        "open_day": 5,
+        "expires_day": 7,
+        "state": "open",
+        "selection": null
+      },
+      "goon.choice.0.midweek_shift": {
+        "id": "goon.choice.0.midweek_shift",
+        "definition_id": "midweek_shift",
+        "source_id": "goon.roster.0.midweek_shift",
+        "week": 0,
+        "open_day": 4,
+        "expires_day": 5,
+        "state": "open",
+        "selection": null
+      },
+      "goon.choice.0.opening_shift": {
+        "id": "goon.choice.0.opening_shift",
+        "definition_id": "opening_shift",
+        "source_id": "goon.roster.0.opening_shift",
+        "week": 0,
+        "open_day": 1,
+        "expires_day": 2,
+        "state": "expired",
+        "selection": null
+      },
+      "goon.choice.0.promise": {
+        "id": "goon.choice.0.promise",
+        "definition_id": "promise",
+        "source_id": "goon.roster.0.promise",
+        "week": 0,
+        "open_day": 1,
+        "expires_day": 2,
+        "state": "expired",
+        "selection": null
+      }
+    },
+    "transactions": []
+  },
+  "incident_version": 1,
+  "incidents": {
+    "rules_version": 1,
+    "content_fingerprint": "c0b504780e5793fc1f6d7b2e05a30f45dce7daeac33b8fb4509d88bf4b78e1df",
+    "enabled_day": 1,
+    "last_tick_day": 3,
+    "id": "goon.incident.night_shift.v1.enrollment.1.alarm",
+    "source_id": "goon.incident.night_shift.v1.enrollment.1",
+    "occurrence_day": 3,
+    "information_day": 4,
+    "resolution_day": 7,
+    "timing": "overnight",
+    "world_status": "occurred",
+    "truth": "delivery_error",
+    "owner_facts": [
+      "alarm_observed"
+    ],
+    "desk_facts": [],
+    "player_facts": [],
+    "discovery": null,
+    "stages": {
+      "followup": {
+        "id": "goon.incident.night_shift.v1.enrollment.1.alarm.followup",
+        "source_id": "goon.incident.night_shift.v1.enrollment.1.alarm",
+        "definition_id": "goon.incident.night_shift.v1.followup",
+        "open_day": 8,
+        "expires_day": 11,
+        "state": "open",
+        "selection": null
+      },
+      "offer": {
+        "id": "goon.incident.night_shift.v1.enrollment.1.alarm.offer",
+        "source_id": "goon.incident.night_shift.v1.enrollment.1.alarm",
+        "definition_id": "goon.incident.night_shift.v1.offer",
+        "open_day": 3,
+        "expires_day": 7,
+        "state": "open",
+        "selection": null
+      },
+      "report": {
+        "id": "goon.incident.night_shift.v1.enrollment.1.alarm.report",
+        "source_id": "goon.incident.night_shift.v1.enrollment.1.alarm",
+        "definition_id": "goon.incident.night_shift.v1.report",
+        "open_day": 4,
+        "expires_day": 7,
+        "state": "open",
+        "selection": null
+      },
+      "work": {
+        "id": "goon.incident.night_shift.v1.enrollment.1.alarm.work",
+        "source_id": "goon.incident.night_shift.v1.enrollment.1.alarm",
+        "definition_id": "goon.incident.night_shift.v1.work",
+        "open_day": 4,
+        "expires_day": 7,
+        "state": "open",
+        "selection": null
+      }
+    },
+    "receipts": [],
+    "aftermath": null,
+    "followup": null
+  },
+  "notice_version": 1,
+  "wrong_notice": {
+    "rules_version": 1,
+    "content_fingerprint": "f90c10c7cb1b47cae8d83f402012d316bb93e117415e2c3193a8b6eb8d09abe8",
+    "enabled_day": 1,
+    "last_tick_day": 3,
+    "id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+    "source_id": "goon.incident.wrong_notice.v1.enrollment.1",
+    "occurrence_day": 2,
+    "information_day": 3,
+    "resolution_day": 7,
+    "timing": "day_based",
+    "world_status": "evidence_available",
+    "truth": {
+      "delivery_day": 6,
+      "standby_slot": true
+    },
+    "claims": {
+      "poster": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.claim.poster",
+        "source": "shop_board",
+        "delivery_day": 7,
+        "credibility": "unverified_print",
+        "limitation": "The printed notice predates the dispatch ledger."
+      },
+      "handbill": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.claim.handbill",
+        "source": "goon.contact.notice_neighbor",
+        "delivery_day": 4,
+        "credibility": "limited_witness",
+        "limitation": "Sam saw an earlier handbill, not the dispatch ledger."
+      },
+      "ledger": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.claim.ledger",
+        "source": "goon.contact.notice_clerk",
+        "delivery_day": 6,
+        "credibility": "authenticated_local_record",
+        "limitation": "Applies only to this neighborhood delivery."
+      }
+    },
+    "audiences": {
+      "board": "poster",
+      "tenants": "handbill",
+      "desk": "ledger"
+    },
+    "transmissions": [
+      {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.transmission.initial_board",
+        "kind": "claim",
+        "day": 2,
+        "source": "printer",
+        "recipient": "board",
+        "claim_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.claim.poster",
+        "claim": "poster",
+        "cause_id": "goon.incident.wrong_notice.v1.enrollment.1",
+        "command_id": null,
+        "accepted": true
+      },
+      {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.transmission.initial_handbill",
+        "kind": "claim",
+        "day": 2,
+        "source": "goon.contact.notice_neighbor",
+        "recipient": "tenants",
+        "claim_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.claim.handbill",
+        "claim": "handbill",
+        "cause_id": "goon.incident.wrong_notice.v1.enrollment.1",
+        "command_id": null,
+        "accepted": true
+      },
+      {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.transmission.ledger_available",
+        "kind": "claim",
+        "day": 3,
+        "source": "goon.contact.notice_clerk",
+        "recipient": "desk",
+        "claim_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.claim.ledger",
+        "claim": "ledger",
+        "cause_id": "goon.incident.wrong_notice.v1.enrollment.1",
+        "command_id": null,
+        "accepted": true
+      }
+    ],
+    "observations": [],
+    "player_claims": [
+      "poster",
+      "ledger"
+    ],
+    "discovery": {
+      "day": 3,
+      "channel": "public_notice",
+      "command_id": 8
+    },
+    "stages": {
+      "aftermath": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.aftermath",
+        "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "definition_id": "goon.incident.wrong_notice.v1.aftermath",
+        "open_day": 8,
+        "expires_day": 11,
+        "state": "open",
+        "selection": null
+      },
+      "compare": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.compare",
+        "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "definition_id": "goon.incident.wrong_notice.v1.compare",
+        "open_day": 2,
+        "expires_day": 7,
+        "state": "open",
+        "selection": null
+      },
+      "followup": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.followup",
+        "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "definition_id": "goon.incident.wrong_notice.v1.followup",
+        "open_day": 8,
+        "expires_day": 11,
+        "state": "open",
+        "selection": null
+      },
+      "repair": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.repair",
+        "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "definition_id": "goon.incident.wrong_notice.v1.repair",
+        "open_day": 2,
+        "expires_day": 7,
+        "state": "open",
+        "selection": null
+      },
+      "response": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.response",
+        "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "definition_id": "goon.incident.wrong_notice.v1.response",
+        "open_day": 2,
+        "expires_day": 7,
+        "state": "open",
+        "selection": null
+      },
+      "verify": {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.verify",
+        "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice",
+        "definition_id": "goon.incident.wrong_notice.v1.verify",
+        "open_day": 3,
+        "expires_day": 7,
+        "state": "resolved",
+        "selection": {
+          "option_id": "ledger",
+          "day": 3,
+          "command_id": 10,
+          "action_cost": 1,
+          "outcome": {
+            "pay": 0,
+            "feedback": "Nora shows the authenticated ledger: day 6. Standby vacancy: True. No wage or automatic public correction."
+          }
+        }
+      }
+    },
+    "receipts": [
+      {
+        "id": "goon.incident.wrong_notice.v1.enrollment.1.notice.verify.goon.contact.notice_clerk.effect",
+        "source_id": "goon.incident.wrong_notice.v1.enrollment.1.notice.verify.goon.contact.notice_clerk",
+        "day": 3,
+        "command_id": 10,
+        "fact": "notice_ledger_checked",
+        "delta": 0,
+        "pay": 0,
+        "contact_id": "goon.contact.notice_clerk"
+      }
+    ],
+    "desk_post_day": null,
+    "impact": null,
+    "aftermath": null,
+    "followup": null,
+    "review_received": false
+  }
+}
