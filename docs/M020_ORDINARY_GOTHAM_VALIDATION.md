@@ -350,3 +350,13 @@ documents resolve. `git diff --check` passes. The pinned ordinary content hash i
 No linter, package or external service was installed. Final fetch still shows
 `origin/master` at `6682019`; the old local master at `d0723b1` and every prior
 feature branch remain preserved. The M020 branch has no publication upstream.
+
+## Local commit provenance
+
+Validated implementation and accompanying tests/documentation:
+`a0ab17ff80407a0ea1e7bba38673f280c78ce403`, parent
+`6682019857ccad4553fcdc04f7a7e7e046b2def0`.
+The following report-only commit records that identity; runtime, content, tests
+and replay hashes are unchanged. Its final HEAD SHA is supplied in the Mission
+026 delivery, avoiding a self-referential commit hash inside its own file.
+Both commits are local only; no publication or M021 work was performed.
