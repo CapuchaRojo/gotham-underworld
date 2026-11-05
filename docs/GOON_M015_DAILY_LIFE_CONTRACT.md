@@ -14,6 +14,14 @@ supersede its provisional details and identify what actually runs.
 
 ## Smallest useful vertical slice
 
+**M020 implementation update:** the original room/repair/maintenance rules below
+remain authoritative. The [current choice contract](GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md#m020-extension--ordinary-work-housing-and-support)
+adds explicitly adopted employment standing, one weekly home-work allocation,
+bounded rescheduling and one conditional repayable support advance. These reuse
+the same money, contacts, housing and navigation; no eviction, general employment
+simulation, new transport or prologue is implemented. See
+[executed M020 validation](M020_ORDINARY_GOTHAM_VALIDATION.md).
+
 1. **One personal obligation and one room agreement.** A new career may explicitly accept disclosed terms for its existing p031 home: a weekly $30 contribution due after seven real day advances and one optional, dated promise to an original contact. The initial amount is a tuning proposal. Historical careers retain their exact home and financial history; adoption is explicit and starts future obligations only. A broken promise changes a bounded contact standing or offer, with a recorded cause. Rent failure enters one bounded grace/review state, leaves the current location and public services available, and neither compounds debt nor forces a dead-end eviction. Existing $40 cash remains untouched until a disclosed payment is due.
 2. **Home is a useful place, not a free resource loop.** The recorded home permission permits inspecting terms, reviewing obligations, and planning the next day. It does not refresh TU/actions, teleport, grant income, or automatically heal. A historical career without a recorded home may opt in to a valid support/shelter offer; loading never invents one.
 3. **Two distinct local work offers.** Supply one original lawful paid shift and one criminal offer at accessible public frontages in or near n13. Both publish stable offer ID, place, day window, pay source, expected pay, action cost, travel quote/return estimate, and known legal risk. The lawful shift has its own funded settlement; it must not relabel a faction courier job. The criminal offer can invoke existing job/legal resolution only after its explicit prerequisites and location check pass. Do not change old `job` commands, seed draws, or district accounts. An accepted offer pins terms and resolves at most once; failed eligibility or TU rejects atomically.

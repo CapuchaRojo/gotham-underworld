@@ -19,6 +19,8 @@ import mobility
 import world_incidents
 import incident_dispatch
 import institutional_response
+import ordinary_life
+from ordinary_life import report as ordinary_report
 from institutional_response import report as institution_report
 from incident_dispatch import report as incident_report
 from mobility import mobility_report, mobility_receipt
@@ -50,6 +52,8 @@ COMMANDS = {
     'institution_correct': (1, ('institution_id','report_id','source_id'), institutional_response.correct),
     'institution_followup': (1, ('institution_id','incident_id'), institutional_response.followup),
     'institution_withhold': (0, ('institution_id','incident_id'), institutional_response.withhold),
+    'enable_ordinary': (0, (), ordinary_life.enable),
+    'ordinary_choose': (ordinary_life.cost, ('offer_id','option_id'), ordinary_life.choose),
 }
 
 
@@ -109,6 +113,7 @@ def execute_command(world, command, **arguments):
     change_heat(candidate, 0, 'legacy_heat_normalization')
     with mobility.command_scope(command, candidate['command_sequence'] + 1):
         result = handler(candidate, *(arguments[name] for name in names))
+    ordinary_life.synchronize(candidate)
     institutional_response.synchronize(candidate)
     daily_life.record_balance(candidate, 'existing_rules', f'goon.command.{candidate["command_sequence"] + 1}',
                               command_id=candidate['command_sequence'] + 1)
@@ -123,7 +128,7 @@ def execute_command(world, command, **arguments):
     event(candidate, 'player_command', f'Player command {sequence}: {command}.',
           command=command, command_id=sequence, actor='player',
           arguments=deepcopy(arguments), action_cost=cost, cause='player_command')
-    if 'mobility_version' in candidate or 'incident_version' in candidate or 'notice_version' in candidate or 'institution_version' in candidate:
+    if 'mobility_version' in candidate or 'incident_version' in candidate or 'notice_version' in candidate or 'institution_version' in candidate or 'ordinary_version' in candidate:
         validate(candidate)
     response = deepcopy({'command': command, 'sequence': sequence,
                          'day': candidate['day'], 'result': result,

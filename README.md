@@ -10,9 +10,10 @@ city. Python 3.14 standard library only: no packages, external AI services,
 or paid APIs are required. The local executable includes **The Night Shift and
 The Wrong Notice**, two optional independent incidents, alongside M016-A mobility,
 M015 daily life and M014 navigation. Provenance integration PR #18 and M018 PR #19
-are merged into master at `8bc9700` and `d0723b1`. M019 adds optional civilian
-service and police intake locally on `feature/m019-institutional-response`
-from verified master `d0723b1`. No push or new PR is authorized. A global clock, rogue/Bat-Family
+are merged into master at `8bc9700` and `d0723b1`. M019 civilian service and police
+intake merged through PR #20 at `6682019`. M020 ordinary work, housing planning
+and conditional support are local on `feature/m020-ordinary-gotham` from that
+verified master. No push or new PR is authorized. A global clock, rogue/Bat-Family
 encounters, broader vehicle systems and combat are not implemented.
 
 This is an independent, unofficial prototype. Its intended future creative
@@ -367,10 +368,11 @@ does not acknowledge replies; use an explicit local follow-up to receive them.
 Desk responses are separate secondhand records, not retroactive inspection credit
 in old incident journals. See the canonical [institution contract](docs/GOON_INSTITUTIONS_AND_RECOVERY.md)
 and [M019 validation](docs/M019_INSTITUTIONAL_RESPONSE_VALIDATION.md).
-The local M019 suite passes **468 tests** (426 preserved plus 42 new). Two
+M019 and its independent hardening pass **476 tests** (426 preserved plus 50
+institutional tests). PR #20 and merged-master CI passed. Two
 365-day institutional disk-resume campaigns and all six recorded historical
 Night Shift/Wrong Notice/mobility fingerprints passed; exact evidence and limits
-are in that report. No new GitHub CI is claimed for this unpublished branch.
+are in that report. M020 remains unpublished; no M020 GitHub CI is claimed.
 
 ## Living in the neighborhood — M015
 
@@ -435,6 +437,49 @@ the player. An existing different home is never silently overwritten. The option
 `daily_life_version: 1` extension pins its own content and validates receipts,
 cash, choices, promises and contact memories. Existing jobs remain available and
 retain their rules. The five-chapter playable prologue remains future content.
+
+## Ordinary work and support — M020 (local)
+
+After `settle_in` activates, visit home or n13 and explicitly use
+`enable_ordinary`. New terms activate after the next `wait`. Loading an older
+career does not adopt them or award employment credit for earlier shifts.
+
+```text
+ordinary
+enable_ordinary
+wait
+ordinary_choices goon.ordinary.batch.0
+ordinary_choose goon.ordinary.batch.0 work
+```
+
+The week number belongs to the new arrangement; inspect `ordinary` for actual
+IDs and windows. Existing `opportunities`/`choose` still provide store shifts,
+personal promises and room maintenance. `home` now also shows the adopted plan.
+
+| Decision | Terms and lasting consequence |
+| --- | --- |
+| Existing store repair work | $20 for one action at p032; no employment prerequisite. Future actual completions build bounded employment standing, without paying again or duplicating Tess's memory. |
+| Home repair kits | One separate funded allocation per ordinary week; two actions at home, $24 or $28 with employment standing 3. Requires one observed completion or existing room arrears. Every third allocation is visibly cancelled for supplies, determined from seed/week; dependable store shifts remain. |
+| Request a later delivery | One action and one request at the home ledger. Tess's posted terms accept standing 1, or refuse standing 0 without a relationship penalty. Acceptance pins the wage and tomorrow's two-day delivery window. No advance wage; missed/withdrawn commitments lose at most one employment and one Tess standing. |
+| Tess support advance | $20 once per career, one action at home on ordinary roster days 0, 2 or 5. Needs arrears, or cash below $30 with review within two days. Repay exactly $20 within seven days, using one action at home. Late status creates one bounded memory; no interest or automatic collection. Repayment closes the debt but unlocks no second advance. |
+| Decline | Free, once per offer; no money, promise or morality penalty. Refusing support creates no debt. |
+
+This extends the **same** cooperative room: $30 every seven days, actual
+prepayment, arrears capped at $30, one maintenance credit per existing review,
+and continued basic access. The plan displays the next review and records an
+advance notice within two days. It creates no eviction system or new rent charge.
+Employment standing caps at 6; personal standing still uses the existing Tess
+record. Home work reduces commuting, while limited allocations keep wages bounded.
+Three actions and eighteen travel units per day remain separate and unchanged.
+As with existing dated promises, a due day begins at the day transition: repay
+before the `wait` that reaches it. Withdrawal from an accepted reservation is
+available immediately; paid completion still waits for its agreed date.
+
+No incident participation or criminal work is needed. Institutions do not learn
+about employment, help or debts automatically. Save compatibility is old-to-new;
+use an M020-capable executable after adopting its independent version 1 state.
+See the [daily-life contract](docs/GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md#m020-extension--ordinary-work-housing-and-support)
+and [executed validation](docs/M020_ORDINARY_GOTHAM_VALIDATION.md).
 
 ## Start or resume a career
 

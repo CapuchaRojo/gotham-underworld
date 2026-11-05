@@ -9,6 +9,8 @@ merged at `8b68e1e`; its atlas and narrative documents remain design provenance.
 | M015, Mission 009 | Authorized [Living Gotham slice](GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md): optional room terms, local lawful/criminal work, finite choices, two original contacts, promises, cash ledger and idempotent day processing. Submit an open PR; no merge authorization. |
 | Subsequent verified integration | M015 PR #15 and M016-A PR #16 merged. Night Shift is on master at `43d8197`; provenance integration PR #18 merged at `8bc9700`; M018 PR #19 merged at `d0723b1`, preserving original ancestry. Historical instructions above describe their original mission scope. |
 | M019, Mission 023 | Local-only bounded institutional knowledge/response from `d0723b1`: civilian desk, police intake, explicit adoption, causal reporting/correction, delayed independent queues, replay tests and documentation. No push, PR, merge or further milestone authorized. |
+| Verified M019 integration | PR #20 merged at `6682019` after independent Mission 024 hardening and draft publication/CI verification. Historical local-only instructions above describe the original mission. |
+| M020, Mission 026 | Authorized local-only Ordinary Gotham: extend actual repair/housing/contact systems with employment standing, one home-work allocation, negotiated timing, conditional support and persistent recovery/refusal paths. Explicit adoption, compatibility, budgets, CLI, deterministic campaigns and source-backed validation. No publication, eviction, general scheduler or M021. |
 | Future combat milestone, number unassigned | Preserve the [historical M014 combat proposal](M014_COMBAT_DESIGN_CONTRACT.md). Requires a separate approved contract, health/recovery policy and compatible non-job legal-case source. |
 | Future opening/content milestone, number unassigned | Review the [playable prologue contract](GOON_PLAYABLE_PROLOGUE_CONTRACT.md) and implement bounded employment/relationship choices using real systems. No guaranteed villain meeting or new faction tick. |
 
@@ -38,3 +40,10 @@ remain; navigation owns no district income, faction power, evidence or job RNG.
 No mandatory third-party package, service, graphical asset or wall-clock timer.
 Later content/continuity changes must respect pinned definitions and historical
 unknowns; merging M014 does not authorize the next milestone.
+
+Mission 026 also removes Milo from the proposed future roster. The Court of Owls
+is a separate optional late-game hidden organization, entirely undiscoverable
+before the final third of **meaningful progression**, never elapsed days alone.
+This is documentation only; no events, clues, rumors, symbols, dialogue, Talons,
+encounters or runtime triggers are implemented. See the
+[approved restriction](GOON_ROGUE_ENCOUNTERS_DESIGN.md#mission-026-approved-roster-restriction--design-only).

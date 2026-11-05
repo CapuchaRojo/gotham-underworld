@@ -2,13 +2,14 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current local slice: **M019 — Institutional Knowledge & Response**, independently
-  hardened in Mission 024; local only
-- Implementation branch: `feature/m019-institutional-response`, from verified master
-  `d0723b1551fc4e1aedf2d0fa4a5b5e3758902f49`; 426 baseline tests passed before edits
+- Current local slice: **M020 — Ordinary Gotham**, Mission 026 implementation,
+  independently hardened in Mission 027; local only
+- Implementation branch: `feature/m020-ordinary-gotham`, from verified master
+  `6682019857ccad4553fcdc04f7a7e7e046b2def0`; isolated baseline 476 tests passed
 - PR #17 first merged into the audit branch. PR #18 subsequently integrated that
   provenance history into master (`8bc9700`); PR #19 merged M018 (`d0723b1`).
-  Existing branches/commits are preserved. M019 remains local; no publication authorized.
+  M019 PR #20 merged at `6682019` with successful master CI. Existing branches
+  and commits are preserved. M020 publication is not authorized.
 - PR #15 (M015) and #16 (M016-A) are merged. The prior open-PR requirement was
   superseded explicitly; both original feature branches remain unchanged.
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
@@ -341,7 +342,8 @@ slice, now merged. Do not push the new implementation without authorization.
   Outer save/navigation/mobility schemas and old content fingerprints unchanged.
 - [After Dark](docs/GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) distinguishes
   this implemented slice from future proposals. [Rogue Encounters](docs/GOON_ROGUE_ENCOUNTERS_DESIGN.md)
-  now has exactly 35 proposed distinct roles; no rogue gameplay was added.
+  had exactly 35 proposed distinct roles at that checkpoint; Mission 026 removes
+  Milo below. No rogue gameplay was added.
 - **371 tests passed**, including all 336 baseline tests and 35 new acceptance
   cases. Exact campaigns/results and current limitations belong in the
   [Mission 016 validation report](docs/M017_NIGHT_SHIFT_VALIDATION.md).
@@ -381,7 +383,7 @@ Mission 022 integrated M018 using a merge commit after verifying provenance
 ancestry and the exact 20-file tree diff. Both PR checks, post-merge CI and all
 426 local regressions passed. The original feature branch remains preserved.
 
-## M019 local implemented scope
+## M019 merged scope
 
 - Explicit `institution_version: 1` / `institutions`; future NPC intake only,
   with source-backed earlier player observations eligible for explicit submission.
@@ -411,4 +413,38 @@ ancestry and the exact 20-file tree diff. Both PR checks, post-merge CI and all
 
 Replies are secondhand records, not primary inspection credit. There is no global
 rumor propagation, inventory simulation for correction copies, new legal AI,
-care/prison episode, canon character, combat, global clock or M020 implementation.
+care/prison episode, canon character, combat or global clock. The separate M020
+extension follows; it was not part of M019's historical scope.
+
+## M020 local implemented scope
+
+- Optional `ordinary_version: 1` / `ordinary`, explicitly adopted through
+  `enable_ordinary` after active daily life at home/n13; starts the next day.
+  No retroactive shift credit, rent, debt or automatic historical adoption.
+- Existing repair completions build employment standing 0–6 without another
+  wage or personal reward. One separate two-action home allocation per week pays
+  $24/$28, with posted supply cancellations and a one-request rescheduling path.
+- Reserved work pins its later wage/window. Missed/withdrawn accepted deliveries
+  have bounded consequences; refusal and unaccepted expiration have none.
+- One conditional $20 Tess advance per career, seven-day repayment obligation,
+  no interest/automatic collection, and existing source-backed contact memories.
+- Existing housing/ledger/navigation remain authoritative: $30 weekly review,
+  capped arrears, maintenance/prepayment and basic home access; advance planning
+  notices; three actions and eighteen TU. No new transport or institutional feed.
+- `ordinary`, `ordinary_choices`, `ordinary_choose`, and the adopted home report
+  expose eligibility, costs, actual terms, debt, standing and recovery routes.
+- **522 tests passed** (all 506 preserved, 16 independent audit tests added);
+  46 focused M020 tests passed; all six historical hashes retained. Mission 027
+  repaired inherited work/reference eligibility, counterfeit maintenance offers,
+  unsupported repayment funding and erased action-counter validation. Two new
+  365-day and two 90-day daily-resume campaigns, five real CLI paths, genuine
+  historical save compatibility and interrupted-writer recovery are recorded in
+  [M020 validation](docs/M020_ORDINARY_GOTHAM_VALIDATION.md).
+- Approved design only: Milo removed from the future roster; 34 individual/mantle
+  entries remain, with a separate optional Court organization that is entirely
+  undiscoverable before the final third of meaningful progression. No Court
+  runtime state, clues, dialogue, triggers or implementation exists.
+
+Limitations: bounded abstract employer funding, predictable posted allocations,
+one existing cooperative arrangement and limited NPC availability. Full employment,
+eviction, dialogue, prologue, Court mechanics and M021 remain unimplemented.

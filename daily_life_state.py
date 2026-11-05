@@ -7,6 +7,8 @@ from life_content import fingerprint, load
 def validate(world):
     from career_state import _integer, _mapping, _records, _require, _text
     path = 'daily_life'
+    from ordinary_state import validate as validate_ordinary
+    ordinary_memories = validate_ordinary(world)
     history = [e for e in world['events'] if e['kind'].startswith('life_')]
     commands = {e['command_id']: e for e in world['events'] if e['kind'] == 'player_command'}
     life_commands = {k: e for k, e in commands.items() if e['command'] in ('settle_in', 'choose', 'pay_room')}
@@ -57,7 +59,7 @@ def validate(world):
             _integer(tx.get(key), path + '.transactions.' + key, 0)
         _integer(tx.get('amount'), path + '.transactions.amount')
         _require(tx['before'] == balance and tx['after'] - tx['before'] == tx['amount'], path + '.transactions', 'must form a continuous actual-cash ledger')
-        _require(tx.get('cause') in ('existing_rules', 'room_payment', 'lawful_wage', 'criminal_job'), path + '.transactions.cause', 'is unsupported')
+        _require(tx.get('cause') in ('existing_rules', 'room_payment', 'lawful_wage', 'criminal_job', 'ordinary_settlement'), path + '.transactions.cause', 'is unsupported')
         _text(tx.get('source_id'), path + '.transactions.source_id')
         _require('command_id' in tx, path + '.transactions.command_id', 'is required (null for a day phase)')
         if tx['command_id'] is not None:
@@ -66,8 +68,11 @@ def validate(world):
         balance, txs[tx['id']] = tx['after'], tx
     _require(balance == world['player']['cash'], path + '.transactions', 'must agree with authoritative player cash')
     match_events('life_transaction', txs, ('day', 'before', 'after', 'amount', 'cause', 'source_id', 'command_id'))
+    _require([e.get('id') for e in history if e['kind']=='life_transaction']==list(txs),
+        path+'.transactions','event order must match the continuous cash ledger')
 
     choices, used_slots, used_commands, work_txs = life['choices'], set(), set(), set()
+    room_history=_records(life['housing'].get('history'),path+'.housing.history')
     max_week = max(0, (day - life['activation_day']) // 7)
     for ident, r in choices.items():
         _mapping(r, path + '.choices[]')
@@ -80,8 +85,18 @@ def validate(world):
         _integer(r.get('open_day'), path + '.choices.open_day', life['activation_day'])
         _integer(r.get('expires_day'), path + '.choices.expires_day', r['open_day'] + 1)
         if key == 'room_review':
-            _require(ident.startswith('goon.choice.room.') and r['expires_day'] == r['open_day'] + 7,
-                     path + '.choices', 'must retain the room review window')
+            receipt=next((item for item in room_history if item.get('operation')=='due' and
+                item.get('source_id')==r['source_id']),None)
+            before=receipt.get('before') if receipt else None
+            after=receipt.get('after') if receipt else None
+            _require(isinstance(before,dict) and isinstance(after,dict) and
+                type(before.get('next_due_day')) is int and type(receipt.get('day')) is int and
+                type(after.get('arrears')) is int and after['arrears']>0,
+                path+'.choices','room review requires a real unpaid due receipt')
+            cycle=(before['next_due_day']-life['enabled_day'])//7
+            _require(ident==f'goon.choice.room.{cycle}' and r['open_day']==receipt['day'] and
+                r['expires_day']==receipt['day']+7 and r['week']==(before['next_due_day']-life['activation_day'])//7,
+                path+'.choices','must retain the unique due allocation, roster week and actual review window')
         else:
             expected_day = life['activation_day'] + r['week'] * 7 + definition['start']
             _require(ident == f'goon.choice.{r["week"]}.{key}' and r['open_day'] == expected_day and
@@ -190,12 +205,16 @@ def validate(world):
     from daily_life import contact_definitions
     from incident_state import memories as incident_memories
     external_memories = incident_memories(world)
+    external_memories.update(ordinary_memories)
     _require(set(life['contacts']) == set(contact_definitions(world)), path + '.contacts', 'must retain the declared contacts')
     memories = {}
     allowed = {'goon.contact.tess': {'work_completed', 'promise_accepted', 'promise_kept', 'promise_broken', 'promise_moved'},
                'goon.contact.cal': {'terms_disclosed', 'collection_completed', 'collection_failed', 'courier_completed', 'courier_failed'}}
     from incident_dispatch import fact_definitions
     allowed.update(fact_definitions(world))
+    if 'ordinary_version' in world:
+        from ordinary_life import FACT_DELTAS
+        allowed['goon.contact.tess'].update(FACT_DELTAS)
     facts_seen = set()
     for ident, person in life['contacts'].items():
         _mapping(person, path + '.contacts[]')
@@ -305,5 +324,32 @@ def validate(world):
              and len({e['day'] for e in ticks}) == len(ticks) and
              max((e['day'] for e in ticks), default=life['enabled_day']) == life['last_tick_day'],
              path + '.last_tick_day', 'must match unique daily processing events')
+    # These handlers have closed financial contracts. A generic existing-rules
+    # row is not independent proof that they supplied extra cash for repayment.
+    closed={'settle_in','choose','pay_room','enable_ordinary','ordinary_choose',
+        'enable_institutions','institution_submit','institution_correct',
+        'institution_followup','institution_withhold'}
+    expected_txs={cid:set() for cid,c in commands.items() if c['command'] in closed}
+    for r in choices.values():
+        selection=r['selection']
+        if selection and selection['outcome']['effect'] in ('lawful_work','criminal_work'):
+            expected_txs[selection['command_id']].add(selection['outcome']['transaction_id'])
+    for r in receipts.values():
+        if r['operation'] in ('prepay','arrears_payment'):
+            tx=txs[r['transaction_id']];expected_txs[tx['command_id']].add(tx['id'])
+    for tx in txs.values():
+        if tx['cause']=='ordinary_settlement':expected_txs[tx['command_id']].add(tx['id'])
+    for tx in txs.values():
+        if tx['command_id'] in expected_txs:
+            _require(tx['id'] in expected_txs[tx['command_id']],path+'.transactions',
+                'closed command cannot sponsor an unrelated financial effect')
+    log=world['events'];start=-1
+    for end,c in ((i,e) for i,e in enumerate(log) if e['kind']=='player_command'):
+        if c['command_id'] in expected_txs:
+            emitted=[e['id'] for e in log[start+1:end] if e['kind']=='life_transaction']
+            expected=expected_txs[c['command_id']]
+            _require(len(emitted)==len(expected) and set(emitted)==expected,path+'.transactions',
+                'closed command frame must contain exactly its actual settlement')
+        start=end
     if day < life['activation_day']:
         _require(not choices and not promises and not receipts and not memories, path, 'pending enrollment cannot invent active opportunities/history')

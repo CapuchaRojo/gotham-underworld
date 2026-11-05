@@ -6,7 +6,7 @@ the [roadmap](GOON_MILESTONE_ROADMAP.md) assigns no combat milestone number.
 Registry/navigation implement the location subset; the life, incident and intake
 subsets are identified below. Broader catalogs and legal case adapters remain proposals.
 
-**Status: broader M013.1 proposal; implemented M014–M019 subsets below.**
+**Status: broader M013.1 proposal; implemented M014–M020 subsets below.**
 The broad catalogs below remain proposals outside the explicitly implemented
 location/life/incident subsets. M014 retains the M013 legal/economic systems. This document supports the
 [narrative bible](GOON_NARRATIVE_DESIGN_BIBLE.md) and the separately reviewable
@@ -28,6 +28,28 @@ Future layers separate actual facts, public knowledge and sourced claims. No new
 schema or loader is introduced by the Markdown registry.
 
 ## Current boundary and constraints
+
+### Implemented M020 ordinary-life adapters
+
+`ordinary_life` extends the existing life authority with one optional version 1
+work/support arrangement. It reuses `choice_engine` presentation and eligibility,
+`game_service` candidate transactions, the existing post-life day phase, the
+actual-cash ledger and Tess memories. It does not replace old rosters, room
+receipts or incident dispatch, and does not send institutional reports.
+
+`ordinary_content` pins local terms/text in `content/ordinary_life_v1.json`;
+`ordinary_state` reconstructs employment from actual future repair choices and
+replays new transitions against completed command/movement sources, action costs,
+housing receipts and real money/memory effects. Stable IDs identify weekly funded
+allocations, one-shot support, day processing and command effects. There is no
+second cash account, relationship authority, global clock or generic scheduler.
+
+Historical saves retain their behavior without explicit `enable_ordinary`.
+Adopted saves require the new executable; compatibility is old-to-new. The
+[daily-life contract](GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md#m020-extension--ordinary-work-housing-and-support)
+specifies implemented terms and [M020 evidence](M020_ORDINARY_GOTHAM_VALIDATION.md)
+records executed tests and known limitations. Future faction/character content
+does not control these mechanics.
 
 ### Implemented M019 institutional response
 

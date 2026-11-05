@@ -376,5 +376,8 @@ def home_report(world):
         raise ValueError('Visit the recorded home for the home review; life shows your terms remotely')
     report = life_report(world)
     report['opportunities'] = opportunities(world)
+    if 'ordinary_version' in world:
+        from ordinary_life import report as ordinary_report
+        report['ordinary'] = ordinary_report(world)
     report['help'] = 'pay_room sets aside cash once per payment toward the bounded balance. Inspection grants no cash, actions, or TU.'
     return report
