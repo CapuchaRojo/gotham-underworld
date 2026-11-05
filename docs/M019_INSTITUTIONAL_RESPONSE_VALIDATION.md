@@ -263,8 +263,10 @@ Exactly **21 files**:
 Existing tests/fixtures, incident reducers/state validator/content, daily-life
 contacts, persistence writer, navigation/mobility, economy/legal systems, rogue
 registry, workflows and dependencies are unchanged. No new GitHub CI is claimed
-for unpublished local work. Implementation commit identity is recorded after
-the validated local commit; no self-referential commit hash is fabricated.
+for unpublished local work. Validated local implementation commit:
+`fe4a7667230ab0fd3e69a9ee5a8f95fd95668499`, parent
+`d0723b1551fc4e1aedf2d0fa4a5b5e3758902f49`. The subsequent documentation-only
+commit records this identity; runtime and tests are unchanged after validation.
 Changed Python/JSON parse successfully, Markdown fences balance and all **175
 relative file links in eight changed Markdown documents** resolve. The fixture
 SHA and its LF attributes were checked; `git diff --check` passed. No external
