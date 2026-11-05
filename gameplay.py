@@ -96,6 +96,8 @@ def next_day(world, *, legal_rules=False):
     navigation_day(world)
     from daily_life import begin_day as life_day
     life_day(world)
+    from ordinary_life import synchronize as ordinary_day
+    ordinary_day(world)
     from world_incidents import begin_day as incident_day
     incident_day(world)
     from institutional_response import synchronize as institution_day
@@ -149,6 +151,7 @@ def play(world, filename, *, new_career=False):
         try:
             if verb == 'help':
                 print('institutions [civilian|intake] | enable_institutions | institution_submit <desk> <source-id> | institution_correct <desk> <report-id> <source-id> | institution_followup <desk> <incident-id> | institution_withhold <desk> <incident-id>')
+                print('ordinary | enable_ordinary | ordinary_choices <offer-id> | ordinary_choose <offer-id> <option-id>')
                 print('incident_definitions | enable_incident <definition-id> | incidents [incident-id]')
                 print('incidents | enable_incidents | discover_incident <incident-id> <public_notice|contact> | incident_choose <incident-id> <stage> <option-id>')
                 print('life | settle_in | home | pay_room | contacts | opportunities | choices <choice-id> | choose <choice-id> <option-id|displayed-letter>')
@@ -171,6 +174,18 @@ def play(world, filename, *, new_career=False):
                 values = dict(zip(names,args))
                 values['institution_id'] = {'civilian': CIVILIAN, 'intake': INTAKE}.get(values['institution_id'],values['institution_id'])
                 print(execute_command(world,verb,**values)['result'])
+            elif verb == 'ordinary' and not args:
+                from ordinary_life import report
+                from life_presentation import render_ordinary
+                print(render_ordinary(report(world)))
+            elif verb == 'enable_ordinary' and not args:
+                print(execute_command(world,verb)['result']['message'])
+            elif verb == 'ordinary_choices' and len(args)==1:
+                from ordinary_life import choice_report as ordinary_choice
+                text, unused = render_choice(ordinary_choice(world,args[0]))
+                print(text)
+            elif verb == 'ordinary_choose' and len(args)==2:
+                print(execute_command(world,verb,offer_id=args[0],option_id=args[1])['result']['message'])
             elif verb == 'incident_definitions' and not args:
                 from incident_dispatch import definitions
                 print(definitions())

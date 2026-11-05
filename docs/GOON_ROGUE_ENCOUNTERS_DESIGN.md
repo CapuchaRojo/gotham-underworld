@@ -3,8 +3,9 @@
 ## Status, authority and scope
 
 **Mission 015 preservation update:** this retains the Mission 014 proposal and
-extended its research pool to 27 roles. Mission 016 now expands the same proposed
-registry to exactly 35 distinct roles. Hush was already present, so Maxie Zeus
+extended its research pool to 27 roles. Mission 016 expanded the same proposed
+registry to exactly 35 distinct roles at that historical checkpoint. Hush was
+already present, so Maxie Zeus
 replaces that requested addition; Hush is not counted twice. The original 27
 source anchors and policies remain, with explicit proposed milestone labels added.
 The companion
@@ -96,7 +97,7 @@ comics-derived subset with original scenarios, not a claimed official Earth or
 an automatic mixture of Arkham games, DCAU, television Gotham and the screen DCU.
 The complete 35-row registry is a content research pool, not a simultaneous cast.
 
-## 3. Initial registry — 35 proposed encounter roles
+## 3. Current proposed registry — 34 individual/mantle roles
 
 **Canon-anchor column:** conservative paraphrases of publisher sources consulted
 November 4, 2026. Profiles/solicitations can cover different eras and are not
@@ -145,7 +146,6 @@ from the initial proposal, not a new prohibition on later reviewed content.
 | Calendar Man — `dc.character.calendar_man.julian_day.classic` | [DC profile](https://www.dc.com/characters/calendar-man): Julian Day and calendar-themed crime. Its later seasonal powers are an era-specific change, not automatically granted to the classic candidate. | P/E; a credible dated threat, witness or court record reveals a lead, never the computer's real date. | Nonjoinable initial individual; no calendar gang presumed. | Verify a warning, help reschedule a public service or support witnesses; Accessible civilian support, Hard/Extreme direct encounter. | Trust N/A initial incident; recruitment N/A; advancement N/A. |
 | Anarky — `dc.character.anarky.lonnie_machin` | [DC profile](https://www.dc.com/characters/anarky): Lonnie Machin, anti-authoritarian motives and technological skill. [Publisher adaptation discussion](https://www.dc.com/blog/2015/07/17/casting-news-anarky-and-mr-terrific-coming-to-arrow) distinguishes television's employer-seeking version; do not import that personality as universal comics canon. | P/E; corroborated community dispute or actual public message, not political affiliation as guilt. | Conditional voluntary collaboration, not automatic membership or a guaranteed standing faction. | Investigate a harmful claim, organize lawful support, refuse sabotage; Challenging/Hard, Extreme direct exposure. | Trust Hard through informed voluntary acts; recruitment N/A initially; conditional collaboration Hard; organizational advancement N/A initially. |
 | Deacon Blackfire — `dc.character.deacon_blackfire.comics` | [DC's The Cult collection](https://www.dc.com/graphic-novels/batman-the-cult-the-deluxe-edition) anchors a manipulative leader exploiting vulnerable people. Claims of supernatural authority need specific source/era review, not automatic truth. | E/H; actual outreach testimony, a verified missing-person lead or support referral. | Nonjoinable initial coercive operation; coerced participation is never consent. | Verify an outreach claim, support someone leaving, seek independent shelter; Accessible indirect help, Extreme/Knightmare direct danger. | Trust N/A initial coercive operation; recruitment N/A; advancement N/A. |
-| Professor Milo — `dc.character.professor_milo.achilles_milo` | [DC's Gotham Academy guide](https://www.dc.com/blog/2025-10-01/getting-started-at-gotham-academy) identifies Achilles Milo and chemistry teaching in that setting. Scientific expertise is the anchor; that employment is continuity-specific, not universal office or medical authority. | P/E/H; authenticated laboratory invoice, professional referral or documented complaint. | Nonjoinable initial individual; any lawful technical contract requires separate role/credential review. | Check a professional claim, report a discrepancy or refuse an unethical commission; Challenging periphery, Hard/Extreme direct incident. | Trust N/A initial incident; recruitment N/A initially; advancement N/A. |
 | Great White Shark — `dc.character.great_white_shark.warren_white` | [DC editorial](https://www.dc.com/blog/2023/07/24/seven-dc-sharks-who-are-not-king-shark-and-may-not-even-be-sharks): Warren White, financial crime and underworld influence. Distinct from King Shark; select the era and custody state rather than infer powers from appearance. | P; E when an actual financial dispute reaches the shop/network. Discovery needs an attributable invoice/referral, not a global debt scanner. | Conditional business/criminal network contract; no automatic district ownership or treasury tick. | Verify a deduction, pursue lawful bookkeeping, protect a source or refuse false accounts; Challenging/Hard, Extreme coercive exposure. | Trust Hard/Extreme; conditional network recruitment Hard; advancement Extreme. |
 | Ratcatcher — `dc.character.ratcatcher.otis_flannegan` | [DC profile](https://www.dc.com/characters/ratcatcher) anchors Otis Flannegan's exterminator background and control of rats, but mixes a screen successor into its overview. Cleo Cazo/Ratcatcher II is not this comics actor or an extra counted row. | P/E; a sourced maintenance report or witnessed disturbance, not assumed sewer omnipresence. | Nonjoinable initial individual; conditional maintenance association needs separate approval. | Arrange lawful inspection, warn residents, refuse a hazardous request; Accessible indirect assistance, Hard/Extreme direct encounter. | Trust Hard if actual contact permits; recruitment N/A initially; advancement N/A. |
 | Electrocutioner — `dc.character.electrocutioner.lester_buchinsky` | [DC's mantle comparison](https://www.dc.com/blog/2015/01/19/the-dctv-secrets-of-gotham-episode-12-what-the-little-bird-told-him) distinguishes comics Lester Buchinsky, his predecessor and television Jack. Pin holder, equipment and life state; do not merge these identities. | P/E; authenticated contractor referral or witness account of an electrical incident. | Individual contractor, no default joinable organization; support contracts never confer the mantle. | Verify authority, request safe professional assistance, decline dangerous work; Challenging periphery, Hard/Extreme direct exposure. | Trust Hard professional confidence; conditional individual contract Hard; organizational recruitment/advancement N/A. |
@@ -157,6 +157,30 @@ Ivy–Ra's, Croc–Black Mask or Moth–Riddler relationship is asserted. If an 
 episode introduces a temporary deal, record its terms/source and label it our
 proposal rather than established canon. Other majors/minor rogues remain in the
 existing registry/research pool; no need to activate all of them at once.
+
+## Mission 026 approved roster restriction — design only
+
+Professor Milo is removed from the proposed future roster. The current table has
+34 individual/mantle entries; the Court of Owls is a **separate optional hidden
+organization**, not a replacement individual, counted rogue, employer allocation,
+or automatically joinable gang. The historical 35-entry milestone remains design
+provenance rather than the current roster count. No other approved character
+behavior or continuity selection changes.
+
+The Court must remain **entirely undiscoverable until the final third of meaningful
+player progression**. This is an approved project gate, not a claim about universal
+DC continuity. A future implementation must first define an approved progression
+contract with substantial completed career/relationship/responsibility milestones
+and independently supported causal prerequisites. Elapsed days, wealth alone or
+repeatable shift counts cannot satisfy the gate. Encounter, organizational access
+and membership would remain separate, explicitly approved decisions.
+
+Before that gate: no Court events, clues, rumors, dialogue, owl symbolism, Talons,
+hidden encounters or player-facing triggers, including metadata hints or early
+foreshadowing. M020 implements **no Court state, content pack, eligibility function
+or runtime reference**. Ordinary careers and refusal must remain viable without
+this optional organization. Specific lore, continuity, involvement and joinability
+need separate future review; the secret gate itself is already approved.
 
 ## 4. Joinability and separate milestones
 

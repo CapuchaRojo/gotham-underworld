@@ -36,6 +36,8 @@ def render_life(report):
         lines.append(f'Day {tx["day"]}: {tx["cause"]} ${tx["amount"]:+}; cash ${tx["after"]} [{tx["id"]}]')
     if 'help' in report:
         lines.append(report['help'])
+    if 'ordinary' in report:
+        lines.append(render_ordinary(report['ordinary']))
     return '\n'.join(lines)
 
 
@@ -47,4 +49,22 @@ def render_contacts(reports):
                       'Known scope: ' + person['knowledge']))
         for memory in person['memories'][-3:]:
             lines.append(f'  Day {memory["day"]}: {memory["fact"].replace("_", " ")} [{memory["source_id"]}]')
+    return '\n'.join(lines)
+
+
+def render_ordinary(report):
+    if not report['enabled']:
+        return 'ORDINARY LIFE | '+report['terms']
+    lines=[f'ORDINARY LIFE | employment standing {report["employment"]}/6',
+        f'Cooperative room: {report["housing_status"]}; review day {report["due_day"]}; unpaid ${report["arrears"]}; prepaid ${report["prepaid"]}.']
+    if report['pending']:
+        lines.append(f'New work/support activates on day {report["activation_day"]}, after wait.')
+    debt=report['assistance']
+    lines.append(f'Support: {debt["status"]}; amount ${debt["amount"]}; due day {debt["due_day"]}.')
+    for row in report['offers']:
+        lines.append(f'{row["id"]}: {row["title"]}; days {row["open_day"]}-{row["expires_day"]-1}.')
+    for row in report['history'].values():
+        if row['state']=='cancelled':lines.append(f'{row["id"]}: cancelled for lack of supplies; no commitment or penalty.')
+    lines.append(report['recovery'])
+    lines.append('Use ordinary_choices <offer-id>, then ordinary_choose <offer-id> <option-id>. Existing opportunities still list store shifts and room maintenance.')
     return '\n'.join(lines)

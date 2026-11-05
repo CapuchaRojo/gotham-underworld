@@ -7,6 +7,8 @@ from life_content import fingerprint, load
 def validate(world):
     from career_state import _integer, _mapping, _records, _require, _text
     path = 'daily_life'
+    from ordinary_state import validate as validate_ordinary
+    ordinary_memories = validate_ordinary(world)
     history = [e for e in world['events'] if e['kind'].startswith('life_')]
     commands = {e['command_id']: e for e in world['events'] if e['kind'] == 'player_command'}
     life_commands = {k: e for k, e in commands.items() if e['command'] in ('settle_in', 'choose', 'pay_room')}
@@ -57,7 +59,7 @@ def validate(world):
             _integer(tx.get(key), path + '.transactions.' + key, 0)
         _integer(tx.get('amount'), path + '.transactions.amount')
         _require(tx['before'] == balance and tx['after'] - tx['before'] == tx['amount'], path + '.transactions', 'must form a continuous actual-cash ledger')
-        _require(tx.get('cause') in ('existing_rules', 'room_payment', 'lawful_wage', 'criminal_job'), path + '.transactions.cause', 'is unsupported')
+        _require(tx.get('cause') in ('existing_rules', 'room_payment', 'lawful_wage', 'criminal_job', 'ordinary_settlement'), path + '.transactions.cause', 'is unsupported')
         _text(tx.get('source_id'), path + '.transactions.source_id')
         _require('command_id' in tx, path + '.transactions.command_id', 'is required (null for a day phase)')
         if tx['command_id'] is not None:
@@ -190,12 +192,16 @@ def validate(world):
     from daily_life import contact_definitions
     from incident_state import memories as incident_memories
     external_memories = incident_memories(world)
+    external_memories.update(ordinary_memories)
     _require(set(life['contacts']) == set(contact_definitions(world)), path + '.contacts', 'must retain the declared contacts')
     memories = {}
     allowed = {'goon.contact.tess': {'work_completed', 'promise_accepted', 'promise_kept', 'promise_broken', 'promise_moved'},
                'goon.contact.cal': {'terms_disclosed', 'collection_completed', 'collection_failed', 'courier_completed', 'courier_failed'}}
     from incident_dispatch import fact_definitions
     allowed.update(fact_definitions(world))
+    if 'ordinary_version' in world:
+        from ordinary_life import FACT_DELTAS
+        allowed['goon.contact.tess'].update(FACT_DELTAS)
     facts_seen = set()
     for ident, person in life['contacts'].items():
         _mapping(person, path + '.contacts[]')

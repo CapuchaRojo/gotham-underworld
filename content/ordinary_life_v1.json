@@ -1,0 +1,19 @@
+{
+  "content_version": 1,
+  "contact_id": "goon.contact.tess",
+  "batch_pay": 24,
+  "regular_pay": 28,
+  "support_amount": 20,
+  "support_days": 7,
+  "batch_title": "Cooperative repair kits",
+  "batch_situation": "Tess has one funded take-home repair-kit allocation this week. Supplies sometimes fail to arrive; the posted cancellation is known in advance. This is separate from the store shift. Basic store work remains available.",
+  "options": {
+    "work": {"label": "Complete the kits at home", "actions": 2, "tradeoff": "$24, or $28 with employment standing 3; two actions. Needs one observed repair completion or existing room arrears. One allocation per week, no travel required at home."},
+    "negotiate": {"label": "Request a later delivery", "actions": 1, "tradeoff": "One request and one action. Standing 1 secures tomorrow through the following day at the same rate; standing 0 is refused. No advance wage. An accepted deadline creates a commitment."},
+    "decline": {"label": "Leave the allocation for someone else", "actions": 0, "tradeoff": "No wage, debt or standing penalty. Other work remains available."},
+    "withdraw": {"label": "Withdraw from the reserved delivery", "actions": 0, "tradeoff": "No wage. Employment standing and Tess standing each fall by at most one for this accepted commitment. Ordinary work remains available."},
+    "borrow": {"label": "Request Tess's one support advance", "actions": 1, "tradeoff": "$20 once per career, repay $20 within seven days. Requires a room shortfall or cash below $30 with a review within two days. Tess is at the cooperative on roster days 0, 2 and 5. No interest, automatic debit or eviction."},
+    "decline_help": {"label": "Decline the support arrangement", "actions": 0, "tradeoff": "No money, obligation or relationship penalty. Store work and maintenance credit remain available."},
+    "repay": {"label": "Repay the support advance", "actions": 1, "tradeoff": "Pay exactly $20 at home, once, and close the obligation. Tess records repayment; no new advance is unlocked."}
+  }
+}

@@ -100,3 +100,51 @@ delivers them. Full audit state remains available to save validation/debugging.
 The [After Dark contract](GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md) specifies
 exact eligibility/timing and [M018 validation](M018_WRONG_NOTICE_VALIDATION.md)
 records executed acceptance, replay and CLI evidence.
+
+## M020 extension — ordinary work, housing and support
+
+**Implemented locally by Mission 026**, from merged M019 `6682019`. This is an
+opt-in extension of the same neighborhood, not another daily-life engine.
+`enable_ordinary` at home/n13 after active life pins `ordinary_version: 1` /
+`ordinary` and activates next day. No old work, debt or relationship is backfilled.
+The outer save, old content pins, home permission, three actions and eighteen TU
+remain unchanged. Post-life day processing reuses the existing clock boundary.
+
+| Source / intent | Eligibility, cost and effect | Persistent consequence / recovery |
+| --- | --- | --- |
+| Dependable repair employment | Existing $20 store shifts and reference audit retain their original rules. Future actual repair choices build employment standing 0–6. | Observe each source once, without another wage or personal reward. Refusal/unknown expiry does not reduce standing. All basic shifts stay available regardless of employment or support status. |
+| Cooperative kits at home | One allocation per ordinary week, open days base+1 through base+4. Two actions; $24, or $28 at employment 3. Needs a future observed repair or actual arrears. Seed+week divisible by three means posted supply cancellation. | One funded settlement. Tess records delivery once; employment rises at most one. No travel or cash advance. Supply cancellation creates no player blame. |
+| Later delivery request | One action at the home ledger while open. Tess's preauthorized posted terms accept employment 1, or deny employment 0; one request, no RNG. A recorded request does not claim a personal meeting with Tess. | Acceptance pins the current wage and delivery days tomorrow/the following day. Pay only on completion. Missed or withdrawn accepted work loses at most one employment and one personal standing; no cash debt. A denied request leaves ordinary completion open. |
+| Conditional social support | One $20 reserve per career, one action at home. Tess handles the fund on ordinary roster days 0, 2 and 5. Needs arrears, or cash below $30 with review in at most two days. | Explicit $20 repayment due in seven days. Once overdue, one -1 memory; no interest, seizure, warrant, eviction or rolling deadline. One-action home repayment closes it with one +1 memory and does not refill the fund. |
+| Refuse work/help | Free and once for that allocation/assistance offer; explicit withdrawal from already reserved work is distinct from refusal before accepting. | No new debt or morality penalty. Home, repair shifts, maintenance and wait remain available. |
+
+The existing cooperative room is the sole housing arrangement. Its $30 review,
+prepayment, capped arrears, once-per-review maintenance and basic access are not
+replaced. `ordinary`/adopted `home` expose actual housing and record an advance
+review notice within two days; neither creates another charge or benefit for
+inspection. A late support obligation is separate from room arrears.
+Due days are processed at the start of that day: repay before the transition
+that reaches the agreed due day. Withdrawal is available as soon as a reservation
+is accepted; only paid completion is gated to its later delivery window.
+
+The pure ordinary reducer returns effects; only its service-owned adapter applies
+cash via `daily_life.record_balance` and personal facts via `_memory`.
+`ordinary_state` replays actual repair sources, user frames, completed schema-1/2
+arrivals, available actions, prior money/housing/custody facts and stable effect
+identities. Real transactions and every delegated memory are checked against those
+effects. Rejected commands and returned reports cannot mutate state or RNG.
+No work/help/loan information is sent to either M019 institution automatically.
+
+The finite employer allocation and $20 assistance reserve are authored funding,
+not district treasury withdrawals or a new lending economy. Rates and limits are
+separate JSON content; mechanics do not depend on fictional-property names.
+Existing incident discovery still requires its own real knowledge sources; a kits
+completion is not a promise-kept reference or an institutional report.
+
+Five futures are demonstrated rather than guaranteed careers: reliable wages and
+current rent; shifted work with an accepted obligation; conditional support and
+repayment; missed work/overdue support followed by recovery; and refusal with
+continued ordinary access. Equal eventual cash does not erase different accepted
+terms, deadlines or records. There is no combat, general employment simulation,
+dialogue system, new transportation mode, Court content or implemented prologue.
+See [M020 executed evidence](M020_ORDINARY_GOTHAM_VALIDATION.md).
