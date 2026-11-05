@@ -2,7 +2,8 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current local slice: **Mission 023 / M019 — Institutional Knowledge & Response**
+- Current local slice: **M019 — Institutional Knowledge & Response**, independently
+  hardened in Mission 024; local only
 - Implementation branch: `feature/m019-institutional-response`, from verified master
   `d0723b1551fc4e1aedf2d0fa4a5b5e3758902f49`; 426 baseline tests passed before edits
 - PR #17 first merged into the audit branch. PR #18 subsequently integrated that
@@ -399,11 +400,14 @@ ancestry and the exact 20-file tree diff. Both PR checks, post-merge CI and all
 - Canonical [institution contract](docs/GOON_INSTITUTIONS_AND_RECOVERY.md) and
   [validation report](docs/M019_INSTITUTIONAL_RESPONSE_VALIDATION.md) describe
   actual behavior, source rules, executed evidence and limitations.
-- Final local validation: **468 tests passed** (426 preserved, 42 new), two
-  365-day institutional replay/resume campaigns, unchanged six historical
-  fingerprints, actual CLI outcomes and interrupted-writer recovery. The
-  confirmed receipt-time forgery was repaired and regression-tested. No new
-  `WinError 32` occurred; the earlier intermittent platform concern remains.
+- Mission 024 independent validation: **476 tests passed** (all 468 preserved,
+  eight audit regressions); 50 focused institutional tests passed. Confirmed
+  acquisition-order, player-attribution, unsubmitted-source and historical-anchor
+  validation gaps were repaired without changing producers or the save schema.
+  Two additional 365-day institutional campaigns, two 90-day daily disk-resume
+  campaigns, all six historical fingerprints, four real CLI paths and interrupted
+  writer recovery passed. No `WinError 32` was reproduced; restricted-sandbox
+  temporary-directory access failures are recorded separately in the report.
 
 Replies are secondhand records, not primary inspection credit. There is no global
 rumor propagation, inventory simulation for correction copies, new legal AI,

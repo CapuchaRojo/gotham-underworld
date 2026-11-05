@@ -1,6 +1,7 @@
 # M019 — Institutional Knowledge & Response: executed validation
 
-Mission 023. Local implementation only; no push, PR or merge is authorized.
+Mission 023 implementation and Mission 024 independent acceptance. Local only;
+no push, PR or merge is authorized.
 The canonical design lives in [Institutions and Recovery](GOON_INSTITUTIONS_AND_RECOVERY.md),
 with [architecture](GOON_CONTENT_ARCHITECTURE.md) and
 [incident integration](GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md).
@@ -271,3 +272,242 @@ Changed Python/JSON parse successfully, Markdown fences balance and all **175
 relative file links in eight changed Markdown documents** resolve. The fixture
 SHA and its LF attributes were checked; `git diff --check` passed. No external
 Markdown linter or other dependency was installed.
+
+## Mission 024 — independent hardening and acceptance audit
+
+This section records a separate execution against the completed implementation;
+the Mission 023 results above are retained as historical evidence, not counted as
+new independent runs. No additional gameplay or M020 work was undertaken.
+
+### Starting Git state and inventory reconciliation
+
+Verified repository `C:\Users\mich3\Projects\gotham_underworld_m001`, clean worktree,
+branch `feature/m019-institutional-response`, HEAD
+`b6dc7bf4dc025c3b4e72f53248785ffa04e43569`, no upstream. Fetch confirmed both
+`origin/master` and local master at
+`d0723b1551fc4e1aedf2d0fa4a5b5e3758902f49`, an ancestor of HEAD. The implementation
+is `fe4a7667230ab0fd3e69a9ee5a8f95fd95668499`; b6dc7bf only stamps that identity
+in this report. No published history or other branch was modified.
+
+Reviewed the complete master-to-HEAD diff. Git records **21 distinct files**,
+exactly the inventory above, including this validation report. Excluding the report
+would give 20; that reconciles the arithmetic of the prior inventory discrepancy.
+Git proves the final 21-file scope, not the contents of an earlier uncommitted
+inventory. There is no unexpected 22nd implementation file or dependency change.
+
+### Confirmed P1 defects and minimal repair
+
+The original validator proved that an acquisition command completed before a
+submission, but did not fully bind the acquisition transition to that command's
+own interval, player actor and historical position. Confirmed accepted edits:
+
+1. Move a notice-ledger `verify` transition just after its own command receipt.
+2. Move that transition before the completed arrival at its acquisition place.
+3. Attribute its acquisition receipt to an unrelated NPC.
+4. Attribute the arrival used to prove player counter location to an unrelated NPC.
+5. Leave a reordered, invalid observation unsubmitted: loading still succeeded and
+   the institutional preview offered its ledger as available evidence.
+6. Explicitly adopt institutions after an NPC-attributed historical acquisition:
+   adoption promoted that unverifiable observation into the catalogue.
+7. Attribute historical navigation-anchor adoption to an NPC: it still proved
+   player origin when no subsequent trip existed.
+
+Each case has a regression in
+[test_institution_acceptance.py](../tests/test_institution_acceptance.py).
+Initial four tests **failed before repair** (0.458s), then passed (0.549s).
+The expanded eight-test run then exposed the remaining three gaps: **three
+failures**, 0.939s. After the final repair, **eight passed**, 0.960s. The eighth
+test is a valid schema-2 journey/acquisition/submission/read-only/disk-resume
+control; no existing assertion was weakened.
+
+Only production change: [institution_state.py](../institution_state.py).
+It reuses one historical-location proof for institutional commands and source
+acquisitions; requires completed player-attributed travel/journey frames; binds
+each acquisition to its own player command and acquisition-time location; checks
+the complete player catalogue, including unused and pre-adoption entries; and
+binds legacy anchor adoption to its first subsequent command receipt. Existing
+incident validators still establish channel, source-event and contact provenance.
+The repair adds no persisted authority, schema version, RNG call, clock, command,
+content, fee or outcome. Invalid input is rejected read-only rather than repaired.
+
+### Architecture, adversarial evidence and authority
+
+The bounded architecture is sound for these two incident adapters. Incident
+events establish observations; explicit recipient-specific receipts establish
+institutional knowledge; queues establish local beliefs; counter follow-ups
+establish player receipt-time knowledge. An allegation remains a claim rather
+than world truth or guilt. A civilian correction is not automatically a police
+correction. Source documents acquired earlier do not expire merely because the
+original incident's participation window closed.
+
+All live effects are reduced on the private `game_service.execute_command`
+candidate, validated and committed together. Daily synchronization runs within
+the existing day boundary. `institutional_response` owns its reports, matters,
+local access and receipts; incident adapters own original incident effects.
+Read-only reports return detached data and do not grant follow-up knowledge.
+Replay checks source/recipient/route/order/due processing, exact transition output
+and final state. Stable receipt/source and correction identities bound effects.
+
+Sixteen additional malformed-history probes rejected without changing world or
+global RNG: unsupported police credibility; printed-to-documented promotion;
+wrong recipient; wrong route; forged copy value; duplicate response; omitted
+report; future due date; reset processing marker; unknown, boolean or missing
+version; invented offender value; erased contradiction; duplicate delivery;
+duplicate processing. An injected exception **after actual candidate report and
+matter mutation** also left the original world and RNG unchanged.
+
+No duplicate money, assistance copy, credibility stacking, legal punishment,
+cross-desk knowledge transfer, or ordinary-life softlock was reproduced. Existing
+tests exercise duplicate submissions/corrections/follow-ups, finite histories,
+expiry, queue boundaries, detached inspection, delayed responses and late repair.
+Historical proof is consistency checking, not authentication against a coordinated
+rewrite of the whole career; not every past legal/access/action predicate is
+reconstructed. Those limitations remain explicit rather than claimed solved.
+
+### Independently executed tests
+
+| Command | Actual result |
+| --- | --- |
+| `python -B -m unittest discover -s tests -q` before edits | **468 passed**, 146.725s. |
+| Same full command after final production repair | **476 passed**, 161.052s. |
+| `python -B -m unittest discover -s tests -p 'test_institution*.py' -q` | **50 passed**, 48.639s, final code. |
+| `python -B -m unittest discover -s tests -p 'test_*incident*.py' -q` | **53 passed**, 16.547s after the initial repair; also included in the final full suite. |
+
+### Independent uninterrupted-versus-disk-resumed campaigns
+
+Each compares complete worlds after every day, not just final statistics.
+New test-only policies live in
+[institution_acceptance_campaigns.py](../tests/institution_acceptance_campaigns.py).
+They use public views/service commands and the original campaign runner; they
+introduce no game mechanics. The unattended policy never issues an institutional
+player command after explicit adoption. The corrections policy corrects three
+different original reports and stops after their processed responses arrive.
+
+| Exact command | Final-code result |
+| --- | --- |
+| `python -B institution_campaigns.py --days 365 --seed 313 --mode documented --resume-every 30` | 116.828s; 13 checkpoints; 8 reports, 2 responses, 1 copy; both desks documented; cash $1,632, arrears $0. |
+| `python -B institution_campaigns.py --days 365 --seed 887 --mode unchecked --resume-every 30` | 114.949s; 13 checkpoints; 8 reports, 2 responses, 1 copy; civilian needs documentation, intake documented; cash $1,632, arrears $0. |
+| `python -B tests/institution_acceptance_campaigns.py --policy unattended --seed 443 --days 90 --resume-every 1` | 20.899s; 90 checkpoints; **0 institutional player commands**, 6 automatic reports, 0 responses/copies; both profiles unestablished; cash $430, arrears $0. |
+| `python -B tests/institution_acceptance_campaigns.py --policy corrections --seed 557 --days 90 --resume-every 1` | 37.241s; 90 checkpoints; 10 institutional commands, **3 legitimate corrections**, 11 reports, 5 responses, **1 copy**; both profiles documented; cash $422, arrears $0. |
+
+All four end with heat 0, no arrest; the civilian alarm matter closes insufficient
+while the notice and police alarm records become documented through their own
+sources. Existing lawful work, not institutions, provides income. The correction
+policy's rejected-poll counter is zero; rejected retries were exercised separately
+in the CLI and regression tests, not inferred from that counter.
+
+| Campaign | Full sorted compact-JSON world SHA-256 |
+| --- | --- |
+| 313/documented/365 | `0eefea9b3da989bec30362c06d0af7980fc7c829deb2e9715909b0b3682072a1` |
+| 887/unchecked/365 | `3a4974c4fff8342bccec6594e5c398f07b0328c01bb94b0ce06fbd5635fc0b34` |
+| 443/unattended/90 | `d756802c07282340280507299dec8d73ad763ef646e183b5d5d50334671b7bb3` |
+| 557/corrections/90 | `a56b15371dad483e72f75061f809f2b541ddaed00136bd043864c65df68829fe` |
+
+Reran all four historical commands listed earlier in this report **after the
+final repair**. All **six exact historical hashes in that table match again**.
+Actual runtimes: Night Shift 17/42, 71.796s/62.560s (13 checkpoints each);
+Wrong Notice 73/help and 191/unchecked, 76.746s/78.730s (13 each);
+mobility 17/42, 7.140s/7.275s (30 daily checkpoints each). The old reducers,
+content, identities and mobility policies were not modified.
+
+### Independent persistence and compatibility evidence
+
+- All **15 recursively enumerated** historical fixture files load and advance
+  without institutional adoption. Thirteen top-level fixtures additionally
+  underwent a separate disk round trip; the full suite covers the nested files.
+- The genuine M018 fixture retains SHA-256
+  `befd147e7e1ea1b83ac8db0803c006461afd3b3bab67f0401cdc18b89e1bb246`
+  through **20** load/resaves, then explicitly adopts version 1 successfully.
+- Generated two genuine M019 saves with the **original b6dc7bf executable** in an
+  isolated `git archive`, then loaded with the repaired executable and performed
+  20 byte-identical resaves each: documented record
+  `ff3c294e0aef323fc37bf75c6a7b3a9dfe9b3241a61603d83934c7637542d123`;
+  late copy
+  `57411a337a6ea302efdd40146777b5bb2a02d06a17d7bb339e6c570d29bee21a`.
+- Rechecked the actual preserved pre-M017-B public/contact files: both hashes
+  listed above remain byte-identical; the original forged Tess file rejects.
+- Terminated an actual disposable writer subprocess just before primary
+  replacement, after backup publication. Old primary and `.bak` remained
+  byte-identical, valid and recoverable. Restart/save/load succeeded; duplicate
+  follow-up rejected with world/RNG unchanged. One staged orphan remained inside
+  the disposable directory until cleanup. No original career was overwritten.
+- No `WinError 32` was reproduced. Restricted-sandbox attempts encountered
+  temporary-directory `WinError 5` and non-completing runs; those attempts were
+  interrupted and are **not** successful evidence. The isolated checkout, CLI,
+  focused and historical/daily disk probes were rerun successfully with required
+  temporary-directory access. No speculative persistence rewrite was made.
+
+### Four actual CLI paths, same seed 313
+
+Each used real `python -B gameplay.py --seed 313 --save <temporary-path>`, then
+separate `--load --save <same-path>` processes, saved EOF interruptions and a
+deliberately rejected retry. The final harness recognizes the actual
+`Cannot complete command:` message; its earlier `Error:` matcher was corrected.
+Final runs had no unexpected command failures. After every rejected retry, the
+loaded world matched the prior checkpoint exactly.
+
+Common route: settle in; day 1 enable both incidents and institutions; day 4
+travel p032, discover both public notices, refuse the old alarm job, visit n13.
+Use the stable Night Shift/notice instance IDs recorded earlier. Save and resume;
+advance nine days to day 13. No gameplay state was injected into these careers.
+
+| Path | Actual choices and persistent result |
+| --- | --- |
+| A Responsible | Verify `.claim.ledger`, submit at civilian; travel p044 and submit actually heard `.source.alarm_reported` at intake. Follow up at both counters day 13. Civilian documented; 8 reports, 2 responses, 1 copy; no correction/withholding. |
+| B Unchecked | Submit `.claim.poster` at civilian, then follow up day 13. Civilian needs documentation; 7 reports, 1 response, 1 copy. Intake responses remain unread. |
+| C Withholding | Withhold notice at civilian and alarm at intake; no submissions/follow-ups. Two private withholding entries, 6 independent NPC reports, 0 responses/copies; player profile unestablished. Institutions still progress. |
+| D Late recovery | Follow B, then explicitly correct its original report using the actually received `.copy.delivery_day` source; wait and follow up day 14. Civilian documented, 8 reports, 2 responses, 1 correction, still only 1 copy. Original claim and correction trail remain. |
+
+A/B/C each have $10, no arrears on day 13. D has $0 and $20 arrears on day 14
+from the existing weekly room charge. A further real CLI continuation advanced
+to day 15, accepted an available lawful work offer, earned cash and returned
+home successfully. All four have zero heat/cases and no arrest. In B/C/D, private
+police cause information never appeared as a player source or received response.
+
+| CLI path | Checkpoint full-world SHA-256 |
+| --- | --- |
+| A/day 13 | `d7809dcea16d19d8a8fdda222ffe3b0591fcfcf286bbfc67e1d15ac49884b3da` |
+| B/day 13 | `b2a682245a5f5d87a96578f9ebfc84c286f547876c7b3ee259b8e044d911ce4d` |
+| C/day 13 | `1828e4b5f8f2323de69d15bb518b0c1d7c44fe825be17b7fee5eb7426ed83df0` |
+| D/day 14, before ordinary-work continuation | `f01bcdae6e72872e116671fc67f7455eedc474fbbf22f8b3d09f844d88ba8586` |
+
+These are genuinely different persistent records/access/knowledge states, not
+four exclusive career endings. A and D can converge on documented access through
+different histories and action costs. Reporting is not profitable. Variety remains
+bounded by two authored incidents; repeated trips and wage work can still feel
+repetitive. No compulsory reporting grind was added.
+
+### Performance, risk and publication recommendation
+
+Executed standard-library `cProfile` around
+`institution_campaigns.run(613, 'documented', 30, 1)`: 31.114s, 89,720,136 calls,
+30 disk checkpoints, parity hash
+`60f7607b5a806e594be0ffde45041772fb561062909f25a978fe7398de729469`.
+Cumulative times overlap: deepcopy 24.564s; career validation 16.491s;
+atlas loading/detachment 12.883s; old incident replay 5.826s; institutional
+validation 5.506s. Repeated detached atlas/context construction and full career
+copy/replay dominate this sample. These are profiled, instrumented times, not
+unprofiled latency estimates. No caching shortcut or weaker validation introduced.
+
+- **P0:** none confirmed.
+- **P1:** seven demonstrated provenance bypass cases repaired and regression
+  tested; no confirmed unresolved P1 in the exercised M019 scope.
+- **P2:** full-history/copy/atlas costs at scale; limited authored source adapters;
+  consistency rather than cryptographic authenticity or exhaustive reconstruction
+  of past custody/access/action predicates; intermittent Windows sharing concern
+  not reproduced; staged orphan after forced termination. Wider institutions,
+  staff autonomy and careers remain future design, not hidden implementation.
+
+**Recommendation: ready for PR review**, with those P2 limits disclosed. No push,
+PR creation, merge, history rewrite or M020 implementation was performed. No new
+GitHub CI result is claimed for this unpublished audit.
+
+Audit changes are exactly six files: `institution_state.py`,
+`tests/test_institution_acceptance.py`, `tests/institution_acceptance_campaigns.py`,
+this report, `docs/GOON_INSTITUTIONS_AND_RECOVERY.md`, and `PROJECT_STATE.md`.
+Combined master-to-audited-M019 scope is **23 files**: the original 21 plus two
+test/tool additions. Protected gameplay producers, persistence writer, schemas,
+content pins, action/travel allowances and existing tests remain unchanged.
+All three changed Python files parse, changed Markdown fences balance, all 52
+relative file links in the three audit documents resolve, and `git diff --check`
+passes. No third-party validator or dependency was installed.

@@ -107,6 +107,13 @@ snapshots and the final state. Recorded flags are not proof of source knowledge.
 Receipt/processing days must match the day already established by prior domain
 events; source acquisition and arrival cannot come from a later day. This is
 ephemeral proof over the existing log, not another clock or saved history.
+Mission 024 additionally verifies every player-observation catalogue entry,
+including unsubmitted and pre-adoption observations. Each acquisition must sit
+inside its own completed, player-attributed command frame. Its location must
+follow completed player travel/journey receipts at that acquisition, not a later
+counter visit. Historical anchor adoption must likewise finish in its own
+player command before activation. A later submission cannot legitimize an
+unverifiable acquisition, nor may a preview offer one as available evidence.
 Unverifiable/contradictory edits reject without changing the save. This proves
 consistency, not cryptographic authenticity of a completely rewritten career;
 it does not reconstruct all historical legal/access/action predicates.
