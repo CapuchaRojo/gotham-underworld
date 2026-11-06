@@ -17,6 +17,16 @@ old jobs. Route/permission changes follow explicit atomic outcomes and the
 
 ## Eligible does not mean available or encountered
 
+Mission 029's [organization catalogue](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry)
+is author-only research, not a player-discovery list. Before a future offer can
+exist, select a compatible continuity/era, actual organization/leader availability,
+finite funding and a credible delivered lead. An umbrella category supplies none
+of these. Recheck location, terms, budget and issuer authority at execution;
+employment does not confer membership. Independent/civilian refusal and recovery
+routes remain valid. Protected late-progression content cannot be revealed by
+an unavailable-offer explanation, search result, metadata or ordinary gang lead.
+No new eligibility trigger, RNG draw, opportunity or save field is implemented.
+
 An opportunity has a stable definition ID and a career-specific instance ID,
 source, prerequisites, known/unknown information, bounded offer terms, simulation-
 day expiry, capacity and terminal outcomes. Meeting an eligible employer can still

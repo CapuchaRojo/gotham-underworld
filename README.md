@@ -12,8 +12,9 @@ The Wrong Notice**, two optional independent incidents, alongside M016-A mobilit
 M015 daily life and M014 navigation. Provenance integration PR #18 and M018 PR #19
 are merged into master at `8bc9700` and `d0723b1`. M019 civilian service and police
 intake merged through PR #20 at `6682019`. M020 ordinary work, housing planning
-and conditional support are local on `feature/m020-ordinary-gotham` from that
-verified master. No push or new PR is authorized. A global clock, rogue/Bat-Family
+and conditional support merged through PR #21 at `74a5fab` with 522 passing tests.
+Mission 029 expands the existing design registries and organization contract
+only; no faction or rogue gameplay is added. A global clock, rogue/Bat-Family
 encounters, broader vehicle systems and combat are not implemented.
 
 This is an independent, unofficial prototype. Its intended future creative
@@ -46,11 +47,16 @@ the implemented subset and supersedes their historical M014 combat numbering.
 
 | Document | Purpose |
 | --- | --- |
+| [Master character/faction index](docs/GOON_MASTER_ROSTER.md) | Author-only navigation to existing identities, organizations, roles, implementation status and source authorities; no public discovery roster |
+| [DARK canon registry](docs/GOON_DARK_CANON_REGISTRY.md) | Seven initial candidates plus Solomon Grundy and four existing-Gotham bridges, with source/continuity limits and Slaughter Swamp research; no supernatural gameplay |
+| [Optional DARK contract](docs/GOON_DARK_PROGRESSION_CONTRACT.md) | Proposed late discovery, consent, optional four-encounter achievement, behavior consequences, grounded recovery and DARK-gated Grundy outcomes; no implemented unlock |
+| [Restricted Task Force X proposal](docs/GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md) | Canon/continuity context, original five-condition assessment route, scoped government knowledge, voluntary decisions, alternatives and future dependencies; no implemented recruitment |
 | [Narrative design bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md) | Player fantasy, tone, 16 design areas, feature-status legend, and originality boundaries |
 | [Criminal career web](docs/GOON_CRIMINAL_CAREER_WEB.md) | Nineteen overlapping specializations, lawful work, informing, rehabilitation, retirement and three worked scenarios |
 | [Conditional opportunities](docs/GOON_CONDITIONAL_OPPORTUNITIES.md) | Eligibility, demand, recorded probability, expiry and viable careers without guaranteed villain meetings |
 | [Faction and employer matrix](docs/GOON_FACTION_EMPLOYER_MATRIX.md) | Eleven proposed employer cultures, entry, pay, risk, advancement, and consequences |
-| [Rogues gallery registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md) | Thirty-five versioned entries with lore/source boundaries and original jobs/roles; no guaranteed active roster |
+| [Rogues gallery registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md) | 36 research entries, including the Terrible Trio group; Jane Doe added, Calendar Man and Crazy-Quilt enriched, no guaranteed active roster |
+| [Organization/leadership catalogue](docs/GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry) | 26 source-qualified family, gang, network and umbrella records; proposed statuses, continuity reconciliation and a bounded future integration contract |
 | [Minor criminal ecosystem](docs/GOON_MINOR_CRIMINAL_ECOSYSTEM.md) | Major factions, minor crews and individuals; original workers and rise/fall/exit proposals without universal territory simulation |
 | [Joker recruitment contract](docs/GOON_JOKER_RECRUITMENT.md) | Original campaign proposal: street association differs from formal Arkham/direct-encounter initiation |
 | [Metropolitan atlas](docs/GOON_GOTHAM_ATLAS.md) | Original 8-region geography and source/continuity decisions; no traced or rendered map |

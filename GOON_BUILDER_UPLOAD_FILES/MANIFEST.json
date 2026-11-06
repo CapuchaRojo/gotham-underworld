@@ -1,0 +1,37 @@
+﻿{
+    "generated_at":  "2026-11-05T20:23:46.4180594-05:00",
+    "source_repository":  "C:\\Users\\mich3\\Projects\\gotham_underworld_m001",
+    "source_head":  "1c8c83758b325feb917c53eb8015be71bb266dbc",
+    "uncommitted_changes_present":  false,
+    "classification":  "Canon/design reference only; not implemented gameplay",
+    "files":  [
+                  {
+                      "path":  "docs/goon-reference/GOON_MASTER_ROSTER.md",
+                      "sha256":  "f1558f894e3aa7f6fdd5030997a860eb905d89ae15238b69161540c41c4ea952"
+                  },
+                  {
+                      "path":  "docs/goon-reference/GOON_ROGUES_GALLERY_REGISTRY.md",
+                      "sha256":  "4d04d21b9ac5404808dcbfc50e5ab1953f0da4eb1a7e7f222aeafe2ad5f69440"
+                  },
+                  {
+                      "path":  "docs/goon-reference/GOON_ROGUE_ENCOUNTERS_DESIGN.md",
+                      "sha256":  "6c58908f647b23e9f705a6dda7c2a381edbc870942e3412f39d5cb02938b9a69"
+                  },
+                  {
+                      "path":  "docs/goon-reference/GOON_FACTION_EMPLOYER_MATRIX.md",
+                      "sha256":  "0cfba621a6b45ca2475fc8c82f3db2bf1a74ded6eb9f87838fa60a7afa466b04"
+                  },
+                  {
+                      "path":  "docs/goon-reference/GOON_DARK_CANON_REGISTRY.md",
+                      "sha256":  "d07b9c8c67436bdaf9a70d1e7986d97389f033a77f73a5742ab2c8aa9ba2b8af"
+                  },
+                  {
+                      "path":  "docs/goon-reference/GOON_DARK_PROGRESSION_CONTRACT.md",
+                      "sha256":  "ae9ce089097baef4554e720332583297021f097edf1465ae8bfa0f14a4138a3d"
+                  },
+                  {
+                      "path":  "docs/goon-reference/GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md",
+                      "sha256":  "86917dc61719834b2114be3497535c0c19bf95ee7561667c2afff26735ce251c"
+                  }
+              ]
+}

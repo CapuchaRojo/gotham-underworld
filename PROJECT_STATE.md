@@ -2,14 +2,24 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current local slice: **M020 — Ordinary Gotham**, Mission 026 implementation,
-  independently hardened in Mission 027; local only
+- Current runtime slice: **M020 — Ordinary Gotham**, Mission 026 implementation,
+  independently hardened in Mission 027; PR #21 merged at `74a5fab` in Mission 028
+- Mission 029: documentation-only underworld/rogue research on
+  `feature/m029-underworld-registry`, from verified master
+  `74a5fab57fa52ad21b53bb1f565d77a38b2ac7a1`; no new gameplay or M021
+- Mission 029 addendum continues that branch from local research commit
+  `4a9818697c77e526d76cb27d1d79a253ad1701c8`: master index and optional DARK
+  canon/progression documentation only; no runtime, UI or save changes
+- Task Force X design addendum continues from
+  `f8f43ecce769bd8706e765ad6ccf356940f69818`: restricted recruitment canon,
+  five-condition proposal and institutional provenance only; no implementation
 - Implementation branch: `feature/m020-ordinary-gotham`, from verified master
   `6682019857ccad4553fcdc04f7a7e7e046b2def0`; isolated baseline 476 tests passed
 - PR #17 first merged into the audit branch. PR #18 subsequently integrated that
   provenance history into master (`8bc9700`); PR #19 merged M018 (`d0723b1`).
   M019 PR #20 merged at `6682019` with successful master CI. Existing branches
-  and commits are preserved. M020 publication is not authorized.
+  and commits are preserved. M020 PR #21 is now merged; prior local-only
+  publication statements in historical reports describe their original missions.
 - PR #15 (M015) and #16 (M016-A) are merged. The prior open-PR requirement was
   superseded explicitly; both original feature branches remain unchanged.
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
@@ -95,7 +105,8 @@ remain where they identify technical interfaces or past milestones.
 This addition changes Markdown only; it adds no further CLI, gameplay, schema,
 dependency or module changes. All concepts below are unimplemented proposals.
 
-- [Registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md): 35 entries, stable proposed
+- [Registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md): 36 research entries after
+  Mission 029 (the original 35 retained plus Jane Doe), stable proposed
   IDs, variant/source boundaries, conservative canon anchors and original work,
   behavioral, faction-relationship and consequence ideas. Terrible Trio contains
   three actors. Secondary factual references are labeled; primary-edition and
@@ -440,11 +451,287 @@ extension follows; it was not part of M019's historical scope.
   365-day and two 90-day daily-resume campaigns, five real CLI paths, genuine
   historical save compatibility and interrupted-writer recovery are recorded in
   [M020 validation](docs/M020_ORDINARY_GOTHAM_VALIDATION.md).
-- Approved design only: Milo removed from the future roster; 34 individual/mantle
-  entries remain, with a separate optional Court organization that is entirely
+- Approved design only: Milo remains excluded; the post-M026 encounter pool had
+  34 individual/mantle entries. Mission 029 adds Jane Doe and Crazy-Quilt for 36,
+  with a separate optional Court organization that is entirely
   undiscoverable before the final third of meaningful progression. No Court
   runtime state, clues, dialogue, triggers or implementation exists.
 
 Limitations: bounded abstract employer funding, predictable posted allocations,
 one existing cooperative arrangement and limited NPC availability. Full employment,
 eviction, dialogue, prologue, Court mechanics and M021 remain unimplemented.
+
+## Mission 029 — underworld research and documentation reconciliation
+
+Starting branch/HEAD: clean `master` / `74a5fab57fa52ad21b53bb1f565d77a38b2ac7a1`;
+fetched `origin/master` matched. Dedicated local branch:
+`feature/m029-underworld-registry`. M020 integration/ancestry is preserved.
+No runtime code, content JSON, tests, save schemas, event IDs, RNG, navigation,
+mobility, three-action/eighteen-TU budgets, frontend or Builder package changed.
+
+### Document ownership and inventory
+
+- `docs/GOON_ROGUES_GALLERY_REGISTRY.md`: retains all original 35 research entries
+  and IDs; adds Jane Doe (36 entries, including the pre-existing Terrible Trio
+  group). Calendar Man is enriched in place; Crazy-Quilt naming/mantle evidence
+  clarified without changing its ID. "Quilt Man" is not a verified canon alias.
+- `docs/GOON_ROGUE_ENCOUNTERS_DESIGN.md`: preserves all 34 post-M026 table rows;
+  appends Jane Doe and the existing Crazy-Quilt identity for 36 proposed roles.
+  It is an overlapping encounter selection, not the same set as the minor registry.
+  Milo stays excluded; no approved character behavior is silently replaced.
+- `docs/GOON_FACTION_EMPLOYER_MATRIX.md`: preserves both original employer tables;
+  extends this existing authority with 26 sourced candidate/category records,
+  leadership/status/confidence, continuity reconciliation and a bounded future
+  organization contract. Four umbrellas are not actors; not every candidate is
+  a faction, district owner, starting presence or joinable employer. Beretti and
+  Inzerillo are included on indexed Five Families/Cry for Blood evidence.
+- `docs/GOON_MINOR_CRIMINAL_ECOSYSTEM.md`, `docs/GOON_CONTENT_ARCHITECTURE.md`,
+  `docs/GOON_NARRATIVE_DESIGN_BIBLE.md`, `docs/GOON_CRIMINAL_CAREER_WEB.md`,
+  `docs/GOON_CONDITIONAL_OPPORTUNITIES.md`, `docs/GOON_MILESTONE_ROADMAP.md`:
+  cross-references, source ownership, strict player-knowledge boundaries and
+  approval-gated priorities. No separate general-character or organized-crime
+  registry was invented; the existing specialized documents remain authoritative.
+- `README.md` and this file: current counts, M020 merge status and Mission 029 scope.
+
+### Research conclusions and limitations
+
+Publisher references include DC's Calendar Man profile, Jane Doe/Ventriloquist
+comics-versus-TV comparison, Crazy Quilt/Batman #54 preview, Falcone profile,
+Cry for Blood collection, Black Mask history, Intergang/52 account, Penitente/
+Neon Dragon creator commentary, Mutants adaptation comparison and Gotham TV
+retrospectives. Secondary DCU Guide/GCD bibliographic records and clearly marked
+Fandom/Wikipedia indexes support obscure candidates. Supporting links and
+H/M/L confidence appear beside claims in the registries. No complete comic,
+episode or licensed sourcebook was inspected; blocked pages/search excerpts
+are disclosed, not upgraded to primary verification.
+
+Unresolved: exact Lo Boyz issue/leadership, Gilzean episode-level hierarchy,
+Cassamento/other source spellings, Odessa labels and the actual campaign era,
+leaders, deaths, alliances and fronts. Burnley absorption remains secondary
+speculation. East Side Dragons is distinct from Ghost Dragons. TV organizations
+and alternate-future Mutants are not merged into a comics starting cast. An
+ethnic/category label never supplies criminal membership, guilt or one treasury.
+
+All named-organization statuses and mechanics are proposed; no continuity pack
+or playable criminal career is selected. Lawful/civilian and independent paths
+remain valid. Batman/GCPD independence does not imply knowledge without sources;
+no Batman actor or new legal/information system is implemented. The existing
+Court restriction is preserved in author-only policy, with no early/middle
+triggers, symbols, rumors, Talons, references, public discovery or foreshadowing.
+
+### Executed documentation validation
+
+- Standard-library Python checks against Git baseline `74a5fab`: gallery 35 → 36,
+  all old IDs/numbered entries retained (only the requested Crazy-Quilt display
+  spelling normalized); encounter rows 34 → 36, all original rows byte-for-byte
+  retained; Milo absent from current roster rows.
+- Both employer tables' 26 original Markdown lines retained; all 26 new O01–O26
+  candidate IDs unique/sequential, with sources, confidence, status and six table
+  columns; four umbrella categories explicitly non-actor.
+- All 247 relative file/heading link occurrences in changed documents checked
+  with no broken target; table-width, UTF-8 and code-fence checks passed. New
+  links target the existing canonical files.
+- `git diff --check` passed. Full changed-file inventory is 11 Markdown files;
+  no runtime, definition, fixture, test or UI file changed and no untracked output.
+- Regression suite **not rerun** for this documentation-only mission. The last
+  actual merged-master run remains Mission 028: 522 tests, local 562.088s and
+  master CI 198.934s, both OK; that is historical executed evidence, not a new run.
+
+No new player decision or persistent effect is implemented. The matrix's
+paper-only invoice/authority scenario evaluates meaningful lawful involvement,
+specific recipient consequences, variety, grind risk and remaining shallowness.
+Recommended next step: approve a small continuity subset/source reconciliation,
+then separately scope one original funded minor-crew commitment with refusal,
+independent resolution and sourced memory. No M021 number or implementation is
+authorized here. Documentation is prepared for human review; no push, PR or merge.
+
+## Mission 029 addendum — master roster and optional DARK design
+
+Inspected clean branch `feature/m029-underworld-registry`, HEAD
+`4a9818697c77e526d76cb27d1d79a253ad1701c8`. No comprehensive master index existed.
+The addendum creates one navigation authority pointing to existing detail owners;
+it does not replace registries, select a continuity, expose a player codex or
+implement a cast. Master remains `74a5fab`; all prior branches/commits are preserved.
+
+### Deliverables and changed-file inventory
+
+- [Master character/faction index](docs/GOON_MASTER_ROSTER.md): **188 unique
+  reference records**, not 188 active people. Covers existing rogues/ambiguous
+  actors, heroes/role holders, family/gang leadership, organizations/categories,
+  original contacts/staff, civic institutions/professional roles and DARK.
+  Each row tracks identity/key, aliases, continuity, affiliation/relationship
+  pointers, role, availability, implementation type and authoritative source.
+  Vacant roles and staff labels are not fabricated named NPCs; aliases, personas,
+  bound wills, mantles, crews and categories cannot become duplicate actors.
+- [DARK canon registry](docs/GOON_DARK_CANON_REGISTRY.md): seven requested
+  candidates with publisher-supported motivation/power anchors, limits and
+  continuity differences; separate proposed roles/availability. Existing Ivy,
+  Crane, Deacon Blackfire and Strange remain under their original identity
+  authorities. "Reverend Blackfire" is unverified user wording, not a new person.
+- [DARK discovery contract](docs/GOON_DARK_PROGRESSION_CONTRACT.md): proposed
+  late optional involvement, independent occurrence versus discovery, alternate
+  lawful/relationship/investigative/civilian routes, the nonmandatory four-encounter
+  achievement idea, seven-row behavior/outcome matrix, ordinary recovery, future
+  dependencies and eight explicit approval questions. No moral score/faction lock.
+- Existing cross-reference/status updates: `README.md`, this file,
+  `docs/GOON_CONTENT_ARCHITECTURE.md`, `docs/GOON_FACTION_EMPLOYER_MATRIX.md`,
+  `docs/GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md`,
+  `docs/GOON_MILESTONE_ROADMAP.md`, `docs/GOON_NARRATIVE_DESIGN_BIBLE.md`,
+  `docs/GOON_ROGUES_GALLERY_REGISTRY.md`, `docs/GOON_ROGUE_ENCOUNTERS_DESIGN.md`.
+  Total: **12 Markdown files**, three new and nine updated. No detailed registry
+  entry or canonical organization classification was replaced.
+
+### Research and reconciliation findings
+
+New character research uses DC profiles, creator commentary, collections and
+specific issue/film solicitations linked beside claims. No full comic, episode,
+film or licensed sourcebook was inspected; blocked direct pages versus accessible
+indexed excerpts remain disclosed. Existing indexed facts inherit their prior
+confidence, rather than being newly declared primary-verified by inclusion here.
+
+Zatanna is not universally disabled by silence: the cited 2025 account includes
+sign-language casting. Swamp Thing's Olsen, Alec-related and Levi histories need
+an actor/era choice. Creeper's science-transformation and host-based portrayals
+cannot be merged into one presumed occult origin. Jason Blood and Etrigan are
+distinct bound wills, not an analogy for a clinical diagnosis or Scarface's persona.
+Xanadu's visions and Deadman's possession do not mean unlimited access to save
+truth; proposed participation limits are explicitly game policy, not invented
+universal canonical weaknesses. No automatic seven-person team/allegiance exists.
+
+The four Gotham encounters may remain entirely grounded, and neither one nor
+all four prove magic or summon an ally. The achievement is optional and proposed,
+not an access gate or reason to schedule danger. Players can refuse occult
+involvement, remain civilian/lawful/independent, or return to ordinary life after
+failure without permanent hero/villain affiliation. Assistance cannot become a
+general solution to housing, wages, employment or law enforcement.
+
+The Court remains wholly separate, with one **author-only policy pointer** in
+the master index. No early/middle symbols, rumors, Talons, references, visions,
+metadata hints or foreshadowing are introduced into player content. DARK and its
+achievement supply no unlock or route around the existing final-third meaningful-
+progression restriction. Milo stays excluded; no roster entry reinstates him.
+
+### Validation and next approval boundary
+
+Standard-library documentation checks verified unique/nonempty nine-field master
+records, coverage of existing source IDs, seven DARK entries, four optional
+achievement outcomes, seven consequence rows and eight approval questions.
+All 515 relative file/heading links, 63 Markdown tables, UTF-8/code fences and
+`git diff --check` passed. All original lines/IDs in the
+three detailed registries are retained. Existing minor/encounter counts stay 36
+and organization/category records stay 26; categories and linked identities are
+not counted as additional active characters. No Python, content JSON, fixture,
+test, event, schema, budget, navigation, RNG, frontend or Builder package changes.
+
+Regression tests were **not rerun** for this documentation-only addendum. The last
+actual 522-test results remain Mission 028's merged-master verification, not a
+new claim. No new gameplay decision, persistent effect, occult power or event is
+implemented. The contract's paper scenario evaluates variety, source-specific
+consequences, refusal, grind risks and remaining shallow/unapproved mechanics.
+
+Before any implementation, approve continuity/character subset, meaningful late
+milestones, opt-in/withdrawal policy, achievement terms, power/knowledge scope,
+possession/horror consent, bounded costs/zero-cash recovery and one small slice
+with its adoption/replay contract. These remain open design decisions, not a
+request to implement now. Roadmap placement is optional/late and unnumbered;
+no M021, broad magic engine, Court content, GitHub publication or merge is begun.
+
+## Task Force X design addendum — research and approval contract only
+
+Starting clean branch/HEAD: `feature/m029-underworld-registry` /
+`f8f43ecce769bd8706e765ad6ccf356940f69818`. Master remains `74a5fab`.
+No Task Force X contract or gameplay existed. The prior encounter proposal's
+“not freely joinable” policy remains: special assessment, consent, membership
+and deployment are distinct. Creature Commandos, DARK and Joker initiation are
+separate and receive no automatic recruitment or cross-unlock.
+
+### Exact changed-file inventory and deliverables
+
+1. `docs/GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md` — new canonical specialized
+   contract: inspected implementation limits, twelve canon/context records,
+   all five original special-route conditions, government/character provenance,
+   four stages, eight distinct outcome rows, seven alternative/softlock cases,
+   future dependencies/acceptance and ten explicit approval decisions.
+2. `docs/GOON_MASTER_ROSTER.md` — nine new source-linked references, bringing
+   the author-only index from 188 to **197**, not 197 active people. Includes
+   Waller, Junior/Senior Flag as distinct records, Economos, Harcourt, Task Force X,
+   A.R.G.U.S., Belle Reve and a vacant original government-liaison role. Existing
+   Lawton/Harley/White and all earlier records remain unchanged.
+3. `docs/GOON_ROGUE_ENCOUNTERS_DESIGN.md` — reconcile the restricted new proposal
+   with prior non-free-join policy; no actor or generic Squad admission added.
+4. `docs/GOON_INSTITUTIONS_AND_RECOVERY.md` — cross-reference actual Arkham access,
+   distinct prison/care/supervision authority and explicit modifications/relief.
+5. `docs/GOON_FACTION_EMPLOYER_MATRIX.md` — point to specialized government context
+   without turning programs/agencies into more district gangs or White into a handler.
+6. `docs/GOON_CRIMINAL_CAREER_WEB.md` — optional ordinary-person pathway and viable
+   refusal, reform, lawful work and survival; no forced graduation into combat.
+7. `docs/GOON_CONTENT_ARCHITECTURE.md` — keep source/identity owners, service,
+   historical unknowns and recipient views; no new backend/schema/event hooks.
+8. `docs/GOON_MILESTONE_ROADMAP.md` — design milestone and unnumbered later bounded
+   assessment recommendation, with foundations before recruitment or operations.
+9. `README.md` — contract navigation/status only.
+10. `PROJECT_STATE.md` — this source/validation/delivery record and scope status.
+
+### Findings and source limits
+
+The user route remains **E1 AND E2 AND E3 AND E4 AND E5**: substantial documented
+criminal record, several consequential Deadshot encounters, appropriate Harley
+interaction during a lawfully accessed Arkham story, no unresolved severe White
+hostility, and compliance with actual applicable parole/probation conditions.
+No arbitrary conviction/heat, encounter-count or relationship-score threshold
+is chosen. Proven/not-satisfied/unknown and supported non-applicability must be
+distinguished; absence of fields cannot prove any condition.
+
+Actual code supplies validated legal outcomes/fines and accelerated custody,
+not offense gravity, full sentences, probation/parole, named rogue histories or
+government access. Historical null dates/fines remain unknown. A record of a
+dismissal, heat, job count, free custody or paid fine cannot substitute for a
+substantial conviction record, lawful Arkham access or supervision compliance.
+Current M019 intake is not a government recruitment/record service.
+
+Publisher research includes DC's Waller, Squad, Flag, Deadshot and Harley profiles;
+White financial-crime account; Economos/Harcourt comics-versus-screen comparison;
+Flag Sr. history; later Waller/Harcourt office/life-state premises; Arkham-game
+identity/recruitment material. Citations and scope limits accompany each claim in
+the new contract. No full comic, episode or film was reviewed. Profiles/solicitations
+are not a universal current roster; blocked direct pages/indexed excerpts are
+disclosed. No reviewed source makes White a compulsory Squad recruiter or grants
+Waller omniscience. His special-route condition is original operational-risk design.
+
+Canon coercion/danger is acknowledged without authorizing surprise implantation,
+forced acceptance or compulsory deployment. World truth, sources, government
+intelligence, actual Waller briefings, criminal rumors and player knowledge remain
+separate. Corrections reach named recipients. No dossier reads every private
+memory, medical record, legal event or source merely because Waller is powerful.
+
+The proposed A–D event identifies, assesses, offers a decision and records an
+aftermath. Acceptance, negotiation, investigation, refusal, reporting, partial
+failure, missed/canceled offers and betrayal/deception have distinct futures.
+Neither assessment nor signing automatically grants freedom, immunity, wealth,
+expungement, superpowers, sentence changes or hero/villain affiliation. An approved
+alternative could enable later consideration after a missed famous encounter,
+but cannot falsely complete a condition or promise eventual membership.
+
+### Validation and approval boundary
+
+Documentation checks verify full old-row/ID preservation, unique nonempty master
+records, all five conditions, twelve context records, four stages, eight outcome
+rows, seven alternative cases, ten approval questions, local file/heading links,
+Markdown tables, UTF-8/fences and `git diff --check`: **479 relative file/heading/
+code links and 59 tables passed**. Minor/encounter rosters stay
+36; the general criminal catalogue stays 26; seven DARK records remain unchanged.
+Milo stays excluded. The separate Court gate is preserved, with no early/middle
+symbols, rumors, Talons, references, agency clues, public discovery or foreshadowing.
+
+Exactly ten Markdown files change (one new, nine updated). No Python, content JSON,
+tests, fixtures, saves, event IDs, RNG, navigation, budgets, backend, Native.Builder
+UI or handoff package changed. Regression tests were **not rerun** for this design
+mission; prior 522-test results are historical, not new execution. No new gameplay
+choice, persistent effect, source adapter or recruitment event is implemented.
+
+Approval remains required for continuity/personnel, record interpretation,
+distinct Deadshot evidence, Harley access, White conflict/negative-evidence scope,
+actual supervision authority, alternate route scope, costs/terms/recovery,
+coercion/consent and one future adoption/replay slice. Recommend that assessment
+slice only after the missing institutional/encounter foundations are approved.
+No M021, deployment, push, PR creation or merge is begun by these documents.

@@ -7,6 +7,16 @@ uses the existing three factions and districts. Read the
 [career web](GOON_CRIMINAL_CAREER_WEB.md), and
 [opportunity contract](GOON_CONDITIONAL_OPPORTUNITIES.md) together.
 
+**Mission 029 reconciliation:** the [existing employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry)
+now owns the 26 organized-crime candidate/category records and leadership/source
+matrix. Its [bounded integration contract](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-proposed-organization-integration-contract)
+extends these three scales; it does not turn every name into a district owner.
+Four umbrella records are research classifications, never simulated actors.
+Comics, TV and alternate-future groups are not one simultaneous starting cast.
+The historical M013 wording above describes the origin of this proposal; M020
+is now merged, with ordinary life and limited contacts/incident/intake adapters.
+No new criminal organization, NPC graph or faction mechanic is implemented here.
+
 ## Three scales of participation
 
 | Scale | Proposed responsibilities/state | Decisions and constraints | What is not required |
@@ -96,9 +106,9 @@ Author a finite roster per continuity/content pack and choose an active subset
 from explicit initial conditions or recorded world triggers. Treat dormant,
 working, unavailable, detained, retired and deceased as distinct states. A roster
 entry is not proof that the person is alive or physically in Gotham this run.
-No real-time spawning or obligation to show all thirty-five registry entries.
+No real-time spawning or obligation to show every research-registry entry.
 
-Minor activity is demand/incident-driven, not thirty-five copies of faction warfare
+Minor activity is demand/incident-driven, not dozens of copies of faction warfare
 every day. Batch noninteractive background facts where useful, preserving stable
 actor order and causal events. Reactivate only on a recorded relevant change.
 Do not add a hidden strategic income tick to make a contact seem busy.

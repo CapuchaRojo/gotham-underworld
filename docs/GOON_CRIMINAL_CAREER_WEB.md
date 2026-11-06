@@ -7,6 +7,23 @@ No specialization, employer meeting, institution, or ending is promised by a sav
 
 ## A web of work, not classes
 
+The [restricted Task Force X pathway](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md)
+is a separate rare proposal, not criminal graduation, superhuman training or a
+necessary ending. Its original five-condition route keeps actual record,
+consequential contacts, lawful Arkham access, scoped conflict review and applicable
+supervision distinct. Refusal, reform, ordinary work and unaffiliated survival
+remain viable. An approved alternate assessment route could preserve future
+consideration without falsely completing a missed famous encounter.
+
+Mission 029 adds source/continuity-qualified families, crews and networks in the
+existing [employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry).
+A listed organization is not a compulsory career, membership or boss encounter.
+An invoice, temporary lawful service, coworker friendship, refusal or exit can
+change specific opportunities without forcing a criminal affiliation. Historical,
+dormant, emerging and continuity-specific groups are not simultaneous vacancies.
+Use the [bounded organization contract](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-proposed-organization-integration-contract)
+for future proposals; no specialization, contract or faction command is added now.
+
 The player begins with ordinary experience, a contact and an obligation, not a
 permanent class. A specialization describes work they have actually done and
 qualifications others recognize. Several can coexist; legal work and recovery

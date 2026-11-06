@@ -2,6 +2,14 @@
 
 ## Status, authority and scope
 
+Mission 029 addendum: the [master index](GOON_MASTER_ROSTER.md) references this
+encounter selection and its detailed identity owners. The separate [DARK canon](GOON_DARK_CANON_REGISTRY.md)
+and [discovery contract](GOON_DARK_PROGRESSION_CONTRACT.md) cover seven initial
+optional candidates plus the G01 Grundy supplement, without replacing this
+36-role selection or creating an enforced
+four-boss route. All existing rows, IDs, exclusions and protected-progression
+rules remain unchanged. No character is promised or implemented by the index.
+
 **Mission 015 preservation update:** this retains the Mission 014 proposal and
 extended its research pool to 27 roles. Mission 016 expanded the same proposed
 registry to exactly 35 distinct roles at that historical checkpoint. Hush was
@@ -36,7 +44,7 @@ Use the [narrative bible](GOON_NARRATIVE_DESIGN_BIBLE.md),
 [employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md),
 [conditional opportunities](GOON_CONDITIONAL_OPPORTUNITIES.md),
 [minor criminal ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md),
-[35-entry rogue registry](GOON_ROGUES_GALLERY_REGISTRY.md),
+[minor-rogue research registry](GOON_ROGUES_GALLERY_REGISTRY.md),
 [content architecture](GOON_CONTENT_ARCHITECTURE.md),
 [Joker recruitment contract](GOON_JOKER_RECRUITMENT.md),
 [influence/recovery contract](GOON_VILLAIN_INFLUENCE_SYSTEM.md) and
@@ -95,9 +103,13 @@ can exclude a character entirely; exclusion is not an unresolved missing quest.
 No pack is chosen by this document. Proposed starting default is a reviewed
 comics-derived subset with original scenarios, not a claimed official Earth or
 an automatic mixture of Arkham games, DCAU, television Gotham and the screen DCU.
-The complete 35-row registry is a content research pool, not a simultaneous cast.
+The registry is a content research pool, not a simultaneous cast. Mission 029
+preserves the 34 post-M026 roles and adds Jane Doe and Crazy-Quilt: **36 current
+individual/mantle roles**. Calendar Man is enriched in place. The companion minor
+registry has its own overlapping set, including one group; equal totals do not
+make the sets identical. Detailed identity/source records remain there.
 
-## 3. Current proposed registry — 34 individual/mantle roles
+## 3. Current proposed registry — 36 individual/mantle roles
 
 **Canon-anchor column:** conservative paraphrases of publisher sources consulted
 November 4, 2026. Profiles/solicitations can cover different eras and are not
@@ -158,10 +170,27 @@ episode introduces a temporary deal, record its terms/source and label it our
 proposal rather than established canon. Other majors/minor rogues remain in the
 existing registry/research pool; no need to activate all of them at once.
 
+### Mission 029 additions to the same encounter registry
+
+These rows extend the table above; they are not another roster. All access,
+difficulty, jobs and outcomes are proposals. See the detailed research entries
+for source confidence and continuity constraints.
+
+| Rogue / proposed ID | Source-backed anchor and continuity caution | Proposed presence / visibility | Proposed organization / access | Proposed player role / risk | Proposed trust / recruitment / organizational advancement |
+| --- | --- | --- | --- | --- | --- |
+| Jane Doe — `dc.character.jane_doe.living_hell_candidate` | [Research entry](GOON_ROGUES_GALLERY_REGISTRY.md#36-jane-doe): publisher distinguishes comics impersonation from TV shapeshifting. No real-name or alliance binding selected. | P/E; a received contradictory account and a credible verification route; never guaranteed. | Individual wildcard; no joinable organization. | Civilian witness, coworker protection, sourced correction or refusal; Hard inquiry, Extreme exposure. | Trust Hard with evidenced identity; recruitment N/A; advancement N/A. |
+| Crazy-Quilt — `dc.character.crazy_quilt.paul_dekker.comics` | [Existing research identity](GOON_ROGUES_GALLERY_REGISTRY.md#08-crazy-quilt): light equipment; edition-dependent identity. Unhyphenated Crazy Quilt is the same candidate. | P; a sourced commission/referral and actual availability. | Technical contractor/small crew proposal, no district requirement. | Verify a commission's authority, negotiate safer terms, credit a worker or decline; Accessible/Challenging support, Hard hazardous exposure. | Trust Challenging; conditional associate contract Challenging, not membership; organizational advancement N/A initially. |
+
+Calendar Man remains the existing Julian Day classic candidate. His proposed
+presence/advancement row is unchanged; the research entry now explicitly marks
+the publisher's mixed-era powers and prohibits wall-clock scheduling. No prior
+approved behavior, identity, Joker initiation rule or historical ID is replaced.
+
 ## Mission 026 approved roster restriction — design only
 
-Professor Milo is removed from the proposed future roster. The current table has
-34 individual/mantle entries; the Court of Owls is a **separate optional hidden
+Professor Milo remains removed from the proposed future roster. The post-M026
+table had 34 entries; Mission 029 adds two for 36 without reinstating him.
+The Court of Owls is a **separate optional hidden
 organization**, not a replacement individual, counted rogue, employer allocation,
 or automatically joinable gang. The historical 35-entry milestone remains design
 provenance rather than the current roster count. No other approved character
@@ -183,6 +212,14 @@ this optional organization. Specific lore, continuity, involvement and joinabili
 need separate future review; the secret gate itself is already approved.
 
 ## 4. Joinability and separate milestones
+
+The [Task Force X design addendum](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md)
+proposes a rare five-condition assessment route, with voluntary decisions and
+source-backed institutional clearance. The historical initial-access table below
+still means **not freely joinable**: a Deadshot/Harley encounter never enrolls
+the player, and assessment is not deployment. This new proposal adds no actor,
+mission or guaranteed recruitment. Creature Commandos remain separate/unchanged;
+Warren White is not asserted to be a canonical handler or government veto-holder.
 
 | Organization/relationship — all classifications proposed | Initial access model | Guardrail |
 | --- | --- | --- |

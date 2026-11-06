@@ -29,6 +29,62 @@ schema or loader is introduced by the Markdown registry.
 
 ## Current boundary and constraints
 
+### Task Force X contract — research and design only
+
+The [specialized contract](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md) owns new
+government/Squad context and the five-condition proposal. The [master index](GOON_MASTER_ROSTER.md)
+links it while original rogue identities and criminal organization records stay
+with their existing authorities. No program marker, loader, save field, event ID,
+backend, new case type, law adapter or Waller actor is implemented.
+
+Current legal outcomes can supply limited source material, not a full criminal
+severity/sentence/supervision system. Any later assessment needs narrow approved
+record/referral/authority adapters; use source-backed receipt/order and recipient
+views rather than copying the whole world into an omniscient dossier. Missing
+domains stay unknown, historical dates stay null, and canonical political power
+never authorizes reading private contact memories. Proposed alternatives do not
+silently complete the special route. Preserve atomic service mutation, budgets,
+stable history, offline replay, explicit adoption and exactly-once effects.
+
+### Master index and optional DARK design authority
+
+The [master index](GOON_MASTER_ROSTER.md) is documentation navigation, not a
+runtime catalogue or player-known projection. Pointer-valued affiliation and
+relationship fields resolve to existing source owners, avoiding duplicate
+biographies. Actors, bound pairs, personas, mantles, organizations, categories,
+staff labels and vacant roles are distinct; index keys are never save IDs.
+The [DARK canon registry](GOON_DARK_CANON_REGISTRY.md) owns new character research;
+the [DARK contract](GOON_DARK_PROGRESSION_CONTRACT.md) owns proposed late opt-in,
+recipient knowledge, consequences, refusal/recovery and approval questions.
+No JSON definitions, loader, optional marker, global clock, magic/morality meter,
+event IDs, budget or engine changes accompany these documents. Any later slice
+needs its own bounded adoption/source-validation contract. Do not expose this
+authoring index through the UI or treat canonical psychic powers as access to
+all saved facts. Protected metadata remains outside ordinary/DARK discovery.
+
+### Mission 029 organization-definition proposal
+
+The [employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry)
+is the single organization-candidate/source authority; the [minor registry](GOON_ROGUES_GALLERY_REGISTRY.md)
+owns detailed minor-character identities and the [encounter contract](GOON_ROGUE_ENCOUNTERS_DESIGN.md)
+owns proposed access/difficulty for its overlapping roster. Different research
+sets are not duplicate runtime cast lists. Preserve existing person IDs when
+an individual has a crew; aliases, personas and umbrella categories grant no
+extra treasury, turn or resource authority.
+
+Future definitions would separate selected continuity/era, people, organizations,
+leadership edges, workplace terms, geography/influence, narrative text and assets.
+Selection, actual availability and observer knowledge are separate. The
+[organization integration contract](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-proposed-organization-integration-contract)
+specifies consent, independent activity, succession, funds, sourced information
+and recovery as proposals, not current JSON fields or a loader. Its first safe
+implementation candidate is one original minor-crew commitment, subject to a
+new approval and adoption/validation contract. No name-based engine branch,
+parallel history authority, new save schema, altered content pin or global rumor
+store is introduced. The protected late-progression restriction must precede
+any future player-facing catalogue/discovery projection; author-only source
+records must never be exposed wholesale as player knowledge.
+
 ### Implemented M020 ordinary-life adapters
 
 `ordinary_life` extends the existing life authority with one optional version 1
