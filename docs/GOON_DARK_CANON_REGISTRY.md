@@ -2,7 +2,8 @@
 
 **Mission 029 addendum; research/design only, November 5, 2026.**
 This is the detailed authority for the seven newly requested DARK candidates
-and limited bridge notes below. The [master index](GOON_MASTER_ROSTER.md) points
+and limited bridge notes below, plus the later G01/location supplement. The
+[master index](GOON_MASTER_ROSTER.md) points
 here; existing rogue identities remain in their original registries. No actor,
 power, organization, command, save field or supernatural encounter is implemented.
 
@@ -169,6 +170,119 @@ determine morality or criminal guilt.
   false claim that canon possession always requires permission. No remote
   command execution, free action, erased debt or shared world-knowledge feed.
 
+## G01. Solomon Grundy / Cyrus Gold — location-linked supplement
+
+- **Identity / proposed character reference:**
+  `dc.character.solomon_grundy.cyrus_gold.comics_candidate`. Cyrus Gold and Solomon
+  Grundy occupy one indexed identity/history, not independently rewarded aliases.
+  This is a documentation key, not a new saved actor or location ID.
+- **Classification / primary Gotham association:** **supernatural antagonist /
+  tragic antihero, continuity-dependent**; **Slaughter Swamp**. This editorial
+  classification does not make every incarnation friendly, evil or redeemable.
+- **Canon anchor:** [DC's profile](https://www.dc.com/characters/solomon-grundy)
+  connects Gold's death in Slaughter Swamp with the undead Grundy, exceptional
+  strength/endurance and recurring death/rebirth with varying intelligence and
+  personality. It dates publication debut to *All-American Comics* #61 (1944);
+  that is not an adopted in-world birth date or campaign calendar.
+- **Motives / continuity:** the profile emphasizes a destructive antagonist.
+  Do not universalize that characterization: DC's account of the animated
+  [Justice League episode “The Terror Beyond”](https://www.dc.com/blog/2026-10-29/classic-creepouts-five-truly-terrifying-dc-animated-episodes)
+  describes a protective team-up and a Hawkgirl relationship in that adaptation.
+  Those ties are not imported into the comics candidate. Golden Age, Post-Crisis,
+  later comics and screen histories need a selected edition, not a merged origin.
+  The existing Butch Gilzean TV row remains unaltered and season-unbound; it is
+  neither a second active Grundy nor proof of this comics actor's relationships.
+- **Links / limits:** the #67 reference below supports one Swamp Thing encounter,
+  not an enduring alliance, identical elemental nature in every continuity or
+  membership in a unified occult organization. No fixed revival interval,
+  invulnerability formula, guaranteed current presence or knowledge of visitors
+  is approved. A dangerous incarnation does not imply automatic hostility from
+  every supernatural character.
+- **Proposed role:** conditional hazardous presence, escape/protection subject or
+  historical lead, not a district boss, necessary combat victory or joinable gang.
+  Personal encounter/trust are unpromised; recruitment and organizational
+  advancement are **N/A** for this proposal. Any encounter difficulty remains
+  unselected until its incarnation, noncombat objective and recovery are authored.
+  Lawful evacuation, evidence preservation and leaving may succeed without a fight.
+- **Approved design gate, not an implemented flag:** significant Grundy encounters
+  require the player to have **unlocked DARK progression**. Unlock alone neither
+  spawns him nor reveals his whereabouts. Independent cause/availability, a
+  plausible received lead, execution-time access and voluntary involvement remain
+  separate requirements. No ordinary pre-DARK random encounter; no visit-to-spawn
+  or visit-to-unlock rule. The [Grundy contract](GOON_DARK_PROGRESSION_CONTRACT.md#12-solomon-grundy--dark-gated-encounter-contract)
+  owns outcomes and future implementation requirements. The exact general DARK
+  unlock milestones still need approval; no thresholds or save fields are added.
+
+### G01 continuity, relationships and adaptation notes
+
+| Canon-supported reference | Continuity limit | The Goon adaptation — proposed, not canon |
+| --- | --- | --- |
+| The profile above anchors Gold's swamp death, undead return, changing intelligence/personality and repeated resurrection. | Rebirth is not a fixed daily schedule or proof of identical memories, trust or temperament across incarnations. The mechanism and current life state need a selected story. | Author a specific incarnation's abilities, motives and recognition limits. Do not transfer the resurrection ability to the ordinary human protagonist or reset consequences/rewards when Grundy returns. |
+| [DC's Alan Scott history](https://www.dc.com/blog/2015/08/06/lighting-the-way-green-lantern-alan-scott) identifies their recurring rivalry and distinguishes a New 52 Earth-2 version. | Golden Age/Earth-Two, Post-Crisis and New 52 Earth-2 are not one uninterrupted biography; the source's ability explanations belong to their stated context. | No imported ring weakness, power ranking, guaranteed rescuer or automatic enmity toward anyone who knows a Green Lantern. |
+| [DC's Jade overview](https://www.dc.com/blog/2021/08/17/five-things-to-know-about-stargirls-jade) describes her help, Grundy's attachment and fighting with Infinity Inc.; the bond was also exploited. | The comics account and Stargirl television setting are explicitly different. A conditional bond does not establish safe behavior toward all civilians. | Compassion can be a meaningful risk, not a universal calming command, recruitable monster or guaranteed friendship. The player does not inherit Jade's relationship. |
+| The animated “Terror Beyond” account above supports a protective team-up and a particular Hawkgirl bond. | DCAU characterization is an alternative, not a relationship or morality state silently attached to the comics candidate. | A tragic/antihero interpretation may inform an approved noncombat scene without retelling the episode or promising its outcome. |
+| [Solomon Grundy #1 (2009) publisher solicitation](https://www.dc.com/comics/solomon-grundy-2009/solomon-grundy-1) frames Gold, Grundy and an inquiry into a curse; [DC's #4 preview](https://www.dc.com/blog/2009/05/29/things-get-rough-in-solomon-grundy-4) describes an Alan Scott confrontation and death-related evidence. | Solicitation premises are not a complete explanation of identity, soul mechanics, murder history or a universal cure. No full issue was reviewed. | The single index record does not deny that specific story's Gold/Grundy presentation; do not instantiate two reward-bearing actors or import its curse solution. Investigation may resolve an account without curing or defeating him. |
+| Swamp Thing vol. 2 #67, documented below, places the two in one story. | This establishes neither permanent alliance nor universal identical elemental origin. | A swamp-related inquiry needs its own original cause; Ivy, Blood/Etrigan and investigators remain independently available and informed. |
+
+No new canonical partner, employer, family relationship or current faction is
+inferred. Known rivalries and bonds are author reference material, not automatic
+player/NPC knowledge, summons or recruitment privileges.
+
+## Slaughter Swamp — geography evidence and atlas coverage
+
+Research checked November 5, 2026. **Canon location evidence is not an approved
+atlas amendment or a new runtime destination.** Sources have different authority:
+
+| Finding | Evidence / confidence | Continuity and inference limit |
+| --- | --- | --- |
+| Established DC location outside Gotham, especially associated with Grundy's origin | **Publisher-supported:** [DC's 2021 location guide](https://www.dc.com/blog/2021/10/29/a-trick-or-treaters-guide-to-the-dc-universe), plus the Grundy profile above. [DCU Guide's location entry](https://dcuguide.com/Slaughter_Swamp) corroborates the association. | Broad outskirts connection only; no universal municipal boundary, compass direction, distance, street address or adjacency to another landmark is adopted. The guide is a humorous overview, not a survey map. |
+| “Slaughter Swamp State Park” is an attested name in some references | **Secondary-supported:** [DC Database location entry](https://dc.fandom.com/wiki/Slaughter_Swamp) lists the alias; its [Shadow of the Bat #39 index/synopsis](https://dc.fandom.com/wiki/Batman%3A_Shadow_of_the_Bat_Vol_1_39) associates the park name with the June 1995 cover-dated story. | Qualify this as a 1995 story/reference naming, not every continuity's legal designation, opening hours or public-access permission. Full issue/panels were not inspected; exact textual usage merits edition review before content adoption. |
+| Swamp Thing appears at Slaughter Swamp in vol. 2 #67 | **Corroborated secondary evidence:** [DCU Guide's issue index](https://dcuguide.com/Swamp_Thing_Vol._2_67) identifies “The Wisdom of Solomon,” December 1987 cover date, and Swamp Thing/Grundy; [The Beat's issue review](https://www.comicsbeat.com/classic-comic-compendium-swamp-thing-67-was-greatly-elevated-by-the-color-work-of-tatjana-wood/) places the encounter in the swamp. | A particular Post-Crisis-era appearance, not evidence of permanent residence, a present-day rendezvous or the same story for Levi Kamei. No full issue was read; cover date is not a verified on-sale date. |
+| Swamp Thing's swamp associations are not interchangeable | **Publisher-supported:** DC's location guide separately discusses the Houma swamps in Louisiana; [his profile](https://www.dc.com/characters/swamp-thing) supplies the Alec-related premise and botanical abilities. | Slaughter Swamp is not automatically Houma, his original laboratory site or his permanent home. D05's actor/era decision remains open. Powers do not establish omniscient observation of this location. |
+
+The Fandom location page returned HTTP 402 and the issue page was robots-blocked
+on direct retrieval; their indexed text was available. Direct DC issue-page
+attempts for #67/#39 were inaccessible. The accessible DC profiles/location guide,
+DCU Guide index and Beat review support only the narrow claims distinguished
+above. No unavailable panel, exhaustive chronology or paid map review is claimed.
+
+### Actual atlas result — absent, no replacement or new ID
+
+Inspected [runtime JSON](../content/gotham_atlas_v1.json), the
+[176-place source registry](GOON_LOCATION_REGISTRY.md) and
+[metropolitan atlas](GOON_GOTHAM_ATLAS.md). The JSON has **8 regions, 48
+neighborhoods and 120 POIs**, plus 183 edges. No record or documentation mention
+matched Slaughter Swamp, State Park, Grundy or Cyrus Gold at inspection.
+There is **no existing stable ID for Slaughter Swamp** to reference.
+
+Existing `goon.neighborhood.n39` (Reed Marsh), `goon.poi.p095` (Reed Marsh Reserve)
+and `goon.poi.p096` (Wetland Field Laboratory) are different named records.
+Do not rename, alias, relocate or silently repurpose them. Green-space similarity
+is not canonical identity. No new place key, temporary ID, region assignment,
+coordinates, access edge, cost or visit command is assigned here.
+
+**Future proposal:** consider a peripheral Gotham destination after a separate
+atlas review. Approve its continuity/name, boundary placement, lawful frontage,
+restricted/hazardous areas, ordinary services and feasible return route first.
+Grounded visits must remain useful without occult encounters. Any later atlas
+version/pin, navigation adoption, migration or route change needs its own tested
+contract; this research changes none of them.
+
+### Optional connections — original hooks, not shared occupancy
+
+| Subject | Established basis / limit | Original future hook and information boundary |
+| --- | --- | --- |
+| Solomon Grundy | Swamp-origin connection is publisher-supported; current incarnation/presence is unselected. | Only after DARK unlock, a dated witness report or verified closure may support a significant Grundy inquiry, civilian protection or withdrawal. A report is not proof of his presence; arriving or unlocking never summons him or reveals his current location. |
+| Swamp Thing | #67 supplies one visit, not residence or permanent responsibility for Gotham wetlands. | A received ecological report might merit a specific intermediary's inquiry. No instant guardian response, universal vegetation surveillance, free healing or personal encounter. |
+| Poison Ivy | B01 supports botanical motives and a particular published Ivy/Swamp Thing connection; it establishes no Slaughter Swamp posting or alliance with Grundy. | An independently authored contamination dispute could offer remediation, refusal of coercive work or protection of residents. Ivy needs an actual observation/report, and may be absent. |
+| Jason Blood / Etrigan | D04 supports a bound pair with conflicting purposes; these sources establish no standing swamp residence or meeting with the other candidates. | A qualified referral about a documented anomaly could offer Blood a bounded consultation. Etrigan's arrival, shared knowledge, assistance or combat is not implied. |
+| Gotham occult investigators | Particular investigators and sources must be selected; the swamp name alone proves no case or agency mandate. | A resident, worker or investigator may compare conflicting records and transmit one sourced claim to a specified recipient. No automatic occult police unit, shared dossier or global rumor correction. |
+
+These hooks can be absent, false leads, mundane disputes or independently resolved
+incidents. No proposed pairwise relationship establishes another. The
+[geographic discovery contract](GOON_DARK_PROGRESSION_CONTRACT.md#11-slaughter-swamp--optional-geographic-lead-proposal)
+owns player consent, grounded uses, recovery and future dependencies.
+
 ## B01–B04. Existing Gotham bridges — not four mandatory bosses
 
 Existing detailed identity, relationship and encounter policies stay authoritative.
@@ -190,8 +304,9 @@ presumptive cult members. Ordinary-life support remains an independent authority
 
 ## Authority, availability and unresolved continuity choices
 
-All seven DARK records are **unimplemented, proposed optional/conditional late
-contacts**, not a guaranteed cast, employer list, power progression or faction.
+The seven initial DARK records and G01 Grundy are **unimplemented, proposed
+optional/conditional late contacts**, not a guaranteed cast, employer list, power
+progression or faction. G01 additionally requires the explicit DARK unlock gate.
 Personal encounter, trust, assistance and membership are distinct. No DARK entry
 belongs in the existing excluded-Milo slot or replaces an existing rogue.
 

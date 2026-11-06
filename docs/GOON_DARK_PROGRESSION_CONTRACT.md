@@ -234,3 +234,140 @@ sources and different motives. Grind risks are repeat consultations, contrived
 exposure and contact farming; finite causes/windows and exactly-once receipts
 must block them. What remains shallow is authored scene variety and unapproved
 power/recovery rules. **No new choice, event or persistent effect is implemented.**
+
+## 11. Slaughter Swamp — optional geographic lead proposal
+
+The [evidence/atlas supplement](GOON_DARK_CANON_REGISTRY.md#slaughter-swamp--geography-evidence-and-atlas-coverage)
+finds no current place record. This section assigns **no location ID or travel
+access**. It extends future discovery design, not geography or implemented rules.
+The “State Park” variant needs continuity approval; no current park authority,
+public opening or character home is assumed.
+
+### Grounded uses and a separate optional inquiry
+
+Possible original, ordinary uses include authorized grounds maintenance, delivery
+to an approved public work site, environmental-record comparison, community
+cleanup or a permitted recreational visit. These are future proposals, not new
+jobs, wages, services or access permissions. A player may complete ordinary work,
+receive only its separately funded contractual pay and return home without a
+mystical clue. No obligation to investigate is concealed in basic housing/work.
+
+| Decision / outcome | Required causal basis | Persistent consequence and safe alternative — all proposed |
+| --- | --- | --- |
+| Visit or finish ordinary work | Future approved access and actual ordinary contract, if any | No DARK adoption, encounter, supernatural knowledge, achievement or occult debt just for entering, inspecting or repeating a visit. Ordinary work remains available under its own terms. |
+| Check a disputed report | Actually received dated record/observation and a credible accessible source | Player learns only the transmitted claim and uncertainty; may correct an ordinary administrative error without confirming anything supernatural. |
+| Request a specialist referral | Existing late/opt-in eligibility, credible evidence/relationship and explicit decision; actual recipient availability | A specific recipient receives only the supplied material. An invitation may be absent/refused; famous contact, accurate interpretation and membership are never guaranteed. |
+| Protect someone or report harm | A witnessed need, lawful access and a feasible noncombat option | Specific witnesses/recipients may remember actual help or receive evidence. No automatic hero alignment, immunity, magical reward or citywide knowledge. |
+| Refuse, leave, miss or fail | No further supernatural consent required; bounded exit/recovery authored in advance | Preserve ordinary careers and safe return. Lost access to a finite lead is possible; no permanent forced faction, soul obligation or supernatural pursuit for declining. World facts may persist without pursuing this player. |
+
+Do not reskin a park errand into a mandatory Grundy battle or replay a published
+comic. Canon origin, current world cause, source observation, rumor, player
+belief and confirmed evidence stay distinct. No character automatically knows
+another's presence, intentions, transmissions or the protagonist's private acts.
+Any investigator needs an actual report/referral; any correction names its
+recipients. No visit-to-all-contacts broadcast or automatic supernatural unlock.
+
+### Smallest future slice and dependencies — approval required
+
+1. **Geography review first:** separately decide whether to add a peripheral place
+   at all, its name/continuity, ordinary frontage versus hazards, reachable exit
+   and atlas/version/adoption compatibility. Do not reuse Reed Marsh as a hidden
+   alias. Keep ordinary travel rules and a previewed affordable return/recovery.
+2. **Paper-only event first:** author one environmental-record discrepancy with
+   an ordinary resolution and an optional source-backed referral. Approve the
+   actual recipient/era and bounded information/costs before any implementation.
+   Neither a named rogue nor verified magic is necessary for this first slice.
+3. **Only if separately authorized:** use the current service-owned incident and
+   recipient-knowledge patterns with explicit adoption, stable event identities,
+   execution-time eligibility and exactly-once settlement. The current engine
+   supplies no general occult powers, ecology simulator or autonomous cast.
+
+Future acceptance must demonstrate zero state/RNG effects from inspection or
+rejected participation; grounded completion/return with no DARK state; truthful
+source timing and limited recipients; absence/false lead/refusal/missed/partial
+outcomes; no duplicated benefits from repeated visits or save/resume; historical
+save compatibility; unchanged three actions/day and eighteen travel units/day.
+These tests are **not implemented or executed** by this documentation mission.
+No free return, new travel mode, global clock or budget bypass is proposed.
+
+Additional approvals: whether and where the place belongs in this atlas; which
+park-name era to use; Grundy's incarnation/availability and Swamp Thing's actor;
+which ordinary activity and noncombat recovery to author; whether a later
+specialist referral is wanted at all. Existing eight DARK decisions stay open.
+This is an unnumbered future option, not a new milestone or gameplay authorization.
+
+## 12. Solomon Grundy — DARK-gated encounter contract
+
+**Design requirement:** significant Grundy encounters become eligible **only after
+the player has unlocked DARK progression**. This narrows G01's earlier optional
+late proposal; it does not add a second roster entry or change another character.
+The [G01 authority](GOON_DARK_CANON_REGISTRY.md#g01-solomon-grundy--cyrus-gold--location-linked-supplement)
+owns canon/continuity and identifies Slaughter Swamp as his primary Gotham
+association. The [atlas finding](GOON_DARK_CANON_REGISTRY.md#actual-atlas-result--absent-no-replacement-or-new-id)
+remains absent: no location, alias, route or place ID is created here.
+
+### Eligibility, occurrence and discovery are separate
+
+| Player/world condition | Permitted future behavior | Prohibited inference |
+| --- | --- | --- |
+| DARK locked or declined | Ordinary grounded work/visits remain viable if separately implemented; ordinary historical material may be available from an actual source. No significant Grundy scene or personalized live encounter hook. | No random Grundy ambush, forced supernatural involvement, branch unlock from visiting or injury imposed to tease future content. |
+| DARK unlocked, no eligible incident or lead | Continue ordinary play. World truth may include an independently caused incarnation/history, but player knowledge stays unchanged. | Unlock is not a spawn, location reveal, invitation, reliable current sighting or mandatory appointment. |
+| DARK unlocked plus independent incident and received source | Inspect a bounded claim/uncertainty; decide whether to verify, seek ordinary assistance, refuse or withdraw. An accessible source may be mistaken. | Knowing his historical swamp association is not proof that he is there now, that a witness is accurate or that he knows the player. |
+| Above plus actual availability, lawful/authorized access, consent and execution-time eligibility | Permit the authored noncombat involvement or escape/protection objective. Recheck action/TU, resources, custody, restrictions and opportunity status at execution. | No omniscient map marker, bypassed closure, automatic meeting, guaranteed victory or membership. |
+| Expired, resolved, absent incarnation or refused opportunity | Independent resolution and a source-limited aftermath; ordinary recovery remains accessible. | No late participation, fabricated presence, repeated payout or forced pursuit for refusing. |
+
+All positive conditions are required, not interchangeable. The general DARK
+unlock predicate is still an unimplemented design contract with milestones
+awaiting approval; no day, wealth, fight-count or grind threshold is invented.
+World occurrence must not be manufactured by the unlock or by entering a map
+cell. A future return/rebirth needs an independent cause and distinct incarnation
+history, not resetting an old event's settlement or replaying its benefits.
+
+### Proposed encounter and consequence matrix
+
+All rows are original The Goon adaptations. Injuries, care and named-rogue
+relationships are **future dependencies**, not existing Grundy mechanics. Any
+bodily effect needs a separately approved injury/recovery authority before a
+harm-bearing scene can be implemented. Exact finite costs are authored and shown
+before commitment; existing three-action/eighteen-TU daily limits still apply.
+Inspection/refusal cannot secretly spend resources or advance unrelated systems.
+
+| Optional path / motivation | Cost, risk and possible result | Persistent effects, provenance and recovery |
+| --- | --- | --- |
+| **Hostile / survival:** protect someone or escape an already threatening incarnation | Risk lost time/resources and injury; seek distance/help rather than a mandatory duel. An ordinary human has no guaranteed hit, victory, invulnerability or power reward. | Any actual injury/loss persists through its approved authority. Only observers/recipients receive an account; a failed rescue or observed retaliation can change particular relationships/access. Disengagement and ordinary assistance must be authored. |
+| **Investigative:** check a disputed sighting or historical account | Spend a bounded action/travel cost when committing to verification; evidence can be incomplete, wrongly attributed or inaccessible. | Preserve observation, source/time, claim and recipient. Success may correct one account or open a later inquiry; partial findings need not identify Grundy or grant access to him. Unverified allegations do not automatically become police truth. |
+| **Compassionate:** assist a vulnerable person or offer bounded non-coercive help when safe | Possible material/time cost; Grundy may refuse, misunderstand or remain dangerous. Compassion is not a guaranteed calming spell or proof of reform. | An actually informed witness or selected incarnation may remember specific help, affecting limited trust/access. No automatic ally, bodyguard, team membership, paid favor or universal gratitude; safe withdrawal remains a valid choice. |
+| **Avoidance:** leave a credible danger, choose another task or report a specific hazard | May forgo a finite lead/reward or incur ordinary rerouting cost after actual travel; no fabricated refund or free escape movement. | A sourced warning reaches only its recipients; an appropriate temporary restriction may persist through its own authority. No bravery penalty, permanent career lock or supernatural punishment for staying away. |
+| **Refusal:** decline the offer before involvement | No forced payment, injury or encounter; the incident can progress without the player. | Record refusal once only if an offer was actually received. No invented meeting/relationship change or hostility for an unseen choice; ordinary employment/home/reform remain viable. |
+| **Failure / partial completion:** verification fails, only some civilians are helped, or withdrawal occurs | Disclosed bounded losses and unresolved claims may remain; no success reward for unmet objectives and no universal catastrophe. | Apply only supported injury/resource/relationship effects once; preserve what was and was not learned. Permit ordinary care/support and later source-backed correction; survival does not force villain/hero alignment. |
+| **Missed / independent resolution:** never discover, arrive too late or remain uninvolved | No participation credit or manufactured reward; independent world consequences may still occur. | Record the actual resolution without player knowledge until a plausible later channel. No automatic injury to the absent player, invented refusal, global witness account or permanent ban on ordinary work. |
+
+Success means the chosen bounded objective, not defeating Grundy. No path
+guarantees money, a personal meeting, safe negotiation or complete truth.
+Preparation/withdrawal must offer meaningful choices, not promise immunity after
+voluntary danger. Do not copy a published fight, tragedy or rescue chain.
+
+### Knowledge, lasting aftermath and future validation
+
+Keep **world truth** (incarnation, cause, presence, actual acts), **source
+observations** (who saw what and when), **player knowledge** (received claims and
+their limits) and **each NPC/institution's knowledge** distinct. Witness accounts
+need not agree. Grundy's current memory/recognition is itself era/incarnation-
+specific, not a copy of the player's journal. Neither a new incarnation nor a
+correction retroactively teaches every witness or deletes preserved accounts.
+
+Persist warranted injuries/recovery, witnessed conduct, relationship changes and
+access decisions through their appropriate future authorities, with cause and
+exactly-once receipts. No automatic criminal record from a frightening report;
+ordinary evidence/institutional eligibility still applies. No magical healing,
+erased rent/sentence, reset human mortality or inherited resurrection. Repeat
+visits, alias changes, retry and save/reload cannot farm help, trust or rewards.
+
+Before implementation, approve the incarnation/era, actual DARK unlock predicate,
+original incident/lead and knowledge limits, noncombat risk/recovery, injury
+authority if needed, and atlas/adoption contract if the swamp is added. Future
+tests must cover the locked/unlocked-without-lead gates, independent occurrence,
+absence/expiry, every matrix path, source ordering, rejected-command/RNG purity,
+read-only inspection, exactly-once aftermath, rebirth without replayed rewards,
+historical saves and unchanged budgets. These are **future tests, not executed
+gameplay coverage**. No new event, scheduler, health system or combat is authorized.

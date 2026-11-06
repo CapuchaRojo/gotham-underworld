@@ -8,8 +8,10 @@ supersede established identity records.
 
 ## Authority, fields and reading rules
 
-The Task Force X addendum adds nine specialized references below (197 total
-index records). [Its contract](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md) owns new
+The Task Force X addendum added nine specialized references (197 records at that
+checkpoint). The Slaughter Swamp addendum adds one comics-qualified Solomon
+Grundy reference below: **198 total index records**, not 198 active characters.
+[The Task Force X contract](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md) owns new
 Squad/government canon context and proposed screening, not a replacement criminal
 organization registry. Existing Deadshot, Harley Quinn and Warren White identities
 stay unchanged; their Squad-specific context is supplemental, not a second actor.
@@ -319,10 +321,23 @@ see C10–C12 in the [specialized context](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.
 Being a Squad member in one source, an Arkham patient, an acquaintance or a subject
 of a rumor does not select a current role or make the player a member.
 
+## Slaughter Swamp character supplement — proposed, no location adoption
+
+| Identity / documentation key | Aliases / linked identities | Continuity | Affiliation | Relationships | Proposed role | Narrative availability | Implementation | Authority |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Solomon Grundy / Cyrus Gold - `dc.character.solomon_grundy.cyrus_gold.comics_candidate` | Cyrus Gold / Solomon Grundy; one indexed identity, not two rewards | Comics era/incarnation pending; animated/TV versions not merged | Source/era-specific; no default faction or DARK team | Ref: G01; primary Gotham association Slaughter Swamp, edition-specific ties | Supernatural antagonist / tragic antihero, continuity-dependent; not a required boss | Significant encounters only after DARK unlock plus independent cause, sourced discovery and consent; no automatic spawn/location reveal | Design only | [G01](GOON_DARK_CANON_REGISTRY.md#g01-solomon-grundy--cyrus-gold--location-linked-supplement); [eligibility/outcomes](GOON_DARK_PROGRESSION_CONTRACT.md#12-solomon-grundy--dark-gated-encounter-contract) |
+
+Existing Butch Gilzean remains a separate, unbound Gotham-TV reference; this row
+does not select his later identity or import his relationships into the comics
+candidate. [Geography evidence and atlas coverage](GOON_DARK_CANON_REGISTRY.md#slaughter-swamp--geography-evidence-and-atlas-coverage)
+owns the absent-location finding. No location ID, atlas record or generic marsh
+alias is created. Grounded work and an optional source-backed inquiry are
+separate proposals in the [discovery contract](GOON_DARK_PROGRESSION_CONTRACT.md#11-slaughter-swamp--optional-geographic-lead-proposal).
+
 ## DARK progression and approval boundaries
 
-The [DARK canon registry](GOON_DARK_CANON_REGISTRY.md) owns the seven new
-candidates and four existing-Gotham bridge notes. The [discovery contract](GOON_DARK_PROGRESSION_CONTRACT.md)
+The [DARK canon registry](GOON_DARK_CANON_REGISTRY.md) owns the seven initial
+candidates, G01 Grundy supplement and four existing-Gotham bridge notes. The [discovery contract](GOON_DARK_PROGRESSION_CONTRACT.md)
 owns optional late eligibility, separate consent, the nonmandatory four-encounter
 achievement idea, recipient-specific consequences, ordinary recovery, roadmap
 and approval questions. No row guarantees a named encounter or membership.
