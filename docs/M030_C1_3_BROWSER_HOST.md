@@ -77,6 +77,13 @@ Rules enforced before checkpoint opening or browser launch:
 - Index script/link/image/source resource URLs must resolve to manifest entries.
   Source-only `/src/main.tsx`, external resources, inline scripts/styles,
   event-handler attributes, base tags and iframes fail index validation.
+- Duplicate HTML attributes are rejected before dictionary conversion, including
+  case variants normalized by HTMLParser. Unsupported resource attributes are
+  rejected: `srcset`, `imagesrcset`, `poster`, `data`, `background`, `srcdoc`,
+  `manifest`, `ping`, `codebase`, `archive`, `action` and `formaction`. Candidate
+  lists are not partially parsed. Approved absolute/relative `src` and `href`
+  references retain the existing manifest allowlist. This remains a narrow index
+  validator, not a general-purpose HTML sanitizer or JavaScript/CSS analyzer.
 - Asset bytes are preloaded and immutable; HTTP requests never open paths.
 
 No directory listings, SPA fallback, source maps, Python files, saves, ZIPs,
@@ -275,3 +282,40 @@ Review verified no changes to `game_service.py`, career/save schemas,
 mobility, gameplay content or the frontend export. Python syntax, documentation
 links and diff whitespace checks passed. No dependency was installed, no React
 build or browser-gameplay test was run, and nothing was pushed, merged or deployed.
+
+### M030-C1.3-B — targeted audit corrections
+
+Starting commit: `dc70ef06a5d8a27def5fc39c040ea9c07ee7b8a6`, on the existing
+`feature/m030-c1-3-browser-host` branch. Only the asset validator, host tests and
+this contract change. Release pins, manifest rules, CSP, routes, bootstrap,
+checkpoint formats, gameplay and frontend source remain unchanged.
+
+The duplicate-attribute/resource regressions were executed before the production
+repair: two tests reported 17 failing subcases, while approved resource references
+passed. After repair, the focused host suite ran **45 tests in 4.348s: 44 passed,
+one BLOCKED/skipped**. Existing bridge HTTP/security, persistence, crash/recovery
+and replay tests passed **53/53 in 9.621s**.
+
+The repaired reparse test first loads an ordinary control bundle. Its selective
+mock changes only the target file's reparse bit, preserving real directory modes
+and all other stat attributes. The target is rejected without opening it; the
+ordinary bundle loads again after mock removal. The actual Windows junction test
+is retained. Direct file-symlink acceptance remains BLOCKED by WinError 1314.
+
+The CLI preservation test now compares post-execution bytes against a snapshot
+taken before CLI invocation. Two deliberate, temporary in-memory fault injections
+proved the assertions: bypassing the reparse-bit guard produced one assertion
+failure, and injecting a CLI `wait` advanced the temporary career to day one and
+produced one assertion failure. Neither produced a harness error. Both repaired
+tests passed after the injections were removed; production gameplay was never
+modified on disk.
+
+Eighty negative Host/Origin/Bearer HTTP probes returned their expected errors;
+the original valid bootstrap code remained redeemable. There were no handler
+errors or checkpoint/RNG changes. Final full discovery ran **620 tests in
+173.292s: 619 passed, one BLOCKED/skipped**. The original bridge tests, port
+stability, subprocess receipt recovery and deterministic Tess parity remain
+green. No other production file, API/bootstrap behavior, release pin, CSP,
+save schema or frontend source changed. The prior browser/packaging, direct
+file-symlink and semantic-content-review limitations remain; no blocked acceptance
+case is claimed passed by these corrections.

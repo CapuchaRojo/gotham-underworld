@@ -30,6 +30,10 @@ _ID = re.compile(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}')
 _HASH = re.compile(r'[0-9a-f]{64}')
 _FILE = re.compile(r'assets/[A-Za-z0-9][A-Za-z0-9._-]{0,127}')
 _QUARANTINE = re.compile(r'court[\s_.-]*of[\s_.-]*owls|\btalons?\b', re.I)
+_UNSUPPORTED_RESOURCE_ATTRIBUTES = frozenset({
+    'srcset', 'imagesrcset', 'poster', 'data', 'background', 'srcdoc',
+    'manifest', 'ping', 'codebase', 'archive', 'action', 'formaction',
+})
 
 
 def _require(condition):
@@ -72,7 +76,12 @@ class _IndexLinks(HTMLParser):
         self.urls = urls
 
     def handle_starttag(self, tag, attrs):
+        # HTMLParser normalizes attribute names. Reject duplicates before dict
+        # conversion: browsers retain the first, whereas dict retains the last.
+        names = [name for name, _ in attrs]
+        _require(len(names) == len(set(names)))
         values = dict(attrs)
+        _require(not (_UNSUPPORTED_RESOURCE_ATTRIBUTES & values.keys()))
         _require(tag not in ('base', 'iframe', 'style') and 'style' not in values)
         _require(not any(name.startswith('on') for name in values))
         if tag == 'script':

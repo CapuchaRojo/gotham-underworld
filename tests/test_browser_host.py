@@ -62,6 +62,12 @@ class AssetTests(unittest.TestCase):
         digest = self.pin if manifest is None else pin(self.root, manifest)
         return assets.load_bundle(self.app, 'host-test', digest)
 
+    def load_index(self, body):
+        (self.root / 'public/index.html').write_bytes(body)
+        manifest = deepcopy(self.manifest)
+        manifest['files'][0].update(size=len(body), sha256=hashlib.sha256(body).hexdigest())
+        return self.load(manifest)
+
     def test_verified_bytes_are_immutable_and_detached_from_filesystem(self):
         bundle = self.load()
         self.assertEqual(set(bundle.assets), {'/', '/assets/test.js', '/assets/test.css'})
@@ -131,10 +137,43 @@ class AssetTests(unittest.TestCase):
                      b'<script src="https://example.com/script.js"></script>',
                      b'<script>console.log("inline")</script>', b'<div style="color:red">test</div>'):
             with self.subTest(body=body):
-                (self.root / 'public/index.html').write_bytes(body)
-                changed = deepcopy(self.manifest)
-                changed['files'][0].update(size=len(body), sha256=hashlib.sha256(body).hexdigest())
-                with self.assertRaises(BridgeError): self.load(changed)
+                with self.assertRaises(BridgeError): self.load_index(body)
+
+    def test_index_rejects_duplicate_attributes_in_either_order(self):
+        for body in (b'<script src="/assets/missing.js" src="/assets/test.js"></script>',
+                     b'<script src="https://example.invalid/x.js" src="/assets/test.js"></script>',
+                     b'<script src="/assets/test.js" src="/assets/missing.js"></script>',
+                     b'<script src="/assets/test.js" src="https://example.invalid/x.js"></script>',
+                     b'<script src="/assets/test.js" SRC="/assets/test.js"></script>',
+                     b'<link href="/assets/missing.css" href="/assets/test.css">'):
+            with self.subTest(body=body), self.assertRaises(BridgeError): self.load_index(body)
+
+    def test_index_rejects_unsupported_resource_attributes(self):
+        for body in (b'<img srcset="/assets/missing.png 1x">',
+                     b'<img srcset="https://example.invalid/x.png 1x">',
+                     b'<source srcset="/assets/missing.png 1x, https://example.invalid/x.png 2x">',
+                     b'<link rel="preload" imagesrcset="https://example.invalid/x.png 1x">',
+                     b'<video poster="/assets/missing.png"></video>',
+                     b'<object data="https://example.invalid/x"></object>',
+                     b'<body background="/assets/missing.png"></body>',
+                     b'<html manifest="/assets/missing.appcache"></html>',
+                     b'<a ping="https://example.invalid/x">link</a>',
+                     b'<object codebase="https://example.invalid/"></object>',
+                     b'<object archive="/assets/missing.jar"></object>',
+                     b'<form action="https://example.invalid/"></form>',
+                     b'<button formaction="https://example.invalid/">submit</button>'):
+            with self.subTest(body=body), self.assertRaises(BridgeError): self.load_index(body)
+
+    def test_index_preserves_approved_absolute_and_relative_references(self):
+        for prefix in ('/', ''):
+            body = (f'<script type="module" crossorigin src="{prefix}assets/test.js"></script>'
+                    f'<link rel="stylesheet" href="{prefix}assets/test.css">'
+                    '<div id="root" data-testid="host-fixture"></div>').encode()
+            with self.subTest(prefix=prefix):
+                bundle = self.load_index(body)
+                self.assertEqual(bundle.assets['/'].body, body)
+                self.assertIn('/assets/test.js', bundle.assets)
+                self.assertIn('/assets/test.css', bundle.assets)
 
     def test_court_text_and_reference_paths_are_quarantined(self):
         target = self.root / 'public/assets/test.js'
@@ -152,11 +191,26 @@ class AssetTests(unittest.TestCase):
                 assets.load_bundle(self.app, ident, self.pin)
 
     def test_reparse_attribute_is_rejected_before_open(self):
-        actual = (self.root / 'public/assets/test.js').lstat()
+        target = self.root / 'public/assets/test.js'
+        self.assertIn('/assets/test.js', self.load().assets)  # Valid control.
+        lstat, open_file = Path.lstat, Path.open
+        opened = []
         class Reparse:
-            st_mode = actual.st_mode
-            st_file_attributes = stat.FILE_ATTRIBUTE_REPARSE_POINT
-        with patch.object(Path, 'lstat', return_value=Reparse()), self.assertRaises(BridgeError): self.load()
+            def __init__(self, actual):
+                self.actual = actual
+                self.st_file_attributes = getattr(actual, 'st_file_attributes', 0) | stat.FILE_ATTRIBUTE_REPARSE_POINT
+            def __getattr__(self, name):
+                return getattr(self.actual, name)
+        def target_lstat(path, *args, **kwargs):
+            actual = lstat(path, *args, **kwargs)
+            return Reparse(actual) if path == target else actual
+        def observe_open(path, *args, **kwargs):
+            if path == target: opened.append(path)
+            return open_file(path, *args, **kwargs)
+        with patch.object(Path, 'lstat', new=target_lstat), patch.object(Path, 'open', new=observe_open):
+            with self.assertRaises(BridgeError): self.load()
+        self.assertEqual(opened, [])
+        self.assertIn('/assets/test.js', self.load().assets)
 
     def test_actual_file_symlink_is_rejected(self):
         target = self.root / 'public/assets/test.js'
@@ -625,6 +679,7 @@ with BrowserHost.open(sys.argv[2],sys.argv[3],bundle) as host:
     def test_cli_opens_secret_free_url_and_can_reauthorize_then_quit(self):
         args = ['browser_host.py', '--checkpoint', str(self.checkpoint), '--bundle-id', 'host-test',
                 '--manifest-sha256', self.bundle.manifest_sha256, '--host-config', str(self.config)]
+        before = self.checkpoint.read_bytes()
         self.host.close()
         output = io.StringIO()
         with patch.object(sys, 'argv', args), patch('browser_host.load_bundle', return_value=self.bundle), \
@@ -635,7 +690,7 @@ with BrowserHost.open(sys.argv[2],sys.argv[3],bundle) as host:
         self.assertRegex(url, r'^http://127\.0\.0\.1:[0-9]+/$')
         self.assertEqual(output.getvalue().count('One-time authorization code'), 2)
         self.assertNotIn('Session capability', output.getvalue())
-        self.assertEqual(self.checkpoint.read_bytes(), self.host.bridge._store.path.read_bytes())
+        self.assertEqual(self.checkpoint.read_bytes(), before)
 
 
 if __name__ == '__main__':
