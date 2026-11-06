@@ -12,6 +12,13 @@ a claim that the proposed workplace rules are canonical.
 
 ## Reading the matrix
 
+Task Force X and A.R.G.U.S. are specialized government/program context in the
+[master index](GOON_MASTER_ROSTER.md) and [recruitment contract](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md),
+not additional street gangs, district accounts or automatic employers in O01–O26.
+Existing organizational records and the White network remain intact. The proposed
+White hostility check is role-specific risk design, not proof that he commands
+Waller or canonically approves Squad recruits. No five-condition rule is DC lore.
+
 The [master character/faction index](GOON_MASTER_ROSTER.md) links these records
 without another organization/alliance registry. The [DARK proposals](GOON_DARK_CANON_REGISTRY.md)
 are not a unified faction, guaranteed Justice League Dark membership or new

@@ -29,6 +29,23 @@ schema or loader is introduced by the Markdown registry.
 
 ## Current boundary and constraints
 
+### Task Force X contract — research and design only
+
+The [specialized contract](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md) owns new
+government/Squad context and the five-condition proposal. The [master index](GOON_MASTER_ROSTER.md)
+links it while original rogue identities and criminal organization records stay
+with their existing authorities. No program marker, loader, save field, event ID,
+backend, new case type, law adapter or Waller actor is implemented.
+
+Current legal outcomes can supply limited source material, not a full criminal
+severity/sentence/supervision system. Any later assessment needs narrow approved
+record/referral/authority adapters; use source-backed receipt/order and recipient
+views rather than copying the whole world into an omniscient dossier. Missing
+domains stay unknown, historical dates stay null, and canonical political power
+never authorizes reading private contact memories. Proposed alternatives do not
+silently complete the special route. Preserve atomic service mutation, budgets,
+stable history, offline replay, explicit adoption and exactly-once effects.
+
 ### Master index and optional DARK design authority
 
 The [master index](GOON_MASTER_ROSTER.md) is documentation navigation, not a

@@ -10,6 +10,9 @@
 - Mission 029 addendum continues that branch from local research commit
   `4a9818697c77e526d76cb27d1d79a253ad1701c8`: master index and optional DARK
   canon/progression documentation only; no runtime, UI or save changes
+- Task Force X design addendum continues from
+  `f8f43ecce769bd8706e765ad6ccf356940f69818`: restricted recruitment canon,
+  five-condition proposal and institutional provenance only; no implementation
 - Implementation branch: `feature/m020-ordinary-gotham`, from verified master
   `6682019857ccad4553fcdc04f7a7e7e046b2def0`; isolated baseline 476 tests passed
 - PR #17 first merged into the audit branch. PR #18 subsequently integrated that
@@ -632,3 +635,103 @@ possession/horror consent, bounded costs/zero-cash recovery and one small slice
 with its adoption/replay contract. These remain open design decisions, not a
 request to implement now. Roadmap placement is optional/late and unnumbered;
 no M021, broad magic engine, Court content, GitHub publication or merge is begun.
+
+## Task Force X design addendum — research and approval contract only
+
+Starting clean branch/HEAD: `feature/m029-underworld-registry` /
+`f8f43ecce769bd8706e765ad6ccf356940f69818`. Master remains `74a5fab`.
+No Task Force X contract or gameplay existed. The prior encounter proposal's
+“not freely joinable” policy remains: special assessment, consent, membership
+and deployment are distinct. Creature Commandos, DARK and Joker initiation are
+separate and receive no automatic recruitment or cross-unlock.
+
+### Exact changed-file inventory and deliverables
+
+1. `docs/GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md` — new canonical specialized
+   contract: inspected implementation limits, twelve canon/context records,
+   all five original special-route conditions, government/character provenance,
+   four stages, eight distinct outcome rows, seven alternative/softlock cases,
+   future dependencies/acceptance and ten explicit approval decisions.
+2. `docs/GOON_MASTER_ROSTER.md` — nine new source-linked references, bringing
+   the author-only index from 188 to **197**, not 197 active people. Includes
+   Waller, Junior/Senior Flag as distinct records, Economos, Harcourt, Task Force X,
+   A.R.G.U.S., Belle Reve and a vacant original government-liaison role. Existing
+   Lawton/Harley/White and all earlier records remain unchanged.
+3. `docs/GOON_ROGUE_ENCOUNTERS_DESIGN.md` — reconcile the restricted new proposal
+   with prior non-free-join policy; no actor or generic Squad admission added.
+4. `docs/GOON_INSTITUTIONS_AND_RECOVERY.md` — cross-reference actual Arkham access,
+   distinct prison/care/supervision authority and explicit modifications/relief.
+5. `docs/GOON_FACTION_EMPLOYER_MATRIX.md` — point to specialized government context
+   without turning programs/agencies into more district gangs or White into a handler.
+6. `docs/GOON_CRIMINAL_CAREER_WEB.md` — optional ordinary-person pathway and viable
+   refusal, reform, lawful work and survival; no forced graduation into combat.
+7. `docs/GOON_CONTENT_ARCHITECTURE.md` — keep source/identity owners, service,
+   historical unknowns and recipient views; no new backend/schema/event hooks.
+8. `docs/GOON_MILESTONE_ROADMAP.md` — design milestone and unnumbered later bounded
+   assessment recommendation, with foundations before recruitment or operations.
+9. `README.md` — contract navigation/status only.
+10. `PROJECT_STATE.md` — this source/validation/delivery record and scope status.
+
+### Findings and source limits
+
+The user route remains **E1 AND E2 AND E3 AND E4 AND E5**: substantial documented
+criminal record, several consequential Deadshot encounters, appropriate Harley
+interaction during a lawfully accessed Arkham story, no unresolved severe White
+hostility, and compliance with actual applicable parole/probation conditions.
+No arbitrary conviction/heat, encounter-count or relationship-score threshold
+is chosen. Proven/not-satisfied/unknown and supported non-applicability must be
+distinguished; absence of fields cannot prove any condition.
+
+Actual code supplies validated legal outcomes/fines and accelerated custody,
+not offense gravity, full sentences, probation/parole, named rogue histories or
+government access. Historical null dates/fines remain unknown. A record of a
+dismissal, heat, job count, free custody or paid fine cannot substitute for a
+substantial conviction record, lawful Arkham access or supervision compliance.
+Current M019 intake is not a government recruitment/record service.
+
+Publisher research includes DC's Waller, Squad, Flag, Deadshot and Harley profiles;
+White financial-crime account; Economos/Harcourt comics-versus-screen comparison;
+Flag Sr. history; later Waller/Harcourt office/life-state premises; Arkham-game
+identity/recruitment material. Citations and scope limits accompany each claim in
+the new contract. No full comic, episode or film was reviewed. Profiles/solicitations
+are not a universal current roster; blocked direct pages/indexed excerpts are
+disclosed. No reviewed source makes White a compulsory Squad recruiter or grants
+Waller omniscience. His special-route condition is original operational-risk design.
+
+Canon coercion/danger is acknowledged without authorizing surprise implantation,
+forced acceptance or compulsory deployment. World truth, sources, government
+intelligence, actual Waller briefings, criminal rumors and player knowledge remain
+separate. Corrections reach named recipients. No dossier reads every private
+memory, medical record, legal event or source merely because Waller is powerful.
+
+The proposed A–D event identifies, assesses, offers a decision and records an
+aftermath. Acceptance, negotiation, investigation, refusal, reporting, partial
+failure, missed/canceled offers and betrayal/deception have distinct futures.
+Neither assessment nor signing automatically grants freedom, immunity, wealth,
+expungement, superpowers, sentence changes or hero/villain affiliation. An approved
+alternative could enable later consideration after a missed famous encounter,
+but cannot falsely complete a condition or promise eventual membership.
+
+### Validation and approval boundary
+
+Documentation checks verify full old-row/ID preservation, unique nonempty master
+records, all five conditions, twelve context records, four stages, eight outcome
+rows, seven alternative cases, ten approval questions, local file/heading links,
+Markdown tables, UTF-8/fences and `git diff --check`: **479 relative file/heading/
+code links and 59 tables passed**. Minor/encounter rosters stay
+36; the general criminal catalogue stays 26; seven DARK records remain unchanged.
+Milo stays excluded. The separate Court gate is preserved, with no early/middle
+symbols, rumors, Talons, references, agency clues, public discovery or foreshadowing.
+
+Exactly ten Markdown files change (one new, nine updated). No Python, content JSON,
+tests, fixtures, saves, event IDs, RNG, navigation, budgets, backend, Native.Builder
+UI or handoff package changed. Regression tests were **not rerun** for this design
+mission; prior 522-test results are historical, not new execution. No new gameplay
+choice, persistent effect, source adapter or recruitment event is implemented.
+
+Approval remains required for continuity/personnel, record interpretation,
+distinct Deadshot evidence, Harley access, White conflict/negative-evidence scope,
+actual supervision authority, alternate route scope, costs/terms/recovery,
+coercion/consent and one future adoption/replay slice. Recommend that assessment
+slice only after the missing institutional/encounter foundations are approved.
+No M021, deployment, push, PR creation or merge is begun by these documents.

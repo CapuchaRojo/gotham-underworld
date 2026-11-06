@@ -126,6 +126,15 @@ See [content architecture](GOON_CONTENT_ARCHITECTURE.md),
 
 ## Continuity and fictional legal contract
 
+The [Task Force X proposal](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md) reuses these
+institutional distinctions without implementing prison, care or supervision.
+Its Harley/Arkham condition requires actual authorized access and an appropriate
+available actor, not psychiatric confinement from conviction. Blackgate, Arkham
+and the separately researched Belle Reve are not interchangeable. A government
+invitation does not waive actual sentence/conditions; modification/transfer or
+any relief needs its own explicit authority. Missing supervision data is not a
+compliance certificate. Existing M019 desks do not already process this new topic.
+
 Before implementation, choose a versioned project continuity and document each
 institution's mandate, available staff/characters, admission authority, review
 interval, confidentiality exceptions and release/transfer rules. No continuity

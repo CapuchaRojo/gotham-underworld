@@ -8,6 +8,12 @@ supersede established identity records.
 
 ## Authority, fields and reading rules
 
+The Task Force X addendum adds nine specialized references below (197 total
+index records). [Its contract](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md) owns new
+Squad/government canon context and proposed screening, not a replacement criminal
+organization registry. Existing Deadshot, Harley Quinn and Warren White identities
+stay unchanged; their Squad-specific context is supplemental, not a second actor.
+
 - Identity/key resolves an actor, distinct bound pair, linked persona, organization,
   category, mantle or vacant role. New index/runtime keys are documentation
   references only, never saved IDs or aliases replacing legacy keys.
@@ -288,6 +294,30 @@ roles are explicit gaps, not fabricated named DC personnel.
 | Identity / documentation key | Aliases / linked identities | Continuity | Affiliation | Relationships | Proposed role | Narrative availability | Implementation | Authority |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Court of Owls restriction - `index.policy.court_of_owls` | Policy reference only, not a public roster label | Separate permission/continuity decision | No DARK affiliation/cross-unlock | No invented ties/clues | Separate optional late-progression policy | Entirely undiscoverable before final third of meaningful progression | Policy only, no runtime content | [Approved restriction](GOON_ROGUE_ENCOUNTERS_DESIGN.md#mission-026-approved-roster-restriction--design-only) |
+
+## Task Force X and government context — restricted proposals
+
+No row implements a handler, program, prison, agency, source feed or recruitment
+command. Offices, life states, jurisdiction and personnel require a compatible
+era. The special five-condition route is an original proposal, not canon law or
+free membership. Ordinary employment/reform/survival remain complete paths.
+
+| Identity / documentation key | Aliases / linked identities | Continuity | Affiliation | Relationships | Proposed role | Narrative availability | Implementation | Authority |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Amanda Waller - `dc.character.amanda_waller.comics_candidate` | Amanda Waller | Comics Waller-era candidate; office/life state unselected | Selected government/program mandate only | Ref: actual chain of command; no omniscient dossier | Conditional decision-maker | Program authority, capacity and actual received briefing required | Design only | [C01](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+| Task Force X - `dc.organization.task_force_x.waller_era_candidate` | Suicide Squad in selected Waller-era context | Earlier teams/comics/screen versions not automatically merged | Selected government program | Member/handler roles separately consented; not Creature Commandos | Rare assessment/service pathway, not a street faction | Five-condition route or separately approved alternative; no guaranteed offer | Design only | [C02](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+| Rick Flag Jr. - `dc.character.rick_flag_jr.comics_candidate` | Rick Flag; not his father | Selected comics era/life state pending | Military/program role per source | Ref: command and individual obligations, not universal obedience across eras | Possible assessor/liaison | Actual authorized role and availability | Design only | [C03](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+| Rick Flag Sr. - `index.character.rick_flag_sr.context_only` | Senior Flag; not Junior | Historical/screen role context, not a merged actor | Ref: selected team/agency only | Father/son are distinct; no shared memories or restored life state | Continuity comparison, no chosen handler | Context only until era approval | Design only / context | [C04](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+| John Economos - `dc.character.john_economos.comics_candidate` | John Economos | Comics warden versus screen technical role must be selected | Actual Belle Reve/program/agency role only | Ref: scoped institutional authority, no universal file access | Possible records intermediary | Actual office, authority and capacity | Design only | [C05](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+| Emilia Harcourt - `dc.character.emilia_harcourt.pending_continuity` | Emilia Harcourt | Comics/screen role, allegiance and life state unselected | Source/era-specific mandate | Ref: not all incarnations or agency roles simultaneously | Optional liaison candidate | Held pending continuity/authority approval | Design only | [C06](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+| A.R.G.U.S. - `dc.organization.argus.pending_continuity` | ARGUS | Particular comics/screen agency mandate, not every portrayal | Only approved institutional scope | No assumed control over all police/courts/care | Government context, not district warfare participant | No default world-wide intel feed | Design only | [C07](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+| Belle Reve - `dc.institution.belle_reve.squad_candidate` | Belle Reve Prison | Selected Squad setting pending | Separate custodial/program institution | Not Blackgate or Arkham; no inferred transfer | Research context for corrections/recruitment | No current atlas place or player access | Design only | [C08](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+| Government recruitment liaison - `index.role.task_force_x_liaison` | Original vacant role, no invented named canon officer | Original role proposal | Specific verified mandate only | Limited records/referrals and actual briefing recipients | Authenticate issuer, assess or deliver invitation | Source/access/capacity and consent-dependent | Design only / vacant role | [C09](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context) |
+
+Existing Lawton, Harley and White rows resolve to their original detailed owners;
+see C10–C12 in the [specialized context](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md#2-canon-and-continuity-context).
+Being a Squad member in one source, an Arkham patient, an acquaintance or a subject
+of a rumor does not select a current role or make the player a member.
 
 ## DARK progression and approval boundaries
 

@@ -212,6 +212,14 @@ need separate future review; the secret gate itself is already approved.
 
 ## 4. Joinability and separate milestones
 
+The [Task Force X design addendum](GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md)
+proposes a rare five-condition assessment route, with voluntary decisions and
+source-backed institutional clearance. The historical initial-access table below
+still means **not freely joinable**: a Deadshot/Harley encounter never enrolls
+the player, and assessment is not deployment. This new proposal adds no actor,
+mission or guaranteed recruitment. Creature Commandos remain separate/unchanged;
+Warren White is not asserted to be a canonical handler or government veto-holder.
+
 | Organization/relationship — all classifications proposed | Initial access model | Guardrail |
 | --- | --- | --- |
 | Penguin/Black Mask/Two-Face/Riddler networks | Potential contract, trial association and later separately accepted affiliation. | Employment is not instant faction ownership; do not rename Harbor/Carnival/Iron or reuse their join slot silently. |
