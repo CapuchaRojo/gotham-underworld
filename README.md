@@ -29,6 +29,12 @@ No DC license is claimed, and the working title is not legally cleared.
 
 ## Durable local engine bridge — Mission 030-C1
 
+The opt-in [C1.3 browser host](docs/M030_C1_3_BROWSER_HOST.md) adds pinned local
+asset serving, one-time authorization and stable-port resume for existing bridge
+careers. It requires an independently approved compiled bundle; actual React
+compatibility and browser gameplay integration remain blocked and unimplemented.
+The headless API below remains available.
+
 The standard-library [C1 bridge](docs/M030_C1_DURABLE_ENGINE_BRIDGE.md) provides a
 loopback JSON API, player-safe projection and atomic world/request-receipt
 checkpoints. It reuses authoritative Python commands and preserves three actions

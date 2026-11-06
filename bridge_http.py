@@ -19,13 +19,13 @@ REJECTION_DRAIN_SECONDS = 0.2
 class BridgeServer(ThreadingHTTPServer):
     daemon_threads = True
 
-    def __init__(self, bridge, port=0):
+    def __init__(self, bridge, port=0, *, handler_class=None):
         if type(port) is not int or not 0 <= port <= 65535:
             raise ValueError('Invalid loopback port')
         self.bridge = bridge
         self.capability = secrets.token_urlsafe(32)
         self._slots = threading.BoundedSemaphore(8)
-        super().__init__(('127.0.0.1', port), Handler)
+        super().__init__(('127.0.0.1', port), Handler if handler_class is None else handler_class)
         self.authority = f'127.0.0.1:{self.server_port}'
         self.origin = 'http://' + self.authority
 
@@ -123,13 +123,13 @@ class Handler(BaseHTTPRequestHandler):
         if self.headers.get('Transfer-Encoding') is not None:
             raise BridgeError('INVALID_HEADERS', 'Transfer encodings are not supported.')
 
-    def _body(self):
+    def _body(self, limit=MAX_REQUEST_BYTES):
         length = self.headers.get('Content-Length', '')
         if not length.isascii() or not length.isdecimal() or len(length) > 8:
             raise BridgeError('INVALID_LENGTH', 'A bounded Content-Length is required.')
         length = int(length)
-        if length > MAX_REQUEST_BYTES:
-            raise BridgeError('REQUEST_TOO_LARGE', 'Request exceeds 16384 bytes.', 413)
+        if length > limit:
+            raise BridgeError('REQUEST_TOO_LARGE', f'Request exceeds {limit} bytes.', 413)
         if self.headers.get('Content-Type', '').lower() != 'application/json':
             raise BridgeError('INVALID_CONTENT_TYPE', 'Expected application/json.', 415)
         try:

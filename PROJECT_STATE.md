@@ -738,6 +738,12 @@ No M021, deployment, push, PR creation or merge is begun by these documents.
 
 ## Mission 030-C1 — durable offline bridge foundation
 
+Subsequent local infrastructure: [M030-C1.3 browser host](docs/M030_C1_3_BROWSER_HOST.md)
+adds release-pinned assets, one-time same-origin bootstrap and stable-port resume.
+It preserves the C1 gameplay/checkpoint boundary. Synthetic host tests do not
+approve the actual React bundle or unblock GTG-13; browser integration remains
+outside this implementation. See its contract for executed results and BLOCKED gates.
+
 Verified clean master at `50a11f18046bccbb379a843ebb52364e7045b936` (PR #22
 integration); all 522 baseline tests passed in 159.535s. Implementation is isolated
 on `feature/m030-c1-durable-engine-bridge`, with no publication or merge authorized.
