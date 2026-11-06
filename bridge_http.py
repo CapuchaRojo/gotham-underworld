@@ -4,13 +4,16 @@ import hmac
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import secrets
+import socket
 import threading
+import time
 from urllib.parse import urlsplit
 
 from bridge_checkpoint import BridgeError, VERSION, decode_json
 from engine_bridge import Bridge
 
 MAX_REQUEST_BYTES = 16384
+REJECTION_DRAIN_SECONDS = 0.2
 
 
 class BridgeServer(ThreadingHTTPServer):
@@ -46,6 +49,13 @@ class BridgeServer(ThreadingHTTPServer):
 class Handler(BaseHTTPRequestHandler):
     server_version = 'GoonBridge/1'
 
+    def __getattr__(self, name):
+        # The stdlib otherwise sends HTML 501 before our authorization path.
+        # Parsing failures still use the stdlib parser's separate error path.
+        if name.startswith('do_'):
+            return self._dispatch
+        raise AttributeError(name)
+
     def setup(self):
         super().setup()
         self.connection.settimeout(5)
@@ -68,25 +78,33 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('X-Content-Type-Options', 'nosniff')
         self.send_header('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none'")
         self.send_header('Connection', 'close')
+        if status == 405:
+            self.send_header('Allow', 'GET, POST')
         self.end_headers()
         self.close_connection = True
         if self.command != 'HEAD':
             self.wfile.write(body)
 
     def _discard_body(self):
-        # Windows can reset a connection closed with unread request bytes, hiding
-        # an otherwise valid rejection. Drain only a bounded amount, never parse it.
-        length = self.headers.get('Content-Length', '')
-        if not length.isascii() or not length.isdecimal() or len(length) > 8:
-            return
-        remaining = min(int(length), MAX_REQUEST_BYTES) - self._consumed
-        if remaining <= 0:
-            return
-        self.connection.settimeout(0.1)
+        # Send the rejection before waiting for untrusted input. A write-side FIN
+        # lets the client read it while we discard delayed/buffered bytes. Never
+        # trust a rejected Content-Length or wait for a peer to finish its body.
         try:
-            self.rfile.read(remaining)
+            self.wfile.flush()
+            self.connection.shutdown(socket.SHUT_WR)
+            deadline = time.monotonic() + REJECTION_DRAIN_SECONDS
+            remaining = MAX_REQUEST_BYTES
+            while remaining:
+                timeout = deadline - time.monotonic()
+                if timeout <= 0:
+                    break
+                self.connection.settimeout(timeout)
+                chunk = self.rfile.read1(min(remaining, 4096))
+                if not chunk:
+                    break
+                remaining -= len(chunk)
         except OSError:
-            pass
+            pass  # Socket teardown only: disconnects/timeouts cannot undo state.
 
     def _authorize(self):
         for name in ('Host', 'Origin', 'Authorization', 'Content-Length', 'Content-Type', 'Sec-Fetch-Site'):
@@ -116,7 +134,6 @@ class Handler(BaseHTTPRequestHandler):
             raise BridgeError('INVALID_CONTENT_TYPE', 'Expected application/json.', 415)
         try:
             raw = self.rfile.read(length)
-            self._consumed = len(raw)
             if len(raw) != length:
                 raise ValueError('short body')
             return decode_json(raw.decode('utf-8'))
@@ -124,9 +141,10 @@ class Handler(BaseHTTPRequestHandler):
             raise BridgeError('MALFORMED_JSON', 'Expected a complete UTF-8 JSON body.') from exc
 
     def _dispatch(self):
-        self._consumed = 0
         try:
             self._authorize()
+            if self.command not in ('GET', 'POST'):
+                raise BridgeError('METHOD_NOT_ALLOWED', 'Only GET and POST are supported.', 405)
             url = urlsplit(self.path)
             if url.scheme or url.netloc or url.query or url.fragment:
                 raise BridgeError('INVALID_PATH', 'Only exact API paths are supported.', 404)
@@ -152,12 +170,10 @@ class Handler(BaseHTTPRequestHandler):
                     if type(body['protocol_version']) is not int or body['protocol_version'] != VERSION:
                         raise BridgeError('PROTOCOL_MISMATCH', 'Supported protocol version: 1.', 409)
                     result = self.server.bridge.route(body['destination'], body['mode'])
-            else:
-                raise BridgeError('METHOD_NOT_ALLOWED', 'Only GET and POST are supported.', 405)
             self._send(200, result)
         except BridgeError as exc:
-            self._discard_body()
             self._send(exc.status, dict(protocol_version=VERSION, error=dict(code=exc.code, message=str(exc))))
+            self._discard_body()
         except ConnectionError:
             pass  # The committed receipt, not this connection, owns recovery.
         except Exception:

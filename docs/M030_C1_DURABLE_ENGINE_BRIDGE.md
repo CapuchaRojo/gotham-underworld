@@ -166,16 +166,56 @@ changes this scope. Quotes use engine navigation/mobility and omit graph/debug
 data; active mobility returns the existing `journey`/quote-token arguments.
 
 The server binds only 127.0.0.1, with exact Host and a Bearer session capability
-required on every route. Supplied Origin must match; POST must include Origin.
+required for every parsed API request, including unsupported methods. Supplied
+Origin must match; POST must include Origin.
 GET may omit Origin but still requires authorization. Cross-site Fetch Metadata
 is rejected. There is no permissive CORS/preflight or cookie authentication.
 POST requires exactly `application/json`, bounded Content-Length and at most
 **16,384 bytes**. Duplicate security/framing headers, transfer encodings, duplicate
 JSON keys, non-finite numbers and malformed UTF-8 fail. Connections have a five-
-second timeout and at most eight admitted worker slots. Rejection-body draining
-is bounded/timed to prevent Windows unread-body reset races. Responses are JSON,
-no-store/nosniff and disallow framing. URLs, bodies and capabilities are not logged.
+second inactivity timeout and at most eight admitted worker slots. API responses
+are JSON, no-store/nosniff and disallow framing. URLs, bodies and capabilities
+are not logged.
 There are no static/source/snapshot/arbitrary-path or HTTP import/export routes.
+
+### HTTP rejection and framing contract — 030-C1.1
+
+A parsed request is authorized before method dispatch. `TRACE`, `CONNECT`, `PUT`,
+`PATCH`, `DELETE`, `OPTIONS`, `HEAD` and unknown methods cannot execute commands.
+Authorized unsupported methods receive `405 METHOD_NOT_ALLOWED`, the same JSON
+security headers as API responses and `Allow: GET, POST`. `HEAD` has no response
+body, as required by HTTP. Missing capabilities and unsafe Host/Origin/Fetch
+Metadata still receive their normal 401/403 errors. No CORS permission is added.
+
+Policy rejection sends the error before draining incoming bytes, flushes it and
+half-closes the socket's write side. It then discards (never parses) at most
+16,384 additional bytes for at most **0.2 seconds**, using an absolute deadline.
+This does not rely on a rejected Content-Length and accommodates buffered/split
+body arrival without waiting indefinitely. Client disconnects during socket
+teardown do not change gameplay or operation receipts. Handler/programming
+exceptions are not converted into successful rejection tests.
+
+Complete, bounded requests rejected for policy reasons are expected to receive
+the structured response. Malformed/missing/negative Content-Length, truncated
+bodies, excessive trailing data, clients that keep sending past the drain budget,
+and peer aborts may instead end in EOF/reset. No JSON acknowledgment is guaranteed
+for those malformed or excessive streams. A rejected request never reaches the
+game service. Error recovery must not infer a command's outcome from a connection
+reset; use the existing operation-ID recovery protocol for uncertain commands.
+
+HTTP Content-Length delimits the body. Bytes beyond that length are not part of
+the declared JSON body, and this single-request connection never executes them as
+a second request. An invalid declared JSON body plus extra bytes is rejected. A
+valid declared command can execute once even if the peer appends excess bytes;
+later bytes cannot retroactively invalidate it. Detecting arbitrary future bytes
+before execution is not a transport guarantee. The 16,384-byte parse limit is
+unchanged.
+
+Failures in the standard-library HTTP parser (bad request syntax/version or header
+limits) happen before API authorization/dispatch and remain standard-library
+errors, which can be HTML or connection termination rather than the API JSON
+envelope. They cannot execute commands. Security-header/JSON guarantees above
+apply to API responses, not those parser failures.
 
 ## Validation and gameplay evidence
 
@@ -216,6 +256,46 @@ Review regressions were demonstrated failing before their repairs: bridge receip
 sources with reordered/non-player commands, and historical source paths colliding
 with future backup/lock files. Windows aborted-connection handling was corrected
 after actual lost-ack/rejection HTTP testing. No inherited gameplay change was needed.
+
+### 030-C1.1 correction evidence
+
+The independent C1 audit observed one `WinError 10053` during a Content-Length
+rejection test, followed by a passing 566-test run. C1.1's unchanged baseline
+bridge suite passed **44 tests in 8.294s**; the original intermittent reset was not
+reproduced in that run. Inspection established a contributing weakness: draining
+preceded the error response, malformed lengths skipped draining, and bounded
+`read(n)` could wait for an incomplete body before sending the rejection. The
+exact packet timing behind the original reset is not established.
+
+The implementation review read the installed Python 3.14.2 standard-library
+`BaseHTTPRequestHandler.handle_one_request`, `parse_request` and `send_error`,
+plus `StreamRequestHandler.finish` and `TCPServer.shutdown_request`. The narrow
+`do_*` fallback preserves parsing and the existing API dispatcher instead of
+copying the standard-library request loop.
+
+Before the repair, new regressions demonstrated inherited HTML errors for TRACE,
+CONNECT and unknown methods, and a blocked response when rejection draining was
+held pending. After the repair, tests require strict JSON responses for complete
+policy rejections; only explicitly malformed/excessive streams permit EOF/reset.
+They also cover missing/non-numeric/negative/oversized lengths, actual oversized
+data, delayed split bodies, forced socket abort, bounded drain bytes/deadlines,
+unsupported-method authorization, parser failures and no extra command execution.
+
+C1.1 focused HTTP tests: **20 passed in 2.586s**. Combined bridge tests:
+**53 passed in 9.446s**, including the existing duplicate-request, subprocess
+crash/recovery, historical import and two-seed replay regressions. Nine tests
+were added. A separate 320-request rejection stress run returned the expected
+JSON statuses for all 120 complete policy rejections, 160 malformed-length split
+requests and 40 complete oversized requests. No resets or server-handler errors
+occurred in that run; checkpoint bytes, projected state and RNG were unchanged.
+Final full regression: `python -B -m unittest discover -s tests` passed
+**575 tests in 168.344s**, preserving all 566 existing tests plus nine new HTTP
+regressions. Only `bridge_http.py`, `tests/test_bridge_http.py` and this contract
+changed. Gameplay, navigation, save/checkpoint formats, projections and the
+three-action/18-TU budgets are unchanged. No C2, push, PR, merge or deployment was
+performed. Parser failures and malformed-stream termination remain the explicit
+transport limitations described above; non-Windows behavior remains unverified.
+Original C1 results above describe the historical baseline, not a new C1.1 run.
 
 The first real sequence is `settle_in`, explicit `wait`, separately quoted and
 authorized travel to p032, then `choose` opening shift/work: $40 → $60, one action,
