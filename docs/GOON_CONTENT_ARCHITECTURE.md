@@ -29,6 +29,29 @@ schema or loader is introduced by the Markdown registry.
 
 ## Current boundary and constraints
 
+### Mission 029 organization-definition proposal
+
+The [employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry)
+is the single organization-candidate/source authority; the [minor registry](GOON_ROGUES_GALLERY_REGISTRY.md)
+owns detailed minor-character identities and the [encounter contract](GOON_ROGUE_ENCOUNTERS_DESIGN.md)
+owns proposed access/difficulty for its overlapping roster. Different research
+sets are not duplicate runtime cast lists. Preserve existing person IDs when
+an individual has a crew; aliases, personas and umbrella categories grant no
+extra treasury, turn or resource authority.
+
+Future definitions would separate selected continuity/era, people, organizations,
+leadership edges, workplace terms, geography/influence, narrative text and assets.
+Selection, actual availability and observer knowledge are separate. The
+[organization integration contract](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-proposed-organization-integration-contract)
+specifies consent, independent activity, succession, funds, sourced information
+and recovery as proposals, not current JSON fields or a loader. Its first safe
+implementation candidate is one original minor-crew commitment, subject to a
+new approval and adoption/validation contract. No name-based engine branch,
+parallel history authority, new save schema, altered content pin or global rumor
+store is introduced. The protected late-progression restriction must precede
+any future player-facing catalogue/discovery projection; author-only source
+records must never be exposed wholesale as player knowledge.
+
 ### Implemented M020 ordinary-life adapters
 
 `ordinary_life` extends the existing life authority with one optional version 1

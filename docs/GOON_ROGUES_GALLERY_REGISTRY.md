@@ -1,7 +1,9 @@
 # Gotham: The Goon — Proposed Rogues Gallery Registry
 
 **Status: M013.1 content-design proposals, not an implemented roster.** These
-35 entries include the requested aliases; the Terrible Trio is a group containing
+The original 35 entries are retained; Mission 029 adds Jane Doe for **36 research
+entries**. Calendar Man and Crazy-Quilt already existed and are enriched, not
+counted again. The Terrible Trio is a group containing
 three people. Listing a person does not create a faction, district, encounter,
 employment offer or guarantee of presence. No universal DC continuity is selected.
 The [minor ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) defines operating scales;
@@ -32,6 +34,15 @@ The [minor ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) defines operating scales
 
 Sources consulted November 3, 2026. Facts are paraphrased; no dialogue, artwork,
 scripts, recipes, technical criminal methods or character stat blocks are copied.
+
+Mission 029 sources were rechecked November 5, 2026. This document owns detailed
+minor-character identity/source records; the [encounter design](GOON_ROGUE_ENCOUNTERS_DESIGN.md)
+owns proposed presence/difficulty/access for its overlapping selection, not a second
+identity authority. Its current 36 individual/mantle roles are a different set
+from these 36 research entries. Neither count reinstates excluded Professor Milo.
+The [employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry)
+owns organization candidates and evidence; a character's network does not create
+another copy of that person or require district ownership.
 
 ## 01. Killer Moth
 
@@ -138,6 +149,11 @@ scripts, recipes, technical criminal methods or character stat blocks are copied
   [DC's profile](https://www.dc.com/characters/calendar-man). Calendar-linked crime
   and investigative insight; later seasonal metahuman abilities require a separate
   approved version and are excluded from this classic proposal.
+- **Mission 029 verification:** high confidence in Julian Day/date motif from the
+  publisher profile; that profile combines eras. Its seasonal powers are not proof
+  of the classic candidate's abilities. No permanent gang, leader, ally or calendar
+  holiday appearance is inferred. An authored simulation-day deadline must not
+  require a real-world date, clock, service or recurring grind.
 - **Original proposal — scale / role:** individual wildcard or dangerous adviser.
 - **Original proposal — skills:** pattern recognition, date knowledge and assessing competing accounts.
 - **Behavior / work:** attaches meaning to particular dates; the player can verify
@@ -146,7 +162,7 @@ scripts, recipes, technical criminal methods or character stat blocks are copied
 - **Player consequences:** a sourced warning can change access and specific trust;
   acting on an unverified claim can create harm, evidence or a missed opportunity.
 
-## 08. Crazy Quilt
+## 08. Crazy-Quilt
 
 - **ID / identity:** `dc.character.crazy_quilt.paul_dekker.comics`; Paul Dekker,
   subject to edition reconciliation rather than one merged origin.
@@ -154,6 +170,15 @@ scripts, recipes, technical criminal methods or character stat blocks are copied
   Batman versions; [secondary version overview](https://en.wikipedia.org/wiki/Crazy_Quilt).
   Color/light equipment is the limited motif here; the original Mr. Quilt and
   other holders are not automatically this actor.
+- **Mission 029 name/source reconciliation:** **Crazy-Quilt** is the project
+  canonical display name; **Crazy Quilt** is the publisher's unhyphenated spelling,
+  not another character. [DC's Batman #54 preview](https://www.dc.com/blog/2018/09/04/first-look-batman-and-nightwing-face-the-wrath-of-crazy-quilt)
+  supports the light-equipment motif (high confidence). Paul Dekker's identity
+  binding remains medium-confidence secondary research pending edition review:
+  [mantle overview](https://en.wikipedia.org/wiki/Crazy_Quilt) distinguishes
+  Mr. Quilt, the Blackhawk opponent and the Batman Paul Dekker. The existing
+  candidate ID is retained without merging those biographies.
+  "Quilt Man" is unverified informal wording, not a registered canonical alias.
 - **Original proposal — scale / role:** technical contractor or rival.
 - **Original proposal — skills:** visual design, fictional equipment analysis and hazard judgment.
 - **Behavior / work:** argues over visual authorship and credit; a commission can
@@ -609,6 +634,37 @@ scripts, recipes, technical criminal methods or character stat blocks are copied
 - **Player consequences:** authority disputes leave records, trust and obligations;
   actor/persona separation prevents duplicate payments. No diagnosis determines guilt.
 
+## 36. Jane Doe
+
+- **ID / identity:** `dc.character.jane_doe.living_hell_candidate`; comics identity
+  not bound to a verified real name. Category: individual, not a gang or mantle
+  shared with every person described as a Jane Doe.
+- **Reference / canon anchor:** Arkham Asylum: Living Hell #1 (2003).
+  [DC's comics/television comparison](https://www.dc.com/blog/2019/04/09/easter-egg-hunt-a-dummy-a-wig-and-a-famously-funky-costume)
+  explicitly distinguishes the comics impersonator from Gotham's shapeshifting
+  adaptation. **High confidence** in that distinction; the actual comic/episode
+  was not inspected in full for this mission. A generic unidentified patient
+  called Doe is not proof of this criminal's identity or presence.
+- **Continuity restriction:** this candidate uses learned mimicry/disguise, not
+  television transformation powers. Do not import a TV biography, relationships
+  or victim identities. No standing faction alliance is established by this source.
+- **Original proposal — scale / role:** persistent optional individual wildcard
+  or rival; never a compulsory employer or district-owning faction.
+- **Original proposal — skills / behavior:** patient observation and imitation;
+  contradictory accounts challenge a character's claimed authority. No practical
+  identity-theft methods, copied scenes or diagnostic stereotypes are supplied.
+- **Original proposal — encounters:** a civilian worker notices inconsistent
+  instructions; verify a credible contact, protect an affected coworker, give a
+  sourced report or decline involvement. Discovery requires a received discrepancy
+  or referral; identifying an impostor does not guarantee a personal encounter.
+- **Original proposal — access / risk:** Hard verification, Extreme direct
+  exposure; trust Hard only when identity is actually evidenced. Recruitment and
+  organizational advancement N/A in this proposal; no automatic membership.
+- **Original proposal — consequences:** recipient-specific corrections,
+  protected or damaged trust, missed work and possible source-backed investigation.
+  A wrong inference is not automatic guilt, a legal case or universal knowledge.
+  Ordinary work, safe reporting and recovery remain available after refusal/failure.
+
 ## Adoption and gameplay review
 
 These entries provide thematic hooks, not completed NPC personalities. Every
@@ -620,7 +676,7 @@ actual invitation. The [Joker contract](GOON_JOKER_RECRUITMENT.md) is a separate
 original campaign rule, not a loophole granted by association with any rogue.
 
 Proposed variety comes from conflicting work terms, credit, authority, knowledge,
-ordinary obligations and different character goals, not thirty-five differently
+ordinary obligations and different character goals, not dozens of differently
 named reward multipliers. Avoid making every cameo a combat gate or collection
 achievement. Repeated introductions, favors and alias swaps must not generate
 free money, trust, membership or a fresh identity after arrest/death.

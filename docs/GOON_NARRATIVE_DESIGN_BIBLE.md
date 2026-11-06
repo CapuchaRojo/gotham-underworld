@@ -26,9 +26,18 @@ The expanded foundation also includes the [career web](GOON_CRIMINAL_CAREER_WEB.
 [villain influence](GOON_VILLAIN_INFLUENCE_SYSTEM.md), and
 [institutions/recovery](GOON_INSTITUTIONS_AND_RECOVERY.md). Their mechanics are
 proposals; the player's broad criminal-life fantasy is endorsed direction.
-The rogues addendum supplies a [35-entry registry](GOON_ROGUES_GALLERY_REGISTRY.md),
+The rogues addendum supplies an [expanded minor-rogue registry](GOON_ROGUES_GALLERY_REGISTRY.md),
 [three-scale criminal ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) and
 [Joker recruitment contract](GOON_JOKER_RECRUITMENT.md). It adds documentation only.
+
+**Mission 029 status:** the historical milestone labels below retain their
+original scope. M020 is merged at `74a5fab`; current runtime capabilities are
+recorded in [project state](../PROJECT_STATE.md). This documentation-only update
+extends the existing [organization/leadership catalogue](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry),
+not the executable cast. Jane Doe and Crazy-Quilt extend the encounter research
+pool; Calendar Man already existed. Verified source facts, continuity adaptations
+and original mechanics remain separate. The player may remain civilian/lawful,
+independent or unaffiliated without joining a gang or becoming a boss.
 
 | Label | Meaning |
 | --- | --- |
@@ -191,13 +200,12 @@ contradictions, and lives beyond serving the player. Personal loyalty is not
 identical to employer reputation. Refusal can preserve a friendship while damaging
 a career. Different people may interpret the same act differently.
 
-**Proposal:** original draft coworkers, not runtime additions: Tess Navarro is a
-repair worker who values dependable pay and refuses avoidable civilian harm;
-Cal Mercer is a runner who exaggerates his confidence but keeps records of unpaid
-wages. Each needs more than a single trait before content approval. Neither is
-adapted from a video narrator's cast. A favor creates a remembered obligation,
-not a repeatable affection purchase. Bereavement and abandonment need authored
-responses rather than a generic numeric hostility increase.
+**Implemented M015–M020:** original contacts Tess Navarro and Cal Mercer now have
+bounded local roles, source-linked memories and disclosed availability/terms.
+Their definitions are in `content/neighborhood_life_v1.json`; they are not copied
+video characters or a general personality/rumor model. A favor/commitment needs
+an actual receipt, not repeatable affection purchases. Broader grief, loyalty,
+NPC-to-NPC relationships and autonomous career responses remain proposals.
 The [rogue registry](GOON_ROGUES_GALLERY_REGISTRY.md) provides version-specific
 research anchors and original job/relationship proposals, not an always-active
 collection roster. Ordinary workers remain protagonists; a memorable cameo must
@@ -363,7 +371,7 @@ Choose and document a continuity before shipping any character content.
 The registry explicitly distinguishes publisher references, secondary factual
 indexes and original interpretation. Multiple holders, uncertain identities,
 deaths and incompatible powers need primary-edition review before content approval;
-listing thirty-five aliases does not assert that all coexist in one timeline.
+listing research aliases does not assert that all coexist in one timeline.
 
 Do not reproduce third-party video transcripts, distinctive narrator characters,
 jokes, comic panels, copied scripts, ripped models, extracted audio, or voice

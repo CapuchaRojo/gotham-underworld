@@ -2,14 +2,18 @@
 
 - Working title: **Gotham: The Goon**; subtitle: *A Living Gotham Crime RPG*
 - Positioning: "Everybody wants to rule Gotham. You're just trying to survive it."
-- Current local slice: **M020 — Ordinary Gotham**, Mission 026 implementation,
-  independently hardened in Mission 027; local only
+- Current runtime slice: **M020 — Ordinary Gotham**, Mission 026 implementation,
+  independently hardened in Mission 027; PR #21 merged at `74a5fab` in Mission 028
+- Mission 029: documentation-only underworld/rogue research on
+  `feature/m029-underworld-registry`, from verified master
+  `74a5fab57fa52ad21b53bb1f565d77a38b2ac7a1`; no new gameplay or M021
 - Implementation branch: `feature/m020-ordinary-gotham`, from verified master
   `6682019857ccad4553fcdc04f7a7e7e046b2def0`; isolated baseline 476 tests passed
 - PR #17 first merged into the audit branch. PR #18 subsequently integrated that
   provenance history into master (`8bc9700`); PR #19 merged M018 (`d0723b1`).
   M019 PR #20 merged at `6682019` with successful master CI. Existing branches
-  and commits are preserved. M020 publication is not authorized.
+  and commits are preserved. M020 PR #21 is now merged; prior local-only
+  publication statements in historical reports describe their original missions.
 - PR #15 (M015) and #16 (M016-A) are merged. The prior open-PR requirement was
   superseded explicitly; both original feature branches remain unchanged.
 - Stack: Python 3.14 standard library; offline; no mandatory services or packages
@@ -95,7 +99,8 @@ remain where they identify technical interfaces or past milestones.
 This addition changes Markdown only; it adds no further CLI, gameplay, schema,
 dependency or module changes. All concepts below are unimplemented proposals.
 
-- [Registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md): 35 entries, stable proposed
+- [Registry](docs/GOON_ROGUES_GALLERY_REGISTRY.md): 36 research entries after
+  Mission 029 (the original 35 retained plus Jane Doe), stable proposed
   IDs, variant/source boundaries, conservative canon anchors and original work,
   behavioral, faction-relationship and consequence ideas. Terrible Trio contains
   three actors. Secondary factual references are labeled; primary-edition and
@@ -440,11 +445,96 @@ extension follows; it was not part of M019's historical scope.
   365-day and two 90-day daily-resume campaigns, five real CLI paths, genuine
   historical save compatibility and interrupted-writer recovery are recorded in
   [M020 validation](docs/M020_ORDINARY_GOTHAM_VALIDATION.md).
-- Approved design only: Milo removed from the future roster; 34 individual/mantle
-  entries remain, with a separate optional Court organization that is entirely
+- Approved design only: Milo remains excluded; the post-M026 encounter pool had
+  34 individual/mantle entries. Mission 029 adds Jane Doe and Crazy-Quilt for 36,
+  with a separate optional Court organization that is entirely
   undiscoverable before the final third of meaningful progression. No Court
   runtime state, clues, dialogue, triggers or implementation exists.
 
 Limitations: bounded abstract employer funding, predictable posted allocations,
 one existing cooperative arrangement and limited NPC availability. Full employment,
 eviction, dialogue, prologue, Court mechanics and M021 remain unimplemented.
+
+## Mission 029 — underworld research and documentation reconciliation
+
+Starting branch/HEAD: clean `master` / `74a5fab57fa52ad21b53bb1f565d77a38b2ac7a1`;
+fetched `origin/master` matched. Dedicated local branch:
+`feature/m029-underworld-registry`. M020 integration/ancestry is preserved.
+No runtime code, content JSON, tests, save schemas, event IDs, RNG, navigation,
+mobility, three-action/eighteen-TU budgets, frontend or Builder package changed.
+
+### Document ownership and inventory
+
+- `docs/GOON_ROGUES_GALLERY_REGISTRY.md`: retains all original 35 research entries
+  and IDs; adds Jane Doe (36 entries, including the pre-existing Terrible Trio
+  group). Calendar Man is enriched in place; Crazy-Quilt naming/mantle evidence
+  clarified without changing its ID. "Quilt Man" is not a verified canon alias.
+- `docs/GOON_ROGUE_ENCOUNTERS_DESIGN.md`: preserves all 34 post-M026 table rows;
+  appends Jane Doe and the existing Crazy-Quilt identity for 36 proposed roles.
+  It is an overlapping encounter selection, not the same set as the minor registry.
+  Milo stays excluded; no approved character behavior is silently replaced.
+- `docs/GOON_FACTION_EMPLOYER_MATRIX.md`: preserves both original employer tables;
+  extends this existing authority with 26 sourced candidate/category records,
+  leadership/status/confidence, continuity reconciliation and a bounded future
+  organization contract. Four umbrellas are not actors; not every candidate is
+  a faction, district owner, starting presence or joinable employer. Beretti and
+  Inzerillo are included on indexed Five Families/Cry for Blood evidence.
+- `docs/GOON_MINOR_CRIMINAL_ECOSYSTEM.md`, `docs/GOON_CONTENT_ARCHITECTURE.md`,
+  `docs/GOON_NARRATIVE_DESIGN_BIBLE.md`, `docs/GOON_CRIMINAL_CAREER_WEB.md`,
+  `docs/GOON_CONDITIONAL_OPPORTUNITIES.md`, `docs/GOON_MILESTONE_ROADMAP.md`:
+  cross-references, source ownership, strict player-knowledge boundaries and
+  approval-gated priorities. No separate general-character or organized-crime
+  registry was invented; the existing specialized documents remain authoritative.
+- `README.md` and this file: current counts, M020 merge status and Mission 029 scope.
+
+### Research conclusions and limitations
+
+Publisher references include DC's Calendar Man profile, Jane Doe/Ventriloquist
+comics-versus-TV comparison, Crazy Quilt/Batman #54 preview, Falcone profile,
+Cry for Blood collection, Black Mask history, Intergang/52 account, Penitente/
+Neon Dragon creator commentary, Mutants adaptation comparison and Gotham TV
+retrospectives. Secondary DCU Guide/GCD bibliographic records and clearly marked
+Fandom/Wikipedia indexes support obscure candidates. Supporting links and
+H/M/L confidence appear beside claims in the registries. No complete comic,
+episode or licensed sourcebook was inspected; blocked pages/search excerpts
+are disclosed, not upgraded to primary verification.
+
+Unresolved: exact Lo Boyz issue/leadership, Gilzean episode-level hierarchy,
+Cassamento/other source spellings, Odessa labels and the actual campaign era,
+leaders, deaths, alliances and fronts. Burnley absorption remains secondary
+speculation. East Side Dragons is distinct from Ghost Dragons. TV organizations
+and alternate-future Mutants are not merged into a comics starting cast. An
+ethnic/category label never supplies criminal membership, guilt or one treasury.
+
+All named-organization statuses and mechanics are proposed; no continuity pack
+or playable criminal career is selected. Lawful/civilian and independent paths
+remain valid. Batman/GCPD independence does not imply knowledge without sources;
+no Batman actor or new legal/information system is implemented. The existing
+Court restriction is preserved in author-only policy, with no early/middle
+triggers, symbols, rumors, Talons, references, public discovery or foreshadowing.
+
+### Executed documentation validation
+
+- Standard-library Python checks against Git baseline `74a5fab`: gallery 35 → 36,
+  all old IDs/numbered entries retained (only the requested Crazy-Quilt display
+  spelling normalized); encounter rows 34 → 36, all original rows byte-for-byte
+  retained; Milo absent from current roster rows.
+- Both employer tables' 26 original Markdown lines retained; all 26 new O01–O26
+  candidate IDs unique/sequential, with sources, confidence, status and six table
+  columns; four umbrella categories explicitly non-actor.
+- All 247 relative file/heading link occurrences in changed documents checked
+  with no broken target; table-width, UTF-8 and code-fence checks passed. New
+  links target the existing canonical files.
+- `git diff --check` passed. Full changed-file inventory is 11 Markdown files;
+  no runtime, definition, fixture, test or UI file changed and no untracked output.
+- Regression suite **not rerun** for this documentation-only mission. The last
+  actual merged-master run remains Mission 028: 522 tests, local 562.088s and
+  master CI 198.934s, both OK; that is historical executed evidence, not a new run.
+
+No new player decision or persistent effect is implemented. The matrix's
+paper-only invoice/authority scenario evaluates meaningful lawful involvement,
+specific recipient consequences, variety, grind risk and remaining shallowness.
+Recommended next step: approve a small continuity subset/source reconciliation,
+then separately scope one original funded minor-crew commitment with refusal,
+independent resolution and sourced memory. No M021 number or implementation is
+authorized here. Documentation is prepared for human review; no push, PR or merge.
