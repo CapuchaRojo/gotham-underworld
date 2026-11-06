@@ -27,6 +27,21 @@ commercial release, fundraising, or external pitch materials need separate
 rights and legal review.
 No DC license is claimed, and the working title is not legally cleared.
 
+## Durable local engine bridge — Mission 030-C1
+
+The standard-library [C1 bridge](docs/M030_C1_DURABLE_ENGINE_BRIDGE.md) provides a
+loopback JSON API, player-safe projection and atomic world/request-receipt
+checkpoints. It reuses authoritative Python commands and preserves three actions
+and 18 TU. Durable request identities prevent duplicate effects across retries,
+lost acknowledgments and restart. Historical engine JSON is explicitly imported
+into a new checkpoint; exclusive legacy export preserves CLI compatibility.
+
+Run `python -B bridge_http.py --checkpoint "C:\private-data\career.bridge.json" --new`
+with an existing private data directory, or omit `--new` to resume. The launcher
+prints the loopback address and private capability. No React interface, assets,
+Native.Builder changes or public server are included. The contract documents exact
+headers/endpoints, import/export, recovery, tests and limitations.
+
 ## Design foundation and status
 
 Ordinary goons are the protagonists. Professional henchman, lieutenant,

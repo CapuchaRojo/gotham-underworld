@@ -5,6 +5,7 @@ merged at `8b68e1e`; its atlas and narrative documents remain design provenance.
 
 | Milestone | Scope / approval |
 | --- | --- |
+| Mission 030-C1, local bridge foundation | Implement the [durable engine bridge](M030_C1_DURABLE_ENGINE_BRIDGE.md): loopback-only standard-library JSON, private candidates, atomic world/receipt checkpoint, source-backed request recovery, explicit legacy import/export, strict player projection and security tests. No React, packaging, gameplay changes, publication or C2 implementation. |
 | M014 | Authorized world runtime/navigation foundation: local validated atlas, optional versioned location state, deterministic public movement, CLI and regression coverage. No combat or prologue implementation. |
 | M015, Mission 009 | Authorized [Living Gotham slice](GOON_CONSEQUENTIAL_CHOICE_CONTRACT.md): optional room terms, local lawful/criminal work, finite choices, two original contacts, promises, cash ledger and idempotent day processing. Submit an open PR; no merge authorization. |
 | Subsequent verified integration | M015 PR #15 and M016-A PR #16 merged. Night Shift is on master at `43d8197`; provenance integration PR #18 merged at `8bc9700`; M018 PR #19 merged at `d0723b1`, preserving original ancestry. Historical instructions above describe their original mission scope. |

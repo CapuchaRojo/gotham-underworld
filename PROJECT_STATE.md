@@ -735,3 +735,44 @@ actual supervision authority, alternate route scope, costs/terms/recovery,
 coercion/consent and one future adoption/replay slice. Recommend that assessment
 slice only after the missing institutional/encounter foundations are approved.
 No M021, deployment, push, PR creation or merge is begun by these documents.
+
+## Mission 030-C1 — durable offline bridge foundation
+
+Verified clean master at `50a11f18046bccbb379a843ebb52364e7045b936` (PR #22
+integration); all 522 baseline tests passed in 159.535s. Implementation is isolated
+on `feature/m030-c1-durable-engine-bridge`, with no publication or merge authorized.
+
+- New `bridge_checkpoint.py`, `engine_bridge.py`, `bridge_projection.py` and
+  `bridge_http.py` provide a standard-library checkpoint/broker/projection and
+  loopback JSON interface. Existing gameplay, service, navigation, content and
+  engine persistence/schema files remain unchanged.
+- Checkpoint version 1 stores the validated engine world and ordered source-backed
+  transport receipts in one atomic publication, with previous-good backup and an
+  OS single-writer lock. Explicit legacy import/export never overwrites originals.
+- Protocol 1 enforces career/lineage, exact bounded arguments, expected revision,
+  committed-ID payload matching and replay of original receipts without effects.
+  Candidates become live only after durable publication. Uncertain publication
+  quarantines mutations until operation/state recovery proves old or new primary.
+- Player projection omits world snapshots, raw events, hidden incident identities,
+  NPC memories, faction strategies and institutional processing. C1 exposes personal
+  resources/location, limited Tess/Cal standing and existing ordinary-life choices.
+- HTTP binds only 127.0.0.1, requires private per-launch capabilities and exact
+  Host/Origin checks, limits JSON bodies to 16 KiB, rejects unsafe framing and
+  exposes no filesystem/static/debug routes. Commands are serialized.
+- New tests cover actual subprocess crashes, dropped HTTP acknowledgments,
+  duplicate wages/waits, conflicting requests, historical saves, malformed data,
+  filesystem failures, writer exclusion, security and projection boundaries.
+  Two 30-day restart/replay campaigns match direct engine worlds. Tess's actual
+  repair retains the frozen 030-B world hash, $20 wage and one-action cost;
+  separate home work retains its two-action rule. Three actions/18 TU are unchanged.
+- Focused validation: 44 tests passed in 37.502s, with the final path-guard change
+  also checked by its targeted regression. Final full suite: **566 tests passed
+  in 538.975s** (all 522 unchanged baseline tests plus 44 new bridge tests).
+  A real CLI create/HTTP repair/restart/receipt-recovery/legacy-export smoke run
+  passed with $60 cash, two actions, 17 TU and the frozen engine hash retained.
+
+See [C1 protocol, checkpoint and validation contract](docs/M030_C1_DURABLE_ENGINE_BRIDGE.md)
+for exact commands, recovery policy, evidence and limits. No React/Native.Builder
+work, assets, desktop host, deployment, new NPC, gameplay mechanic or C2
+implementation is included. Receipt/history growth, filesystem power-loss limits,
+explicit corrupt-primary recovery and non-Windows verification remain open limits.
