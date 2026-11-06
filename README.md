@@ -48,8 +48,8 @@ the implemented subset and supersedes their historical M014 combat numbering.
 | Document | Purpose |
 | --- | --- |
 | [Master character/faction index](docs/GOON_MASTER_ROSTER.md) | Author-only navigation to existing identities, organizations, roles, implementation status and source authorities; no public discovery roster |
-| [DARK canon registry](docs/GOON_DARK_CANON_REGISTRY.md) | Seven proposed candidates and four existing-Gotham bridges, with source and continuity limits; no supernatural gameplay |
-| [Optional DARK contract](docs/GOON_DARK_PROGRESSION_CONTRACT.md) | Proposed late discovery, consent, four-encounter achievement, behavior consequences, grounded recovery and approval decisions |
+| [DARK canon registry](docs/GOON_DARK_CANON_REGISTRY.md) | Seven initial candidates plus Solomon Grundy and four existing-Gotham bridges, with source/continuity limits and Slaughter Swamp research; no supernatural gameplay |
+| [Optional DARK contract](docs/GOON_DARK_PROGRESSION_CONTRACT.md) | Proposed late discovery, consent, optional four-encounter achievement, behavior consequences, grounded recovery and DARK-gated Grundy outcomes; no implemented unlock |
 | [Restricted Task Force X proposal](docs/GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md) | Canon/continuity context, original five-condition assessment route, scoped government knowledge, voluntary decisions, alternatives and future dependencies; no implemented recruitment |
 | [Narrative design bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md) | Player fantasy, tone, 16 design areas, feature-status legend, and originality boundaries |
 | [Criminal career web](docs/GOON_CRIMINAL_CAREER_WEB.md) | Nineteen overlapping specializations, lawful work, informing, rehabilitation, retirement and three worked scenarios |
