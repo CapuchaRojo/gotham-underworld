@@ -2,6 +2,14 @@
 
 ## Authority and scope
 
+Mission 029 addendum: the [master index](GOON_MASTER_ROSTER.md) consolidates
+navigation to actor/institution authorities. The separate [DARK canon registry](GOON_DARK_CANON_REGISTRY.md)
+and [optional progression proposal](GOON_DARK_PROGRESSION_CONTRACT.md) concern
+supernatural discovery, not this document's night timing. They authorize no
+clock, Batman gameplay, occult incident, universal police knowledge or early
+protected-story clue. Ordinary lawful careers and a fully grounded playthrough
+remain independent of occult participation.
+
 **Broader proposal from Mission 015, November 4, 2026; implemented slices updated through Mission 023.**
 Sections 1–11 preserve the prior proposal/evidence; the implemented Night Shift
 subset and current limitations are explicitly recorded in section 12. Section 13

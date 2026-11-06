@@ -11,6 +11,14 @@ The [minor ecosystem](GOON_MINOR_CRIMINAL_ECOSYSTEM.md) defines operating scales
 
 ## Evidence and identity rules
 
+The [master index](GOON_MASTER_ROSTER.md) provides cross-category lookup, not
+duplicate detailed entries. The [DARK registry](GOON_DARK_CANON_REGISTRY.md) owns
+seven new occult/boundary candidates outside this minor-rogue set; they are not
+all villains. Existing Ivy, Scarecrow, Deacon Blackfire and Strange identities
+remain with their current authorities. The user's “Reverend Blackfire” wording
+does not create another character or a verified alias. All current entries and
+the excluded-Milo policy are preserved; no minor-roster count changes here.
+
 - **Reference / canon anchor** names a published work or continuity and supplies
   a conservative factual motif, identity or capability. Publisher profiles and
   solicitations are preferred. Links explicitly marked **secondary** are factual

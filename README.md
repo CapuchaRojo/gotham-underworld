@@ -47,6 +47,9 @@ the implemented subset and supersedes their historical M014 combat numbering.
 
 | Document | Purpose |
 | --- | --- |
+| [Master character/faction index](docs/GOON_MASTER_ROSTER.md) | Author-only navigation to existing identities, organizations, roles, implementation status and source authorities; no public discovery roster |
+| [DARK canon registry](docs/GOON_DARK_CANON_REGISTRY.md) | Seven proposed candidates and four existing-Gotham bridges, with source and continuity limits; no supernatural gameplay |
+| [Optional DARK contract](docs/GOON_DARK_PROGRESSION_CONTRACT.md) | Proposed late discovery, consent, four-encounter achievement, behavior consequences, grounded recovery and approval decisions |
 | [Narrative design bible](docs/GOON_NARRATIVE_DESIGN_BIBLE.md) | Player fantasy, tone, 16 design areas, feature-status legend, and originality boundaries |
 | [Criminal career web](docs/GOON_CRIMINAL_CAREER_WEB.md) | Nineteen overlapping specializations, lawful work, informing, rehabilitation, retirement and three worked scenarios |
 | [Conditional opportunities](docs/GOON_CONDITIONAL_OPPORTUNITIES.md) | Eligibility, demand, recorded probability, expiry and viable careers without guaranteed villain meetings |

@@ -29,6 +29,22 @@ schema or loader is introduced by the Markdown registry.
 
 ## Current boundary and constraints
 
+### Master index and optional DARK design authority
+
+The [master index](GOON_MASTER_ROSTER.md) is documentation navigation, not a
+runtime catalogue or player-known projection. Pointer-valued affiliation and
+relationship fields resolve to existing source owners, avoiding duplicate
+biographies. Actors, bound pairs, personas, mantles, organizations, categories,
+staff labels and vacant roles are distinct; index keys are never save IDs.
+The [DARK canon registry](GOON_DARK_CANON_REGISTRY.md) owns new character research;
+the [DARK contract](GOON_DARK_PROGRESSION_CONTRACT.md) owns proposed late opt-in,
+recipient knowledge, consequences, refusal/recovery and approval questions.
+No JSON definitions, loader, optional marker, global clock, magic/morality meter,
+event IDs, budget or engine changes accompany these documents. Any later slice
+needs its own bounded adoption/source-validation contract. Do not expose this
+authoring index through the UI or treat canonical psychic powers as access to
+all saved facts. Protected metadata remains outside ordinary/DARK discovery.
+
 ### Mission 029 organization-definition proposal
 
 The [employer matrix](GOON_FACTION_EMPLOYER_MATRIX.md#mission-029-organized-crime-candidate-registry)

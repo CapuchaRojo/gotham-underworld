@@ -2,6 +2,13 @@
 
 ## Status, authority and scope
 
+Mission 029 addendum: the [master index](GOON_MASTER_ROSTER.md) references this
+encounter selection and its detailed identity owners. The separate [DARK canon](GOON_DARK_CANON_REGISTRY.md)
+and [discovery contract](GOON_DARK_PROGRESSION_CONTRACT.md) add seven proposed
+optional candidates, not rows replacing this 36-role selection or an enforced
+four-boss route. All existing rows, IDs, exclusions and protected-progression
+rules remain unchanged. No character is promised or implemented by the index.
+
 **Mission 015 preservation update:** this retains the Mission 014 proposal and
 extended its research pool to 27 roles. Mission 016 expanded the same proposed
 registry to exactly 35 distinct roles at that historical checkpoint. Hush was

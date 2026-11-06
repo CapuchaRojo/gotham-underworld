@@ -7,6 +7,9 @@
 - Mission 029: documentation-only underworld/rogue research on
   `feature/m029-underworld-registry`, from verified master
   `74a5fab57fa52ad21b53bb1f565d77a38b2ac7a1`; no new gameplay or M021
+- Mission 029 addendum continues that branch from local research commit
+  `4a9818697c77e526d76cb27d1d79a253ad1701c8`: master index and optional DARK
+  canon/progression documentation only; no runtime, UI or save changes
 - Implementation branch: `feature/m020-ordinary-gotham`, from verified master
   `6682019857ccad4553fcdc04f7a7e7e046b2def0`; isolated baseline 476 tests passed
 - PR #17 first merged into the audit branch. PR #18 subsequently integrated that
@@ -538,3 +541,94 @@ Recommended next step: approve a small continuity subset/source reconciliation,
 then separately scope one original funded minor-crew commitment with refusal,
 independent resolution and sourced memory. No M021 number or implementation is
 authorized here. Documentation is prepared for human review; no push, PR or merge.
+
+## Mission 029 addendum — master roster and optional DARK design
+
+Inspected clean branch `feature/m029-underworld-registry`, HEAD
+`4a9818697c77e526d76cb27d1d79a253ad1701c8`. No comprehensive master index existed.
+The addendum creates one navigation authority pointing to existing detail owners;
+it does not replace registries, select a continuity, expose a player codex or
+implement a cast. Master remains `74a5fab`; all prior branches/commits are preserved.
+
+### Deliverables and changed-file inventory
+
+- [Master character/faction index](docs/GOON_MASTER_ROSTER.md): **188 unique
+  reference records**, not 188 active people. Covers existing rogues/ambiguous
+  actors, heroes/role holders, family/gang leadership, organizations/categories,
+  original contacts/staff, civic institutions/professional roles and DARK.
+  Each row tracks identity/key, aliases, continuity, affiliation/relationship
+  pointers, role, availability, implementation type and authoritative source.
+  Vacant roles and staff labels are not fabricated named NPCs; aliases, personas,
+  bound wills, mantles, crews and categories cannot become duplicate actors.
+- [DARK canon registry](docs/GOON_DARK_CANON_REGISTRY.md): seven requested
+  candidates with publisher-supported motivation/power anchors, limits and
+  continuity differences; separate proposed roles/availability. Existing Ivy,
+  Crane, Deacon Blackfire and Strange remain under their original identity
+  authorities. "Reverend Blackfire" is unverified user wording, not a new person.
+- [DARK discovery contract](docs/GOON_DARK_PROGRESSION_CONTRACT.md): proposed
+  late optional involvement, independent occurrence versus discovery, alternate
+  lawful/relationship/investigative/civilian routes, the nonmandatory four-encounter
+  achievement idea, seven-row behavior/outcome matrix, ordinary recovery, future
+  dependencies and eight explicit approval questions. No moral score/faction lock.
+- Existing cross-reference/status updates: `README.md`, this file,
+  `docs/GOON_CONTENT_ARCHITECTURE.md`, `docs/GOON_FACTION_EMPLOYER_MATRIX.md`,
+  `docs/GOON_GOTHAM_AFTER_DARK_LAW_BATFAMILY_DESIGN.md`,
+  `docs/GOON_MILESTONE_ROADMAP.md`, `docs/GOON_NARRATIVE_DESIGN_BIBLE.md`,
+  `docs/GOON_ROGUES_GALLERY_REGISTRY.md`, `docs/GOON_ROGUE_ENCOUNTERS_DESIGN.md`.
+  Total: **12 Markdown files**, three new and nine updated. No detailed registry
+  entry or canonical organization classification was replaced.
+
+### Research and reconciliation findings
+
+New character research uses DC profiles, creator commentary, collections and
+specific issue/film solicitations linked beside claims. No full comic, episode,
+film or licensed sourcebook was inspected; blocked direct pages versus accessible
+indexed excerpts remain disclosed. Existing indexed facts inherit their prior
+confidence, rather than being newly declared primary-verified by inclusion here.
+
+Zatanna is not universally disabled by silence: the cited 2025 account includes
+sign-language casting. Swamp Thing's Olsen, Alec-related and Levi histories need
+an actor/era choice. Creeper's science-transformation and host-based portrayals
+cannot be merged into one presumed occult origin. Jason Blood and Etrigan are
+distinct bound wills, not an analogy for a clinical diagnosis or Scarface's persona.
+Xanadu's visions and Deadman's possession do not mean unlimited access to save
+truth; proposed participation limits are explicitly game policy, not invented
+universal canonical weaknesses. No automatic seven-person team/allegiance exists.
+
+The four Gotham encounters may remain entirely grounded, and neither one nor
+all four prove magic or summon an ally. The achievement is optional and proposed,
+not an access gate or reason to schedule danger. Players can refuse occult
+involvement, remain civilian/lawful/independent, or return to ordinary life after
+failure without permanent hero/villain affiliation. Assistance cannot become a
+general solution to housing, wages, employment or law enforcement.
+
+The Court remains wholly separate, with one **author-only policy pointer** in
+the master index. No early/middle symbols, rumors, Talons, references, visions,
+metadata hints or foreshadowing are introduced into player content. DARK and its
+achievement supply no unlock or route around the existing final-third meaningful-
+progression restriction. Milo stays excluded; no roster entry reinstates him.
+
+### Validation and next approval boundary
+
+Standard-library documentation checks verified unique/nonempty nine-field master
+records, coverage of existing source IDs, seven DARK entries, four optional
+achievement outcomes, seven consequence rows and eight approval questions.
+All 515 relative file/heading links, 63 Markdown tables, UTF-8/code fences and
+`git diff --check` passed. All original lines/IDs in the
+three detailed registries are retained. Existing minor/encounter counts stay 36
+and organization/category records stay 26; categories and linked identities are
+not counted as additional active characters. No Python, content JSON, fixture,
+test, event, schema, budget, navigation, RNG, frontend or Builder package changes.
+
+Regression tests were **not rerun** for this documentation-only addendum. The last
+actual 522-test results remain Mission 028's merged-master verification, not a
+new claim. No new gameplay decision, persistent effect, occult power or event is
+implemented. The contract's paper scenario evaluates variety, source-specific
+consequences, refusal, grind risks and remaining shallow/unapproved mechanics.
+
+Before any implementation, approve continuity/character subset, meaningful late
+milestones, opt-in/withdrawal policy, achievement terms, power/knowledge scope,
+possession/horror consent, bounded costs/zero-cash recovery and one small slice
+with its adoption/replay contract. These remain open design decisions, not a
+request to implement now. Roadmap placement is optional/late and unnumbered;
+no M021, broad magic engine, Court content, GitHub publication or merge is begun.

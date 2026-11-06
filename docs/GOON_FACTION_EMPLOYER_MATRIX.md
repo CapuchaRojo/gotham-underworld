@@ -12,6 +12,12 @@ a claim that the proposed workplace rules are canonical.
 
 ## Reading the matrix
 
+The [master character/faction index](GOON_MASTER_ROSTER.md) links these records
+without another organization/alliance registry. The [DARK proposals](GOON_DARK_CANON_REGISTRY.md)
+are not a unified faction, guaranteed Justice League Dark membership or new
+employers in this matrix. Existing organization classifications remain intact;
+neither magic, a four-encounter achievement nor reform forces gang affiliation.
+
 The ordinary worker evaluates an employer, not a collectible villain card.
 An employer, an organization, its economic profile, and a worker's affiliation
 are separate definitions. The current Harbor/Carnival/Iron keys are preserved;

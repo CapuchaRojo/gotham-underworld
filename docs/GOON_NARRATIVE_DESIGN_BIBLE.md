@@ -53,6 +53,16 @@ bounded milestone and acceptance criteria.
 
 ## 1. Player fantasy and narrative perspective
 
+The Mission 029 addendum introduces an [author-only master index](GOON_MASTER_ROSTER.md)
+that references the detailed registries rather than replacing them. Its
+[DARK research](GOON_DARK_CANON_REGISTRY.md) and [optional discovery contract](GOON_DARK_PROGRESSION_CONTRACT.md)
+are proposals, not a supernatural career requirement or a new moral faction.
+Grounded careers remain primary; criminal, reform, survival and refusal choices
+produce only source-backed, audience-specific proposed consequences. No ordinary
+ending, housing, wage, care or legal recovery depends on occult assistance.
+The separately protected late organization keeps its existing secrecy gate;
+DARK cannot reveal it through a vision, magical adviser or achievement.
+
 **Endorsed direction:** an ordinary criminal is the protagonist. Famous villains
 control access to work, impose dangerous demands, disrupt the city, and sometimes
 need people the player cares about. They do not replace the player's agency.
