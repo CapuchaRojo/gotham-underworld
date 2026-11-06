@@ -23,6 +23,12 @@ The bridge never consults frontend fixtures or TypeScript navigation.
 
 ## Operator lifecycle
 
+The separate [C1.3 browser-host contract](M030_C1_3_BROWSER_HOST.md) adds opt-in
+verified assets and a one-time browser authorization exchange. The headless
+launcher and protocol described here retain their existing behavior. C1.3's new
+bootstrap endpoint is the explicit exception to the original no-endpoint
+capability-return rule; it is not a new gameplay mutation boundary.
+
 Use an existing private data directory outside the repository. Paths below are
 placeholders; parent directories must already exist.
 
