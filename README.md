@@ -849,3 +849,7 @@ included. The prototype remains offline-capable.
 ## M030-C2B isolated stabilization — 2026-11-19
 
 The isolated `stabilize/m030-c2b-20261118` candidate preserves the interrupted frontend and repairs session, outbox and packaging failures. Local mode remains explicitly read-only; preview remains synthetic. This supersedes the earlier interrupted-work status for the isolated candidate only: the original branch remains unchanged and uncommitted, and no GitHub merge or release approval is claimed. See [the stabilization report](docs/M030_C2B_FINDINGS_AND_REPAIR_REPORT.md) and its exact test evidence. Python gameplay, 3 actions/day, 18 TU/day, saves and RNG are unchanged. Godot P1V-B/P1W remain separate protected work. Gameplay integration is a future approved mission.
+
+## GTG-26 isolated preview UI port - 2026-11-19
+
+The sibling `feature/gtg26-builder-ui-port` candidate selectively adds preview UI and a Python-grounded synthetic Tess interaction. Confirm remains disabled; local inspection stays read-only. See [the GTG-26 report](docs/GTG26_UI_PORT_REPORT.md) for exact tests, scope and remaining approval gates. This status is local-only, not merged or deployed.

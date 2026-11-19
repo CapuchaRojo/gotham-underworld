@@ -1,6 +1,7 @@
 import type { CommitmentState, Scenario } from "../types";
 import { placeById } from "../atlas";
 import { playerSafeText, usePresentationMode } from "../presentation";
+import { relativeDays } from "../relativeTime";
 import { BudgetMeters } from "./BudgetMeters";
 import { MoneySummary } from "./MoneySummary";
 import { WorkCard } from "./WorkCard";
@@ -68,6 +69,9 @@ export function LifeView({ scenario }: { scenario: Scenario }) {
         tuUsed={scenario.budget.tuUsed}
         tuMax={scenario.budget.tuMax}
       />
+      <p className="text-xs text-muted">
+        Cash, “Owed”, and prepaid stay separate; actions and travel units are what you can still spend today.
+      </p>
 
       {/* Housing + adoption */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -84,7 +88,8 @@ export function LifeView({ scenario }: { scenario: Scenario }) {
               Prepaid: <span className="text-foreground">${scenario.housing.prepaid}</span>
             </span>
             <span>
-              Next due: <span className="text-foreground">Day {scenario.housing.nextDueDay}</span>
+              Next due: <span className="text-foreground">Day {scenario.housing.nextDueDay}</span>{" "}
+              <span className="text-muted">({relativeDays(scenario.day, scenario.housing.nextDueDay)})</span>
             </span>
           </div>
         </div>
@@ -129,7 +134,7 @@ export function LifeView({ scenario }: { scenario: Scenario }) {
               <div className="min-w-0">
                 <div className="text-sm font-semibold text-foreground">{c.title}</div>
                 <div className="mt-0.5 text-xs text-muted">
-                  {c.dueDay !== undefined ? `Due day ${c.dueDay} · ` : ""}
+                  {c.dueDay !== undefined ? `Due day ${c.dueDay} · ${relativeDays(scenario.day, c.dueDay)} · ` : ""}
                   {isDeveloper ? c.detail : playerSafeText(c.detail)}
                 </div>
               </div>
