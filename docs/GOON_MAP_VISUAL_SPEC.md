@@ -125,3 +125,11 @@ distinguish rumors from facts; verify text/visual parity and deterministic order
 exercise stale route outcomes and save/resume; and cover color-independent/keyboard
 presentation. This document is not evidence that a GUI, accessibility audit or
 player-knowledge system has been implemented or tested.
+
+## 2026-11-07 addendum — third-person streets and 2D navigation coexist
+
+The user has selected third-person open-world gameplay as the **long-term presentation** target; the existing layered map specification remains useful as a local minimap, pause-map and accessibility/text companion rather than the only future world presentation. No such 3D map, free-roam player controller or route-to-animation binding is implemented by this addendum. See [M031-3D proposed vertical slice](GOON_THIRD_PERSON_VERTICAL_SLICE.md).
+
+The first visual test uses a single stylized block with ordinary free exploration, one store and home interiors; every rendered entrance/exit must have a known mapping to its canonical atlas location or be explicitly cosmetic. **World-space position is not automatically authoritative**: do not change the Python location on collision or distance alone. At canonical boundaries, defer to Python permission, route cost, revision and outcome. A UI pin, cursor, camera pan, minimap zoom or proximity prompt is read-only. No omniscient pedestrian markers, faction ownership overlays or backstage route disruptions may leak from raw engine snapshots.
+
+Provide an accessible alternative list/map for travel and interactions, including gamepad/keyboard remapping proposals and descriptive labels. The visual client's frame rate is independent from deterministic world time. Commercial/offline tile services are not required. This supersedes 2D-only *presentation aspirations*, not the current content atlas or movement authority.

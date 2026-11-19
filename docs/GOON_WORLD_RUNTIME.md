@@ -137,3 +137,11 @@ new local missions, combat or playable prologue. Larger routes vary by mode,
 permissions and known disruptions; they do not yet offer authored encounter variety.
 Repeated commute/wait clicks remain a design risk. Future work must add actual
 obligations and consequences rather than rewards for moving or marker collection.
+
+## Future third-person world seam — proposal, not M014 runtime behavior
+
+The owner selected third-person open-world presentation on 2026-11-07. **No 3D coordinates, continuous walking controller, Godot client, real-time NPC movement or gameplay clock is implemented in this M014 contract.** The proposal is documented in [One Living Block](GOON_THIRD_PERSON_VERTICAL_SLICE.md). The existing 176-place atlas, route budgets and authoritative travel API remain unchanged.
+
+A future Godot environment would map a physically explorable block and interiors to **explicit inspected canonical location IDs**. Free local locomotion/inspection inside an authorized area must not consume gameplay actions or create route events. A transition across canonical location boundaries must obtain and commit a versioned Python-authorized travel/entry outcome, or remain explicitly prototype-only and not claim a changed canonical position. Movement animations cannot advance a day, call `wait`, reroll a route, reveal a hidden closure or rewrite saved history. Continuous time or persisted coordinates would need a separate backwards-compatible contract and tests.
+
+Existing React browser-host security is not a generic Godot IPC contract. Any Godot communication must be separately threat-modeled and preserve strict identity, player-safe projections, one authority for mutation, exact request recovery, deterministic replay and explicit historical-save adoption. Keep M014 budgets of three actions and 18 TU per day; do not reinterpret them as steps, animation frames or button presses.

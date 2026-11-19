@@ -219,3 +219,13 @@ Every future milestone report must state:
 
 Readiness is assessed from these answers and the bounded milestone contract,
 not the number of features or famous names listed in a document.
+
+## Third-person freedom without mechanical shortcuts (2026-11-07 design addendum)
+
+The approved long-term **presentation** target is a third-person open-world crime/life RPG. The [proposed One Living Block test](GOON_THIRD_PERSON_VERTICAL_SLICE.md) must pass the same feature-admission and consequence tests as a text choice: freedom means optional movement and meaningful alternatives, not 3D filler or automatic progression.
+
+A walk, camera look, environmental inspection, ordinary door animation or ambient dialogue is free **within the currently authorized physical space**; it is not a consumption of one of three gameplay actions. Real employment commitments, travel between canonical locations and time advancement remain authoritative Python commands, with the current 3-action/18-TU budgets unchanged. A visual shortcut cannot bypass a Python travel barrier or opportunity requirement. No implicit `wait`, pay, XP, clue or relationship increase on render, animation completion or collision.
+
+**Minimum fun check:** in ten to fifteen minutes a new player can comfortably move, discover an optional resident/store interaction, understand an authentic tradeoff and continue without accepting a quest. The block must support refusal and return, plus visibly persistent consequences when a connected authoritative action exists. A 3D scene that only allows walking through static scenery fails the gameplay test even if performance is excellent. Lawful work and recovery must be as expressive as risky crime; Diablo-style encounter depth may inform optional later systems but is not a mandatory combat loop.
+
+**Anti-exploit checks:** prevent physical/logical position drift, boundary-crossing without authorized travel, fixture NPC omniscience, duplicate rewards on repeated E presses, saving client-only economic state, and reload rerolls. Separate render-only routines from deep simulated NPC state. Combat, real-time clocks, character stats, vehicles and criminal pursuits require distinct approved mechanics and deterministic integration contracts.
