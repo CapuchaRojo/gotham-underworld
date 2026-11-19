@@ -352,7 +352,7 @@ test("cross-tab: only one unresolved command per career+lineage across cooperati
 });
 
 // ---------------------------------------------------------------------------
-// Lost acknowledgments â†’ recovery by original request_id
+// Lost acknowledgments → recovery by original request_id
 // ---------------------------------------------------------------------------
 
 test("lost ack: committed recovery by original id applies state without re-transmitting", async () => {
@@ -448,7 +448,7 @@ test("committed operation after revision advancement is recovered without re-tra
 
   // The command committed and advanced the authoritative revision to 1, but the
   // browser lost the acknowledgment. Recovery must accept the committed receipt
-  // and reconcile current state â€” never mistake it for a stale decision.
+  // and reconcile current state — never mistake it for a stale decision.
   const result = await outbox.recover(recoverInput({ revision: 1 }));
   assert.equal(result.kind, "committed");
   if (result.kind === "committed") {

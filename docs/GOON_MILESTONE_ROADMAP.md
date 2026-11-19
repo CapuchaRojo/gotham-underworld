@@ -75,6 +75,6 @@ Keep 3 gameplay actions and 18 travel TU unchanged until a tested amendment. Com
 
 An uploaded as-is working-tree snapshot at HEAD `f2e75dd959c5` contains the uncommitted `frontend/` import and local-host read-only inspection changes on `feature/m030-c2b-frontend-integration`. Codex reported frontend/local browser progress before hitting its usage limit, but final Python regression, independently approved release pin, reproducibility, review and commit were not completed. **GTG-13B remains in progress/unaccepted; GTG-14 and GTG-15 remain blocked.** This docs-only 3D addendum does not endorse or overwrite those files.
 
-## M030-C2B isolated stabilization ? 2026-11-19
+## M030-C2B isolated stabilization — 2026-11-19
 
 The isolated `stabilize/m030-c2b-20261118` candidate preserves the interrupted frontend and repairs session, outbox and packaging failures. Local mode remains explicitly read-only; preview remains synthetic. This supersedes the earlier interrupted-work status for the isolated candidate only: the original branch remains unchanged and uncommitted, and no GitHub merge or release approval is claimed. See [the stabilization report](M030_C2B_FINDINGS_AND_REPAIR_REPORT.md) and its exact test evidence. Python gameplay, 3 actions/day, 18 TU/day, saves and RNG are unchanged. Godot P1V-B/P1W remain separate protected work. Gameplay integration is a future approved mission.

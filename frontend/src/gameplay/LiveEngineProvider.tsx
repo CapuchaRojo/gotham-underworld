@@ -6,7 +6,7 @@
 // authoritative state read). It never touches `Scenario`/`SCENARIOS`/
 // `SCENARIO_BY_ID` and never falls back to synthetic career state.
 //
-// Pairing and revalidation are explicit events only â€” there is no mount effect
+// Pairing and revalidation are explicit events only — there is no mount effect
 // that submits a bootstrap or a command (React StrictMode-safe). Reload
 // recovery is a read (`revalidate`), never a mutation.
 
@@ -49,7 +49,7 @@ export interface LiveEngineContextValue {
   client: LiveEngineClient;
   connectionState: LiveConnectionState;
   status: LiveEngineStatus;
-  /** Always `null` at this phase â€” the projectionâ†’gameplay mapping lands in GTG-14. */
+  /** Always `null` at this phase — the projection→gameplay mapping lands in GTG-14. */
   playerState: PlayerState | null;
   /** The validated host session, or null until pairing/revalidation succeeds. */
   session: HostSession | null;
@@ -125,7 +125,7 @@ export function LiveEngineProvider({
         switch (failure.code) {
           case "BOOTSTRAP_DENIED":
           case "UNAUTHORIZED":
-            // Rejected code / rotated capability â†’ discard and request a fresh code.
+            // Rejected code / rotated capability → discard and request a fresh code.
             store.clear();
             setLastError(failure.message);
             setConnectionState("pairing_required");

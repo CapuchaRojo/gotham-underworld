@@ -3,7 +3,7 @@
 // GTG-19 scope: persist the exact seven-field CommandRequest in IndexedDB BEFORE
 // any network transmission, keep one unresolved mutation per career+lineage
 // across cooperating tabs (a read/write IndexedDB transaction is the lock), and
-// recover a lost acknowledgment by the ORIGINAL request_id â€” never by
+// recover a lost acknowledgment by the ORIGINAL request_id — never by
 // reconstructing the envelope from current UI selections.
 //
 // A lost acknowledgment is treated as uncertain, not failed: once the envelope
@@ -34,11 +34,11 @@ export type OutboxRecordStatus =
 
 export interface OutboxRecord {
   request_id: string;
-  /** `${career_id}\u0000${lineage_id}` â€” the scope of the exactly-once lock. */
+  /** `${career_id}\u0000${lineage_id}` — the scope of the exactly-once lock. */
   scope: string;
   career_id: string;
   lineage_id: string;
-  /** The exact seven-field envelope â€” immutable once persisted. */
+  /** The exact seven-field envelope — immutable once persisted. */
   envelope: CommandRequest;
   status: OutboxRecordStatus;
   receipt: Receipt | null;
@@ -363,7 +363,7 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
       return {
         kind: "outcome_uncertain",
         requestId: record.request_id,
-        message: "The command response carried no receipt â€” outcome is uncertain.",
+        message: "The command response carried no receipt — outcome is uncertain.",
       };
     }
     return failureAfterTransmit(db, record, result.failure);
@@ -384,7 +384,7 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
             message: failure.message,
           };
         case "REQUEST_ID_REUSED":
-          // Stop â€” never replace the persisted payload.
+          // Stop — never replace the persisted payload.
           await markStatus(db, record, { status: "quarantined", lastError: failure.message });
           return {
             kind: "request_id_reused",
@@ -418,7 +418,7 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
         case "COMMAND_NOT_ALLOWED":
         case "COMMAND_REJECTED":
         case "ROUTE_UNAVAILABLE":
-          // Definitively rejected before any effect â€” the envelope will never commit.
+          // Definitively rejected before any effect — the envelope will never commit.
           await markStatus(db, record, { status: "superseded", lastError: failure.message });
           return { kind: "adapter_defect", code: failure.code, message: failure.message };
         default:
@@ -468,14 +468,14 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
       return {
         kind: "outcome_uncertain",
         requestId: record.request_id,
-        message: "The committed operation carried no receipt â€” outcome is uncertain.",
+        message: "The committed operation carried no receipt — outcome is uncertain.",
       };
     }
 
     // not_found. A retry is safe ONLY when the original revision still matches
     // (and therefore no rollback is suspected). If the authoritative revision
     // advanced while the operation is not_found, the host moved on WITHOUT this
-    // command â€” the original decision is stale and must never be replayed.
+    // command — the original decision is stale and must never be replayed.
     if (record.receipt !== null) return failureAfterRecovery(db, record, unbound);
     if (record.envelope.expected_revision !== input.revision || record.envelope.expected_revision !== op.revision) {
       await markStatus(db, record, {
@@ -485,11 +485,11 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
       return {
         kind: "stale_revision",
         requestId: record.request_id,
-        message: "Revision advanced â€” a fresh decision is required.",
+        message: "Revision advanced — a fresh decision is required.",
       };
     }
 
-    // not_found with a matching revision â†’ retry the EXACT original envelope
+    // not_found with a matching revision → retry the EXACT original envelope
     // (original request_id, payload, expected_revision, and arguments).
     const posted = await host.postCommand(input.capability, record.envelope);
     return settlePost(db, record, posted);
@@ -527,7 +527,7 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
       } catch {
         return {
           kind: "storage_unavailable",
-          message: "Durable storage is unavailable â€” no command will be sent.",
+          message: "Durable storage is unavailable — no command will be sent.",
         };
       }
 
@@ -558,7 +558,7 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
           return { kind: "storage_failure", message: describeError(error) };
         }
 
-        // Durably committed â€” only now transmit.
+        // Durably committed — only now transmit.
         const posted = await host.postCommand(input.capability, built.value);
         return await settlePost(db, record, posted);
       } finally {
@@ -573,7 +573,7 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
       } catch {
         return {
           kind: "storage_unavailable",
-          message: "Durable storage is unavailable â€” recovery is blocked.",
+          message: "Durable storage is unavailable — recovery is blocked.",
         };
       }
 

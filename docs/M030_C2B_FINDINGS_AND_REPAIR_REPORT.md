@@ -37,3 +37,28 @@ Remaining acceptance limits: one real Windows file-symlink test is blocked by Wi
 ## Smallest next slice - proposal only
 
 In a separately approved C2C mission, present one existing lawful `choose` opportunity at canonical Uptown General Store (`goon.poi.p032`, Upper East Side), with Python eligibility, one-action/$20 terms and refusal. Keep travel explicit and Python-owned. Submit the original envelope through the validated outbox, display the committed public projection, restart, recover the same ID without duplicate wages/standing and demonstrate a later source-backed consequence. Start from an explicitly selected/adopted career; no automatic new game or gameplay activation. This proposal is not implemented here.
+
+## Independent-review correction - 2026-11-19
+
+The independent review conditionally accepted the isolated read-only stabilization candidate. This correction does not grant release-pin approval or enable gameplay.
+
+Repaired 19 malformed punctuation sequences (15 em dashes, four right arrows) in `frontend/src/gameplay/outbox.ts`, `frontend/src/gameplay/LiveEngineProvider.tsx` and `frontend/tests/outbox.test.ts`, including five user-visible error messages. Repaired three milestone-heading separators in `README.md`, `PROJECT_STATE.md` and `docs/GOON_MILESTONE_ROADMAP.md`. Explicit UTF-8 read/write and exact substitution comparisons confirm no control-flow, request, receipt or shared-interface change.
+
+Added `frontend/tests/text-integrity.test.ts`: strict UTF-8 decoding, corruption signatures across frontend source/tests, milestone-heading checks, and controls permitting genuine Unicode/questions. Before correction: one PASS, two FAIL; after correction: all three PASS. Full frontend suite: 176 PASS, zero FAIL/SKIP. Typecheck, both builds and candidate packaging exit 0. Host packaging: 8 PASS; source exporter: 4 PASS. Compiled preview/local assets and the host bundle are byte-identical to the reviewed candidate; no new browser run is claimed. An initial restricted-process directory enumeration could not see the generated bundle; normal-permission verification found all four files and confirmed their hashes. This was a verification visibility limitation, not a bundle-test failure.
+
+The two original commit objects and exact single-parent chain were verified: `f2e75dd959c55a2f7d8207a7d3b0160d60efb444` -> `84df1dab70e189631c5cc6a25d655f00e2502a59` -> `b25a9d1b3cfed4de065ed5e340870dfc268c4c96`. The correction follows this chain on `stabilize/m030-c2b-20261118`. Its actual SHA, explicit staging hashes and final clean status are in the separate correction handoff; no history rewrite was used.
+
+All 259 original source hashes, branch/HEAD and 82 status entries still match capture. All 115 authoritative Python/content/test paths remain byte-identical. Shared interfaces did not change, so no additional Python engine suite was required or claimed. Prior full Python 619 PASS / 1 SKIP and independently reported bridge/host 97 PASS / 1 SKIP remain distinct from this correction's executed checks. The Windows symlink privilege blocker, independent production pin approval and other previously reported acceptance limits remain unresolved.
+
+Previous archives remain immutable. The corrected archive has its own per-file manifest; the 259-row source inventory remains historical provenance, not the final archive manifest.
+
+## Lossless integration plan - awaiting owner approval
+
+These are proposed steps only. Approval must identify the reviewed correction SHA and permanent target location/branch. No integration or gameplay activation is authorized by this report.
+
+1. Keep the original dirty worktree and private 7,650-file backup intact. Obtain owner approval of this correction and a new permanent sibling integration location. Do not reset, clean, stash, force checkout or overlay an archive onto the original.
+2. Before approved integration, request Save All, then recheck original HEAD/branch/status and captured source hashes, plus the isolated correction SHA and clean status. If anything changed, preserve the new edits in a new private snapshot before reconciling; retain the existing backup. Do not assume the 82 entries are disposable.
+3. Create a permanent sibling clone from the verified isolated local repository, check out the approved correction SHA on a new integration branch, and verify all three commits and source hashes. Do not switch or cherry-pick into the dirty original. The stabilization commits already incorporate its seven modified tracked paths and 75 untracked source paths; copying them wholesale would replace reviewed repairs.
+4. Reconcile any new original edits using the captured 259-file source snapshot as the content base, the approved candidate as one side, and the newly saved original as the other. Account for every new file, edit and deletion. Retain conflicting versions for owner resolution; never automatically choose ours/theirs. If original source still matches capture, no source delta is needed. Keep personal saves/configuration in place for explicit host selection after review; never commit them, browser profiles or generated output.
+5. Rebuild and rerun applicable tests in the permanent sibling. Produce fresh evidence/hashes if reconciliation changes content. Have the owner open the verified sibling as the development workspace. Leave the original repository and branch intact as the recovery reference until its disposition is separately approved.
+6. Stop for owner review. Updating the original branch, publishing, merging, deploying, approving a release pin, or beginning gameplay requires separate explicit authorization. No Godot P1V-B/P1W, P1X or Freebuff work is included.

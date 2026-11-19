@@ -800,6 +800,6 @@ Codex reported 161 passing frontend tests, separate local/preview builds, unchan
 **Preservation warning:** never overwrite, reset or discard the uncommitted `frontend/` tree when applying this documentation change. Safest delivery is docs-only with exact baseline hash checks and backups, or a separate patch/commit after reconciling the ongoing branch. The 2026-11-07 third-person direction remains a **future proposed prototype**, independent of this interrupted React integration.
 
 
-## M030-C2B isolated stabilization ? 2026-11-19
+## M030-C2B isolated stabilization — 2026-11-19
 
 The isolated `stabilize/m030-c2b-20261118` candidate preserves the interrupted frontend and repairs session, outbox and packaging failures. Local mode remains explicitly read-only; preview remains synthetic. This supersedes the earlier interrupted-work status for the isolated candidate only: the original branch remains unchanged and uncommitted, and no GitHub merge or release approval is claimed. See [the stabilization report](docs/M030_C2B_FINDINGS_AND_REPAIR_REPORT.md) and its exact test evidence. Python gameplay, 3 actions/day, 18 TU/day, saves and RNG are unchanged. Godot P1V-B/P1W remain separate protected work. Gameplay integration is a future approved mission.
