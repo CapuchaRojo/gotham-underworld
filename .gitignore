@@ -10,3 +10,17 @@ career_save.json
 career*_save.json
 career*.json.bak
 .career*.tmp
+
+# Generated frontend artifacts and isolated integration checkpoints.
+ui_dist/
+.integration/
+
+# Private machine state never belongs in a source handoff.
+.env*
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite*
+*.db
+.godot/
