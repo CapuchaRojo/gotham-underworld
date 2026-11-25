@@ -13,7 +13,7 @@ import {
   SESSION_LIFETIME,
   isBase64Url43,
 } from "./constants";
-import { COMMAND_ARGUMENTS, COMMANDS } from "./types";
+import { COMMAND_ARGUMENTS, COMMANDS, ROOM_PAYMENT_STATUSES } from "./types";
 import type {
   ApiErrorEnvelope,
   BootstrapRequest,
@@ -23,6 +23,10 @@ import type {
   EngineEnvelope,
   HostErrorEnvelope,
   HostSession,
+  HousingResponse,
+  HousingOperationResponse,
+  HousingScope,
+  HousingSettlement,
   OperationResponse,
   Opportunity,
   OpportunityOption,
@@ -1039,4 +1043,99 @@ export function parseJsonBody(text: string): Result<unknown> {
   } catch {
     return fail("invalid_json", "response body is not valid JSON", "$");
   }
+}
+
+const HOUSING_SCOPE_KEYS = ["protocol_version", "career_id", "lineage_id", "revision"];
+
+function validateHousingScope(value: Record<string, unknown>): Result<HousingScope> {
+  const version = protocolVersionField(value, "protocol_version", "$", BRIDGE_PROTOCOL_VERSION);
+  if (!version.ok) return version;
+  const career = idField(value, "career_id", "$");
+  if (!career.ok) return career;
+  const lineage = idField(value, "lineage_id", "$");
+  if (!lineage.ok) return lineage;
+  if (/[^A-Za-z0-9._-]/.test(career.value) || /[^A-Za-z0-9._-]/.test(lineage.value)) {
+    return fail("invalid_id", "Invalid housing career or lineage identity");
+  }
+  const revision = housingInteger(value, "revision", "$");
+  if (!revision.ok) return revision;
+  return ok({ protocol_version: 1, career_id: career.value, lineage_id: lineage.value, revision: revision.value });
+}
+
+function housingInteger(value: Record<string, unknown>, key: string, path: string, max = Number.MAX_SAFE_INTEGER) {
+  const number = integerField(value, key, path, { nonNegative: true });
+  if (!number.ok) return number;
+  return number.value <= max ? number : fail("invalid_value", `${path}.${key} is out of range`, path);
+}
+
+function validateSettlement(value: unknown, path: string): Result<HousingSettlement> {
+  if (!isPlainObject(value)) return fail("invalid_type", "Expected a settlement object", path);
+  const keys = assertExactKeys(value, ["day", "kind", "paid", "credit_applied", "balance_after"], path);
+  if (!keys.ok) return keys;
+  const day = housingInteger(value, "day", path);
+  if (!day.ok) return day;
+  const kind = literalField(value, "kind", path, ["prepay", "arrears_payment", "due"] as const);
+  if (!kind.ok) return kind;
+  const paid = housingInteger(value, "paid", path, 30);
+  if (!paid.ok) return paid;
+  const credit = housingInteger(value, "credit_applied", path, 30);
+  if (!credit.ok) return credit;
+  if (kind.value !== "due" && (paid.value === 0 || credit.value !== 0)) {
+    return fail("invalid_value", "Invalid voluntary settlement", path);
+  }
+  const balance = value.balance_after;
+  const balancePath = `${path}.balance_after`;
+  if (!isPlainObject(balance)) return fail("invalid_type", "Expected a settlement balance", balancePath);
+  const balanceKeys = assertExactKeys(balance, ["cash", "arrears", "prepaid", "next_due_day"], balancePath);
+  if (!balanceKeys.ok) return balanceKeys;
+  const cash = stringField(balance, "cash", balancePath);
+  if (!cash.ok) return cash;
+  if (!/^(?:0|[1-9][0-9]*)(?![\s\S])/.test(cash.value)) {
+    return fail("invalid_value", "Expected unsigned canonical decimal text", balancePath);
+  }
+  const arrears = housingInteger(balance, "arrears", balancePath, 30);
+  if (!arrears.ok) return arrears;
+  const prepaid = housingInteger(balance, "prepaid", balancePath, 30);
+  if (!prepaid.ok) return prepaid;
+  const nextDue = housingInteger(balance, "next_due_day", balancePath);
+  if (!nextDue.ok) return nextDue;
+  return ok({
+    day: day.value, kind: kind.value, paid: paid.value, credit_applied: credit.value,
+    balance_after: { cash: cash.value, arrears: arrears.value, prepaid: prepaid.value, next_due_day: nextDue.value },
+  });
+}
+
+export function validateHousingResponse(value: unknown): Result<HousingResponse> {
+  if (!isPlainObject(value)) return fail("invalid_type", "Expected a housing response");
+  const keys = assertExactKeys(value, [...HOUSING_SCOPE_KEYS, "pay_room", "latest_settlement"], "$");
+  if (!keys.ok) return keys;
+  const scope = validateHousingScope(value);
+  if (!scope.ok) return scope;
+  const eligibility = literalField(value, "pay_room", "$", ROOM_PAYMENT_STATUSES);
+  if (!eligibility.ok) return eligibility;
+  const latest = value.latest_settlement === null ? ok(null) : validateSettlement(value.latest_settlement, "$.latest_settlement");
+  if (!latest.ok) return latest;
+  return ok({ ...scope.value, pay_room: eligibility.value, latest_settlement: latest.value });
+}
+
+export function validateHousingOperation(value: unknown): Result<HousingOperationResponse> {
+  if (!isPlainObject(value)) return fail("invalid_type", "Expected a housing operation response");
+  const keys = assertExactKeys(value, [...HOUSING_SCOPE_KEYS, "receipt", "settlements"], "$");
+  if (!keys.ok) return keys;
+  const scope = validateHousingScope(value);
+  if (!scope.ok) return scope;
+  const receipt = validateReceipt(value.receipt, "$.receipt");
+  if (!receipt.ok) return receipt;
+  if (/[^A-Za-z0-9._-]/.test(receipt.value.request_id) || !Number.isSafeInteger(receipt.value.command_sequence) || !Number.isSafeInteger(receipt.value.day) ||
+      receipt.value.revision > scope.value.revision) {
+    return fail("invalid_value", "Receipt is outside the housing revision or exact integer range", "$.receipt");
+  }
+  if (!Array.isArray(value.settlements)) return fail("invalid_type", "Expected a list", "$.settlements");
+  const settlements: HousingSettlement[] = [];
+  for (const [index, row] of value.settlements.entries()) {
+    const settlement = validateSettlement(row, `$.settlements[${index}]`);
+    if (!settlement.ok) return settlement;
+    settlements.push(settlement.value);
+  }
+  return ok({ ...scope.value, receipt: receipt.value, settlements });
 }

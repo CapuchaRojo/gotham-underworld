@@ -39,6 +39,7 @@ import type {
   CapabilityStore,
   HostClient,
   HostFailure,
+  LocalBundleId,
 } from "./host";
 import type { EngineEnvelope, HostSession } from "./wire";
 import { createInspectionHostClient } from "./inspectionHost";
@@ -91,12 +92,16 @@ export interface LiveEngineProviderProps {
   initialState?: LiveConnectionState;
   /** Test override; defaults to a real same-origin host client. */
   hostClient?: HostClient;
+  capabilityStore?: CapabilityStore;
+  bundleId?: LocalBundleId;
 }
 
 export function LiveEngineProvider({
   children,
   initialState = "starting",
   hostClient,
+  capabilityStore,
+  bundleId,
 }: LiveEngineProviderProps) {
   const [connectionState, setConnectionState] =
     useState<LiveConnectionState>(initialState);
@@ -113,7 +118,7 @@ export function LiveEngineProvider({
     [connectionState],
   );
   const host = useMemo(() => hostClient ?? createInspectionHostClient(), [hostClient]);
-  const store = useMemo<CapabilityStore>(() => createCapabilityStore(), []);
+  const store = useMemo(() => capabilityStore ?? createCapabilityStore(), [capabilityStore]);
   // Single-flight guard: a second `pair()` while one is in progress is a no-op.
   const pairingInFlight = useRef<Promise<void> | null>(null);
 
@@ -171,7 +176,7 @@ export function LiveEngineProvider({
    */
   const establishSession = useCallback(
     async (capability: string, candidate: HostSession) => {
-      if (!sessionMatchesBundle(candidate)) {
+      if (!sessionMatchesBundle(candidate, bundleId)) {
         setLastSessionFailure({
           failure: "incompatible",
           reason: "The host is serving a different bundle than this client.",
@@ -187,7 +192,6 @@ export function LiveEngineProvider({
         return;
       }
 
-      setSession(reconciled.session);
       setLastSessionFailure(null);
       setLastError(null);
 
@@ -196,10 +200,11 @@ export function LiveEngineProvider({
         applyFailure(state.failure);
         return;
       }
+      setSession(reconciled.session);
       setEngineState(state.value);
       setConnectionState("ready");
     },
-    [host, applyFailure],
+    [host, applyFailure, bundleId],
   );
 
   const pair = useCallback(

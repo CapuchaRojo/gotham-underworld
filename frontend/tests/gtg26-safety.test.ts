@@ -19,10 +19,27 @@ const root = fileURLToPath(new URL("../../", import.meta.url));
 const read = (name: string) => readFileSync(resolve(root, name), "utf8").replaceAll("\r\n", "\n");
 afterEach(() => cleanup());
 
-test("GTG-26 preserves the reviewed host, outbox, session, CSP and Python core", () => {
+test("GTG-26 protected core permits only the reviewed Housing delta and exact P1 composite", () => {
   const hashes = JSON.parse(read("frontend/tests/gtg26-protected-core.json")) as Record<string, string>;
-  for (const [name, expected] of Object.entries(hashes))
-    assert.equal(createHash("sha256").update(read(name)).digest("hex"), expected, `${name}: core changes require separate review`);
+  const delta = JSON.parse(read("frontend/tests/gtg26-housing-delta.json")) as {
+    frontend: Record<string, string>; p1Composite: Record<string, string>;
+  };
+  const digest = (name: string) => createHash("sha256").update(read(name)).digest("hex");
+  const frontend = [
+    "frontend/package.json", "frontend/tools/test_package_host.py",
+    "frontend/src/gameplay/LiveEngineProvider.tsx", "frontend/src/gameplay/host.ts",
+    "frontend/src/gameplay/inspectionHost.ts", "frontend/src/gameplay/outbox.ts",
+    "frontend/src/gameplay/outboxRecord.ts", "frontend/tools/package_host.py", "frontend/vite.config.ts",
+  ];
+  const python = ["bridge_http.py", "bridge_projection.py", "daily_life.py", "engine_bridge.py"];
+  assert.deepEqual(Object.keys(delta.frontend).sort(), frontend.sort());
+  assert.deepEqual(Object.keys(delta.p1Composite).sort(), python.sort());
+  for (const name of [...frontend, ...python]) assert.ok(Object.hasOwn(hashes, name), name);
+  const usesP1 = python.some(name => digest(name) !== hashes[name]);
+  for (const [name, original] of Object.entries(hashes)) {
+    const expected = delta.frontend[name] ?? (usesP1 ? delta.p1Composite[name] : undefined) ?? original;
+    assert.equal(digest(name), expected, name + ": core changes require separate review");
+  }
 });
 
 function graph(entry: string): Map<string, ts.SourceFile> {
@@ -68,6 +85,21 @@ test("local entry has no preview/interaction dependency and preview has no live 
   for (const name of graph("frontend/src/main.tsx").keys())
     assert.doesNotMatch(name.replaceAll("\\", "/"), /\/(?:host|outbox|liveEngine|LiveEngineProvider|LocalHostApp|inspectionHost)\./);
   assert.doesNotMatch(read("frontend/src/main.tsx"), /URLSearchParams|engine=live|location\.search/);
+});
+
+test("Housing is a separate local graph and neither existing entry can reach its payment wiring", () => {
+  for (const entry of ["frontend/src/main.tsx", "frontend/src/local-main.tsx"]) {
+    for (const name of graph(entry).keys()) {
+      assert.doesNotMatch(name.replaceAll("\\", "/"), /\/(?:housing-main|HousingPanel|housingHost|housing|outbox)\./);
+    }
+  }
+  const housing = [...graph("frontend/src/housing-main.tsx").keys()].map(name => name.replaceAll("\\", "/"));
+  assert.ok(housing.some(name => name.endsWith("/housingHost.ts")));
+  assert.ok(housing.some(name => name.endsWith("/outbox.ts")));
+  for (const name of housing) {
+    assert.doesNotMatch(name, /\/interaction\/|\/OpportunityInteraction|\/fixtures\.ts|\/preview\.ts|\/App\.tsx$/);
+  }
+  assert.doesNotMatch(read("frontend/src/housing-main.tsx"), /URLSearchParams|location\.search/);
 });
 
 test("opening terms and late audit agree with authoritative Python content", () => {

@@ -1,0 +1,19 @@
+{
+  "frontend": {
+    "frontend/package.json": "049c2825c7bf1506afe79010791ae2e4b53d05bfc9186ca81cb721a8dde83f69",
+    "frontend/src/gameplay/LiveEngineProvider.tsx": "73e5bfb79a89baf1860c5431d7c1a3bb18fac61e3dfc2c28fa504cbc8d70baa3",
+    "frontend/src/gameplay/host.ts": "74c82ea8850c1c103f219f269a9dbe16d0d1d0c8e0d17002490bc2181ae1e320",
+    "frontend/src/gameplay/inspectionHost.ts": "50f5f65cae12698aaaec4e580a61d420c83ac507c1bd94f1c1b7f2f11794d29b",
+    "frontend/src/gameplay/outbox.ts": "74db9b96471769cf03c2ad5193098464f0e161066b77cd687cce2dd67fcac2c7",
+    "frontend/src/gameplay/outboxRecord.ts": "ddae3bc2e833efc268395c1a3d4284edd0d635a947bfb7d608eacb41b2187308",
+    "frontend/tools/package_host.py": "3d673f270a216ea6e5023c2d5560712737c0de743445b39be4d5cdc780e1e909",
+    "frontend/tools/test_package_host.py": "8354c2b9c3b374c839ec834555e38ff5c66d05789a58cc46e5eb2288179e7f75",
+    "frontend/vite.config.ts": "88b53bc31dd0811c7ad784adbceaa459fed76ff2908bc06440683bb9d7dfd52c"
+  },
+  "p1Composite": {
+    "bridge_http.py": "3e609f364c6860701b9fce5dee143f923176d5e40041aabac4debf0c1ae1d7fe",
+    "bridge_projection.py": "eab2f1aac01609d2aeccd748405d52dc978475039fdc0e05ac94ee504c952f21",
+    "daily_life.py": "9e286237345aa5bb31f8a52d68377d8053458d28c4241496b2d086dec226a445",
+    "engine_bridge.py": "86f63e0bf964a23b6497ba15651bd0f68d58cf0b42f5b42cd37a717fb3197bd9"
+  }
+}

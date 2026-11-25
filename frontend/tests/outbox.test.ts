@@ -1,3 +1,4 @@
+import { inspectOutboxStorage } from "../src/gameplay/inspectionStorage";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { IDBFactory } from "fake-indexeddb";
@@ -594,4 +595,114 @@ test("a previously committed intent is never replayed after repeated missing-ope
   assert.equal((await outbox.recover(recoverInput())).kind, "outcome_uncertain");
   assert.equal((await outbox.recover(recoverInput())).kind, "outcome_uncertain");
   assert.equal(posts, 1);
+});
+
+const HOUSING_INPUT = { ...INPUT, command: "pay_room", hostInstanceId: "host-one" } as const;
+const HOUSING_RECEIPT = { ...RECEIPT, command: "pay_room" };
+const housingRecovery = (retry: boolean, hostInstanceId = "host-one") =>
+  recoverInput({ housing: { hostInstanceId, retry } });
+
+test("payment recovery never automatically retransmits and deliberate retry keeps the exact original envelope", async () => {
+  const factory = new IDBFactory();
+  const sent: CommandRequest[] = [];
+  const host = makeHost({
+    postCommand: async (_cap, request) => {
+      sent.push(request);
+      return sent.length === 1 ? transportFailure() : okResult(makeEnvelope({ receipt: HOUSING_RECEIPT }));
+    },
+    getOperation: async (_cap, id) => {
+      assert.equal(id, "req.1");
+      return okResult(NOT_FOUND_OPERATION);
+    },
+  });
+  const first = createOutbox(host, { idbFactory: factory, newRequestId: () => "req.1" });
+  assert.equal((await first.submit(HOUSING_INPUT)).kind, "outcome_uncertain");
+  const afterReload = createOutbox(host, { idbFactory: factory });
+  const pending = await afterReload.findHousing(INPUT.careerId, INPUT.lineageId);
+  assert.equal(pending?.status, "transmitted");
+  assert.equal(pending?.request_id, "req.1");
+  assert.equal(await afterReload.findHousing("another-career", INPUT.lineageId), null);
+  assert.equal((await afterReload.recover(recoverInput())).kind, "ambiguous");
+  assert.equal((await afterReload.recover(housingRecovery(false))).kind, "retry_available");
+  assert.equal((await afterReload.recover(housingRecovery(true, "new-process"))).kind, "ambiguous");
+  assert.equal(sent.length, 1);
+  assert.equal((await afterReload.recover(housingRecovery(true))).kind, "committed");
+  assert.deepEqual(sent, [pending?.envelope, pending?.envelope]);
+  assert.equal((await afterReload.findHousing(INPUT.careerId, INPUT.lineageId))?.status, "committed");
+});
+
+test("payment recovery rejects revision rollback, wrong identity and mismatched receipts without losing intent", async () => {
+  let posts = 0;
+  let response = { ...NOT_FOUND_OPERATION, lineage_id: "wrong" };
+  const host = makeHost({
+    postCommand: async () => {
+      posts += 1;
+      return posts === 1 ? okResult(makeEnvelope({ receipt: { ...HOUSING_RECEIPT, request_id: "other" } })) : transportFailure();
+    },
+    getOperation: async () => okResult(response),
+  });
+  const outbox = createOutbox(host, { idbFactory: new IDBFactory(), newRequestId: () => "req.1" });
+  assert.equal((await outbox.submit(HOUSING_INPUT)).kind, "outcome_uncertain");
+  assert.equal((await outbox.recover(housingRecovery(true))).kind, "outcome_uncertain");
+  response = { ...NOT_FOUND_OPERATION };
+  assert.equal((await outbox.recover({ ...housingRecovery(true), revision: 1 })).kind, "outcome_uncertain");
+  response = { ...COMMITTED_OPERATION, receipt: { ...HOUSING_RECEIPT, request_id: "unrelated" } };
+  assert.equal((await outbox.recover(housingRecovery(true))).kind, "outcome_uncertain");
+  assert.equal(posts, 1);
+  assert.equal((await outbox.findHousing(INPUT.careerId, INPUT.lineageId))?.status, "transmitted");
+});
+
+test("two tabs cannot send different rent payments while one intent is unresolved", async () => {
+  const factory = new IDBFactory();
+  const gate = deferred<HostResult<EngineEnvelope>>();
+  const attempted: CommandRequest[] = [];
+  const host = makeHost({
+    postCommand: async (_cap, request) => {
+      attempted.push(request);
+      return gate.promise;
+    },
+  });
+  const first = createOutbox(host, { idbFactory: factory, newRequestId: () => "req.1" });
+  const second = createOutbox(host, { idbFactory: factory, newRequestId: () => "req.other" });
+  const pending = first.submit(HOUSING_INPUT);
+  await waitFor(() => attempted.length === 1);
+  assert.equal((await second.submit(HOUSING_INPUT)).kind, "conflicting_intent");
+  gate.resolve(okResult(makeEnvelope({ receipt: HOUSING_RECEIPT })));
+  assert.equal((await pending).kind, "committed");
+  assert.equal(attempted.length, 1);
+});
+
+test("legacy Housing records remain readable but missing process metadata precludes retry", async () => {
+  const factory = new IDBFactory();
+  let posts = 0;
+  let result = NOT_FOUND_OPERATION;
+  const host = makeHost({ postCommand: async () => { posts++; return transportFailure(); },
+    getOperation: async () => okResult(result) });
+  const outbox = createOutbox(host, { idbFactory: factory, newRequestId: () => "req.1" });
+  assert.equal((await outbox.submit({ ...HOUSING_INPUT, hostInstanceId: undefined })).kind, "outcome_uncertain");
+  const initial = await outbox.findHousing(INPUT.careerId, INPUT.lineageId);
+  assert.equal(Object.hasOwn(initial!, "host_instance_id"), false);
+  assert.equal(await inspectOutboxStorage(factory), 1);
+  assert.equal((await outbox.recover(housingRecovery(true))).kind, "ambiguous");
+  assert.deepEqual(await outbox.findHousing(INPUT.careerId, INPUT.lineageId), initial);
+  result = { ...COMMITTED_OPERATION, receipt: HOUSING_RECEIPT };
+  assert.equal((await outbox.recover(housingRecovery(false, "new-host"))).kind, "committed");
+  assert.equal(posts, 1);
+});
+
+test("inspection accepts scoped Housing metadata and corrupt data cannot reach recovery transport", async () => {
+  const factory = new IDBFactory();
+  let lookups = 0;
+  const host = makeHost({ postCommand: async () => transportFailure(), getOperation: async () => {
+    lookups++;
+    return okResult(NOT_FOUND_OPERATION);
+  } });
+  const outbox = createOutbox(host, { idbFactory: factory, newRequestId: () => "req.1" });
+  assert.equal((await outbox.submit(HOUSING_INPUT)).kind, "outcome_uncertain");
+  assert.equal(await inspectOutboxStorage(factory), 1);
+  await editStored(factory, row => { row.host_instance_id = "host-one\n"; });
+  await assert.rejects(inspectOutboxStorage(factory), /Malformed outbox/);
+  await assert.rejects(outbox.findHousing(INPUT.careerId, INPUT.lineageId), /Malformed outbox/);
+  assert.equal((await outbox.recover(housingRecovery(true))).kind, "storage_failure");
+  assert.equal(lookups, 0);
 });

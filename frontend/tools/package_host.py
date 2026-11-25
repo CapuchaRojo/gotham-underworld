@@ -12,6 +12,7 @@ sys.path.insert(0, str(REPO))
 from bridge_assets import ENGINE_RELEASE, HTML_MIME, MIME_TYPES, load_bundle
 
 BUNDLE_ID = 'goon-c2b-inspection-v1'
+HOUSING_BUNDLE_ID = 'goon-s01-a0-p2-gtg26-v1'
 
 
 def package(dist, application_dir, bundle_id=BUNDLE_ID):
@@ -21,6 +22,7 @@ def package(dist, application_dir, bundle_id=BUNDLE_ID):
     output = Path(application_dir) / 'ui_dist' / bundle_id
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}', bundle_id):
         raise ValueError('Invalid bundle ID')
+    entry = 'housing.html' if bundle_id == HOUSING_BUNDLE_ID else 'local.html'
     files = {}
     for source in sorted(dist.rglob('*')):
         if source.is_symlink() or getattr(source.lstat(), 'st_file_attributes', 0) & 0x400:
@@ -28,7 +30,7 @@ def package(dist, application_dir, bundle_id=BUNDLE_ID):
         if source.is_dir():
             continue
         name = source.relative_to(dist).as_posix()
-        if name == 'local.html':
+        if name == entry:
             name = 'index.html'
         elif not re.fullmatch(r'assets/[A-Za-z0-9][A-Za-z0-9._-]{0,127}', name):
             raise ValueError('Unexpected build output: ' + name)
@@ -70,10 +72,13 @@ def package(dist, application_dir, bundle_id=BUNDLE_ID):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--dist', type=Path, default=REPO / 'frontend/dist/local')
+    parser.add_argument('--housing', action='store_true')
+    parser.add_argument('--dist', type=Path)
     parser.add_argument('--application-dir', type=Path, default=REPO)
     args = parser.parse_args()
-    digest = package(args.dist, args.application_dir)
-    print('UNAPPROVED candidate bundle:', BUNDLE_ID)
+    bundle = HOUSING_BUNDLE_ID if args.housing else BUNDLE_ID
+    dist = args.dist if args.dist is not None else REPO / 'frontend/dist' / ('housing' if args.housing else 'local')
+    digest = package(dist, args.application_dir, bundle)
+    print('UNAPPROVED candidate bundle:', bundle)
     print('Candidate manifest SHA-256:', digest)
     print('Validate/review source, reproducibility and content, then obtain owner approval separately.')

@@ -10,7 +10,9 @@
     "test": "tsx --test",
     "typecheck": "tsc --noEmit",
     "build:local": "vite build --mode engine",
-    "package:local": "python -B tools/package_host.py"
+    "package:local": "python -B tools/package_host.py",
+    "build:local-housing": "vite build --mode local-housing",
+    "package:local-housing": "python -B tools/package_host.py --housing"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
