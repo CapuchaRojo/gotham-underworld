@@ -154,6 +154,16 @@ class Handler(BaseHTTPRequestHandler):
                     raise BridgeError('INVALID_LENGTH', 'GET bodies are not supported.')
                 if path == '/api/v1/state':
                     result = self.server.bridge.state()
+                elif path == '/api/v1/housing' or path.startswith('/api/v1/housing/operations/'):
+                    if self.requestline.split()[1] != path:
+                        raise BridgeError('INVALID_PATH', 'Only exact API paths are supported.', 404)
+                    if path == '/api/v1/housing':
+                        result = self.server.bridge.housing()
+                    else:
+                        request_id = path.removeprefix('/api/v1/housing/operations/')
+                        if not request_id or '/' in request_id:
+                            raise BridgeError('NOT_FOUND', 'Unknown API path.', 404)
+                        result = self.server.bridge.housing_operation(request_id)
                 elif path.startswith('/api/v1/operations/'):
                     result = self.server.bridge.operation(path[len('/api/v1/operations/'):])
                 else:

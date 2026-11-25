@@ -344,6 +344,35 @@ class BrowserHostTests(unittest.TestCase):
         self.assertEqual(self.checkpoint.read_bytes(), before)
         self.assertEqual(random.getstate(), rng)
 
+    def test_housing_routes_reuse_browser_host_auth_and_original_operation_receipt(self):
+        current = '/api/v1/housing'
+        details = '/api/v1/housing/operations/housing-pay'
+        self.assertEqual(self.call(current)[0], 401)
+        self.assertEqual(self.call(details)[0], 401)
+        status, session, _ = self.redeem()
+        self.assertEqual(status, 200)
+        headers = dict(self.headers(), Authorization='Bearer ' + session['capability'])
+        for command in ('settle_in', 'wait', 'pay_room'):
+            request_id = 'housing-pay' if command == 'pay_room' else command
+            status, paid, _ = self.call('/api/v1/commands', 'POST',
+                                        self.command(request_id, command=command), headers=headers)
+            self.assertEqual(status, 200)
+        before = self.checkpoint.read_bytes()
+        backup = Path(str(self.checkpoint) + '.bak')
+        old_backup = backup.read_bytes()
+        status, projected, response_headers = self.call(current, headers=headers)
+        self.assertEqual(status, 200)
+        self.assertEqual(response_headers['Cache-Control'], 'no-store')
+        self.assertEqual(projected['pay_room'], 'no_payable_balance')
+        status, operation, _ = self.call(details, headers=headers)
+        self.assertEqual(status, 200)
+        self.assertEqual(operation['settlements'], [projected['latest_settlement']])
+        self.assertEqual(operation['receipt'], paid['receipt'])
+        original = self.call('/api/v1/operations/housing-pay', headers=headers)[1]
+        self.assertEqual(original, dict(paid, operation_status='committed'))
+        self.assertEqual(self.checkpoint.read_bytes(), before)
+        self.assertEqual(backup.read_bytes(), old_backup)
+
     def test_bootstrap_returns_only_process_capability_and_compatibility(self):
         before = self.checkpoint.read_bytes()
         code = self.host.server.bootstrap.issue()

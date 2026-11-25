@@ -192,16 +192,35 @@ def begin_day(world):
           schema_version=1, processed_day=world['day'], cause='day_transition')
 
 
-def pay_room(world):
-    life = _state(world)
-    if world['player']['arrested'] or world['navigation']['location_id'] != life['home_id']:
-        raise ValueError('Visit home while free to make a room payment')
+def room_payment_plan(world):
+    """Read the current payment gate without touching the career."""
+    life = world.get('daily_life')
+    if life is None:
+        return 'not_adopted', None, 0
+    if world['day'] < life['activation_day']:
+        return 'pending', None, 0
+    if world['player']['arrested']:
+        return 'detained', None, 0
+    if world['navigation']['location_id'] != life['home_id']:
+        return 'away_from_home', None, 0
     housing = life['housing']
     kind = 'arrears_payment' if housing['arrears'] else 'prepay'
     remaining = housing['arrears'] or (30 - housing['prepaid'])
     paid = min(world['player']['cash'], remaining)
     if paid <= 0:
+        return ('no_payable_balance' if remaining <= 0 else 'no_cash'), None, 0
+    return 'eligible', kind, paid
+
+
+def pay_room(world):
+    status, kind, paid = room_payment_plan(world)
+    if status in ('not_adopted', 'pending'):
+        _state(world)  # Retain the existing enrollment error and wording.
+    if status in ('detained', 'away_from_home'):
+        raise ValueError('Visit home while free to make a room payment')
+    if status != 'eligible':
         raise ValueError('No payable balance or no cash; basic home access remains available')
+    housing = world['daily_life']['housing']
     before = _housing_snapshot(housing)
     world['player']['cash'] -= paid
     if kind == 'prepay':
