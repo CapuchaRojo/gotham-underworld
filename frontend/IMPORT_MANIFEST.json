@@ -1,0 +1,967 @@
+{
+  "source_archive": "Gotham--The-Goon-source-code (3).zip",
+  "archive_sha256": "43ea1097841307caa475224f93bc3b067865a82350909cce5724a0688d0e7383",
+  "engine_baseline": "f2e75dd959c55a2f7d8207a7d3b0160d60efb444",
+  "files": [
+    {
+      "path": "src/App.tsx",
+      "size": 5866,
+      "sha256": "9f05ad9b1c1f47d3a09646646e4bdfa7ea78d495c114f983e2c2d5fb6362662e",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/main.tsx",
+      "size": 1530,
+      "sha256": "cfd140a00b7075dad04bd64e1c60dfe75536e5c8274054efd3b28e13b2aa0b94",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/index.css",
+      "size": 2163,
+      "sha256": "9191c689c86daf30075e7f03ebffc43741c2d36850cdd10f8a7a284afedb5bef",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/types.ts",
+      "size": 4467,
+      "sha256": "cb34b08c3cdf2c0aaefe6d4df343ed06e80fc1c12f6b38fabcc20f1df1f17103",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/atlas.ts",
+      "size": 38407,
+      "sha256": "8631f60f8394a3aab4a947382086416c2905b919251e16e75cbcafdac9d6a0cc",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/navigation.ts",
+      "size": 10376,
+      "sha256": "0de8e1933e4ba629cfd44ce379882d435f435c5f227c6966af841877f965e3a5",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/fixtures.ts",
+      "size": 10511,
+      "sha256": "ecd1746ed42089029f3ccf2df7c02243851c1bcd852b6e6456bd3bd241d0f36f",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/icons.tsx",
+      "size": 4941,
+      "sha256": "13c6d1e5407d878056030e9d295e7c7d93016d29b8ddbb1c79a90061ac8beac0",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/StateBadge.tsx",
+      "size": 1049,
+      "sha256": "6570fcb3ea9cb18d5492565f8461aab0107163596582d3eb478e85d71ef8942d",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/ScenarioSwitcher.tsx",
+      "size": 1381,
+      "sha256": "15b34b5e71e1cdeac5550d19b432b32807e4b2cd1e3798f0957f35f6b1251f12",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/BudgetMeters.tsx",
+      "size": 1623,
+      "sha256": "c302a780d127c28c4082fd7ebb0c7beea9cec9ceef2a7214f9559bf67547a979",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/MoneySummary.tsx",
+      "size": 1568,
+      "sha256": "a1aff9400852ab58f7ca10327224749c302faa7a94544bbb5ac5606cb35be846",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/PlaceCard.tsx",
+      "size": 4766,
+      "sha256": "75df24fa5d6bb56d5802db85c7c46d1baf5cd1961eba1303d75fb5890b728fd2",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/WorkCard.tsx",
+      "size": 2146,
+      "sha256": "f2f2069cd5ab710366e21b45b664fa7f65aae06e750cde3e177cda75f22aa286",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/ContactCard.tsx",
+      "size": 1017,
+      "sha256": "09d966fc834276b961910720dfd38cec6bfd476a922be887dab7061d34b81cdd",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/ObservationCard.tsx",
+      "size": 2649,
+      "sha256": "22416020c42b173771d462de80c5871f2066d3d24aba54758c7da212b8875cd7",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/StreetsView.tsx",
+      "size": 12692,
+      "sha256": "2c48085acc22a3b6852df3c917ad34fc4d78f359e3b3e3348eef9954bfe9b333",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/LifeView.tsx",
+      "size": 5972,
+      "sha256": "00e1050841c1d945946454f62fc7fdf654275226297e971d6cb9a66dbfcc2d81",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/StoryView.tsx",
+      "size": 5216,
+      "sha256": "7376491ab02ed0ac6b7797ed5cfbe36d91a8479cfdbed3895a359a8ceec3ac9c",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/DeveloperModeToggle.tsx",
+      "size": 1448,
+      "sha256": "d51b92668f38c27d89c84fd8a9db19e5c410a33295e929eb6fb41ef7a497c088",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/TodayView.tsx",
+      "size": 11747,
+      "sha256": "e538ffdcb25b84efa5ebf45ef6eb8307e74277b376081c6ecfb14f382a06a612",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/components/LocalEngineInspectionView.tsx",
+      "size": 18561,
+      "sha256": "7701efe6e0cd231924c2bfea54dd03a2e39d69b504035b818cbaf225ee215eae",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/life_presentation.py",
+      "size": 3806,
+      "sha256": "0b209698ab7aec7823567a1a8e93be15ddfb920c63b3f16e0fc2f571be48ad73",
+      "disposition": "excluded"
+    },
+    {
+      "path": "src/gameplay.py",
+      "size": 23484,
+      "sha256": "23fdb26c30014e360ccec2e1ecae056c9dfc56bb9c674c3d40fae422878c161b",
+      "disposition": "excluded"
+    },
+    {
+      "path": "src/game_service.py",
+      "size": 6608,
+      "sha256": "8733672a37331c7fa0da9003361c40061106e5b46def619c77bab875f6a50600",
+      "disposition": "excluded"
+    },
+    {
+      "path": "src/institution_state.py",
+      "size": 10812,
+      "sha256": "83e655890d72eca4d7629a201d4478281c27193ef7a8f5494bd3d20e154e5fed",
+      "disposition": "excluded"
+    },
+    {
+      "path": "src/institutional_response.py",
+      "size": 17451,
+      "sha256": "1abadb7e871f1e18a22c21ce689cf9428c86ed47997227d788855bce1de1d2db",
+      "disposition": "excluded"
+    },
+    {
+      "path": "src/navigation.py",
+      "size": 20484,
+      "sha256": "37512c0d3848dd9d76b29b592012c1bf083e4861648b0c09268b14b182443ea6",
+      "disposition": "excluded"
+    },
+    {
+      "path": "src/ordinary_state.py",
+      "size": 13773,
+      "sha256": "48800d17a5f0f2a13276409263982599557d544511dcfe1fb388fd013c78d4cc",
+      "disposition": "excluded"
+    },
+    {
+      "path": "src/navigation_data.ts",
+      "size": 42825,
+      "sha256": "1166c08460b9558914c9400b81895a2fef0bdbccc577f68b98292cd5d063508c",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/presentation.ts",
+      "size": 2974,
+      "sha256": "9ae39ba3fe78959726c2c76b5ac3f44d562bc573951e9e876932c6903cfd463b",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/types.ts",
+      "size": 6134,
+      "sha256": "2cb55f1c45f91e532c4774d7fb818a6dff973e5176317f7e484da2994c03947c",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/preview.ts",
+      "size": 5019,
+      "sha256": "80bafac3e40aa0ea47566570bb8720e9b4d1446062aecec480f351c592179f9a",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/GameplayProvider.tsx",
+      "size": 3808,
+      "sha256": "ca3f8c7b74bb0bc03bb0cbd51d43727e56c06cff7178860fe6d8df88e2a709a2",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/wire/constants.ts",
+      "size": 1900,
+      "sha256": "7a5d6faa4d837e5528740946ecb1e88d05a6c2416b71bcd77a30a55b389f6da5",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/wire/types.ts",
+      "size": 10089,
+      "sha256": "ecd64e695a46b222deea38912583c842462a1636f41ff5272ec5ce4df3a04bd4",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/wire/validate.ts",
+      "size": 41959,
+      "sha256": "096b492a40d193165b86bc675a2fe797728b2c9321d7be9390cc5af1d14255d4",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/wire/index.ts",
+      "size": 235,
+      "sha256": "6c704906fe5cc4edf42cfd02a9854842f9fafeb437ad115113f6116d2679e361",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/connection.ts",
+      "size": 2565,
+      "sha256": "c40db5028d1fc115d6c1eadca2b7922601520808243fd82e76b836fd285f3a00",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/liveEngine.ts",
+      "size": 5887,
+      "sha256": "ffe4295f49f188405d5ef7ec6035ddf94c1821c3083865ad8de47848336f5399",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/LiveEngineProvider.tsx",
+      "size": 8940,
+      "sha256": "efbf2521d3eb6b6a3fb90dffc2ff1f02b89bb8b2e3700182b268589b25961baa",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/EngineProvider.tsx",
+      "size": 966,
+      "sha256": "6a1fbce3b8ff78fe7bdd98c228f671e56cc243b66a200fca301ec6555b6ce10c",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/host.ts",
+      "size": 10223,
+      "sha256": "8d4ffad418f7efad65a2ee81184f814471abdb62c3a9540f9e76a7bf9ab72f16",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/gameplay/outbox.ts",
+      "size": 20389,
+      "sha256": "c27794914534a6d7b6560475a516c9fabdd0eeefeb2b6c93b907672e854fbffb",
+      "disposition": "imported"
+    },
+    {
+      "path": "src/LiveInspectionApp.tsx",
+      "size": 786,
+      "sha256": "b4f4dd5ac4ec22f52bb1af7db2d9aafebc4cd7dfb137d26937f62ab7f2c2e22f",
+      "disposition": "imported"
+    },
+    {
+      "path": "public/nativelyai.svg",
+      "size": 960,
+      "sha256": "3846afd099c7b60d557e5f5b1e110617f70b5bcb3f963324f498b263f7d7e456",
+      "disposition": "excluded"
+    },
+    {
+      "path": ".gitignore",
+      "size": 253,
+      "sha256": "fe718e7babb14f3cbad2d97f08889b9ce5215ed3fe0e43b2b8cfbfb3b9b844e8",
+      "disposition": "excluded"
+    },
+    {
+      "path": "index.html",
+      "size": 371,
+      "sha256": "0187299f85d9ac0b3092cb16e80a194128244d6d99bedd96b00e6b86e6b2a3b9",
+      "disposition": "imported"
+    },
+    {
+      "path": "package.json",
+      "size": 820,
+      "sha256": "2d3774292ed7a5a7174acc4eebc4ee3a0fd014bbda9f7aba3be531f81d50045d",
+      "disposition": "imported"
+    },
+    {
+      "path": "tsconfig.json",
+      "size": 645,
+      "sha256": "c5becb892129df8e4fc1b93fb0284eebe0862602de1d8c2d9477d8bd05c24d9d",
+      "disposition": "imported"
+    },
+    {
+      "path": "vite-env.d.ts",
+      "size": 795,
+      "sha256": "456d0984b06aa5de0f1045d8918137ec404db4b23fed7ec50324a2c3871001b0",
+      "disposition": "imported"
+    },
+    {
+      "path": "vite.config.ts",
+      "size": 986,
+      "sha256": "b5d4bdaa15079c30b29065f4b204e3d2f75c2b0839741694a019d43fdbcc4f88",
+      "disposition": "imported"
+    },
+    {
+      "path": "docs/GOON_GOTHAM_ATLAS.md",
+      "size": 16686,
+      "sha256": "12e6259bddc402096332b40f50a09069bef5220348a0a282d4f27946bc3e0c23",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_CONTENT_ARCHITECTURE.md",
+      "size": 31584,
+      "sha256": "dee3811412f0bad3b8cc4bd424c0a9b7a9d9b3ef1e347f275663e66ffc6b6862",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference/GOON_DARK_CANON_REGISTRY.md",
+      "size": 29452,
+      "sha256": "f58422924abd3d41ab78e0bee1b16420e4840141dcdcab5ebcf348583926475b",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference/GOON_FACTION_EMPLOYER_MATRIX.md",
+      "size": 44426,
+      "sha256": "79bb1eee2625ff51f8bd37d042e2601ee08df9194e2465313d0aeb465d1e633c",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference/GOON_DARK_PROGRESSION_CONTRACT.md",
+      "size": 33310,
+      "sha256": "1c263294beec404e42271e072ed626611236d9fab560afccd0afc074a3992db5",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference/GOON_ROGUES_GALLERY_REGISTRY.md",
+      "size": 46987,
+      "sha256": "2557f1a84cfa20480ef9764e0bb9cb6373d43a1f49d1442d438d6db99e3d2f88",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference/GOON_MASTER_ROSTER.md",
+      "size": 89791,
+      "sha256": "745e623f395c62326f78f520b1d501d6f980bbe975b11bc20e31f7e8a5b51226",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference/GOON_ROGUE_ENCOUNTERS_DESIGN.md",
+      "size": 76857,
+      "sha256": "7b922a11f94481aa417f02eb9bb47870418b1ea29b07d4b4adae565df6e6dc8d",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference/GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md",
+      "size": 39028,
+      "sha256": "e2ce42f1175e3c6d02dc7518883709383cee5ab7772f0ac6dbb77fc025f9b4e4",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference/design-contracts/Goon_Consequential_Choices_Bible_v0_1.pdf",
+      "size": 28175,
+      "sha256": "e784b38d3e19c2b164444de6c782cc835c7f87ec5301485dfc7465cad1ff8c81",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference-backup/GOON_DARK_CANON_REGISTRY.md",
+      "size": 29452,
+      "sha256": "f58422924abd3d41ab78e0bee1b16420e4840141dcdcab5ebcf348583926475b",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference-backup/GOON_DARK_PROGRESSION_CONTRACT.md",
+      "size": 33310,
+      "sha256": "1c263294beec404e42271e072ed626611236d9fab560afccd0afc074a3992db5",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference-backup/GOON_FACTION_EMPLOYER_MATRIX.md",
+      "size": 44426,
+      "sha256": "79bb1eee2625ff51f8bd37d042e2601ee08df9194e2465313d0aeb465d1e633c",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference-backup/GOON_MASTER_ROSTER.md",
+      "size": 89791,
+      "sha256": "745e623f395c62326f78f520b1d501d6f980bbe975b11bc20e31f7e8a5b51226",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference-backup/GOON_ROGUE_ENCOUNTERS_DESIGN.md",
+      "size": 76857,
+      "sha256": "7b922a11f94481aa417f02eb9bb47870418b1ea29b07d4b4adae565df6e6dc8d",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference-backup/GOON_ROGUES_GALLERY_REGISTRY.md",
+      "size": 46987,
+      "sha256": "2557f1a84cfa20480ef9764e0bb9cb6373d43a1f49d1442d438d6db99e3d2f88",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference-backup/GOON_TASK_FORCE_X_RECRUITMENT_DESIGN.md",
+      "size": 39028,
+      "sha256": "e2ce42f1175e3c6d02dc7518883709383cee5ab7772f0ac6dbb77fc025f9b4e4",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/goon-reference-backup/_NON_AUTHORITATIVE.md",
+      "size": 631,
+      "sha256": "4362de18af430a812bd4e44a3d91c1e50abf6fc3f465989fab6257c9dcc41840",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/bridge_bootstrap.py",
+      "size": 1912,
+      "sha256": "60401eab38f90155a04faf8790aba7d1c34ba1edf07fdbc6d0a0474b31a36952",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/bridge_assets.py",
+      "size": 7425,
+      "sha256": "1cc2064bf33be3e9f37b4fddeb1ed662eb63f418e6d763bd3c10846015387c95",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/bridge_checkpoint.py",
+      "size": 9747,
+      "sha256": "790cad405cb55c5f3a7bb4796ade331b279a7720cfdfcb8c17e9990087da346d",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/bridge_http.py",
+      "size": 10450,
+      "sha256": "293ace1dceff56787030f38f0c0540cc3d89614575544f83853bc4aff2b386a3",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/bridge_projection.py",
+      "size": 3806,
+      "sha256": "066ec8b72190d8ba99355c4b9f3cb091ac2c8bc1605db1ab6a6f9970d73a154a",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/browser_host.py",
+      "size": 12014,
+      "sha256": "8dce64d9c2059c82aeb3c16304773a1dddf4466c451bcf8cf4c1a1f93cc0f784",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/tests/test_browser_host.py",
+      "size": 39823,
+      "sha256": "ae715fb0b755d3ddb75ef81f7ec2f80e80c5c3820ae6336ccbf54ef94cc055af",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/tests/test_engine_bridge.py",
+      "size": 29683,
+      "sha256": "9907097af622117761fa16e071b3e3a16c17edd1fc4427b37695d7f5d14113e9",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/tests/test_bridge_http.py",
+      "size": 24136,
+      "sha256": "468fc60831542ea22b9026cdf3a6fdbce866481f5d8be5c976ea2c016c0236fc",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/docs/M030_C1_3_BROWSER_HOST.md",
+      "size": 18202,
+      "sha256": "d803178aa03b820ed98de64a0cac78754474732a42a634dd64b087683ae0db70",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/authoritative-python/docs/M030_C1_DURABLE_ENGINE_BRIDGE.md",
+      "size": 20202,
+      "sha256": "6eb9c19966b848fe840e69c8849d22d0f91a2da45d09db571900adbb2df2fc91",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/contracts/M030_C2_PREP_Codex_Report.md",
+      "size": 36756,
+      "sha256": "43fe1da2f8373bdddf637ee2fd08807c235cf1d348102d6a26582af44d8e8281",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/SHA256_MANIFEST.json",
+      "size": 2577,
+      "sha256": "d36ac89302a64a6b515be5eaf1e853bd467a96e9beca5558c87dfc423e17d63b",
+      "disposition": "excluded"
+    },
+    {
+      "path": "docs/GOON_GTG13A_BUILDER_HANDOFF_f2e75dd959c5/README_BUILDER_HANDOFF.md",
+      "size": 3544,
+      "sha256": "d6fb6a358711ebf8ac008901c5ef4aa58de401225e065684eb71f2a3465ddd32",
+      "disposition": "excluded"
+    },
+    {
+      "path": "location_registry.py",
+      "size": 6178,
+      "sha256": "bcafa73446c803b7992ec95b8a0dc6074b73872a37235b0e60e382bc69525459",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/mobility_station_pilot_v1.json",
+      "size": 1288,
+      "sha256": "5e50198c787895fed95ae3415c399176ebae0c968b18eb711fe3f543626812a0",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/gotham_atlas_v1.json",
+      "size": 157535,
+      "sha256": "f2a18d276cac2d2174d20f7f3c3a1c345bcb0ccb9766768ce032ab37f5f0b8ed",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 10 strategic recovery.jpg",
+      "size": 141167,
+      "sha256": "f4a7deefc9b839012714f1a3489cda57f13a9b8cf8209cdaaa3503a2873264d6",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 13 major players.jpg",
+      "size": 115661,
+      "sha256": "dd3147f06abdb650ef5075c7764f9ccf8ebdacf6a66335f8b931d3ea57560840",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 12 teritory expansion.jpg",
+      "size": 364386,
+      "sha256": "75a0e8349b27b9018b240dbced1482abcb1660af0c9a95158c2179417de8e455",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 11 faction identity.jpg",
+      "size": 875645,
+      "sha256": "954a8f170c4c88be461501c3dce37de87f9af61dba795fdf9da8ce5a20908759",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 1 Gang Life.jpg",
+      "size": 89750,
+      "sha256": "8f011e6a68281846174bc15a1e8cd1786411dea1ab5259fc5b8f4019255c90ea",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 14 every boss.jpg",
+      "size": 140289,
+      "sha256": "6f47b10da2561f9a827e9b26dd98c496cb52a3a336e544771406313a6fbf9729",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 15 ordinary life.jpg",
+      "size": 48867,
+      "sha256": "98117221e598fc3abd5cd62c2b97f3073b13e6362f2a011ecd69f49cda13047c",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 16 batman terrifies.jpg",
+      "size": 79796,
+      "sha256": "4fbf9b12a0a97d3c5c980f29b74619b04305fd4d29b75c2f5d4e139201cb258c",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 18 involuntary commit.jpg",
+      "size": 211908,
+      "sha256": "4f19ed28f1e0685dd36abde2bb19736b814ed10a35338a47139ef743b222b2db",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 19 dr will see you.jpg",
+      "size": 547613,
+      "sha256": "653479877a73203ee10d0fa87c9a1dcff610554741eebeff9c6ea699b9b16a16",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 2 Law Enforcement.jpg",
+      "size": 148936,
+      "sha256": "d2cc889106793f0b1a0b202e3c31e897639a4d830d955aef9015c2d79ff594b4",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 20 arkham visit.jpg",
+      "size": 118990,
+      "sha256": "6c5b68ce5987f55d2ff830ee1e37eeb35508b6ab2b1277ff4e9ef2818edc5596",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 22 condiment king.jpg",
+      "size": 76964,
+      "sha256": "9a959984d7ada9375a8bb9a3fd5bf22a4fd7f59902b7b76cf72116f4c37c3036",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 21 killer moth.jpg",
+      "size": 170510,
+      "sha256": "db64cf158787cb14829b57042da696280f8543edee40171b6012b61d0a662abb",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 24 clock king.jpg",
+      "size": 76755,
+      "sha256": "389042047245e5af5cf56c9aeba5c9173f34aedf6b138e2cde95e81d911cffce",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 23 kiteman.jpg",
+      "size": 36561,
+      "sha256": "159226b0758dee9b346a2d8789be0f9c035e2f7385c93aaaa83687d85e696ed6",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 24 joker gang.jpg",
+      "size": 59850,
+      "sha256": "90f1e608c5aabd73285e5c5834a65c5c704e123b85cdb4f3c769161a2082e245",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 25 joker gang.jpg",
+      "size": 44908,
+      "sha256": "2af5fc4c0449ad1bc162452bb1a5f8e7c28f0a38e2d61ac654b2943e4a878b7a",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 26 joker free.jpg",
+      "size": 104825,
+      "sha256": "6928a7c64d31bc1cda5777672f8eb045661c3ac8407ecc1c4eb5a8f2e4117244",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 28 croc.jpg",
+      "size": 323770,
+      "sha256": "a766bd6f27e1536172b5d8a0def08394fda6655ff42463751527512ef0616007",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 29 sewer.jpg",
+      "size": 49903,
+      "sha256": "86d3cb6401b44fb9a3a71d027dc9737b0b77860bdd39531bc5a2dcd4d07f3ea4",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 3 Undercover.jpg",
+      "size": 152813,
+      "sha256": "632e5c96556b5ef1cd493f97b64e51225daa31661b1b51cc2871f96531325167",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 27 gotham.jpg",
+      "size": 1368242,
+      "sha256": "b7c37af00fcdc3ae96e884a9d341052dd69706ba527f435e0787e35416b583d0",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 30 bowery.jpg",
+      "size": 343272,
+      "sha256": "45ef8e8ab8c25fa067dff77f5c11e9122290999460c02a931d7073a98efa7d83",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 31 missions and ops.jpg",
+      "size": 119027,
+      "sha256": "153678b7332e477fd1a455618dd9549cd00ddf80aa516548bd2356179579f3b1",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 32 social.jpg",
+      "size": 97302,
+      "sha256": "bc1298d93e98afe3cf98fcc55024a949c9c11e863ca39040f155608f8f7d6ded",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 33 batfam.jpg",
+      "size": 866779,
+      "sha256": "fc01e03f420a90c968208ef733d0817bd001437735edd916413c57c7d2d3d181",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 34 inner life.jpg",
+      "size": 39475,
+      "sha256": "98c6a6daec3565973ee567342e825284797cf4c20d559341294afe0c743e4473",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 35 something to do besides crime.jpg",
+      "size": 92845,
+      "sha256": "c525e4ddc2e21def453f38c79f27c588fc6301186c03f29ebcc8548287a5ec2d",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 36 sports and fitness.jpg",
+      "size": 151035,
+      "sha256": "c160641fdf8b2690047fe112aa1e154eecb9cca285c05bcf4183fad3116d5c05",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 37 1st night in gotham.jpg",
+      "size": 191009,
+      "sha256": "6255f311b3f7e06da493bfda9c998ca271d3bd4f11b62fae7f7c8f5de009a917",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 39 gotham at night.jpg",
+      "size": 152699,
+      "sha256": "96a432f20abe977a523d6a9ad5beceffced7dca8d890ee8d4e309c776bcba725",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 38 gotham night.jpg",
+      "size": 182177,
+      "sha256": "ef8619a8517133782be13c3ab562c9565b49b945df5466924411c1444d769055",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 4 Enterprises.jpg",
+      "size": 143033,
+      "sha256": "b1f05a442d7cc0efeee6b834bd77a1a8bc547ce8ffcaf6b69a5be2dfcf7e1974",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 41 gotham mono.jpg",
+      "size": 69003,
+      "sha256": "e8a90d541743292df0a12cef052980b5f65f185e6d1b74013f8502826587eea7",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 42 Deadshot.jpg",
+      "size": 79925,
+      "sha256": "f20f5e102b8f86f06614c65ba4f592baf3b4f5e7a50e15ea6b9467d677fe8b1b",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 44 inventory.jpg",
+      "size": 287541,
+      "sha256": "6a83e9d43320b6f9c095c710baf7f6311e52f6ff3ea966f0c72b2929dad0d8bf",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 45 map detail.jpg",
+      "size": 55857,
+      "sha256": "da2febc91271501d393ff85461440e7a088bf7d9031dcfc70adda0793dd40f70",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 46 streets.jpg",
+      "size": 301384,
+      "sha256": "d835d84a00b235bfd403ad7108f9955ce8d6272f6d937503e3b8c1d7dc5702f1",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 43 bane.jpg",
+      "size": 237113,
+      "sha256": "4bf2e790fe7c77c2eeae0a181e447e5ee3d6218d9f7c6aceecb35c286e6769ec",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 47 owls.jpg",
+      "size": 93997,
+      "sha256": "76170e5f2a23e8df2d81a875eff90527e9dbcd724712d5ce6c52d9aca6ded406",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 48 court.jpg",
+      "size": 230560,
+      "sha256": "889ff8c0701145af97a45ab5f8a0eef836c0c44acac69dcbb4dd0e751b86a3c5",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 5 city events.jpg",
+      "size": 28764,
+      "sha256": "fa4efcfd9872564fa5d32ac1a2dfdd27b8e297085de4e02a80837fecdba79a46",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 49 talon.jpg",
+      "size": 100929,
+      "sha256": "ced1386be31f92895cb69126c6a6460078eb1c82194edfb51def7149648fd61d",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 51 personal.jpg",
+      "size": 205644,
+      "sha256": "eee6490e563d85293da0e6f9fec89a216c78279e6008072096fd01fcaec08cc5",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 50 inventory.jpg",
+      "size": 205318,
+      "sha256": "2c29bc4068758eaa7101c9b684d17ea1b3ac1e4deadbab244d58dd985459a16d",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 52 streets.jpg",
+      "size": 316238,
+      "sha256": "e47415a0a48bddfd49e5991d6c50775550a03f6f2e2105261ea9e1b403aa23d6",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 54 story.jpg",
+      "size": 70628,
+      "sha256": "1996362b2664fb5cc3d95b6bb05ae40db0863a4ff9592fd1e936d66fd7d2d017",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 53 life.jpg",
+      "size": 391671,
+      "sha256": "d8e1ada64bcf620e9927480a165352bff2594366a78a0ca7d40ec35ab1c11ef1",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 6 city calls.jpg",
+      "size": 92198,
+      "sha256": "84bbaa4fa3936ef0641207659d13f7f723abd03f0b4be533e497998723fca0e0",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 7 Law.jpg",
+      "size": 176767,
+      "sha256": "eedb407bd739e628b3f5df3bf596bc42296b10aec98f9e762b519f44fae383c6",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 8 Shadows.jpg",
+      "size": 261417,
+      "sha256": "e18a0800c384937165c7dc42b8d004ec0fe576734003ba13c63fd4602756fa7d",
+      "disposition": "excluded"
+    },
+    {
+      "path": "content/images-references/Goon Life 9 economies.jpg",
+      "size": 480025,
+      "sha256": "204fb802755fffa76e839c7be9d01b783fb07b4f0c5f35370c3c0335cfa996dd",
+      "disposition": "excluded"
+    },
+    {
+      "path": "package-lock.json",
+      "size": 138317,
+      "sha256": "b7b3902b2ea889590285a1f90dd082b74ef5426f84a01dd7a3119521d0598758",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/helpers.ts",
+      "size": 343,
+      "sha256": "7479751b0ea848d32fd57e87438fe5041c02b2dd152519e41995487881987314",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/atlas.test.ts",
+      "size": 5807,
+      "sha256": "1870bcde57ea83a0841710097d0609fb835ab0772b9242cb108f4a3ca67e41a7",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/navigation.test.ts",
+      "size": 5565,
+      "sha256": "67695c1857319be7a7b34d67b21a4f9434c6c12063fc2b2b79a97c75fb5f7b08",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/fixtures.test.ts",
+      "size": 3298,
+      "sha256": "a2e8f3e6bc749a5d9ed8813e3a75487e3f732b02ebf451c92e614976007e8bb6",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/views.test.ts",
+      "size": 3355,
+      "sha256": "e672f7bd61166ecc549497c59966b39c5704b13a3ac486928c6f702e324ffa20",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/presentation.test.ts",
+      "size": 3228,
+      "sha256": "48d238869fd8aeae658fe0cfe81e20511447641e78deb79be59434dffe282311",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/dom.ts",
+      "size": 1232,
+      "sha256": "b3b66e1b27524890fed31a2d0aeb4df7e225106e179bfbac065b828d4d6f5850",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/scenario-gating.test.ts",
+      "size": 4042,
+      "sha256": "42d91f6c3a35fd8ce3aec1490406849f1b78ff6d8fcac37dddcac15e7968ae0e",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/player-cleanup.test.ts",
+      "size": 7856,
+      "sha256": "0a6cca10ea7d4d382333ac3ea6c57fc318a5e60dc578a7fc51bfe0020145bc19",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/today-view.test.ts",
+      "size": 7941,
+      "sha256": "7646523ce9b1447c1fe003b023cd90907ae4264eef79b6840761d50e4008fed6",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/branding.test.ts",
+      "size": 1047,
+      "sha256": "8b3f7631736a3352eaf35d1a3bea87ce06c6636028f52e001e9d397e57f7eb33",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/gameplay-provider.test.ts",
+      "size": 6249,
+      "sha256": "6fbe6ab92d09f7916a8012744653fa0b46bff0ba77bd7eb97076f82ac478c56e",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/wire.test.ts",
+      "size": 14471,
+      "sha256": "e1655f8f556bead24139d6704f416019ab3471a1d6d2bff12a848c63754a9771",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/live-engine.test.ts",
+      "size": 18450,
+      "sha256": "0e81c49eac0bd8ed226aca9f59983e8750a184bc564015c3c982c0ef72193a88",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/host.test.ts",
+      "size": 10277,
+      "sha256": "24eba45192641466bacda8579bc1141df6a4a1d17e90707941c9e696b07abd9e",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/outbox.test.ts",
+      "size": 17608,
+      "sha256": "8b6dc200fcc7665c7f0a89a81e4988c04cb7ec2cc25a7b09cc196e58fe996742",
+      "disposition": "imported"
+    },
+    {
+      "path": "tests/inspection-view.test.ts",
+      "size": 15488,
+      "sha256": "6b7ae09fabee37f09c3fe5b34851b190d13afed12008a49980eb4d8fadf38374",
+      "disposition": "imported"
+    },
+    {
+      "path": "README.md",
+      "size": 5432,
+      "sha256": "3c24eae5667e75f729d0caef10c8008c842e93c85b920f91bcd567b8f02c930e",
+      "disposition": "excluded"
+    },
+    {
+      "path": "UI_ACCEPTANCE.md",
+      "size": 7412,
+      "sha256": "4a331c620b123b049e730dd2b86f8fdaf31d0ffa17f205806c589555f73af156",
+      "disposition": "excluded"
+    }
+  ]
+}

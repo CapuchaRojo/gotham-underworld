@@ -782,3 +782,24 @@ for exact commands, recovery policy, evidence and limits. No React/Native.Builde
 work, assets, desktop host, deployment, new NPC, gameplay mechanic or C2
 implementation is included. Receipt/history growth, filesystem power-loss limits,
 explicit corrupt-primary recovery and non-Windows verification remain open limits.
+
+## 2026-11-07 — future visual-gameplay direction (design decision; not implementation)
+
+The owner selected a **third-person open-world crime/life RPG** as the long-term presentation/gameplay target. Proposed prototype: **M031-3D / One Living Block**, an isolated Godot 4 *candidate* feasibility track, starting with camera/movement/collision/one door, then a small block, home, store and lightweight NPC representations. This is **not** an engine migration, approved 3D production stack, gameplay/transport implementation, or code/test evidence.
+
+Maintain Python as the offline deterministic and authoritative game service; all consequential choices, world knowledge, daily actions, TU, location transitions and saves remain Python-controlled. Preserve 3 actions/day, 18 TU/day, exactly-once requests, history/replay, explicit adoption and privacy. The current loopback React host does **not** automatically authorize a Godot client; a separate P2 transport/security contract is needed. The eventual 3D client must distinguish free in-place motion from authoritative between-location travel. Camera movement and cosmetic NPC routines cannot mutate simulation state or imply implemented autonomy.
+
+This 2026-11-07 decision supersedes older **2D-only future-presentation proposals**, while the Python/React integration stays an interim production milestone. As of the inspected source `f2e75dd959c5` (2026-11-06), M030-C1.3 is present; GTG-13A's later 153-test Builder QA is user-reported evidence outside that ZIP; GTG-13B real-host browser acceptance and GTG-14/15 gameplay remain unverified here. See [the bounded 3D design](docs/GOON_THIRD_PERSON_VERTICAL_SLICE.md). No branch/PR/merge or gameplay implementation is authorized by this document.
+
+## 2026-11-07 — M030-C2B interrupted integration worktree (snapshot evidence; NOT merged)
+
+The owner supplied a current-worktree snapshot (`GOON_AS_IS_20261107_095022_f2e75dd959c5.zip`), reporting branch `feature/m030-c2b-frontend-integration`, HEAD `f2e75dd959c55a2f7d8207a7d3b0160d60efb444`, with a non-clean worktree (74 porcelain status entries, predominantly untracked `frontend/` files). The archive contains a `frontend/` import manifest, preview and local entry points, `LiveEngineProvider`, read-only `LocalHostApp`, browser smoke and host package tooling. These are **uncommitted working-tree files in the uploaded snapshot**, not code proven merged, reviewed or accepted for GTG-13B. No actual `.git` history or local installed dependencies are included in this snapshot.
+
+Codex reported 161 passing frontend tests, separate local/preview builds, unchanged host asset-validator acceptance, and a headless Microsoft Edge smoke involving console pairing, authenticated state, reload, host restart and capability rotation. Its run then stopped on usage limits during reproducibility/documentation/full Python regression before a local commit. Therefore treat the tests as **reported interim evidence**, not final GTG-13B acceptance; full Python regression, independent release pin, build reproducibility, security/content audit and visible/packaged browser coverage remain open. Browser state inspection is read-only and command submission is deliberately disabled in the local integration build. Do not mark GTG-13B, GTG-14 or GTG-15 complete.
+
+**Preservation warning:** never overwrite, reset or discard the uncommitted `frontend/` tree when applying this documentation change. Safest delivery is docs-only with exact baseline hash checks and backups, or a separate patch/commit after reconciling the ongoing branch. The 2026-11-07 third-person direction remains a **future proposed prototype**, independent of this interrupted React integration.
+
+
+## M030-C2B isolated stabilization — 2026-11-19
+
+The isolated `stabilize/m030-c2b-20261118` candidate preserves the interrupted frontend and repairs session, outbox and packaging failures. Local mode remains explicitly read-only; preview remains synthetic. This supersedes the earlier interrupted-work status for the isolated candidate only: the original branch remains unchanged and uncommitted, and no GitHub merge or release approval is claimed. See [the stabilization report](docs/M030_C2B_FINDINGS_AND_REPAIR_REPORT.md) and its exact test evidence. Python gameplay, 3 actions/day, 18 TU/day, saves and RNG are unchanged. Godot P1V-B/P1W remain separate protected work. Gameplay integration is a future approved mission.

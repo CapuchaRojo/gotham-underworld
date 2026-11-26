@@ -55,3 +55,26 @@ before the final third of **meaningful progression**, never elapsed days alone.
 This is documentation only; no events, clues, rumors, symbols, dialogue, Talons,
 encounters or runtime triggers are implemented. See the
 [approved restriction](GOON_ROGUE_ENCOUNTERS_DESIGN.md#mission-026-approved-roster-restriction--design-only).
+
+## 2026-11-07 direction addendum — third-person open world (future proposal)
+
+The owner selected **third-person open-world** as the long-term game experience. React/terminal remain active interim clients and Python remains the sole authoritative simulation. The proposed [M031-3D / One Living Block](GOON_THIRD_PERSON_VERTICAL_SLICE.md) is a **parallel, isolated Godot 4 feasibility prototype**, not a replacement for M030-C2/GTG-13B, a milestone already implemented, or approval to start Godot integration. Earlier 2D-only presentation proposals are superseded as end-state direction, but historical contracts and test/merge records are unchanged.
+
+| Track / gate | Proposed work | Must not be claimed until |
+| --- | --- | --- |
+| Active React/Python integration | Import latest QA-accepted frontend, restricted build, manifest/pin, actual host pairing, browser recovery and end-to-end acceptance | Verified on merged Python host and real browser; Builder mock QA alone is insufficient |
+| M031-3D P0 (separate feasibility) | One stylized block greybox, third-person controller/camera/collision/door on Windows, no Python connection | Playtested offline build and measured camera/movement quality |
+| M031-3D P1 | Home/store, three lightweight ambient NPC stand-ins and context prompts | Observable free exploration, accurate labeling of cosmetic vs simulated behavior |
+| M031-3D P2 | Bounded Godot↔Python authenticated adapter and canonical location policy | Separate approved security/replay/migration contract and tests |
+| M031-3D P3 | Tess real option, persistent choice and restart/lost-ack recovery | Actual service receipt with exactly-once effects, no fixture fallback |
+
+Keep 3 gameplay actions and 18 travel TU unchanged until a tested amendment. Combat/chases, vehicles, seamless districts, continuous time and 3D coordinate persistence are **excluded** from P0–P3 unless later authorized. No new engine-dependent Python runtime requirement. Do not delay the current playable-week roadmap on an exploratory visual milestone; do not merge the exploratory client into the main runtime without its own architecture and acceptance evidence.
+
+
+### 2026-11-07 interim GTG-13B source caution
+
+An uploaded as-is working-tree snapshot at HEAD `f2e75dd959c5` contains the uncommitted `frontend/` import and local-host read-only inspection changes on `feature/m030-c2b-frontend-integration`. Codex reported frontend/local browser progress before hitting its usage limit, but final Python regression, independently approved release pin, reproducibility, review and commit were not completed. **GTG-13B remains in progress/unaccepted; GTG-14 and GTG-15 remain blocked.** This docs-only 3D addendum does not endorse or overwrite those files.
+
+## M030-C2B isolated stabilization — 2026-11-19
+
+The isolated `stabilize/m030-c2b-20261118` candidate preserves the interrupted frontend and repairs session, outbox and packaging failures. Local mode remains explicitly read-only; preview remains synthetic. This supersedes the earlier interrupted-work status for the isolated candidate only: the original branch remains unchanged and uncommitted, and no GitHub merge or release approval is claimed. See [the stabilization report](M030_C2B_FINDINGS_AND_REPAIR_REPORT.md) and its exact test evidence. Python gameplay, 3 actions/day, 18 TU/day, saves and RNG are unchanged. Godot P1V-B/P1W remain separate protected work. Gameplay integration is a future approved mission.

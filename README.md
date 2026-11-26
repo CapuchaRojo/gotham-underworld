@@ -27,6 +27,16 @@ commercial release, fundraising, or external pitch materials need separate
 rights and legal review.
 No DC license is claimed, and the working title is not legally cleared.
 
+## Current integration caution — 2026-11-07 worktree snapshot
+
+The `feature/m030-c2b-frontend-integration` worktree contains imported frontend source and local-host inspection tooling that Codex was implementing when its run stopped; as of the latest owner-supplied as-is ZIP, it is **uncommitted**. Reported frontend/browser test progress is not a completed merge or a fully playable game. Preserve that branch and finish GTG-13B security/reproducibility/real-host acceptance separately. See [PROJECT_STATE.md](PROJECT_STATE.md).
+
+## Long-term presentation direction — decision of 2026-11-07
+
+**Selected creative target:** a third-person, open-world crime/life RPG, built incrementally from **one living block**. This is a direction decision and a proposed Godot feasibility track, **not** an implemented 3D game, approval to rewrite gameplay, or a claim that React is obsolete. The terminal/Python game and the React local-engine integration remain the active delivery path. Godot 4 is a *candidate* client for an isolated visual prototype; no Godot runtime or 3D gameplay exists in this inspected source snapshot.
+
+See [the proposed One Living Block vertical-slice contract](docs/GOON_THIRD_PERSON_VERTICAL_SLICE.md) for physical scope, controls, authority boundary, location/time policy, staged feasibility gates and security. Python remains the deterministic gameplay/save authority; 3 actions/day and 18 travel TU/day remain unchanged. The long-term presentation decision supersedes earlier 2D-only *visual target* proposals, **not** historical milestones or current React acceptance work. Ownership/merger of future 3D code requires separate explicit authorization.
+
 ## Durable local engine bridge — Mission 030-C1
 
 The opt-in [C1.3 browser host](docs/M030_C1_3_BROWSER_HOST.md) adds pinned local
@@ -835,3 +845,7 @@ Unanswered cases still resolve automatically; responses support documented
 collection cases and charged cases. No attorneys, warrants, probation, parole,
 undercover officers, combat, drugs, Bat-family encounters, or playable prologue are
 included. The prototype remains offline-capable.
+
+## M030-C2B isolated stabilization — 2026-11-19
+
+The isolated `stabilize/m030-c2b-20261118` candidate preserves the interrupted frontend and repairs session, outbox and packaging failures. Local mode remains explicitly read-only; preview remains synthetic. This supersedes the earlier interrupted-work status for the isolated candidate only: the original branch remains unchanged and uncommitted, and no GitHub merge or release approval is claimed. See [the stabilization report](docs/M030_C2B_FINDINGS_AND_REPAIR_REPORT.md) and its exact test evidence. Python gameplay, 3 actions/day, 18 TU/day, saves and RNG are unchanged. Godot P1V-B/P1W remain separate protected work. Gameplay integration is a future approved mission.
