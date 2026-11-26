@@ -2,9 +2,11 @@ import type { CommitmentState, Scenario } from "../types";
 import { placeById } from "../atlas";
 import { accessSummary } from "../navigation";
 import { playerSafeText, usePresentationMode } from "../presentation";
+import { relativeDays } from "../relativeTime";
 import { MoneySummary } from "./MoneySummary";
 import { BudgetMeters } from "./BudgetMeters";
 import { WorkCard } from "./WorkCard";
+import { OpportunityInteractionDemo } from "./OpportunityInteractionDemo";
 import { StateBadge } from "./StateBadge";
 import type { BadgeTone } from "./StateBadge";
 import { ArrowRightIcon, CalendarIcon, EyeOffIcon, InfoIcon, LockIcon, MapPinIcon } from "./icons";
@@ -55,8 +57,11 @@ function confidenceTone(confidence: Scenario["observations"][number]["confidence
 export function TodayView({
   scenario,
   onNavigate,
+  showInteractionPreview = false,
 }: {
   scenario: Scenario;
+  /** Explicit opt-in from the synthetic preview shell only. */
+  showInteractionPreview?: boolean;
   onNavigate?: (tab: TodayNavTarget) => void;
 }) {
   const { isDeveloper } = usePresentationMode();
@@ -69,6 +74,8 @@ export function TodayView({
   const availableWork = scenario.work.filter((w) => w.availability === "available");
   const gatedWork = scenario.work.filter((w) => w.availability === "unavailable");
   const recent = scenario.observations.slice(0, 2);
+  const lockedCount =
+    gatedWork.length + (scenario.restrictedRoute ? 1 : 0) + (scenario.undiscoveredPlaceId ? 1 : 0);
 
   const navTargets: { id: TodayNavTarget; label: string }[] = [
     { id: "streets", label: "Open The Streets" },
@@ -122,6 +129,9 @@ export function TodayView({
             tuMax={scenario.budget.tuMax}
           />
         </div>
+        <p className="mt-1.5 text-xs text-muted">
+          Actions are what you can get done today; travel units are how far you can move.
+        </p>
       </section>
 
       {/* C. Where am I sleeping? */}
@@ -143,7 +153,8 @@ export function TodayView({
               Prepaid: <span className="text-foreground">${scenario.housing.prepaid}</span>
             </span>
             <span>
-              Next due: <span className="text-foreground">Day {scenario.housing.nextDueDay}</span>
+              Next due: <span className="text-foreground">Day {scenario.housing.nextDueDay}</span>{" "}
+              <span className="text-muted">({relativeDays(scenario.day, scenario.housing.nextDueDay)})</span>
             </span>
           </div>
         </div>
@@ -154,6 +165,12 @@ export function TodayView({
         <h2 id="attention-heading" className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
           What needs attention
         </h2>
+        {urgent.length > 0 ? (
+          <p className="mb-2 text-xs text-muted">
+            <span className="font-semibold text-foreground">{urgent.length}</span>{" "}
+            item{urgent.length === 1 ? " needs" : "s need"} attention today.
+          </p>
+        ) : null}
         {urgent.length === 0 ? (
           <div className="flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-muted">
             <InfoIcon className="h-4 w-4" />
@@ -198,9 +215,22 @@ export function TodayView({
         <h2 id="opportunities-heading" className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
           What I could do
         </h2>
+
+        {showInteractionPreview ? <>
+        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">A consequential offer</h3>
+        <div className="mb-4">
+          <p className="mb-2 text-xs text-muted">Separate synthetic opening-day example; not an offer in the career shown above.</p>
+          <OpportunityInteractionDemo />
+        </div>
+        </> : null}
+
         {availableWork.length > 0 ? (
           <>
             <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted">Available work</h3>
+            <p className="mb-2 text-xs text-muted">
+              <span className="font-semibold text-foreground">{availableWork.length}</span>{" "}
+              shift{availableWork.length === 1 ? "" : "s"} open today.
+            </p>
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               {availableWork.map((w) => (
                 <WorkCard key={w.id} work={w} />
@@ -214,6 +244,12 @@ export function TodayView({
         )}
 
         <h3 className="mb-2 mt-4 text-xs font-semibold uppercase tracking-wide text-muted">Still out of reach</h3>
+        {lockedCount > 0 ? (
+          <p className="mb-2 text-xs text-muted">
+            <span className="font-semibold text-foreground">{lockedCount}</span> thing
+            {lockedCount === 1 ? "" : "s"} you can’t reach yet — here’s why.
+          </p>
+        ) : null}
         <ul className="space-y-2">
           {gatedWork.map((w) => (
             <li key={w.id}>

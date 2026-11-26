@@ -31,6 +31,10 @@ export function StoryView({ scenario }: { scenario: Scenario }) {
   const conflicts = new Set(
     [...byIncident.values()].filter((list) => list.length > 1).flatMap((list) => list.map((o) => o.id)),
   );
+  const confidenceCounts = scenario.observations.reduce<Record<string, number>>((acc, o) => {
+    acc[o.confidence] = (acc[o.confidence] ?? 0) + 1;
+    return acc;
+  }, {});
 
   return (
     <div className="space-y-6">
@@ -55,6 +59,14 @@ export function StoryView({ scenario }: { scenario: Scenario }) {
         <h2 id="observations-heading" className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
           Incident observations
         </h2>
+        {scenario.observations.length > 0 ? (
+          <p className="mb-2 text-[11px] text-muted">
+            {scenario.observations.length} observation{scenario.observations.length === 1 ? "" : "s"} ·{" "}
+            {confidenceCounts.documented ?? 0} documented · {confidenceCounts.unconfirmed ?? 0} unconfirmed ·{" "}
+            {confidenceCounts.unknown ?? 0} unknown. Documented means a record backs it; unconfirmed means the claim is not verified.
+            Confidence labels do not establish source count or make a claim true.
+          </p>
+        ) : null}
         {scenario.observations.length === 0 ? (
           <p className="noir-panel p-4 text-sm text-muted">
             No observations recorded. Incident observations you witness appear here with their source and

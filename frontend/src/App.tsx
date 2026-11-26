@@ -107,7 +107,7 @@ function AppShell() {
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-5 sm:px-6">
         <div role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`} tabIndex={0}>
           {tab === "today" ? (
-            <TodayView scenario={scenario} onNavigate={setTab} />
+            <TodayView scenario={scenario} onNavigate={setTab} showInteractionPreview />
           ) : tab === "streets" ? (
             <StreetsView scenario={scenario} />
           ) : tab === "life" ? (

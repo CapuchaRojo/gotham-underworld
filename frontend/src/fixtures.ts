@@ -11,7 +11,7 @@ export const HOME_PLACE_ID = "goon.poi.p031"; // East Side Housing Cooperative (
 const TESS: Scenario["contacts"][number] = {
   id: "contact.tess",
   name: "Tess",
-  role: "Support worker",
+  role: "Repair worker and cooperative coordinator",
   personality: "Patient, keeps receipts, checks in before deadlines.",
   standing: 2,
   known: "Handles your support advance and follows up on the notice.",

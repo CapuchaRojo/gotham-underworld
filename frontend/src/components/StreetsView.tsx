@@ -58,6 +58,13 @@ export function StreetsView({ scenario }: { scenario: Scenario }) {
   const isMonorailStation =
     selected?.id === MONORAIL_PILOT.fromId || selected?.id === MONORAIL_PILOT.toId;
 
+  const filtersActive = query.trim() !== "" || kind !== "all" || region !== "all";
+  const clearFilters = () => {
+    setQuery("");
+    setKind("all");
+    setRegion("all");
+  };
+
   return (
     <div className="space-y-4">
       {/* Current location */}
@@ -154,6 +161,22 @@ export function StreetsView({ scenario }: { scenario: Scenario }) {
           ))}
         </div>
 
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
+          <span>
+            <span className="font-semibold text-foreground">{filtered.length}</span> of {PLACES.length} places
+            shown.
+          </span>
+          {filtersActive ? (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="cursor-pointer rounded-md border border-border bg-surface px-2 py-0.5 font-medium text-foreground transition-colors duration-150 hover:border-primary hover:text-primary active:scale-[0.97]"
+            >
+              Clear filters
+            </button>
+          ) : null}
+        </div>
+
         {isDeveloper ? (
           <p className="text-[11px] text-muted">
             Profile codes: Economy (E) · Security (S) · Criminal (C) · Civilian (V) · Presence (N). Codes are
@@ -167,7 +190,17 @@ export function StreetsView({ scenario }: { scenario: Scenario }) {
         <div className="max-h-[70vh] space-y-2 overflow-y-auto pr-1">
           {filtered.length === 0 ? (
             <div className="noir-panel p-6 text-center text-sm text-muted">
-              No places match “{query}”. {isDeveloper ? "Try a different name, type, or identifier." : "Try a different name or type."}
+              {query.trim() ? `No places match “${query}”. ` : "No places match the current filters. "}
+              {isDeveloper ? "Try a different name, type, or identifier." : "Try a different name or type."}
+              {filtersActive ? (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="mt-2 block w-full cursor-pointer rounded-md border border-border bg-surface px-3 py-1.5 text-sm font-medium text-foreground transition-colors duration-150 hover:border-primary hover:text-primary active:scale-[0.99]"
+                >
+                  Clear filters and show all places
+                </button>
+              ) : null}
             </div>
           ) : (
             filtered.map((p) => (
