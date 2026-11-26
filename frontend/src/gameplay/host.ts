@@ -11,6 +11,9 @@
 
 import {
   ERROR_BY_CODE,
+  ID_PATTERN,
+  validateHousingResponse,
+  validateHousingOperation,
   HOST_PROTOCOL_VERSION,
   parseJsonBody,
   validateBootstrapResponse,
@@ -25,6 +28,8 @@ import type {
   EngineEnvelope,
   ErrorCode,
   HostSession,
+  HousingResponse,
+  HousingOperationResponse,
   OperationResponse,
 } from "./wire";
 
@@ -38,10 +43,12 @@ import type {
  * is not release authenticity.
  */
 export const CLIENT_BUNDLE_ID = "goon-c2b-inspection-v1" as const;
+export const HOUSING_BUNDLE_ID = "goon-s01-a0-p2-gtg26-v1" as const;
+export type LocalBundleId = typeof CLIENT_BUNDLE_ID | typeof HOUSING_BUNDLE_ID;
 
 /** Assert the host is serving the same bundle as this client (fail closed). */
-export function sessionMatchesBundle(session: HostSession): boolean {
-  return session.bundle_id === CLIENT_BUNDLE_ID;
+export function sessionMatchesBundle(session: HostSession, bundleId: LocalBundleId = CLIENT_BUNDLE_ID): boolean {
+  return session.bundle_id === bundleId;
 }
 
 // ---------------------------------------------------------------------------
@@ -153,6 +160,11 @@ export interface HostClient {
   getOperation(capability: string, requestId: string): Promise<HostResult<OperationResponse>>;
 }
 
+export interface HousingHostClient extends HostClient {
+  getHousing(capability: string): Promise<HostResult<HousingResponse>>;
+  getHousingOperation(capability: string, requestId: string): Promise<HostResult<HousingOperationResponse>>;
+}
+
 export interface HostClientOptions {
   /** Injectable for mocked-transport tests; defaults to the ambient fetch. */
   fetchImpl?: typeof fetch;
@@ -162,6 +174,7 @@ export interface HostClientOptions {
 
 const BOOTSTRAP_PATH = "/host/v1/bootstrap";
 const SESSION_PATH = "/host/v1/session";
+const HOUSING_PATH = "/api/v1/housing";
 const STATE_PATH = "/api/v1/state";
 const COMMANDS_PATH = "/api/v1/commands";
 const OPERATIONS_PATH = "/api/v1/operations";
@@ -175,7 +188,10 @@ function describeError(error: unknown): string {
   return "The engine host could not be reached.";
 }
 
-export function createHostClient(options: HostClientOptions = {}): HostClient {
+export function createHostClient(
+  options: HostClientOptions = {},
+  bundleId: LocalBundleId = CLIENT_BUNDLE_ID,
+): HousingHostClient {
   const fetchImpl = options.fetchImpl ?? globalThis.fetch;
   const baseUrl = options.baseUrl ?? "";
 
@@ -266,7 +282,7 @@ export function createHostClient(options: HostClientOptions = {}): HostClient {
     async bootstrap(code) {
       const body = JSON.stringify({
         host_protocol_version: HOST_PROTOCOL_VERSION,
-        bundle_id: CLIENT_BUNDLE_ID,
+        bundle_id: bundleId,
         code,
       });
       return request(
@@ -295,6 +311,17 @@ export function createHostClient(options: HostClientOptions = {}): HostClient {
         { method: "GET", headers: authHeaders(capability), ...policy },
         validateEngineEnvelope,
       );
+    },
+
+    async getHousing(capability) {
+      return request(HOUSING_PATH, { method: "GET", headers: authHeaders(capability), ...policy }, validateHousingResponse);
+    },
+
+    async getHousingOperation(capability, requestId) {
+      if (!ID_PATTERN.test(requestId) || /[^A-Za-z0-9._-]/.test(requestId)) {
+        return { ok: false, failure: { kind: "validation", code: "invalid_id", message: "Invalid request ID.", path: "$.request_id" } };
+      }
+      return request(`${HOUSING_PATH}/operations/${requestId}`, { method: "GET", headers: authHeaders(capability), ...policy }, validateHousingOperation);
     },
 
     async postCommand(capability, commandRequest) {

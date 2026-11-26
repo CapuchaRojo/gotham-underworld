@@ -6,7 +6,7 @@ import unittest
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from package_host import BUNDLE_ID, REPO, package
+from package_host import BUNDLE_ID, HOUSING_BUNDLE_ID, REPO, package
 from bridge_assets import load_bundle
 from bridge_checkpoint import BridgeError
 
@@ -59,6 +59,19 @@ class PackagingTests(unittest.TestCase):
         self.assertNotIn('<style', bundle.assets['/'].body.decode())
         self.assertEqual(pin, hashlib.sha256((self.app / 'ui_dist' / BUNDLE_ID / 'manifest.json').read_bytes()).hexdigest())
 
+
+    def test_housing_candidate_is_a_separate_immutable_bundle(self):
+        inspection_pin = package(self.dist, self.app)
+        with self.assertRaises(ValueError):
+            package(self.dist, self.app, HOUSING_BUNDLE_ID)
+        housing = REPO / 'frontend/dist/housing'
+        pin = package(housing, self.app, HOUSING_BUNDLE_ID)
+        bundle = load_bundle(self.app, HOUSING_BUNDLE_ID, pin)
+        self.assertIn(b'Gotham: The Goon - Housing', bundle.assets['/'].body)
+        self.assertNotEqual(pin, inspection_pin)
+        with self.assertRaises(BridgeError):
+            load_bundle(self.app, BUNDLE_ID, pin)
+        self.assertEqual(pin, package(housing, self.app, HOUSING_BUNDLE_ID))
 
     def test_invalid_candidate_never_occupies_final_release_path(self):
         (self.dist / 'local.html').write_text('<html style="color:red"></html>')

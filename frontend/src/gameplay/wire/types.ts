@@ -305,3 +305,35 @@ export const ERROR_TABLE: readonly ErrorInfo[] = [
 export const ERROR_BY_CODE: Readonly<Record<ErrorCode, ErrorInfo>> = Object.fromEntries(
   ERROR_TABLE.map((entry) => [entry.code, entry]),
 ) as Readonly<Record<ErrorCode, ErrorInfo>>;
+
+export const ROOM_PAYMENT_STATUSES = [
+  "not_adopted", "pending", "detained", "away_from_home",
+  "no_payable_balance", "no_cash", "eligible",
+] as const;
+
+export type RoomPaymentStatus = (typeof ROOM_PAYMENT_STATUSES)[number];
+
+export interface HousingSettlement {
+  day: number;
+  kind: "prepay" | "arrears_payment" | "due";
+  paid: number;
+  credit_applied: number;
+  balance_after: { cash: string; arrears: number; prepaid: number; next_due_day: number };
+}
+
+export interface HousingScope {
+  protocol_version: 1;
+  career_id: string;
+  lineage_id: string;
+  revision: number;
+}
+
+export interface HousingResponse extends HousingScope {
+  pay_room: RoomPaymentStatus;
+  latest_settlement: HousingSettlement | null;
+}
+
+export interface HousingOperationResponse extends HousingScope {
+  receipt: Receipt;
+  settlements: HousingSettlement[];
+}

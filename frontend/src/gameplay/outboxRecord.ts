@@ -1,14 +1,21 @@
 // Transport storage validation only; never reconstruct or repair an intent.
 import type { OutboxRecord } from "./outbox";
-import { validateCommandRequest } from "./wire";
+import { ID_PATTERN, validateCommandRequest } from "./wire";
+
+export function isHostInstanceId(value: unknown): value is string {
+  return typeof value === "string" && ID_PATTERN.test(value) && !/[^A-Za-z0-9._-]/.test(value);
+}
 export function validStoredRecord(value: unknown): value is OutboxRecord {
   if (!value || typeof value !== "object" || Array.isArray(value)) return false;
   const row = value as OutboxRecord;
   const keys = ["request_id", "scope", "career_id", "lineage_id", "envelope", "status", "receipt", "created_at", "updated_at", "last_error"];
+  const hasHost = Object.hasOwn(row, "host_instance_id");
+  if (hasHost) keys.push("host_instance_id");
   if (Object.keys(row).length !== keys.length || keys.some(k => !Object.hasOwn(row, k))) return false;
   const checked = validateCommandRequest(row.envelope);
   if (!checked.ok) return false;
   const e = checked.value;
+  if (hasHost && (e.command !== "pay_room" || !isHostInstanceId(row.host_instance_id))) return false;
   if (row.request_id !== e.request_id || row.career_id !== e.career_id || row.lineage_id !== e.lineage_id ||
       row.scope !== `${e.career_id}\u0000${e.lineage_id}`) return false;
   if (!["persisted", "transmitted", "committed", "quarantined", "superseded"].includes(row.status) ||

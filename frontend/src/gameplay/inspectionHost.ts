@@ -6,8 +6,8 @@ import { ID_PATTERN } from "./wire/constants";
 
 export const IDENTITY_KEY = "goon.inspection.identity.v1";
 
-export function createInspectionHostClient(options: HostClientOptions = {}): HostClient {
-  const host = createHostClient(options);
+/** Bind all local authoritative reads to the same career and monotonic revision. */
+export function bindHostReads<T extends HostClient>(host: T, identityKey: string): T {
   return {
     ...host,
     async bootstrap(code) {
@@ -22,16 +22,12 @@ export function createInspectionHostClient(options: HostClientOptions = {}): Hos
       }
       return result;
     },
-    async postCommand() {
-      return { ok: false, failure: { kind: "host_error", code: "COMMAND_NOT_ALLOWED",
-        http: 400, message: "Gameplay commands are disabled in this inspection build.", action: null } };
-    },
     async getState(capability): Promise<HostResult<EngineEnvelope>> {
       const result = await host.getState(capability);
       if (!result.ok) return result;
       const value = result.value;
       try {
-        const saved = sessionStorage.getItem(IDENTITY_KEY);
+        const saved = sessionStorage.getItem(identityKey);
         if (saved) {
           const previous = JSON.parse(saved);
           if (previous.career_id !== value.career_id || previous.lineage_id !== value.lineage_id ||
@@ -40,7 +36,7 @@ export function createInspectionHostClient(options: HostClientOptions = {}): Hos
               message: "Career identity changed or revision rolled back. Operator review is required; pending requests must be preserved." } };
           }
         }
-        sessionStorage.setItem(IDENTITY_KEY, JSON.stringify({ career_id: value.career_id,
+        sessionStorage.setItem(identityKey, JSON.stringify({ career_id: value.career_id,
           lineage_id: value.lineage_id, revision: value.revision }));
       } catch {
         return { ok: false, failure: { kind: "validation", code: "storage_unavailable", path: "$",
@@ -56,17 +52,27 @@ export function createInspectionHostClient(options: HostClientOptions = {}): Hos
       const result = await host.getOperation(capability, requestId);
       if (!result.ok) return result;
       try {
-        const bound = JSON.parse(sessionStorage.getItem(IDENTITY_KEY) ?? "null");
+        const bound = JSON.parse(sessionStorage.getItem(identityKey) ?? "null");
         if (!bound || result.value.career_id !== bound.career_id || result.value.lineage_id !== bound.lineage_id ||
             !Number.isSafeInteger(bound.revision) || bound.revision < 0 || result.value.revision < bound.revision ||
             (result.value.receipt && result.value.receipt.request_id !== requestId)) throw new Error();
-        sessionStorage.setItem(IDENTITY_KEY, JSON.stringify({ career_id: result.value.career_id,
+        sessionStorage.setItem(identityKey, JSON.stringify({ career_id: result.value.career_id,
           lineage_id: result.value.lineage_id, revision: result.value.revision }));
       } catch {
         return { ok: false, failure: { kind: "validation", code: "invalid_value", path: "$",
           message: "Operation lookup is not bound to the inspected career and original request." } };
       }
       return result;
+    },
+  };
+}
+
+export function createInspectionHostClient(options: HostClientOptions = {}): HostClient {
+  return {
+    ...bindHostReads(createHostClient(options), IDENTITY_KEY),
+    async postCommand() {
+      return { ok: false, failure: { kind: "host_error", code: "COMMAND_NOT_ALLOWED",
+        http: 400, message: "Gameplay commands are disabled in this inspection build.", action: null } };
     },
   };
 }

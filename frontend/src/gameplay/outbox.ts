@@ -22,7 +22,7 @@ import type {
   Receipt,
 } from "./wire";
 import { validateCommandRequest, validateEngineEnvelope, validateOperationResponse } from "./wire";
-import { validStoredRecord, requireOutboxSchema } from "./outboxRecord";
+import { isHostInstanceId, validStoredRecord, requireOutboxSchema } from "./outboxRecord";
 import type { HostClient, HostFailure } from "./host";
 
 export type OutboxRecordStatus =
@@ -45,6 +45,7 @@ export interface OutboxRecord {
   created_at: number;
   updated_at: number;
   last_error: string | null;
+  host_instance_id?: string;
 }
 
 export type OutboxOutcome =
@@ -59,6 +60,8 @@ export type OutboxOutcome =
   | { kind: "conflicting_intent"; requestId: string; message: string }
   | { kind: "reauthorize_required"; requestId: string; message: string }
   | { kind: "adapter_defect"; code: string; message: string }
+  | { kind: "retry_available"; requestId: string }
+  | { kind: "ambiguous"; requestId: string; message: string }
   | { kind: "nothing_to_recover" };
 
 export interface OutboxSubmitInput {
@@ -69,6 +72,7 @@ export interface OutboxSubmitInput {
   command: Command;
   arguments: Record<string, string>;
   capability: string;
+  hostInstanceId?: string;
 }
 
 export interface OutboxRecoverInput {
@@ -79,11 +83,13 @@ export interface OutboxRecoverInput {
   lineageId: string;
   revision: number;
   capability: string;
+  housing?: { hostInstanceId: string; retry: boolean };
 }
 
 export interface Outbox {
   submit(input: OutboxSubmitInput): Promise<OutboxOutcome>;
   recover(input: OutboxRecoverInput): Promise<OutboxOutcome>;
+  findHousing(careerId: string, lineageId: string): Promise<OutboxRecord | null>;
 }
 
 export interface OutboxDeps {
@@ -140,11 +146,11 @@ export function generateRequestId(): string {
 // IndexedDB primitives
 // ---------------------------------------------------------------------------
 
-function openDatabase(factory: IDBFactory): Promise<IDBDatabase> {
+function openDatabase(factory?: IDBFactory): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     let request: IDBOpenDBRequest;
     try {
-      request = factory.open(DB_NAME, 1);
+      request = (factory ?? globalThis.indexedDB).open(DB_NAME, 1);
     } catch (error) {
       reject(error);
       return;
@@ -175,7 +181,20 @@ function writeRecord(db: IDBDatabase, record: OutboxRecord): Promise<void> {
     tx.onerror = () => reject(tx.error ?? new Error("IndexedDB write failed"));
     tx.onabort = () => reject(tx.error ?? new Error("IndexedDB write aborted"));
     try {
-      tx.objectStore(STORE).put(record);
+      const store = tx.objectStore(STORE);
+      requireOutboxSchema(store);
+      const request = store.get(record.request_id);
+      request.onsuccess = () => {
+        const previous: unknown = request.result;
+        if (!validStoredRecord(previous) || !validStoredRecord(record)) {
+          tx.abort();
+          return;
+        }
+        // A delayed failure cannot reverse a committed receipt or reopen a terminal intent.
+        if (previous.status === "committed" ||
+            (record.status !== "committed" && (previous.status === "quarantined" || previous.status === "superseded"))) return;
+        store.put(record);
+      };
     } catch (error) {
       reject(error);
     }
@@ -235,12 +254,12 @@ function persistNew(db: IDBDatabase, record: OutboxRecord): Promise<void> {
     let store: IDBObjectStore;
     try {
       store = tx.objectStore(STORE);
+      requireOutboxSchema(store);
     } catch (error) {
       reject(error);
       return;
     }
 
-    requireOutboxSchema(store);
     const existingReq = store.getAll();
     existingReq.onsuccess = () => {
       const rows = existingReq.result as OutboxRecord[];
@@ -325,13 +344,13 @@ function buildEnvelope(input: OutboxSubmitInput, requestId: string): EnvelopeBui
 // ---------------------------------------------------------------------------
 
 export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
-  const factory = deps.idbFactory ?? globalThis.indexedDB;
+  const factory = deps.idbFactory;
   const newRequestId = deps.newRequestId ?? generateRequestId;
 
   function responseBound(record: OutboxRecord, response: EngineEnvelope): boolean {
     const receipt = response.receipt;
     return response.career_id === record.career_id && response.lineage_id === record.lineage_id &&
-      response.revision >= record.envelope.expected_revision && (!receipt ||
+      Number.isSafeInteger(response.revision) && response.revision >= record.envelope.expected_revision && (!receipt ||
       (receipt.request_id === record.request_id && receipt.command === record.envelope.command &&
        receipt.revision === record.envelope.expected_revision + 1 && receipt.revision <= response.revision));
   }
@@ -447,6 +466,8 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
     if (!validateOperationResponse(op).ok || !responseBound(record, op) ||
         (op.operation_status === "not_found" && op.receipt !== null))
       return failureAfterRecovery(db, record, unbound);
+    if (record.envelope.command === "pay_room" && op.revision < input.revision)
+      return failureAfterRecovery(db, record, unbound);
     if (op.operation_status === "committed") {
       // Committed is authoritative even when the authoritative revision has
       // advanced past `expected_revision`: the command took effect, so record
@@ -476,6 +497,16 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
     // (and therefore no rollback is suspected). If the authoritative revision
     // advanced while the operation is not_found, the host moved on WITHOUT this
     // command — the original decision is stale and must never be replayed.
+    if (record.envelope.command === "pay_room") {
+      if (record.receipt !== null || !record.host_instance_id ||
+          record.host_instance_id !== input.housing?.hostInstanceId || op.revision !== input.revision) {
+        return { kind: "ambiguous", requestId: record.request_id,
+          message: "The original payment could not be located with matching checkpoint history." };
+      }
+      if (record.envelope.expected_revision === input.revision && !input.housing.retry) {
+        return { kind: "retry_available", requestId: record.request_id };
+      }
+    }
     if (record.receipt !== null) return failureAfterRecovery(db, record, unbound);
     if (record.envelope.expected_revision !== input.revision || record.envelope.expected_revision !== op.revision) {
       await markStatus(db, record, {
@@ -514,6 +545,31 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
   }
 
   return {
+    async findHousing(careerId, lineageId) {
+      const scope = scopeKey(careerId, lineageId);
+      const db = await openDatabase(factory);
+      try {
+        const rows = await new Promise<OutboxRecord[]>((resolve, reject) => {
+          const tx = db.transaction(STORE, "readonly");
+          const store = tx.objectStore(STORE);
+          requireOutboxSchema(store);
+          const request = store.getAll();
+          tx.oncomplete = () => {
+            if (request.result.some(row => !validStoredRecord(row))) reject(new Error("Malformed outbox; records preserved."));
+            else resolve(request.result);
+          };
+          tx.onabort = () => reject(tx.error ?? new Error("The outbox could not be read."));
+        });
+        const scoped = rows.filter(row => row.scope === scope);
+        const pending = scoped.filter(row => UNRESOLVED.includes(row.status));
+        if (pending.length > 1) throw new Error("Multiple unresolved intents; records preserved.");
+        return pending[0] ?? scoped.filter(row => row.status === "committed" && row.envelope.command === "pay_room")
+          .sort((first, second) => (second.receipt?.revision ?? 0) - (first.receipt?.revision ?? 0))[0] ?? null;
+      } finally {
+        db.close();
+      }
+    },
+
     async submit(input) {
       const requestId = newRequestId();
       const built = buildEnvelope(input, requestId);
@@ -521,6 +577,10 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
         return { kind: "adapter_defect", code: built.code, message: built.message };
       }
 
+      if (input.hostInstanceId !== undefined &&
+          (input.command !== "pay_room" || !isHostInstanceId(input.hostInstanceId))) {
+        return { kind: "adapter_defect", code: "invalid_id", message: "Invalid Housing host instance." };
+      }
       let db: IDBDatabase;
       try {
         db = await openDatabase(factory);
@@ -542,6 +602,7 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
         created_at: Date.now(),
         updated_at: Date.now(),
         last_error: null,
+        ...(input.hostInstanceId !== undefined ? { host_instance_id: input.hostInstanceId } : {}),
       };
 
       try {
@@ -601,13 +662,17 @@ export function createOutbox(host: HostClient, deps: OutboxDeps = {}): Outbox {
           };
         }
 
+        if (input.housing && record.envelope.command !== "pay_room") {
+          return { kind: "ambiguous", requestId: record.request_id, message: "A different intent requires operator review." };
+        }
+
         // 2. Look up the ORIGINAL request_id BEFORE judging the revision. A
         // command that committed and advanced the revision must recover as
         // committed (record receipt + reconcile state), never be mistaken for a
         // stale decision.
         const op = await host.getOperation(input.capability, record.request_id);
-        if (op.ok) return settleOperation(db, record, op.value, input);
-        return failureAfterRecovery(db, record, op.failure);
+        if (op.ok) return await settleOperation(db, record, op.value, input);
+        return await failureAfterRecovery(db, record, op.failure);
       } finally {
         db.close();
       }
