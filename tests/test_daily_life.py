@@ -302,6 +302,52 @@ class DailyLifeTests(unittest.TestCase):
         self.assertEqual(w, before)
         validate(w)
 
+    def test_room_payment_plan_and_reducer_share_order_and_existing_rejections(self):
+        unenrolled = create_career()
+        pending = create_career()
+        execute_command(pending, 'settle_in')
+        away = self.world()
+        self.go(away, 'store')
+        detained_home = self.world()
+        detained_away = deepcopy(away)
+        for detained in (detained_home, detained_away):
+            detained['cases'].append(dict(id=1, crime='fixture', suspect='Rookie', status='charged', evidence=3))
+            detained['player'].update(arrested=True, custody='pretrial')
+        full = self.world()
+        full_without_cash = self.world(cash=30)
+        for paid in (full, full_without_cash):
+            execute_command(paid, 'pay_room')
+        at_home = 'Visit home while free to make a room payment'
+        no_funds = 'No payable balance or no cash; basic home access remains available'
+        cases = (
+            (unenrolled, 'not_adopted', 'Daily life is not enabled; inspect life and explicitly settle_in'),
+            (pending, 'pending', 'Daily life activates after the next wait; loading does not activate it'),
+            (detained_home, 'detained', at_home), (detained_away, 'detained', at_home),
+            (away, 'away_from_home', at_home), (self.world(cash=0), 'no_cash', no_funds),
+            (full, 'no_payable_balance', no_funds), (full_without_cash, 'no_payable_balance', no_funds),
+        )
+        for world, reason, message in cases:
+            with self.subTest(reason=reason):
+                validate(world)
+                before, rng = deepcopy(world), random.getstate()
+                self.assertEqual(daily_life.room_payment_plan(world), (reason, None, 0))
+                with self.assertRaises(ValueError) as caught:
+                    execute_command(world, 'pay_room')
+                self.assertEqual(str(caught.exception), message)
+                self.assertEqual(world, before)
+                self.assertEqual(random.getstate(), rng)
+
+        world = self.world()
+        world['actions_used'] = 3
+        before = deepcopy(world)
+        self.assertEqual(daily_life.room_payment_plan(world), ('eligible', 'prepay', 30))
+        self.assertEqual(world, before)
+        result = execute_command(world, 'pay_room')
+        self.assertEqual(result['command'], 'pay_room')
+        self.assertEqual((world['player']['cash'], actions_remaining(world)), (10, 0))
+        self.assertEqual(world['navigation'], before['navigation'])
+        self.assertEqual(world['daily_life']['housing']['next_due_day'], 7)
+
     def test_home_prepayment_has_receipt_and_is_not_charged_twice(self):
         w = self.world()
         execute_command(w, 'pay_room')

@@ -96,6 +96,91 @@ class BridgeHTTPTests(unittest.TestCase):
         del headers['Origin']
         self.assertEqual(self.call(headers=headers)[0], 200)
 
+    def test_housing_wire_shapes_preserve_v1_command_and_operation_envelopes(self):
+        fresh = self.call()[1]
+        current_path = '/api/v1/housing'
+        status, current, headers = self.call(path=current_path)
+        self.assertEqual(status, 200)
+        self.assertEqual(headers['Cache-Control'], 'no-store')
+        self.assertNotIn('Access-Control-Allow-Origin', headers)
+        self.assertEqual(current, dict(protocol_version=1, career_id=fresh['career_id'],
+                                       lineage_id=fresh['lineage_id'], revision=0,
+                                       pay_room='not_adopted', latest_settlement=None))
+        self.send('settle_in')
+        self.assertEqual(self.call(path=current_path)[1]['pay_room'], 'pending')
+        self.send('wait')
+        self.assertEqual(self.call(path=current_path)[1]['pay_room'], 'eligible')
+        paid = self.send('pay_room')
+        ident = paid['receipt']['request_id']
+        prefix = '/api/v1/housing/operations/'
+        old_operation = '/api/v1/operations/' + ident
+        old = self.call(path=old_operation)[1]
+        self.assertEqual(set(paid), {'protocol_version', 'career_id', 'lineage_id', 'revision',
+                                     'allowed_commands', 'receipt', 'duplicate', 'state'})
+        self.assertEqual(set(paid['receipt']), {'request_id', 'revision', 'command_sequence',
+                                               'command', 'day', 'status'})
+        self.assertEqual(set(paid['state']['housing']), {'status', 'home_id', 'next_due_day', 'arrears', 'prepaid'})
+        self.assertEqual(old, dict(paid, operation_status='committed'))
+        expected = dict(day=1, kind='prepay', paid=30, credit_applied=0,
+                        balance_after=dict(cash='10', arrears=0, prepaid=30, next_due_day=7))
+        before = self.path.read_bytes()
+        backup = Path(str(self.path) + '.bak')
+        old_backup = backup.read_bytes()
+        for path in (current_path, prefix + ident):
+            status, data, headers = self.call(path=path)
+            self.assertEqual(status, 200)
+            self.assertEqual(headers['Cache-Control'], 'no-store')
+            self.assertNotIn('Access-Control-Allow-Origin', headers)
+            settlement = data['latest_settlement'] if path == current_path else data['settlements'][0]
+            self.assertEqual(settlement, expected)
+            for integer in ('day', 'paid', 'credit_applied'):
+                self.assertIs(type(settlement[integer]), int)
+            for integer in ('arrears', 'prepaid', 'next_due_day'):
+                self.assertIs(type(settlement['balance_after'][integer]), int)
+            self.assertRegex(settlement['balance_after']['cash'], r'^(0|[1-9][0-9]*)$')
+            if path == current_path:
+                self.assertEqual(data, dict(current, revision=3, pay_room='no_payable_balance',
+                                            latest_settlement=expected))
+            else:
+                self.assertEqual(data, dict(protocol_version=1, career_id=paid['career_id'],
+                                            lineage_id=paid['lineage_id'], revision=3,
+                                            receipt=paid['receipt'], settlements=[expected]))
+        self.assertEqual(self.call(path=old_operation)[1], old)
+        status, response, _ = self.call(path=prefix + 'never-submitted')
+        self.assertEqual((status, response['error']['code']), (404, 'NOT_FOUND'))
+        self.assertEqual(self.call(path='/api/v1/operations/never-submitted')[1]['operation_status'], 'not_found')
+        self.assertEqual(self.path.read_bytes(), before)
+        self.assertEqual(backup.read_bytes(), old_backup)
+
+    def test_housing_rejects_unauthorized_and_noncanonical_reads_without_writing(self):
+        self.send('settle_in')
+        wait = self.send('wait')
+        paths = ('/api/v1/housing', '/api/v1/housing/operations/' + wait['receipt']['request_id'])
+        before = self.path.read_bytes()
+        backup = Path(str(self.path) + '.bak')
+        old_backup = backup.read_bytes()
+        for path in paths:
+            for key, value, status in (('Authorization', None, 401), ('Authorization', 'Bearer wrong', 401),
+                                       ('Origin', 'https://evil.example', 403), ('Host', 'evil.example', 403)):
+                with self.subTest(path=path, key=key, value=value):
+                    headers = self.headers()
+                    if value is None:
+                        del headers[key]
+                    else:
+                        headers[key] = value
+                    self.assertEqual(self.call(path=path, headers=headers)[0], status)
+            for alias in (path + '?', path + '#', path + '?ignored=1', '/' + path, path + '/'):
+                with self.subTest(path=alias):
+                    self.assertEqual(self.call(path=alias)[0], 404)
+            self.assertEqual(self.call(path=path, body=b'{}')[0], 400)
+            self.assertEqual(self.call('PUT', path)[0], 405)
+            self.assertEqual(self.call('POST', path, {})[0], 404)
+        status, response, _ = self.call(path='/api/v1/housing/operations/%72equest-1')
+        self.assertEqual((status, response['error']['code']), (400, 'INVALID_REQUEST'))
+        self.assertEqual(self.call(path='/api/v1/housing/operations/')[0], 404)
+        self.assertEqual(self.path.read_bytes(), before)
+        self.assertEqual(backup.read_bytes(), old_backup)
+
     def test_unsafe_hosts_origins_and_capabilities_never_mutate(self):
         before, rng = self.path.read_bytes(), random.getstate()
         request = self.request()

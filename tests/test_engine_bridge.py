@@ -555,5 +555,254 @@ raise RuntimeError('crash injection did not run')
         self.assertEqual(result['budgets']['travel_units_remaining'], 18)
 
 
+    def housing_fixture(self, cash):
+        self.bridge.close()
+        source = self.path.parent / f'seed-{cash}.json'
+        world = engine.create_career()
+        world['player']['cash'] = cash
+        engine.save_career(world, source)
+        self.path = self.path.parent / f'housing-{cash}.json'
+        self.bridge = Bridge.import_legacy(source, self.path)
+        self.send('settle_in')
+        self.send('wait')
+
+    def settlement(self, day, kind, paid, credit, cash, arrears, prepaid, next_due_day):
+        return dict(day=day, kind=kind, paid=paid, credit_applied=credit,
+                    balance_after=dict(cash=str(cash), arrears=arrears, prepaid=prepaid, next_due_day=next_due_day))
+
+    def settlement_read(self, response, expected):
+        receipt = response['receipt']
+        result = self.bridge.housing_operation(receipt['request_id'])
+        self.assertEqual(result, dict(protocol_version=1, career_id=response['career_id'],
+                                      lineage_id=response['lineage_id'], revision=self.bridge.state()['revision'],
+                                      receipt=receipt, settlements=expected))
+        return result
+
+    def test_housing_full_and_partial_arrears_payment_and_new_prepayment(self):
+        for opening_cash, paid, arrears, cash in ((15, 15, 0, 5), (5, 20, 5, 0)):
+            with self.subTest(opening_cash=opening_cash):
+                self.housing_fixture(opening_cash)
+                for _ in range(7):
+                    self.send('wait')
+                self.send('travel', destination='p032', mode='walk')
+                self.send('choose', choice_id='goon.choice.1.opening_shift', option_id='work')
+                self.send('travel', destination='p031', mode='walk')
+                before = self.checkpoint()['world']['daily_life']
+                response = self.send('pay_room')
+                expected = self.settlement(8, 'arrears_payment', paid, 0, cash, arrears, 0, 14)
+                self.settlement_read(response, [expected])
+                self.assertEqual(self.bridge.housing()['latest_settlement'], expected)
+                after = self.checkpoint()['world']['daily_life']
+                self.assertEqual(len(after['transactions']), len(before['transactions']) + 1)
+                self.assertEqual(len(after['housing']['history']), len(before['housing']['history']) + 1)
+                self.assertEqual(after['transactions'][-1]['amount'], -paid)
+                self.assertEqual(after['transactions'][-1]['command_id'], response['receipt']['command_sequence'])
+                if arrears == 0:
+                    self.assertEqual(self.bridge.housing()['pay_room'], 'eligible')
+                    prepay = self.send('pay_room')
+                    self.settlement_read(prepay, [self.settlement(8, 'prepay', 5, 0, 0, 0, 5, 14)])
+
+    def test_housing_prepaid_due_and_concurrent_payment_recovery(self):
+        self.send('settle_in')
+        self.send('wait')
+        request = self.request('pay_room')
+        changed = dict(request, command='wait')
+        stale = dict(request, request_id='new-payment')
+        backup = Path(str(self.path) + '.bak')
+        with ThreadPoolExecutor(2) as threads:
+            copies = list(threads.map(self.bridge.execute, (request, request)))
+        self.assertEqual(sorted(r['duplicate'] for r in copies), [False, True])
+        self.assertEqual(copies[0]['receipt'], copies[1]['receipt'])
+        self.assertEqual(self.bridge.state()['revision'], 3)
+        self.assertEqual(len(self.checkpoint()['world']['daily_life']['transactions']), 1)
+        self.unchanged_rejection(changed, 'REQUEST_ID_REUSED')
+        self.unchanged_rejection(stale, 'STALE_REVISION')
+        self.unchanged_rejection(self.request('pay_room'), 'COMMAND_REJECTED')
+        self.assertEqual(self.bridge.housing()['pay_room'], 'no_payable_balance')
+        for _ in range(5):
+            neighbor = self.send('wait')
+        due = self.send('wait')
+        self.settlement_read(neighbor, [])
+        expected_due = self.settlement(7, 'due', 0, 30, 10, 0, 0, 14)
+        self.settlement_read(due, [expected_due])
+        self.assertEqual(self.bridge.housing()['latest_settlement'], expected_due)
+        self.settlement_read(self.send('wait'), [])
+        before, old_backup = self.path.read_bytes(), backup.read_bytes()
+        self.bridge.close()
+        self.bridge = Bridge.open(self.path)
+        duplicate = self.bridge.execute(request)
+        self.assertTrue(duplicate['duplicate'])
+        self.assertEqual(duplicate['receipt'], copies[0]['receipt'])
+        expected_prepay = self.settlement(1, 'prepay', 30, 0, 10, 0, 30, 7)
+        self.settlement_read(duplicate, [expected_prepay])
+        self.assertEqual(self.path.read_bytes(), before)
+        self.assertEqual(backup.read_bytes(), old_backup)
+
+    def test_housing_automatic_cash_and_zero_cash_dues_with_carried_arrears(self):
+        for starting_cash, next_cash, owed in ((0, 0, 30), (40, 10, 0)):
+            with self.subTest(cash=starting_cash):
+                self.housing_fixture(starting_cash)
+                if starting_cash == 0:
+                    denied = self.request('pay_room')
+                    self.unchanged_rejection(denied, 'COMMAND_REJECTED')
+                    self.assertEqual(self.bridge.operation(denied['request_id'])['operation_status'], 'not_found')
+                    with self.assertRaises(disk.BridgeError) as detail:
+                        self.bridge.housing_operation(denied['request_id'])
+                    self.assertEqual((detail.exception.status, detail.exception.code), (404, 'NOT_FOUND'))
+                for _ in range(6):
+                    due = self.send('wait')
+                self.settlement_read(due, [self.settlement(7, 'due', starting_cash - next_cash, 0,
+                                                           next_cash, owed, 0, 14)])
+                self.assertEqual(self.checkpoint()['world']['daily_life']['transactions'][-1]['command_id'], None)
+                if starting_cash == 0:
+                    for day in (14, 21, 28):
+                        for _ in range(7):
+                            due = self.send('wait')
+                        self.settlement_read(due, [self.settlement(day, 'due', 0, 0, 0, 30, 0, day + 7)])
+                        housing = self.checkpoint()['world']['daily_life']['housing']
+                        self.assertEqual(housing['history'][-1]['assessed'], 0)
+                        self.assertEqual(housing['arrears'], 30)
+
+    def test_housing_ignores_maintenance_and_returns_no_unrelated_settlement(self):
+        fresh = self.bridge.state()
+        self.assertEqual(self.bridge.housing(), dict(protocol_version=1, career_id=fresh['career_id'],
+                                                     lineage_id=fresh['lineage_id'], revision=0,
+                                                     pay_room='not_adopted', latest_settlement=None))
+        self.settlement_read(self.send('wait'), [])
+        self.housing_fixture(0)
+        for _ in range(6):
+            due = self.send('wait')
+        maintenance = self.send('choose', choice_id='goon.choice.room.1', option_id='help')
+        self.assertEqual(maintenance['state']['housing']['arrears'], 20)
+        self.settlement_read(maintenance, [])
+        self.assertEqual(self.bridge.housing()['latest_settlement'], self.settlement_read(
+            due, [self.settlement(7, 'due', 0, 0, 0, 30, 0, 14)])['settlements'][0])
+
+    def test_ambiguous_housing_details_leave_original_operation_committed(self):
+        self.send('settle_in')
+        for _ in range(7):
+            due = self.send('wait')
+        before = self.checkpoint()
+        sequence = due['receipt']['command_sequence']
+        ident = due['receipt']['request_id']
+
+        def misplaced_event(world):
+            events = world['events']
+            housing = next(e for e in events if e['kind'] == 'life_housing')
+            events.remove(housing)
+            closing = next(i for i, e in enumerate(events) if e.get('kind') == 'player_command'
+                           and e.get('command_id') == sequence)
+            events.insert(closing + 1, housing)
+
+        def retag_transaction(world):
+            for row in world['daily_life']['transactions'] + world['events']:
+                if row.get('id') == 'goon.transaction.1':
+                    row['command_id'] = sequence
+
+        for label, mutate in (
+            ('misplaced receipt event', misplaced_event), ('non-null due command', retag_transaction),
+            ('missing transaction', lambda w: w['daily_life']['transactions'].clear()),
+            ('duplicated transaction', lambda w: w['daily_life']['transactions'].extend(w['daily_life']['transactions'])),
+            ('wrong cycle', lambda w: w['daily_life']['housing']['history'][0].update(source_id='invalid')),
+        ):
+            with self.subTest(label=label):
+                world = deepcopy(before['world'])
+                mutate(world)
+                if mutate in (misplaced_event, retag_transaction):
+                    disk.validate(dict(before, world=world, world_hash=disk.digest(world)))
+                with patch.dict(self.bridge._checkpoint, world=world):
+                    with self.assertRaises(disk.BridgeError) as caught:
+                        self.bridge.housing_operation(ident)
+                    self.assertEqual((caught.exception.status, caught.exception.code, str(caught.exception)),
+                                     (503, 'INVALID_CHECKPOINT', 'Housing settlement details are unavailable.'))
+                    original = self.bridge.operation(ident)
+                    self.assertEqual(original['operation_status'], 'committed')
+                    self.assertEqual(original['receipt'], due['receipt'])
+        self.assertEqual(self.checkpoint(), before)
+
+        self.housing_fixture(40)
+        paid = self.send('pay_room')
+        world = deepcopy(self.checkpoint()['world'])
+        world['daily_life']['transactions'][-1]['command_id'] -= 1
+        with patch.dict(self.bridge._checkpoint, world=world):
+            with self.assertRaises(disk.BridgeError) as caught:
+                self.bridge.housing_operation(paid['receipt']['request_id'])
+            self.assertEqual(caught.exception.code, 'INVALID_CHECKPOINT')
+
+    def test_housing_recovers_publication_in_memory_without_writing(self):
+        self.send('settle_in')
+        self.send('wait')
+        request = self.request('pay_room')
+        replace = disk.os.replace
+
+        def lost_ack(source, target):
+            replace(source, target)
+            if Path(target) == self.path:
+                raise OSError('acknowledgment lost after replacement')
+
+        with patch('bridge_checkpoint.os.replace', side_effect=lost_ack):
+            with self.assertRaises(disk.BridgeError) as caught:
+                self.bridge.execute(request)
+            self.assertEqual(caught.exception.code, 'OUTCOME_UNKNOWN')
+        with patch.object(self.bridge._store, 'read', side_effect=OSError('unreadable')):
+            for read in (self.bridge.housing, lambda: self.bridge.housing_operation(request['request_id'])):
+                with self.assertRaises(disk.BridgeError) as caught:
+                    read()
+                self.assertEqual(caught.exception.code, 'OUTCOME_UNKNOWN')
+        before = self.path.read_bytes()
+        backup = Path(str(self.path) + '.bak')
+        old_backup = backup.read_bytes()
+        with patch.object(self.bridge._store, 'write', side_effect=AssertionError('read attempted to write')):
+            expected = self.settlement(1, 'prepay', 30, 0, 10, 0, 30, 7)
+            self.assertEqual(self.bridge.housing()['latest_settlement'], expected)
+            recovered = self.bridge.housing_operation(request['request_id'])
+            self.assertEqual(recovered['settlements'], [expected])
+        self.bridge.close()
+        self.bridge = Bridge.open(self.path)
+        self.assertEqual(self.bridge.housing_operation(request['request_id']), recovered)
+        self.assertEqual(self.path.read_bytes(), before)
+        self.assertEqual(backup.read_bytes(), old_backup)
+
+    def test_housing_reads_preserve_deterministic_checkpoint_bytes(self):
+        commands = ('settle_in', 'wait', 'pay_room') + ('wait',) * 7
+        starting = self.path.read_bytes()
+        comparison = self.path.with_name('without-reads.json')
+        comparison.write_bytes(starting)
+        with Bridge.open(comparison) as without:
+            for command in commands:
+                request = self.request(command)
+                self.assertEqual(self.bridge.execute(request), without.execute(request))
+                self.bridge.housing()
+                self.bridge.housing_operation(request['request_id'])
+            self.assertEqual(self.bridge.state(), without.state())
+        self.assertEqual(self.path.read_bytes(), comparison.read_bytes())
+        self.assertEqual(Path(str(self.path) + '.bak').read_bytes(), Path(str(comparison) + '.bak').read_bytes())
+
+    def test_housing_legacy_import_keeps_history_and_exact_large_balance(self):
+        legacy = ROOT / 'tests' / 'fixtures' / 'm002.json'
+        original = legacy.read_bytes()
+        with Bridge.import_legacy(legacy, self.path.with_name('old.json')) as imported:
+            self.assertEqual(imported.housing()['pay_room'], 'not_adopted')
+            self.assertIsNone(imported.housing()['latest_settlement'])
+            self.assertEqual(imported.housing()['revision'], 0)
+        self.assertEqual(legacy.read_bytes(), original)
+
+        cash = 9007199254740993
+        self.housing_fixture(cash + 30)
+        paid = self.send('pay_room')
+        expected = self.settlement(1, 'prepay', 30, 0, cash, 0, 30, 7)
+        self.settlement_read(paid, [expected])
+        saved = self.path.with_name('housing-history.json')
+        self.bridge.export_legacy(saved)
+        original = saved.read_bytes()
+        with Bridge.import_legacy(saved, self.path.with_name('imported-history.json')) as imported:
+            self.assertEqual(imported.housing()['latest_settlement'], expected)
+            self.assertEqual(imported.housing()['revision'], 0)
+            with self.assertRaises(disk.BridgeError) as caught:
+                imported.housing_operation(paid['receipt']['request_id'])
+            self.assertEqual(caught.exception.code, 'NOT_FOUND')
+        self.assertEqual(saved.read_bytes(), original)
+
+
 if __name__ == '__main__':
     unittest.main()

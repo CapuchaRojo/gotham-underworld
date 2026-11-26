@@ -9,7 +9,7 @@ import mobility
 import navigation
 from bridge_checkpoint import (BridgeError, COMMANDS, Store, VERSION, digest,
                                identifier, receipt, storage_paths, validate_request)
-from bridge_projection import player_view
+from bridge_projection import housing_view, operation_housing_settlements, player_view
 
 
 class Bridge:
@@ -106,6 +106,27 @@ class Bridge:
             result = self._response(operation)
             result['operation_status'] = 'committed' if operation else 'not_found'
             return result
+
+    def housing(self):
+        with self._mutex:
+            self._recover()
+            c = self._checkpoint
+            return dict(protocol_version=VERSION, career_id=c['career_id'], lineage_id=c['lineage_id'],
+                        revision=c['revision'], **housing_view(c['world']))
+
+    def housing_operation(self, request_id):
+        if not identifier(request_id):
+            raise BridgeError('INVALID_REQUEST', 'Invalid request identifier.')
+        with self._mutex:
+            self._recover()
+            c = self._checkpoint
+            operation = next((o for o in c['operations'] if o['request']['request_id'] == request_id), None)
+            if operation is None:
+                raise BridgeError('NOT_FOUND', 'Unknown operation.', 404)
+            committed = operation['receipt']
+            return dict(protocol_version=VERSION, career_id=c['career_id'], lineage_id=c['lineage_id'],
+                        revision=c['revision'], receipt=deepcopy(committed),
+                        settlements=operation_housing_settlements(c['world'], committed))
 
     def execute(self, request):
         request = deepcopy(validate_request(request))
